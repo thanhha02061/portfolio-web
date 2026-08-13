@@ -1,0 +1,47 @@
+PORTFOLIO THANH HÀ — thanhha-portfolio.netlify.app
+===================================================
+
+TRONG THƯ MỤC NÀY
+-----------------
+sua.html     <- MỞ FILE NÀY để sửa nội dung (không cần biết code)
+index.html   <- website thật, do sua.html tạo ra
+images/      <- bỏ ảnh vào đây
+
+
+SỬA NỘI DUNG — 4 BƯỚC
+----------------------
+1. Double-click sua.html  (mở bằng Chrome)
+   Nếu đã có file noi-dung.json từ lần trước:
+   bấm "Nạp nội dung đã lưu" -> chọn file đó
+
+2. Gõ vào các ô bên trái. Bản xem trước bên phải đổi theo ngay.
+
+3. Bấm 2 nút:
+   "Lưu nội dung (.json)"  -> giữ file này để lần sau sửa tiếp
+   "Tải index.html"        -> file mới trong thư mục Downloads
+
+4. Chép index.html vừa tải vào thư mục này (đè lên file cũ),
+   rồi kéo CẢ THƯ MỤC lên Netlify (tab Deploys).
+
+
+ẢNH — chỉ cần đặt đúng tên, không phải sửa code
+------------------------------------------------
+images/chan-dung.jpg   ảnh chân dung (tỉ lệ 4:5, nền tối)
+images/du-an-1.png     ảnh dự án 1
+images/du-an-2.png     ảnh dự án 2
+images/du-an-3.png     ảnh dự án 3
+images/du-an-4.png     ảnh dự án 4
+images/CV.pdf          file CV
+
+!! NHỚ CHE SỐ LIỆU THẬT CỦA CÔNG TY TRÊN ẢNH DASHBOARD !!
+
+
+LƯU Ý
+-----
+- Kéo CẢ THƯ MỤC lên Netlify, đừng kéo riêng index.html (sẽ mất ảnh).
+- File sua.html cũng được đưa lên mạng cùng. Nó chỉ là cái form,
+  không chứa gì bí mật. Không thích thì xoá nó khỏi thư mục
+  trước khi kéo lên Netlify.
+- Site đang ở chế độ Private. Người ngoài chưa xem được.
+  Khi nào nội dung xong: Netlify -> Project configuration ->
+  Project visibility -> Edit visibility -> Public.

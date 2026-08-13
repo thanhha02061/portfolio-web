@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sửa nội dung portfolio</title>
+<style>
+:root{--bg:#0F1B2A;--panel:#16263A;--panel2:#1D3247;--line:#27405A;--line2:#33506F;
+--ink:#F1F6FC;--ink2:#AEC2D6;--ink3:#7B93AC;--blue:#3B82F6;--blue2:#7FB6EC;--green:#4ADE80;
+--font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--font);line-height:1.6}
+.top{position:sticky;top:0;z-index:20;background:rgba(15,27,42,.97);backdrop-filter:blur(10px);
+border-bottom:1px solid var(--line);padding:13px 20px;display:flex;gap:11px;align-items:center;flex-wrap:wrap}
+.top h1{font-size:16px;font-weight:800;margin-right:auto}
+.top h1 small{display:block;font-size:12px;font-weight:500;color:var(--ink3)}
+button,.fakebtn{font-family:inherit;font-size:14px;font-weight:600;padding:10px 16px;border-radius:9px;
+border:1px solid var(--line2);background:var(--panel2);color:var(--ink);cursor:pointer;transition:.15s}
+button:hover,.fakebtn:hover{border-color:var(--blue);color:var(--blue2)}
+button.pri{background:var(--blue);border-color:var(--blue);color:#fff}
+button.pri:hover{background:#1D4ED8;color:#fff}
+.layout{display:grid;grid-template-columns:minmax(420px,1fr) 1.15fr}
+.pane{padding:20px}
+.preview{position:sticky;top:63px;height:calc(100vh - 63px);border-left:1px solid var(--line);padding:0;background:#fff}
+iframe{width:100%;height:100%;border:0}
+details{background:var(--panel);border:1px solid var(--line);border-radius:12px;margin-bottom:13px;overflow:hidden}
+summary{padding:13px 17px;cursor:pointer;font-weight:700;font-size:15px;list-style:none;display:flex;align-items:center;gap:10px}
+summary::-webkit-details-marker{display:none}
+summary::before{content:"\25B8";color:var(--blue2);font-size:13px;transition:.15s}
+details[open] summary::before{transform:rotate(90deg)}
+summary:hover{background:var(--panel2)}
+.body{padding:2px 17px 17px;border-top:1px solid var(--line)}
+.f{margin-top:14px}
+label{display:block;font-size:13px;font-weight:600;color:var(--ink2);margin-bottom:6px}
+input,textarea{width:100%;padding:10px 12px;border-radius:9px;border:1px solid var(--line2);
+background:var(--bg);color:var(--ink);font-family:inherit;font-size:14.5px;resize:vertical}
+textarea{line-height:1.55}
+input:focus,textarea:focus{outline:none;border-color:var(--blue)}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:11px}
+.hint{font-size:12px;color:var(--ink3);margin-top:5px}
+.sub{background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:11px 14px;margin-top:15px}
+.sub h4{font-size:12.5px;font-weight:700;color:var(--blue2);letter-spacing:.04em;text-transform:uppercase}
+.note{background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.3);border-radius:10px;
+padding:13px 15px;font-size:13.5px;color:var(--ink2);margin-bottom:15px}
+.note b{color:var(--ink)}
+.ok{color:var(--green);font-size:13px;font-weight:600}
+@media(max-width:1050px){.layout{grid-template-columns:1fr}.preview{position:static;height:75vh;border-left:0;border-top:1px solid var(--line)}}
+</style>
+</head>
+<body>
+
+<div class="top">
+  <h1>Sửa nội dung portfolio<small>Gõ bên trái — bản xem trước cập nhật ngay</small></h1>
+  <span id="msg" class="ok"></span>
+  <label class="fakebtn" style="margin:0">Nạp nội dung đã lưu<input type="file" id="load" accept=".json" hidden></label>
+  <button id="saveJson">Lưu nội dung (.json)</button>
+  <button class="pri" id="saveHtml">Tải index.html</button>
+</div>
+
+<div class="layout">
+  <div class="pane">
+    <div class="note">
+      <b>Cách dùng:</b> sửa các ô bên dưới &rarr; bấm <b>Tải index.html</b> &rarr; thay file cũ trong thư mục web &rarr;
+      kéo cả thư mục lên Netlify (tab Deploys).<br>
+      Nhớ bấm <b>Lưu nội dung (.json)</b> và giữ file đó — lần sau mở lại trang này, bấm
+      <b>Nạp nội dung đã lưu</b> là hiện lại đúng những gì bạn đã điền.
+    </div>
+    <div id="form"></div>
+  </div>
+  <div class="pane preview"><iframe id="pv"></iframe></div>
+</div>
+
+<script>
+const TPL = `<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{name}} — {{role}}</title>
+<meta name="description" content="{{metadesc}}">
+<style>
+:root{
+  --ink:#0F2A43; --ink-2:#3A5470; --ink-3:#7B8FA5;
+  --surface:#FFFFFF; --surface-2:#F5F8FB; --surface-3:#EAF0F6;
+  --line:#DCE5EE; --line-2:#C9D8E6;
+  --accent:#1A5FE8; --accent-2:#1544B8; --accent-soft:#EAF1FF;
+  --accent-cyan:#0099CC; --dot:rgba(26,95,232,.085); --glow:rgba(26,63,204,.12);
+  --green:#1E7F52; --gold:#C9852A; --gold-soft:#FBF2E4;
+  --r:14px;
+  --shadow:0 1px 2px rgba(15,42,67,.05), 0 8px 24px rgba(15,42,67,.06);
+  --shadow-h:0 2px 4px rgba(15,42,67,.06), 0 16px 40px rgba(15,42,67,.11);
+  --font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+html{background:linear-gradient(180deg,#EFF5FF 0%,#FFFFFF 48%,#EDF4FF 100%);background-attachment:fixed}
+body{color:var(--ink);font-family:var(--font);line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+section{padding:88px 0;background:transparent}
+.section-alt{background:linear-gradient(160deg, rgba(238,245,255,.92) 0%, rgba(255,255,255,.72) 58%, rgba(242,247,255,.92) 100%)}
+
+/* ---------- NAV ---------- */
+header{position:sticky;top:0;z-index:60;background:rgba(252,253,255,.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:68px;gap:20px}
+.logo{display:flex;align-items:center;gap:11px;font-weight:800;font-size:16px;letter-spacing:-.015em}
+.logo .mark{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-cyan));color:#fff;display:grid;place-items:center;font-size:14px;font-weight:800;flex:0 0 auto}
+.logo small{display:block;font-weight:500;font-size:11.5px;color:var(--ink-3);letter-spacing:.02em}
+.menu{display:flex;gap:28px}
+.menu a{font-size:14.5px;color:var(--ink-2);font-weight:500;padding:5px 0;border-bottom:2px solid transparent;transition:.15s;white-space:nowrap}
+.menu a:hover{color:var(--accent)}
+.menu a.on{color:var(--accent);border-bottom-color:var(--accent)}
+.burger{display:none;background:none;border:1px solid var(--line);border-radius:9px;width:40px;height:38px;font-size:17px;color:var(--ink);cursor:pointer}
+
+/* ---------- BUTTONS ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:12px 21px;border-radius:10px;font-size:14.5px;font-weight:600;border:1px solid transparent;cursor:pointer;transition:.18s;font-family:inherit}
+.btn-p{background:var(--accent);color:#fff}
+.btn-p:hover{background:var(--accent-2)}
+.btn-s{background:#fff;color:var(--ink);border-color:var(--line-2)}
+.btn-s:hover{border-color:var(--accent);color:var(--accent)}
+.icon-btn{width:44px;height:44px;padding:0;border-radius:10px;background:var(--accent-soft);color:var(--accent);border:1px solid #D3E1FB;display:inline-grid;place-items:center;font-size:14px;font-weight:700;transition:.18s}
+.icon-btn:hover{background:var(--accent);color:#fff}
+
+/* ---------- HERO ---------- */
+.hero{padding:76px 0 70px;background:
+  radial-gradient(circle at 84% 6%, var(--glow) 0%, transparent 48%),
+  radial-gradient(700px 380px at 4% 92%, rgba(0,153,204,.07) 0%, transparent 60%)}
+.hero-grid{display:grid;grid-template-columns:1.18fr .82fr;gap:56px;align-items:center}
+.badge{display:inline-flex;align-items:center;gap:9px;font-size:13px;font-weight:600;color:var(--accent);background:var(--accent-soft);padding:6px 14px;border-radius:999px;margin-bottom:20px}
+.badge .dot{width:7px;height:7px;border-radius:50%;background:#2E9E6B;box-shadow:0 0 0 3px rgba(46,158,107,.18)}
+h1{font-size:clamp(36px,4.9vw,56px);line-height:1.08;letter-spacing:-.03em;font-weight:800}
+h1 span{color:var(--accent)}
+.role{font-size:17px;font-weight:600;color:var(--accent);margin-top:8px}
+.hero p{color:var(--ink-2);font-size:16.5px;margin-top:20px;max-width:56ch}
+.hero p.claim{color:var(--ink);font-weight:600;margin-top:16px}
+.hero-actions{display:flex;gap:12px;align-items:center;margin-top:30px;flex-wrap:wrap}
+.photo{position:relative;overflow:hidden;aspect-ratio:4/5;border-radius:20px;background:var(--surface-3);border:1px solid var(--line);display:grid;place-items:center;text-align:center;color:var(--ink-3);font-size:13.5px;padding:26px;box-shadow:var(--shadow)}
+.photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:56px}
+.stat{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:22px 20px;box-shadow:var(--shadow)}
+.stat .n{font-size:31px;font-weight:800;letter-spacing:-.03em;line-height:1.1}
+.stat .l{font-size:13px;color:var(--ink-3);margin-top:6px;font-weight:500}
+
+/* ---------- SECTION HEAD ---------- */
+.head{max-width:64ch;margin-bottom:46px}
+.head.mid{text-align:center;margin-left:auto;margin-right:auto}
+.kick{font-size:12.5px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--accent);margin-bottom:11px}
+h2{font-size:clamp(28px,3.4vw,39px);letter-spacing:-.025em;font-weight:800;line-height:1.16}
+.head p{color:var(--ink-2);margin-top:13px;font-size:16px}
+
+/* ---------- ABOUT ---------- */
+.about{display:grid;grid-template-columns:1.1fr .9fr;gap:52px;align-items:start}
+.about p{color:var(--ink-2);margin-bottom:15px}
+.about p:last-child{margin-bottom:0}
+.facts{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:24px 26px;box-shadow:var(--shadow)}
+.facts h3{font-size:17px;font-weight:700;margin-bottom:8px}
+.facts .row{display:flex;justify-content:space-between;gap:18px;padding:12px 0;border-bottom:1px solid var(--line);font-size:14.5px}
+.facts .row:last-child{border-bottom:0;padding-bottom:0}
+.facts .row .k{color:var(--ink-3);font-weight:500;flex:0 0 auto}
+.facts .row .v{font-weight:600;text-align:right}
+
+/* ---------- SKILLS ---------- */
+.sk-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.sk{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:26px;box-shadow:var(--shadow);transition:.2s}
+.sk:hover{transform:translateY(-2px);box-shadow:var(--shadow-h)}
+.sk-top{display:flex;align-items:center;gap:13px;margin-bottom:12px}
+.sk-ico{width:40px;height:40px;border-radius:11px;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;font-size:17px;font-weight:700;flex:0 0 auto}
+.sk h3{font-size:17px;font-weight:700}
+.sk .desc{font-size:14px;color:var(--ink-3);margin-bottom:20px}
+.bar-row{margin-bottom:14px}
+.bar-row:last-child{margin-bottom:0}
+.bar-lbl{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-size:13.5px;margin-bottom:6px}
+.bar-lbl b{font-weight:600}
+.bar-lbl i{font-style:normal;color:var(--ink-3);font-size:12.5px;font-variant-numeric:tabular-nums}
+.track{height:6px;border-radius:99px;background:#E4EBF7;overflow:hidden}
+.fill{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--accent),var(--accent-cyan))}
+
+/* ---------- PROJECTS ---------- */
+.proj{display:grid;gap:24px}
+.pcard{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;display:grid;grid-template-columns:.9fr 1.1fr;box-shadow:var(--shadow);transition:.2s}
+.pcard:hover{box-shadow:var(--shadow-h)}
+.pcard:nth-child(even){grid-template-columns:1.1fr .9fr}
+.pcard:nth-child(even) .pshot{order:2;border-right:0;border-left:1px solid var(--line)}
+.pshot{position:relative;overflow:hidden;background:linear-gradient(140deg,#EDF3FF,#E3F3FA);display:grid;place-items:center;text-align:center;color:var(--ink-3);font-size:13px;padding:32px;min-height:280px;border-right:1px solid var(--line)}
+.pshot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pbody{padding:30px}
+.pbody h3{font-size:21px;font-weight:800;letter-spacing:-.02em}
+.pdesc{color:var(--ink-2);font-size:15px;margin-top:9px}
+.psr{margin-top:20px}
+.psr>div{margin-bottom:14px}
+.psr h4{font-size:12px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3);margin-bottom:3px}
+.psr p{font-size:14.5px;color:var(--ink-2)}
+.psr .res{background:var(--accent-soft);border-left:3px solid var(--accent);border-radius:0 9px 9px 0;padding:12px 15px;margin-bottom:0}
+.psr .res h4{color:var(--accent)}
+.psr .res p{color:var(--ink)}
+.tech-lbl{font-size:12px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3);margin:20px 0 9px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-size:12.5px;font-weight:600;color:var(--accent);background:var(--accent-soft);border:1px solid #D3E1FB;border-radius:7px;padding:5px 11px}
+.pactions{display:flex;gap:11px;margin-top:22px;flex-wrap:wrap}
+.pactions .btn{padding:10px 18px;font-size:14px}
+
+/* ---------- LIVE WORK ---------- */
+.wgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.wcard{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:22px;box-shadow:var(--shadow);
+ display:flex;flex-direction:column;transition:.2s}
+a.wcard:hover{transform:translateY(-2px);box-shadow:var(--shadow-h);border-color:#B9D2F5}
+.wtool{align-self:flex-start;font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+ color:var(--accent);background:var(--accent-soft);border:1px solid #D3E1FB;border-radius:6px;padding:4px 9px;margin-bottom:13px}
+.wcard h3{font-size:16.5px;font-weight:700;line-height:1.35}
+.wcard p{font-size:14px;color:var(--ink-2);margin-top:8px;flex:1}
+.wgo{margin-top:15px;font-size:13.5px;font-weight:600;color:var(--accent)}
+
+/* ---------- EXPERIENCE ---------- */
+.tl{max-width:790px;margin:0 auto;position:relative;padding-left:32px}
+.tl::before{content:"";position:absolute;left:7px;top:10px;bottom:10px;width:2px;background:var(--line-2)}
+.tli{position:relative;padding-bottom:36px}
+.tli:last-child{padding-bottom:0}
+.tli::before{content:"";position:absolute;left:-31px;top:8px;width:12px;height:12px;border-radius:50%;background:#fff;border:2.5px solid var(--accent)}
+.tw{font-size:13px;font-weight:700;color:var(--accent);letter-spacing:.02em}
+.tli h3{font-size:18px;font-weight:700;margin:5px 0 2px}
+.torg{font-size:14.5px;color:var(--ink-3);margin-bottom:12px}
+.tli ul{list-style:none;display:grid;gap:8px}
+.tli li{position:relative;padding-left:19px;font-size:15px;color:var(--ink-2)}
+.tli li::before{content:"";position:absolute;left:3px;top:10px;width:5px;height:5px;border-radius:50%;background:var(--accent)}
+
+/* ---------- ACHIEVEMENTS ---------- */
+.ach{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.acard{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:24px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.acard::after{content:"";position:absolute;top:0;right:0;border-width:0 42px 42px 0;border-style:solid;border-color:transparent var(--gold-soft) transparent transparent}
+.medal{font-size:22px;margin-bottom:12px}
+.acard h3{font-size:16.5px;font-weight:700;line-height:1.35}
+.acard p{font-size:14px;color:var(--ink-2);margin-top:8px}
+.year{display:inline-block;margin-top:13px;font-size:12.5px;font-weight:700;color:var(--gold);background:var(--gold-soft);border-radius:7px;padding:4px 11px}
+
+/* ---------- BLOG ---------- */
+.posts{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.post{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:24px;box-shadow:var(--shadow);transition:.2s;display:flex;flex-direction:column}
+.post:hover{transform:translateY(-2px);box-shadow:var(--shadow-h)}
+.post .date{font-size:12.5px;color:var(--ink-3);font-weight:600;letter-spacing:.03em}
+.post h3{font-size:17px;margin:9px 0 10px;font-weight:700;line-height:1.35}
+.post p{font-size:14.5px;color:var(--ink-2);flex:1}
+.post .more{display:inline-block;margin-top:15px;font-size:14px;font-weight:600;color:var(--accent)}
+.blog-cta{text-align:center;margin-top:32px}
+
+/* ---------- CONTACT ---------- */
+.contact{background:var(--ink);color:#fff}
+.contact .kick{color:#7FB6EC}
+.contact h2{color:#fff}
+.contact .head p{color:#B9CBDC}
+.c-grid{display:grid;grid-template-columns:.92fr 1.08fr;gap:52px;align-items:start}
+.c-grid h3{font-size:21px;font-weight:800;letter-spacing:-.02em;margin-bottom:11px}
+.c-grid>div>p{color:#B9CBDC;font-size:15px;margin-bottom:24px}
+.cline{display:flex;gap:14px;align-items:center;margin-bottom:15px}
+.cline .ci{width:42px;height:42px;border-radius:11px;background:rgba(255,255,255,.09);display:grid;place-items:center;font-size:16px;flex:0 0 auto}
+.cline small{display:block;font-size:12.5px;color:#8CA3B8;line-height:1.4}
+.cline b{font-weight:600;font-size:15px}
+.follow{font-size:13.5px;font-weight:700;margin:22px 0 10px;color:#B9CBDC}
+.socials{display:flex;gap:10px}
+.contact .icon-btn{background:rgba(255,255,255,.09);color:#D9E5F0;border-color:rgba(255,255,255,.16)}
+.contact .icon-btn:hover{background:#2A84D8;color:#fff;border-color:#2A84D8}
+form{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.13);border-radius:16px;padding:28px}
+label{display:block;font-size:13px;font-weight:600;color:#B9CBDC;margin-bottom:7px}
+input,textarea{width:100%;padding:12px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.06);color:#fff;font-family:inherit;font-size:15px;resize:vertical}
+input::placeholder,textarea::placeholder{color:#7D95AC}
+input:focus,textarea:focus{outline:none;border-color:#7FB6EC}
+.fg{margin-bottom:16px}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+form .btn-p{width:100%;background:#2A84D8;padding:13px}
+form .btn-p:hover{background:#1668B8}
+.formnote{font-size:12.5px;color:#8CA3B8;margin-top:12px;text-align:center}
+
+/* ---------- FOOTER ---------- */
+footer{background:#0A1E31;color:#8CA3B8;padding:30px 0;font-size:14px}
+.foot{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;align-items:center}
+
+/* ---------- RESPONSIVE ---------- */
+@media(max-width:980px){
+  .hero-grid,.about,.c-grid{grid-template-columns:1fr;gap:38px}
+  .photo{max-width:330px}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .sk-grid,.ach,.posts,.wgrid{grid-template-columns:1fr 1fr}
+  .pcard,.pcard:nth-child(even){grid-template-columns:1fr}
+  .pcard:nth-child(even) .pshot{order:0;border-left:0}
+  .pshot{border-right:0;border-bottom:1px solid var(--line);min-height:210px}
+}
+@media(max-width:680px){
+  section{padding:60px 0}
+  .menu{display:none}
+  .burger{display:grid;place-items:center}
+  .sk-grid,.ach,.posts,.wgrid,.frow{grid-template-columns:1fr}
+  .stats{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="#home"><span class="mark">{{initials}}</span><span>{{name}}<small>{{role}}</small></span></a>
+    <nav class="menu">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      {{blognav}}<a href="#contact">Contact</a>
+    </nav>
+    <button class="burger" aria-label="Menu">☰</button>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="home">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        {{badge}}
+        <h1>Hi, I am <span>{{name}}</span></h1>
+        <div class="role">{{role}}</div>
+        <p>{{intro}}</p>
+        <p class="claim">{{claim}}</p>
+        <div class="hero-actions">
+          <a class="btn btn-p" href="{{cvurl}}">⬇ Download CV</a>
+          <a class="icon-btn" href="{{linkedin}}" title="LinkedIn">in</a>
+          <a class="icon-btn" href="{{github}}" title="GitHub">Gh</a>
+          <a class="icon-btn" href="mailto:{{email}}" title="Email">@</a>
+        </div>
+      </div>
+      <div class="photo">
+        <img src="images/chan-dung.jpg" alt="{{name}}" onerror="this.remove()">
+        <div>Ảnh chân dung<br>tỉ lệ 4:5<br><br><span>images/chan-dung.jpg</span></div>
+      </div>
+    </div>
+    <div class="stats">
+      <div class="stat"><div class="n">{{stat1n}}</div><div class="l">{{stat1l}}</div></div>
+      <div class="stat"><div class="n">{{stat2n}}</div><div class="l">{{stat2l}}</div></div>
+      <div class="stat"><div class="n">{{stat3n}}</div><div class="l">{{stat3l}}</div></div>
+      <div class="stat"><div class="n">{{stat4n}}</div><div class="l">{{stat4l}}</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section id="about">
+  <div class="wrap">
+    <div class="head">
+      <div class="kick">About</div>
+      <h2>{{abouttitle}}</h2>
+    </div>
+    <div class="about">
+      <div>{{aboutbody}}</div>
+      <aside class="facts">
+        <h3>{{factstitle}}</h3>
+        {{factrows}}
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SKILLS ============ -->
+<section class="section-alt" id="skills">
+  <div class="wrap">
+    <div class="head mid">
+      <div class="kick">Expertise</div>
+      <h2>My Skills</h2>
+      <p>{{skillsintro}}</p>
+    </div>
+    <div class="sk-grid">
+      <div class="sk">
+        <div class="sk-top"><div class="sk-ico">&lt;/&gt;</div><h3>{{skill1title}}</h3></div>
+        <div class="desc">{{skill1desc}}</div>
+        {{skill1bars}}
+      </div>
+      <div class="sk">
+        <div class="sk-top"><div class="sk-ico">◎</div><h3>{{skill2title}}</h3></div>
+        <div class="desc">{{skill2desc}}</div>
+        {{skill2bars}}
+      </div>
+      <div class="sk">
+        <div class="sk-top"><div class="sk-ico">◈</div><h3>{{skill3title}}</h3></div>
+        <div class="desc">{{skill3desc}}</div>
+        {{skill3bars}}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROJECTS ============ -->
+<section id="projects">
+  <div class="wrap">
+    <div class="head mid">
+      <div class="kick">Portfolio</div>
+      <h2>My Projects</h2>
+      <p>{{projintro}}</p>
+    </div>
+    <div class="proj">
+      <article class="pcard">
+        <div class="pshot"><img src="images/du-an-1.png" alt="" onerror="this.remove()"><div>Ảnh dự án 1<br><span>images/du-an-1.png</span></div></div>
+        <div class="pbody">
+          <h3>{{proj1title}}</h3>
+          <p class="pdesc">{{proj1desc}}</p>
+          <div class="psr">
+            <div><h4>Problem</h4><p>{{proj1problem}}</p></div>
+            <div><h4>Solution</h4><p>{{proj1solution}}</p></div>
+            <div class="res"><h4>Result</h4><p>{{proj1result}}</p></div>
+          </div>
+          <div class="tech-lbl">Technologies Used</div>
+          <div class="chips">{{proj1tech}}</div>
+        </div>
+      </article>
+      <article class="pcard">
+        <div class="pshot"><img src="images/du-an-2.png" alt="" onerror="this.remove()"><div>Ảnh dự án 2<br><span>images/du-an-2.png</span></div></div>
+        <div class="pbody">
+          <h3>{{proj2title}}</h3>
+          <p class="pdesc">{{proj2desc}}</p>
+          <div class="psr">
+            <div><h4>Problem</h4><p>{{proj2problem}}</p></div>
+            <div><h4>Solution</h4><p>{{proj2solution}}</p></div>
+            <div class="res"><h4>Result</h4><p>{{proj2result}}</p></div>
+          </div>
+          <div class="tech-lbl">Technologies Used</div>
+          <div class="chips">{{proj2tech}}</div>
+        </div>
+      </article>
+      <article class="pcard">
+        <div class="pshot"><img src="images/du-an-3.png" alt="" onerror="this.remove()"><div>Ảnh dự án 3<br><span>images/du-an-3.png</span></div></div>
+        <div class="pbody">
+          <h3>{{proj3title}}</h3>
+          <p class="pdesc">{{proj3desc}}</p>
+          <div class="psr">
+            <div><h4>Problem</h4><p>{{proj3problem}}</p></div>
+            <div><h4>Solution</h4><p>{{proj3solution}}</p></div>
+            <div class="res"><h4>Result</h4><p>{{proj3result}}</p></div>
+          </div>
+          <div class="tech-lbl">Technologies Used</div>
+          <div class="chips">{{proj3tech}}</div>
+        </div>
+      </article>
+      <article class="pcard">
+        <div class="pshot"><img src="images/du-an-4.png" alt="" onerror="this.remove()"><div>Ảnh dự án 4<br><span>images/du-an-4.png</span></div></div>
+        <div class="pbody">
+          <h3>{{proj4title}}</h3>
+          <p class="pdesc">{{proj4desc}}</p>
+          <div class="psr">
+            <div><h4>Problem</h4><p>{{proj4problem}}</p></div>
+            <div><h4>Solution</h4><p>{{proj4solution}}</p></div>
+            <div class="res"><h4>Result</h4><p>{{proj4result}}</p></div>
+          </div>
+          <div class="tech-lbl">Technologies Used</div>
+          <div class="chips">{{proj4tech}}</div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LIVE WORK ============ -->
+<section id="work">
+  <div class="wrap">
+    <div class="head mid">
+      <div class="kick">Live links</div>
+      <h2>Dashboard &amp; Code</h2>
+      <p>{{workintro}}</p>
+    </div>
+    <div class="wgrid">{{work1}}{{work2}}{{work3}}{{work4}}{{work5}}{{work6}}</div>
+    {{workcta}}
+  </div>
+</section>
+
+<!-- ============ EXPERIENCE ============ -->
+<section class="section-alt" id="experience">
+  <div class="wrap">
+    <div class="head mid">
+      <div class="kick">Career</div>
+      <h2>My Experience</h2>
+      <p>{{expintro}}</p>
+    </div>
+    <div class="tl">
+      <div class="tli">
+        <div class="tw">{{exp1when}}</div>
+        <h3>{{exp1role}}</h3>
+        <div class="torg">{{exp1org}}</div>
+        <ul>{{exp1bullets}}</ul>
+      </div>
+      <div class="tli">
+        <div class="tw">{{exp2when}}</div>
+        <h3>{{exp2role}}</h3>
+        <div class="torg">{{exp2org}}</div>
+        <ul>{{exp2bullets}}</ul>
+      </div>
+      <div class="tli">
+        <div class="tw">{{exp3when}}</div>
+        <h3>{{exp3role}}</h3>
+        <div class="torg">{{exp3org}}</div>
+        <ul>{{exp3bullets}}</ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ACHIEVEMENTS ============ -->
+<section id="achievements">
+  <div class="wrap">
+    <div class="head mid">
+      <div class="kick">Recognition</div>
+      <h2>My Achievements</h2>
+      <p>{{achintro}}</p>
+    </div>
+    <div class="ach">{{ach1}}{{ach2}}{{ach3}}</div>
+  </div>
+</section>
+
+<!-- ============ BLOG ============ -->
+<section class="section-alt" id="blog">
+  <div class="wrap">
+    <div class="head mid">
+      <div class="kick">Writing</div>
+      <h2>Ghi chép nghề</h2>
+      <p>{{blogintro}}</p>
+    </div>
+    <div class="posts">{{post1}}{{post2}}{{post3}}</div>
+    {{blogcta}}
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="head mid">
+      <div class="kick">Get in touch</div>
+      <h2>Contact Me</h2>
+      <p>{{contactsub}}</p>
+    </div>
+    <div class="c-grid">
+      <div>
+        <h3>Let's Connect</h3>
+        <p>{{contactintro}}</p>
+        <div class="cline"><div class="ci">✉</div><div><small>Email</small><b>{{email}}</b></div></div>
+        <div class="cline"><div class="ci">☎</div><div><small>Phone</small><b>{{phone}}</b></div></div>
+        <div class="cline"><div class="ci">📍</div><div><small>Location</small><b>{{location}}</b></div></div>
+        <div class="follow">Follow me on</div>
+        <div class="socials">
+          <a class="icon-btn" href="{{linkedin}}" title="LinkedIn">in</a>
+          <a class="icon-btn" href="{{github}}" title="GitHub">Gh</a>
+        </div>
+      </div>
+      <form name="contact" method="POST" data-netlify="true">
+        <input type="hidden" name="form-name" value="contact">
+        <div class="frow">
+          <div class="fg"><label>Họ và tên</label><input type="text" name="name" placeholder="Nguyễn Văn A" required></div>
+          <div class="fg"><label>Công ty</label><input type="text" name="company" placeholder="Tên công ty"></div>
+        </div>
+        <div class="fg"><label>Email</label><input type="email" name="email" placeholder="ten@congty.com" required></div>
+        <div class="fg"><label>Nội dung</label><textarea name="message" rows="4" placeholder="Vị trí, phạm vi công việc, hoặc câu hỏi của bạn..."></textarea></div>
+        <button class="btn btn-p" type="submit">➤ Gửi lời nhắn</button>
+        <div class="formnote">Thông tin của bạn chỉ dùng để phản hồi, không chia sẻ cho bên thứ ba.</div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <div>© 2026 {{name}} — {{role}}</div>
+    <div>Built with data &amp; care</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var burger=document.querySelector('.burger'), menu=document.querySelector('.menu');
+  burger.addEventListener('click',function(){
+    if(menu.style.display==='flex'){ menu.style.cssText=''; return; }
+    menu.style.cssText='display:flex;position:absolute;top:68px;left:0;right:0;flex-direction:column;'+
+      'align-items:flex-start;gap:0;background:#fff;padding:10px 24px 18px;border-bottom:1px solid #DCE5EE;';
+  });
+  var links=[].slice.call(document.querySelectorAll('.menu a'))
+              .filter(function(a){ return (a.getAttribute('href')||'').charAt(0)==='#'; });
+  function sync(){
+    var y=window.scrollY+120;
+    links.forEach(function(a){
+      var el=document.querySelector(a.getAttribute('href'));
+      if(!el) return;
+      a.classList.toggle('on', el.offsetTop<=y && el.offsetTop+el.offsetHeight>y);
+    });
+  }
+  window.addEventListener('scroll',sync); sync();
+})();
+<\/script>
+</body>
+</html>
+`;
+const DEFAULTS = {
+ "name": "Thanh Hà",
+ "initials": "TH",
+ "role": "Business Intelligence Analyst",
+ "metadesc": "Portfolio của Thanh Hà — Business Intelligence Analyst. Power BI, BigQuery, SQL, phân tích dữ liệu bán lẻ đa kênh.",
+ "badge": "Đang mở cơ hội mới",
+ "intro": "Tôi xây dựng và vận hành hệ thống báo cáo Power BI trên nền BigQuery cho ngành bán lẻ mỹ phẩm — hợp nhất dữ liệu từ KiotViet, Haravan, Shopee, TikTok Shop và showroom thành một nguồn số liệu duy nhất mà ban lãnh đạo tin dùng mỗi ngày.",
+ "claim": "Tôi tin rằng một chỉ số chỉ nên có một định nghĩa duy nhất — đó là điều kiện để dữ liệu trở thành quyết định.",
+ "cvurl": "images/CV.pdf",
+ "linkedin": "",
+ "github": "https://github.com/thanhha02061/Porfolio-Projects",
+ "stat1n": "4+",
+ "stat1l": "Năm kinh nghiệm",
+ "stat2n": "15+",
+ "stat2l": "Báo cáo đang vận hành",
+ "stat3n": "5",
+ "stat3l": "Kênh bán hợp nhất",
+ "stat4n": "100+",
+ "stat4l": "Người dùng nội bộ",
+ "abouttitle": "Người ở giữa dữ liệu thô và quyết định kinh doanh",
+ "aboutbody": "Tôi bắt đầu từ nghiệp vụ bán lẻ trước khi chuyển sang phân tích dữ liệu, nên cách tôi làm báo cáo luôn bắt đầu bằng câu hỏi \"người đọc sẽ ra quyết định gì từ con số này?\" — thay vì làm dashboard cho đẹp rồi mới đi tìm người dùng.\n\nCông việc của tôi trải dài toàn bộ chuỗi: lấy dữ liệu từ các nền tảng bán hàng về BigQuery, chuẩn hoá và làm sạch, dựng data model hợp lý, viết measure DAX, rồi thiết kế báo cáo Power BI cho phòng kinh doanh, marketing và ban lãnh đạo dùng hằng ngày. Tôi cũng chịu trách nhiệm phần khó nhất và ít ai thấy: đảm bảo số liệu đúng và khớp nhau giữa các nguồn.\n\nBa nguyên tắc tôi giữ: một chỉ số chỉ có một định nghĩa; số nào không truy được về nguồn thì không đưa lên báo cáo; và báo cáo tốt là báo cáo người ta mở lại vào tuần sau.\n\nNgoài giờ làm tôi học thêm Python và cách ứng dụng AI vào quy trình phân tích — chủ yếu để rút ngắn phần việc lặp lại, dành thời gian cho phần diễn giải số liệu.",
+ "factstitle": "Thông tin nhanh",
+ "factrows": "Vị trí hiện tại|BI / Data Analyst\nNgành|Bán lẻ mỹ phẩm & TMĐT\nĐịa điểm|TP. Hồ Chí Minh\nCông cụ chính|Power BI, BigQuery\nNgôn ngữ|SQL, DAX, Python\nNgoại ngữ|Tiếng Anh — đọc hiểu tài liệu\nTrạng thái|Sẵn sàng trao đổi",
+ "skillsintro": "Không chỉ dùng công cụ — tôi hiểu vì sao chọn công cụ đó cho bài toán đó.",
+ "skill1title": "Technical Skills",
+ "skill1desc": "Công cụ tôi dùng hằng ngày để đưa dữ liệu từ nguồn tới báo cáo.",
+ "skill1bars": "Power BI (DAX, Power Query)|90\nSQL / BigQuery|85\nExcel & Google Sheets|85\nPython (pandas)|60",
+ "skill2title": "Core Competencies",
+ "skill2desc": "Phần quyết định báo cáo có đúng và có bền hay không.",
+ "skill2bars": "Data modeling (star schema)|90\nLàm sạch & kiểm soát chất lượng dữ liệu|90\nThiết kế dashboard & trực quan hoá|88\nTối ưu hiệu năng model|80",
+ "skill3title": "Specializations",
+ "skill3desc": "Hiểu nghiệp vụ bán lẻ đủ sâu để số liệu hợp nhất không bị sai lệch.",
+ "skill3bars": "Phân tích bán lẻ đa kênh|90\nDoanh thu & lợi nhuận gộp|85\nTồn kho & giá vốn|80\nHiệu quả SKU & sell-through|78",
+ "projintro": "Bốn bài toán thật, kể theo cấu trúc Problem → Solution → Result.",
+ "proj1title": "Unified Multi-Channel Revenue Dashboard",
+ "proj1desc": "Báo cáo doanh thu hợp nhất 5 kênh bán trên một data model duy nhất, phục vụ khối kinh doanh và ban lãnh đạo.",
+ "proj1problem": "Mỗi kênh bán xuất báo cáo theo cách riêng. Cùng một chỉ số \"doanh thu\" nhưng ba phòng ban ra ba con số khác nhau, họp kinh doanh mất phần lớn thời gian để tranh luận về số thay vì bàn hành động.",
+ "proj1solution": "Chuẩn hoá dữ liệu từ KiotViet, Haravan, Shopee, TikTok Shop và showroom về BigQuery; thống nhất một định nghĩa doanh thu thuần duy nhất với các phòng ban; dựng star schema với dim Date / Channel / Brand / Product dùng chung và bộ measure DAX chuẩn.",
+ "proj1result": "Cắt ~X giờ/tuần công ghép số thủ công; số liệu giữa các phòng ban khớp nhau; họp kinh doanh chuyển hẳn sang bàn giải pháp.",
+ "proj1tech": "Power BI, BigQuery, SQL, DAX, Star schema",
+ "proj2title": "Ratecard Revenue Allocation Pipeline",
+ "proj2desc": "Tự động hoá phân bổ doanh thu cho thuê kệ trưng bày theo từng mã kệ × tháng.",
+ "proj2problem": "Dữ liệu ratecard nhập tay trên Google Sheet, phải phân bổ thủ công theo mã kệ và theo tháng. Đối chiếu bằng tay nên dễ sai và không ai truy được số về nguồn.",
+ "proj2solution": "Xây pipeline Google Sheet → BigQuery (view tự refresh mỗi sáng) → Power BI; tạo một dim mã kệ trung tâm nối ba bảng nghiệp vụ về cùng một khoá; thiết lập quan hệ many-to-one một chiều để tránh vòng lặp; thêm bước kiểm tra dữ liệu đầu vào để dòng nhập sai không làm hỏng refresh.",
+ "proj2result": "Số phân bổ tự cập nhật hằng ngày, không còn bước copy tay; mọi con số truy được về đúng dòng nguồn; thời gian chốt báo cáo tháng giảm từ … xuống ….",
+ "proj2tech": "BigQuery, Google Sheets API, Power BI, Scheduled refresh",
+ "proj3title": "Power BI Model Performance Optimization",
+ "proj3desc": "Rút thời gian tải cho một báo cáo trọng yếu có data model rất nặng.",
+ "proj3problem": "Model chứa calculated table rất nặng: mỗi lần chỉnh sửa là 30–40 phút chờ tính lại, người dùng cuối phàn nàn báo cáo mở chậm.",
+ "proj3solution": "Khoanh vùng nút cổ chai bằng Performance Analyzer; đẩy phần tính toán nặng xuống BigQuery thay vì tính trong Power BI; giảm cardinality các cột khoá; loại bỏ cột không dùng để thu nhỏ model.",
+ "proj3result": "Thời gian tải giảm …%, dung lượng file giảm …%; việc bảo trì model không còn làm gián đoạn người dùng.",
+ "proj3tech": "Power BI, DAX Studio, Performance Analyzer, BigQuery",
+ "proj4title": "Inventory & COGS Reconciliation Framework",
+ "proj4desc": "Quy trình đối chiếu tồn kho và giá vốn tự động giữa ERP, kho dữ liệu và báo cáo BI.",
+ "proj4problem": "Số tồn kho và giá vốn trên ba hệ thống lệch nhau. Không có quy trình kiểm tra nên sai sót chỉ bị phát hiện khi đã lên báo cáo cuối tháng.",
+ "proj4solution": "Xác định đúng công thức giá vốn bình quân và giá trị tồn theo từng pháp nhân; dựng bảng đối chiếu tự động theo ngày kèm ngưỡng cảnh báo chênh lệch; ghi lại data dictionary để cả nhóm dùng chung một định nghĩa.",
+ "proj4result": "Chênh lệch được phát hiện trong ngày thay vì cuối tháng; báo cáo tồn kho đủ tin cậy để dùng cho quyết định nhập hàng.",
+ "proj4tech": "SQL, BigQuery, Odoo / ERP, Data quality",
+ "expintro": "Hành trình từ nghiệp vụ bán lẻ sang phân tích dữ liệu.",
+ "exp1when": "2023 — Hiện tại",
+ "exp1role": "Business Intelligence / Data Analyst",
+ "exp1org": "Thế Giới Skinfood — Bán lẻ mỹ phẩm",
+ "exp1bullets": "Sở hữu toàn bộ hệ thống báo cáo Power BI cho khối kinh doanh và showroom.\nXây và vận hành pipeline dữ liệu trên BigQuery cho 5 kênh bán.\nThống nhất định nghĩa chỉ số toàn công ty, tài liệu hoá thành data dictionary.\nĐào tạo người dùng nghiệp vụ tự đọc và tự lọc báo cáo.",
+ "exp2when": "20XX — 2023",
+ "exp2role": "Vị trí trước đó",
+ "exp2org": "Tên công ty — Ngành",
+ "exp2bullets": "Việc chính bạn phụ trách, viết bằng động từ hành động.\nMột dòng có con số kết quả cụ thể.",
+ "exp3when": "20XX",
+ "exp3role": "Học vấn — chuyên ngành",
+ "exp3org": "Tên trường",
+ "exp3bullets": "Thành tích hoặc đồ án liên quan đến dữ liệu.",
+ "achintro": "Chứng chỉ và khoá học tôi đã hoàn thành.",
+ "ach1": "Microsoft PL-300|Power BI Data Analyst Associate — thiết kế model, DAX, triển khai và bảo mật báo cáo.|2025",
+ "ach2": "Agentic AI in Power BI|Ứng dụng AI agent vào quy trình phân tích và tự động hoá báo cáo. The Future Analyst.|2026",
+ "ach3": "Google Cloud — BigQuery|Truy vấn phân tích, tối ưu chi phí query và thiết kế kho dữ liệu trên BigQuery.|2024",
+ "blogintro": "Những gì tôi học được khi làm dữ liệu bán lẻ, viết lại cho người đến sau.",
+ "blogurl": "",
+ "post1": "12/07/2026|Vì sao \"doanh thu\" của bạn có ba con số khác nhau|Ba cách tính doanh thu thường gặp khi hợp nhất dữ liệu sàn TMĐT, và cách chọn một định nghĩa duy nhất cho cả công ty.|",
+ "post2": "28/06/2026|Star schema cho người làm báo cáo bán lẻ|Cách chia fact và dimension cho dữ liệu đa kênh, và những lỗi quan hệ khiến số liệu bị nhân đôi.|",
+ "post3": "05/06/2026|Báo cáo Power BI chậm: 5 chỗ cần kiểm tra trước|Checklist tối ưu theo thứ tự ưu tiên, từ cardinality cột khoá đến việc đẩy tính toán xuống warehouse.|",
+ "contactsub": "Bạn có vị trí phù hợp hoặc muốn trao đổi về bài toán dữ liệu? Tôi rất sẵn lòng lắng nghe.",
+ "contactintro": "Tôi luôn quan tâm đến cơ hội mới và các bài toán dữ liệu thú vị. Email là cách nhanh nhất — tôi trả lời trong vòng 24 giờ vào ngày làm việc.",
+ "email": "email-cua-ban@example.com",
+ "phone": "+84 9xx xxx xxx",
+ "location": "TP. Hồ Chí Minh, Việt Nam",
+ "blognav": "",
+ "blogcta": "",
+ "workintro": "Dashboard đang chạy thật và code SQL công khai — bấm vào là xem trực tiếp, không cần cài gì.",
+ "workcta": "",
+ "work1": "Cash Balance Dashboard|Báo cáo số dư tiền 4 trang: tổng quan dòng tiền, trang thông tin và trang nhập liệu. Dựng trên Power BI, publish để xem trực tiếp trên web.|Power BI|https://app.powerbi.com/view?r=eyJrIjoiMGRkZjlmNTMtZGNkMS00NWM4LWEzNDEtMDcxZWIxMTViY2VjIiwidCI6IjU0OTkyMmJiLWYwMDctNDA3Mi05ZGI3LTE2OTU2ZDhjODRjNCIsImMiOjEwfQ%3D%3D",
+ "work2": "Performance Ads Dashboard|So sánh hiệu quả AdWords và Facebook theo tháng: chi phí, impressions, clicks, số lead, CTR, CPC và cost per lead — kèm bảng tổng hợp cạnh biểu đồ.|Power BI|https://app.powerbi.com/view?r=eyJrIjoiZjk2MDgyMzctNGI0Mi00Yzg5LWEwNjEtZTdkNGQwZTBiOThiIiwidCI6IjU0OTkyMmJiLWYwMDctNDA3Mi05ZGI3LTE2OTU2ZDhjODRjNCIsImMiOjEwfQ%3D%3D",
+ "work3": "E-commerce Analytics Project|Phân tích dữ liệu thương mại điện tử: báo cáo PDF, file .pbix và bộ dữ liệu gốc để người xem tự mở lại và kiểm chứng.|Power BI|https://drive.google.com/drive/folders/1DK_66SU_8T_vnjuHe55gquLC3LXEoNGN?usp=sharing",
+ "work4": "Phân bổ chi phí theo khách hàng và sản phẩm|View SQL phân bổ chi phí từ sổ General Ledger về từng khách hàng và từng sản phẩm — nhiều tầng CTE, loại trừ tài khoản và tách kỳ theo tháng.|SQL|https://github.com/thanhha02061/Porfolio-Projects/blob/main/5.%20%5BSQL%5D%20Allocate%20costs%20by%20customer%20and%20product",
+ "work5": "Phân khúc khách hàng bằng RFM|Tính Recency – Frequency – Monetary từ dữ liệu giao dịch thanh toán, rồi chia khách hàng thành các nhóm giá trị để đội kinh doanh nhắm đúng đối tượng.|SQL|https://github.com/thanhha02061/Porfolio-Projects/blob/main/6.%20%5BSQL%5D%20Value%20Segmentation%20by%20RFM%20Analysis",
+ "work6": "Covid Dashboard|Dashboard trực quan hoá dữ liệu Covid trên Tableau Public — luyện kể chuyện bằng số trên một bộ dữ liệu công khai.|Tableau|https://public.tableau.com/views/CovidDashboardTutorial_16559888000660/Dashboard1?:language=fr-FR&:display_count=n&:origin=viz_share_link"
+};
+
+const GROUPS = [
+ {t:"1. Thông tin chung", open:true, f:[
+   {k:"name", l:"Họ và tên", h:"Hiện ở logo, tiêu đề lớn và footer"},
+   {k:"initials", l:"Chữ viết tắt trong ô vuông logo", h:"1–2 chữ, ví dụ TH"},
+   {k:"role", l:"Chức danh"},
+   {k:"metadesc", l:"Mô tả cho Google", type:"ta", h:"1–2 câu, hiện khi người ta tìm thấy trang trên Google"},
+ ]},
+ {t:"2. Phần mở đầu", open:true, f:[
+   {k:"badge", l:"Nhãn trạng thái", h:"Ví dụ: Đang mở cơ hội mới. Để trống là ẩn nhãn."},
+   {k:"intro", l:"Đoạn giới thiệu", type:"ta"},
+   {k:"claim", l:"Câu tuyên ngôn (in đậm)", type:"ta"},
+   {k:"cvurl", l:"Link file CV", h:"Bỏ PDF vào thư mục images/ rồi ghi: images/CV.pdf"},
+   {k:"linkedin", l:"Link LinkedIn", h:"Để trống thì nút LinkedIn tự biến mất"},
+   {k:"github", l:"Link GitHub", h:"Để trống thì nút GitHub tự biến mất"},
+   {pair:["stat1n","stat1l"], l:"Số liệu 1"},
+   {pair:["stat2n","stat2l"], l:"Số liệu 2"},
+   {pair:["stat3n","stat3l"], l:"Số liệu 3"},
+   {pair:["stat4n","stat4l"], l:"Số liệu 4"},
+ ]},
+ {t:"3. Giới thiệu bản thân", f:[
+   {k:"abouttitle", l:"Tiêu đề mục"},
+   {k:"aboutbody", l:"Nội dung", type:"ta", rows:12, h:"Cách nhau MỘT DÒNG TRỐNG để tách đoạn"},
+   {k:"factstitle", l:"Tiêu đề bảng bên phải"},
+   {k:"factrows", l:"Bảng thông tin nhanh", type:"ta", rows:8, h:"Mỗi dòng: Nhãn|Giá trị — ví dụ  Địa điểm|TP. Hồ Chí Minh"},
+ ]},
+ {t:"4. Kỹ năng", f:[
+   {k:"skillsintro", l:"Câu dẫn", type:"ta"},
+   {sub:"Thẻ 1"},{k:"skill1title", l:"Tiêu đề"},{k:"skill1desc", l:"Mô tả một dòng", type:"ta", rows:2},
+   {k:"skill1bars", l:"Danh sách kỹ năng", type:"ta", rows:5, h:"Mỗi dòng: Tên kỹ năng|Số phần trăm"},
+   {sub:"Thẻ 2"},{k:"skill2title", l:"Tiêu đề"},{k:"skill2desc", l:"Mô tả một dòng", type:"ta", rows:2},
+   {k:"skill2bars", l:"Danh sách kỹ năng", type:"ta", rows:5},
+   {sub:"Thẻ 3"},{k:"skill3title", l:"Tiêu đề"},{k:"skill3desc", l:"Mô tả một dòng", type:"ta", rows:2},
+   {k:"skill3bars", l:"Danh sách kỹ năng", type:"ta", rows:5},
+ ]},
+ {t:"5. Dự án", f:[
+   {k:"projintro", l:"Câu dẫn", type:"ta"},
+ ].concat([1,2,3,4].flatMap(i=>[
+   {sub:"Dự án "+i+" \u00b7 ảnh: images/du-an-"+i+".png \u00b7 để trống Tên dự án là xoá cả thẻ"},
+   {k:"proj"+i+"title", l:"Tên dự án"},
+   {k:"proj"+i+"desc", l:"Mô tả ngắn", type:"ta", rows:2},
+   {k:"proj"+i+"problem", l:"Problem — vấn đề gặp phải", type:"ta"},
+   {k:"proj"+i+"solution", l:"Solution — bạn đã làm gì", type:"ta"},
+   {k:"proj"+i+"result", l:"Result — kết quả đo được", type:"ta", h:"Con số cụ thể thuyết phục nhất. Chưa đo được thì viết định tính, đừng bịa số."},
+   {k:"proj"+i+"tech", l:"Công nghệ dùng", h:"Ngăn cách bằng dấu phẩy"},
+ ]))},
+ {t:"6. Kinh nghiệm", f:[
+   {k:"expintro", l:"Câu dẫn", type:"ta"},
+ ].concat([1,2,3].flatMap(i=>[
+   {sub:"Mốc "+i+" \u00b7 để trống cả 3 ô đầu là xoá mốc này"},
+   {k:"exp"+i+"when", l:"Thời gian"},
+   {k:"exp"+i+"role", l:"Vị trí / bằng cấp"},
+   {k:"exp"+i+"org", l:"Công ty / trường"},
+   {k:"exp"+i+"bullets", l:"Các gạch đầu dòng", type:"ta", rows:4, h:"Mỗi dòng một ý"},
+ ]))},
+ {t:"7. Chứng chỉ", f:[
+   {k:"achintro", l:"Câu dẫn", type:"ta"},
+   {k:"ach1", l:"Chứng chỉ 1", type:"ta", rows:2, h:"Viết: Tên|Mô tả ngắn|Năm  —  để trống là xoá"},
+   {k:"ach2", l:"Chứng chỉ 2", type:"ta", rows:2},
+   {k:"ach3", l:"Chứng chỉ 3", type:"ta", rows:2},
+ ]},
+ {t:"8. Blog", f:[
+   {k:"blogurl", l:"Link trang blog (Hashnode)", h:"Dán vào đây thì menu Blog và nút Xem tất cả bài viết tự hiện"},
+   {k:"blogintro", l:"Câu dẫn", type:"ta"},
+   {k:"post1", l:"Bài 1", type:"ta", rows:3, h:"Viết: Ngày|Tiêu đề|Tóm tắt|Link  —  để trống là xoá thẻ"},
+   {k:"post2", l:"Bài 2", type:"ta", rows:3},
+   {k:"post3", l:"Bài 3", type:"ta", rows:3},
+ ]},
+ {t:"9. Dashboard & Code (link thật)", f:[
+   {k:"workintro", l:"Câu dẫn", type:"ta"},
+   {k:"work1", l:"Ô 1", type:"ta", rows:4, h:"Viết: Tên|Mô tả|Nhãn công cụ|Link  —  để trống là xoá ô"},
+   {k:"work2", l:"Ô 2", type:"ta", rows:4},
+   {k:"work3", l:"Ô 3", type:"ta", rows:4},
+   {k:"work4", l:"Ô 4", type:"ta", rows:4},
+   {k:"work5", l:"Ô 5", type:"ta", rows:4},
+   {k:"work6", l:"Ô 6", type:"ta", rows:4},
+ ]},
+ {t:"10. Liên hệ", f:[
+   {k:"contactsub", l:"Câu dẫn dưới tiêu đề", type:"ta"},
+   {k:"contactintro", l:"Đoạn giới thiệu bên trái", type:"ta"},
+   {k:"email", l:"Email", h:"Dùng cho cả nút thư và mục Contact"},
+   {k:"phone", l:"Số điện thoại"},
+   {k:"location", l:"Địa điểm"},
+ ]},
+];
+
+let data = Object.assign({}, DEFAULTS);
+const form = document.getElementById('form');
+GROUPS.forEach(g=>{
+  const d=document.createElement('details'); if(g.open) d.open=true;
+  const s=document.createElement('summary'); s.textContent=g.t; d.appendChild(s);
+  const b=document.createElement('div'); b.className='body';
+  g.f.forEach(f=>{
+    if(f.sub){ const h=document.createElement('div'); h.className='sub';
+      h.innerHTML='<h4></h4>'; h.querySelector('h4').textContent=f.sub; b.appendChild(h); return; }
+    const w=document.createElement('div'); w.className='f';
+    if(f.pair){
+      w.innerHTML='<label></label><div class="row"><input data-k="'+f.pair[0]+'"><input data-k="'+f.pair[1]+'"></div>';
+      w.querySelector('label').textContent=f.l+' — con số và nhãn';
+    } else if(f.type==='ta'){
+      w.innerHTML='<label></label><textarea data-k="'+f.k+'" rows="'+(f.rows||3)+'"></textarea>'+
+        (f.h?'<div class="hint"></div>':'');
+      w.querySelector('label').textContent=f.l; if(f.h) w.querySelector('.hint').textContent=f.h;
+    } else {
+      w.innerHTML='<label></label><input data-k="'+f.k+'">'+(f.h?'<div class="hint"></div>':'');
+      w.querySelector('label').textContent=f.l; if(f.h) w.querySelector('.hint').textContent=f.h;
+    }
+    b.appendChild(w);
+  });
+  d.appendChild(b); form.appendChild(d);
+});
+
+function fill(){ document.querySelectorAll('[data-k]').forEach(el=>{ el.value = data[el.dataset.k] ?? ''; }); }
+form.addEventListener('input', e=>{
+  if(!e.target.dataset.k) return;
+  data[e.target.dataset.k]=e.target.value; schedule();
+});
+
+function esc(s){ return String(s==null?'':s)
+  .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function lines(t){ return String(t||'').split('\n').map(s=>s.trim()).filter(Boolean); }
+
+function bars(txt){
+  return lines(txt).map(l=>{
+    const i=l.lastIndexOf('|');
+    const name = i<0 ? l : l.slice(0,i).trim();
+    let p = i<0 ? 80 : parseInt(l.slice(i+1).replace(/[^0-9]/g,''),10);
+    if(isNaN(p)) p=80; p=Math.max(0,Math.min(100,p));
+    return '<div class="bar-row"><div class="bar-lbl"><b>'+esc(name)+'</b><i>'+p+'%</i></div>'+
+           '<div class="track"><div class="fill" style="width:'+p+'%"></div></div></div>';
+  }).join('\n');
+}
+function chips(txt){ return String(txt||'').split(',').map(s=>s.trim()).filter(Boolean)
+  .map(s=>'<span class="chip">'+esc(s)+'</span>').join(''); }
+function lis(txt){ return lines(txt).map(s=>'<li>'+esc(s)+'</li>').join(''); }
+function paras(txt){ return String(txt||'').split(/\n\s*\n/).map(s=>s.trim()).filter(Boolean)
+  .map(s=>'<p>'+esc(s).replace(/\n/g,'<br>')+'</p>').join('\n'); }
+function facts(txt){ return lines(txt).map(l=>{
+    const i=l.indexOf('|');
+    const k = i<0 ? l : l.slice(0,i).trim();
+    const v = i<0 ? '' : l.slice(i+1).trim();
+    return '<div class="row"><span class="k">'+esc(k)+'</span><span class="v">'+esc(v)+'</span></div>';
+  }).join('\n'); }
+function acard(txt){
+  const p=String(txt||'').split('|');
+  if(!p[0]||!p[0].trim()) return '';
+  return '<div class="acard"><div class="medal">\uD83C\uDFC5</div><h3>'+esc(p[0].trim())+'</h3>'+
+    (p[1]&&p[1].trim()?'<p>'+esc(p[1].trim())+'</p>':'')+
+    (p[2]&&p[2].trim()?'<span class="year">'+esc(p[2].trim())+'</span>':'')+'</div>';
+}
+function postcard(txt){
+  const p=String(txt||'').split('|');
+  if(!p[1]||!p[1].trim()) return '';
+  const url=(p[3]||'').trim();
+  const open = url ? '<a class="post" href="'+esc(url)+'" target="_blank" rel="noopener">' : '<div class="post">';
+  const close = url ? '</a>' : '</div>';
+  return open+
+    (p[0]&&p[0].trim()?'<div class="date">'+esc(p[0].trim())+'</div>':'')+
+    '<h3>'+esc(p[1].trim())+'</h3>'+
+    (p[2]&&p[2].trim()?'<p>'+esc(p[2].trim())+'</p>':'')+
+    (url?'<span class="more">Đọc tiếp \u2192</span>':'')+close;
+}
+
+function workcard(txt){
+  const p=String(txt||'').split('|');
+  if(!p[0]||!p[0].trim()) return '';
+  const url=(p[3]||'').trim();
+  const open = url ? '<a class="wcard" href="'+esc(url)+'" target="_blank" rel="noopener">' : '<div class="wcard">';
+  const close = url ? '</a>' : '</div>';
+  return open+
+    (p[2]&&p[2].trim()?'<span class="wtool">'+esc(p[2].trim())+'</span>':'')+
+    '<h3>'+esc(p[0].trim())+'</h3>'+
+    (p[1]&&p[1].trim()?'<p>'+esc(p[1].trim())+'</p>':'')+
+    (url?'<span class="wgo">M\u1edf \u2197</span>':'')+close;
+}
+function render(){
+  const v=Object.assign({},data);
+  const raw={};
+  [1,2,3].forEach(i=>{ raw['skill'+i+'bars']=bars(v['skill'+i+'bars']); });
+  [1,2,3,4].forEach(i=>{ raw['proj'+i+'tech']=chips(v['proj'+i+'tech']); });
+  [1,2,3].forEach(i=>{ raw['exp'+i+'bullets']=lis(v['exp'+i+'bullets']); });
+  [1,2,3].forEach(i=>{ raw['ach'+i]=acard(v['ach'+i]); });
+  [1,2,3].forEach(i=>{ raw['post'+i]=postcard(v['post'+i]); });
+  [1,2,3,4,5,6].forEach(i=>{ raw['work'+i]=workcard(v['work'+i]); });
+  raw['workcta']=(v.github||'').trim()
+    ? '<div class="blog-cta"><a class="btn btn-s" href="'+esc(v.github.trim())+
+      '" target="_blank" rel="noopener">Xem to\u00e0n b\u1ed9 tr\u00ean GitHub \u2192</a></div>' : '';
+  raw['aboutbody']=paras(v.aboutbody);
+  raw['factrows']=facts(v.factrows);
+  raw['badge']=(v.badge||'').trim()
+    ? '<span class="badge"><span class="dot"></span>'+esc(v.badge.trim())+'</span>' : '';
+  const bu=(v.blogurl||'').trim();
+  raw['blognav']= bu ? '<a href="'+esc(bu)+'" target="_blank" rel="noopener">Blog</a>\n      ' : '';
+  raw['blogcta']= bu ? '<div class="blog-cta"><a class="btn btn-s" href="'+esc(bu)+
+      '" target="_blank" rel="noopener">Xem tất cả bài viết \u2192</a></div>' : '';
+
+  let out = TPL.replace(/\{\{(\w+)\}\}/g,(m,k)=> (k in raw) ? raw[k] : esc(v[k]));
+
+  const doc=new DOMParser().parseFromString(out,'text/html');
+  doc.querySelectorAll('.tli').forEach(el=>{
+    const t=(el.querySelector('.tw')?.textContent||'')+(el.querySelector('h3')?.textContent||'')+
+            (el.querySelector('.torg')?.textContent||'');
+    if(!t.trim()) el.remove();
+  });
+  doc.querySelectorAll('.pcard').forEach(el=>{
+    if(!(el.querySelector('h3')?.textContent||'').trim()) el.remove();
+  });
+  doc.querySelectorAll('a.icon-btn').forEach(a=>{
+    const h=a.getAttribute('href')||'';
+    if(!h||h==='#'||h==='mailto:') a.remove();
+  });
+  const soc=doc.querySelector('.socials');
+  if(soc && !soc.children.length){ const fl=doc.querySelector('.follow'); if(fl) fl.remove(); soc.remove(); }
+  const cv=doc.querySelector('.hero-actions .btn-p');
+  if(cv && !(cv.getAttribute('href')||'').trim()) cv.remove();
+  const blogSec=doc.querySelector('#blog');
+  if(blogSec && !blogSec.querySelectorAll('.post').length && !bu) blogSec.remove();
+  const wSec=doc.querySelector('#work');
+  if(wSec && !wSec.querySelectorAll('.wcard').length) wSec.remove();
+  const achSec=doc.querySelector('#achievements');
+  if(achSec && !achSec.querySelectorAll('.acard').length) achSec.remove();
+  return '<!DOCTYPE html>\n'+doc.documentElement.outerHTML;
+}
+
+let timer=null;
+function schedule(){ clearTimeout(timer); timer=setTimeout(preview,250); }
+function preview(){ document.getElementById('pv').srcdoc=render(); }
+
+function dl(name,text,mime){
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(new Blob([text],{type:mime+';charset=utf-8'}));
+  a.download=name; a.click(); setTimeout(()=>URL.revokeObjectURL(a.href),3000);
+  flash('Đã tải '+name);
+}
+function flash(t){ const m=document.getElementById('msg'); m.textContent=t;
+  setTimeout(()=>{ if(m.textContent===t) m.textContent=''; },3500); }
+
+document.getElementById('saveHtml').onclick=()=>dl('index.html',render(),'text/html');
+document.getElementById('saveJson').onclick=()=>dl('noi-dung.json',JSON.stringify(data,null,1),'application/json');
+document.getElementById('load').onchange=e=>{
+  const f=e.target.files[0]; if(!f) return;
+  const r=new FileReader();
+  r.onload=()=>{ try{ data=Object.assign({},DEFAULTS,JSON.parse(r.result)); fill(); preview(); flash('Đã nạp nội dung'); }
+                 catch(err){ alert('File không đọc được. Hãy chọn đúng file noi-dung.json đã lưu.'); } };
+  r.readAsText(f,'utf-8'); e.target.value='';
+};
+
+fill(); preview();
+</script>
+</body>
+</html>
