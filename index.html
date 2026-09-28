@@ -489,8 +489,7 @@ footer{background:#0A1E31;color:#8CA3B8;padding:30px 0;font-size:14px}
           <a class="icon-btn" href="https://github.com/thanhha02061/Porfolio-Projects" title="GitHub">Gh</a>
         </div>
       </div>
-      <form name="contact" method="POST" data-netlify="true">
-        <input type="hidden" name="form-name" value="contact">
+      <form name="contact" data-to="email-cua-ban@example.com" onsubmit="var f=this,g=function(n){return f.elements[n].value},nl=String.fromCharCode(10);location.href='mailto:'+f.getAttribute('data-to')+'?subject='+encodeURIComponent('Liên hệ từ portfolio — '+g('name'))+'&amp;body='+encodeURIComponent(g('message')+nl+nl+g('name')+(g('company')?' — '+g('company'):'')+nl+g('email'));return false;">
         <div class="frow">
           <div class="fg"><label>Họ và tên</label><input type="text" name="name" placeholder="Nguyễn Văn A" required=""></div>
           <div class="fg"><label>Công ty</label><input type="text" name="company" placeholder="Tên công ty"></div>
@@ -498,7 +497,7 @@ footer{background:#0A1E31;color:#8CA3B8;padding:30px 0;font-size:14px}
         <div class="fg"><label>Email</label><input type="email" name="email" placeholder="ten@congty.com" required=""></div>
         <div class="fg"><label>Nội dung</label><textarea name="message" rows="4" placeholder="Vị trí, phạm vi công việc, hoặc câu hỏi của bạn..."></textarea></div>
         <button class="btn btn-p" type="submit">➤ Gửi lời nhắn</button>
-        <div class="formnote">Thông tin của bạn chỉ dùng để phản hồi, không chia sẻ cho bên thứ ba.</div>
+        <div class="formnote">Bấm gửi sẽ mở ứng dụng email của bạn với nội dung đã điền sẵn.</div>
       </form>
     </div>
   </div>

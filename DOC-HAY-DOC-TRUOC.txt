@@ -1,5 +1,5 @@
-PORTFOLIO THANH HÀ — thanhha-portfolio.netlify.app
-===================================================
+PORTFOLIO THANH HÀ — thanhha-portfolio.pages.dev
+================================================
 
 TRONG THƯ MỤC NÀY
 -----------------
@@ -21,7 +21,8 @@ SỬA NỘI DUNG — 4 BƯỚC
    "Tải index.html"        -> file mới trong thư mục Downloads
 
 4. Chép index.html vừa tải vào thư mục này (đè lên file cũ),
-   rồi kéo CẢ THƯ MỤC lên Netlify (tab Deploys).
+   rồi mở GitHub Desktop: Commit to main -> Push origin.
+   Khoảng 1 phút sau web tự cập nhật (Cloudflare Pages).
 
 
 ẢNH — chỉ cần đặt đúng tên, không phải sửa code
@@ -38,10 +39,8 @@ images/CV.pdf          file CV
 
 LƯU Ý
 -----
-- Kéo CẢ THƯ MỤC lên Netlify, đừng kéo riêng index.html (sẽ mất ảnh).
-- File sua.html cũng được đưa lên mạng cùng. Nó chỉ là cái form,
-  không chứa gì bí mật. Không thích thì xoá nó khỏi thư mục
-  trước khi kéo lên Netlify.
-- Site đang ở chế độ Private. Người ngoài chưa xem được.
-  Khi nào nội dung xong: Netlify -> Project configuration ->
-  Project visibility -> Edit visibility -> Public.
+- Commit cả ảnh trong images/ cùng lúc với index.html.
+- sua.html cũng nằm trên web. Nó chỉ là cái form, không chứa gì bí mật.
+- Link Cloudflare mặc định public: nội dung chưa xong thì chưa gửi link cho ai.
+- Lỡ hỏng: Cloudflare -> Deployments -> Rollback,
+  hoặc GitHub Desktop -> History -> Revert changes in commit.

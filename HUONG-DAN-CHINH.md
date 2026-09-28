@@ -1,7 +1,8 @@
 # Portfolio Thanh Hà — hướng dẫn
 
-**Web:** https://thanhha-portfolio.netlify.app — đang **Private**
-**Thư mục làm việc:** `OneDrive\01. Thanh Hà - Work\05. Portfolio\portfolio-netlify\`
+**Web:** https://thanhha-portfolio.pages.dev (Cloudflare Pages, tự cập nhật từ GitHub)
+**Code:** https://github.com/thanhha02061/portfolio-web
+**Thư mục làm việc:** `Documents\github-ca-nhan\portfolio-web\`
 **Chi phí:** 0 đồng, không giới hạn thời gian
 
 ---
@@ -47,11 +48,11 @@ Xoá *Tên dự án* → mất cả thẻ dự án. Xoá 3 ô đầu một mốc
 - **Lưu nội dung (.json)** → chép `noi-dung.json` vào thư mục này, đè bản cũ
 - **Tải index.html** → chép vào thư mục này, đè bản cũ
 
-**4. Đưa lên web:** [app.netlify.com](https://app.netlify.com) → project **thanhha-portfolio** → tab **Deploys** → kéo **cả thư mục** thả vào ô drag-and-drop. 20 giây sau web đã đổi.
+**4. Đưa lên web:** mở **GitHub Desktop** → repo **portfolio-web** → ghi Summary (vd `Cập nhật dự án`) → **Commit to main** → **Push origin**. Khoảng 1 phút sau Cloudflare tự đưa bản mới lên web.
 
-> ⚠️ Kéo **thư mục**, không kéo riêng `index.html` — kéo file lẻ là mất hết ảnh.
+> ⚠️ Nhớ commit cả ảnh trong `images\` — GitHub Desktop tự liệt kê mọi file mới/đổi, để tick hết là được.
 
-Hoặc nhắn Claude, tôi deploy hộ.
+Hoặc nhắn Claude, tôi commit hộ.
 
 ---
 
@@ -69,6 +70,12 @@ CV.pdf          file CV
 ```
 
 > ⚠️ **Bắt buộc che số liệu thật của công ty trên ảnh dashboard.** An toàn nhất: tạo file Power BI riêng, đổi tên brand và nhân doanh thu với một hệ số, rồi chụp file đó.
+
+---
+
+## Form liên hệ
+
+Form “Gửi lời nhắn” mở ứng dụng email của người gửi với nội dung điền sẵn, gửi tới email ở ô **Email** (mục Contact trong `sua.html`). Không cần máy chủ hay dịch vụ ngoài.
 
 ---
 
@@ -90,9 +97,7 @@ Miễn phí không giới hạn bài, gắn domain riêng cũng miễn phí.
 
 ## Mở Public khi sẵn sàng
 
-Hiện người ngoài mở link bị lỗi 401.
-
-Netlify → project **thanhha-portfolio** → nút **Make public** ở trang Project overview.
+Link Cloudflare Pages mặc định là **public**: ai có link là xem được. Khi nội dung chưa xong thì **chưa gửi link** cho ai (hoặc nhờ Claude bật Cloudflare Access để khoá tạm).
 
 Kiểm tra lại bằng **cửa sổ ẩn danh** (`Ctrl+Shift+N`). Vào được là đúng.
 
@@ -102,7 +107,10 @@ Kiểm tra lại bằng **cửa sổ ẩn danh** (`Ctrl+Shift+N`). Vào được
 
 ## Hoàn tác khi lỡ làm hỏng
 
-Netlify giữ toàn bộ lịch sử: tab **Deploys** → chọn bản trước → **Publish deploy**.
+Hai cách, đều không mất gì:
+
+- **Cloudflare:** Workers & Pages → **thanhha-portfolio** → tab **Deployments** → chọn bản trước → **Rollback to this deployment**.
+- **GitHub Desktop:** tab **History** → chuột phải commit lỗi → **Revert changes in commit** → Push origin.
 
 ---
 
@@ -114,7 +122,7 @@ Netlify giữ toàn bộ lịch sử: tab **Deploys** → chọn bản trước 
 - [ ] Ảnh dashboard **đã che số liệu công ty**
 - [ ] File CV PDF đã có, ô *Link file CV* trỏ đúng
 - [ ] Email / SĐT / LinkedIn đúng
-- [ ] Đã mở **Public** và test ở cửa sổ ẩn danh
+- [ ] Đã test link ở cửa sổ ẩn danh
 - [ ] Mở thử trên điện thoại
 - [ ] Đã lưu `noi-dung.json`
 
