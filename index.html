@@ -343,7 +343,7 @@ footer{background:#0A1E31;color:#8CA3B8;padding:30px 0;font-size:14px}
     <div class="head mid">
       <div class="kick">Portfolio</div>
       <h2>My Projects</h2>
-      <p>Một báo cáo mẫu bạn có thể mở và bấm thử ngay, cùng sáu bài toán thật, kể theo cấu trúc Problem → Solution → Result.</p>
+      <p>Báo cáo và pipeline mẫu bạn có thể mở thử ngay, cùng các bài toán thật, kể theo cấu trúc Problem → Solution → Result.</p>
     </div>
     <div class="proj">
       <article class="pcard feat">
@@ -376,18 +376,19 @@ footer{background:#0A1E31;color:#8CA3B8;padding:30px 0;font-size:14px}
           <div class="pactions"><span class="btn btn-s" aria-disabled="true" style="cursor:default;opacity:.7">Live demo: sắp cập nhật</span></div>
         </div>
       </article>
-      <article class="pcard">
-        <div class="pshot"><img src="/images/du-an-1.png" alt="" onerror="this.remove()"><div>Ảnh dự án 1<br><span>images/du-an-1.png</span></div></div>
+      <article class="pcard" id="retail-data-hub">
+        <a class="pshot" href="https://github.com/thanhha02061/Porfolio-Projects/tree/main/0.%20%5BPython%5D%20Retail%20Data%20Hub" target="_blank" rel="noopener" aria-label="Mở Retail Data Hub trên GitHub" style="background:#fff"><img src="/images/retail-data-hub.svg" alt="Biểu đồ doanh thu thuần theo ngày, theo kênh do pipeline tự tạo" onerror="this.remove()" style="object-fit:contain"><div>Retail Data Hub<br><span>5 nguồn → 1 nguồn duy nhất</span></div><span class="pbadge">Tự chạy mỗi sáng · dữ liệu mô phỏng</span></a>
         <div class="pbody">
-          <h3>Unified Multi-Channel Revenue Dashboard</h3>
-          <p class="pdesc">Báo cáo doanh thu hợp nhất 5 kênh bán trên một data model duy nhất, phục vụ khối kinh doanh và ban lãnh đạo.</p>
+          <h3>Retail Data Hub: 5 nguồn → 1 nguồn duy nhất</h3>
+          <p class="pdesc">Pipeline gom dữ liệu cửa hàng, Shopee, TikTok Shop, website và tồn kho ERP về một nơi, tự kiểm tra lỗi và tự làm mới lúc 06:00 mỗi sáng bằng GitHub Actions.</p>
           <div class="psr">
-            <div><h4>Problem</h4><p>Mỗi kênh bán xuất báo cáo theo cách riêng. Cùng một chỉ số "doanh thu" nhưng ba phòng ban ra ba con số khác nhau, họp kinh doanh mất phần lớn thời gian để tranh luận về số thay vì bàn hành động.</p></div>
-            <div><h4>Solution</h4><p>Chuẩn hoá dữ liệu từ KiotViet, Haravan, Shopee, TikTok Shop và showroom về BigQuery; thống nhất một định nghĩa doanh thu thuần duy nhất với các phòng ban; dựng star schema với dim Date / Channel / Brand / Product dùng chung và bộ measure DAX chuẩn.</p></div>
-            <div class="res"><h4>Result</h4><p>Cắt ~X giờ/tuần công ghép số thủ công; số liệu giữa các phòng ban khớp nhau; họp kinh doanh chuyển hẳn sang bàn giải pháp.</p></div>
+            <div><h4>Problem</h4><p>Mỗi hệ thống xuất dữ liệu một kiểu: khác định dạng ngày, múi giờ, mã sản phẩm, có dòng trùng. Mỗi phòng tự ghép Excel nên ra nhiều con số "doanh thu" khác nhau, lỗi chỉ lộ ra lúc chốt tháng.</p></div>
+            <div><h4>Solution</h4><p>Nạp tăng dần theo watermark vào lake chia theo ngày; một file SQL duy nhất định nghĩa giờ Việt Nam, master SKU và doanh thu thuần cho mọi kênh; 9 phép kiểm tra chất lượng (độ mới, map mã, đối soát với báo cáo nguồn) chặn dữ liệu lỗi trước khi công bố.</p></div>
+            <div class="res"><h4>Result</h4><p>Không ai phải chạy tay: README tự cập nhật trạng thái mỗi sáng, đối soát lệch 0.000% so với báo cáo nguồn, bắt được dòng trùng Shopee và mã combo livestream chưa có trong master data.</p></div>
           </div>
           <div class="tech-lbl">Technologies Used</div>
-          <div class="chips"><span class="chip">Power BI</span><span class="chip">BigQuery</span><span class="chip">SQL</span><span class="chip">DAX</span><span class="chip">Star schema</span></div>
+          <div class="chips"><span class="chip">Python</span><span class="chip">SQL (DuckDB)</span><span class="chip">GitHub Actions</span><span class="chip">BigQuery design</span><span class="chip">Data quality</span></div>
+          <div class="pactions"><a class="btn btn-p" href="https://github.com/thanhha02061/Porfolio-Projects/tree/main/0.%20%5BPython%5D%20Retail%20Data%20Hub" target="_blank" rel="noopener">Xem trên GitHub ↗</a></div>
         </div>
       </article>
       <article class="pcard">
@@ -403,6 +404,20 @@ footer{background:#0A1E31;color:#8CA3B8;padding:30px 0;font-size:14px}
           <div class="tech-lbl">Technologies Used</div>
           <div class="chips"><span class="chip">Power BI</span><span class="chip">DAX</span><span class="chip">SQL</span><span class="chip">Financial statements</span></div>
           <div class="pactions"><a class="btn btn-p" href="https://app.powerbi.com/view?r=eyJrIjoiNzUyYTFjMGItNjJiOC00NmQzLWEzYWQtZjJjMDllNWU5MjlhIiwidCI6ImU5MzhiMDc0LWQxNjAtNGVhOC05ODAzLWMwZTI5NjY5ZTM4OCIsImMiOjEwfQ%3D%3D" target="_blank" rel="noopener">Mở báo cáo Power BI ↗</a></div>
+        </div>
+      </article>
+      <article class="pcard">
+        <div class="pshot"><img src="/images/du-an-1.png" alt="" onerror="this.remove()"><div>Ảnh dự án 1<br><span>images/du-an-1.png</span></div></div>
+        <div class="pbody">
+          <h3>Unified Multi-Channel Revenue Dashboard</h3>
+          <p class="pdesc">Báo cáo doanh thu hợp nhất 5 kênh bán trên một data model duy nhất, phục vụ khối kinh doanh và ban lãnh đạo.</p>
+          <div class="psr">
+            <div><h4>Problem</h4><p>Mỗi kênh bán xuất báo cáo theo cách riêng. Cùng một chỉ số "doanh thu" nhưng ba phòng ban ra ba con số khác nhau, họp kinh doanh mất phần lớn thời gian để tranh luận về số thay vì bàn hành động.</p></div>
+            <div><h4>Solution</h4><p>Chuẩn hoá dữ liệu từ KiotViet, Haravan, Shopee, TikTok Shop và showroom về BigQuery; thống nhất một định nghĩa doanh thu thuần duy nhất với các phòng ban; dựng star schema với dim Date / Channel / Brand / Product dùng chung và bộ measure DAX chuẩn.</p></div>
+            <div class="res"><h4>Result</h4><p>Cắt ~X giờ/tuần công ghép số thủ công; số liệu giữa các phòng ban khớp nhau; họp kinh doanh chuyển hẳn sang bàn giải pháp.</p></div>
+          </div>
+          <div class="tech-lbl">Technologies Used</div>
+          <div class="chips"><span class="chip">Power BI</span><span class="chip">BigQuery</span><span class="chip">SQL</span><span class="chip">DAX</span><span class="chip">Star schema</span></div>
         </div>
       </article>
       <article class="pcard">
