@@ -283,10 +283,8 @@ footer{background:#0A1E31;color:#8CA3B8;padding:30px 0;font-size:14px}
       <h2>Người ở giữa dữ liệu thô và quyết định kinh doanh</h2>
     </div>
     <div class="about">
-      <div><p>Tôi học Hệ thống thông tin quản lý (MIS) tại UEH và đi thẳng vào nghề dữ liệu: từ phân tích trải nghiệm khách hàng ở Prudential, BI cho một tập đoàn năng lượng hơn 10 công ty con, đến chuỗi bán lẻ mỹ phẩm đa kênh hiện tại. Qua đó tôi luôn bắt đầu một báo cáo bằng câu hỏi "người đọc sẽ ra quyết định gì từ con số này?" — thay vì làm dashboard cho đẹp rồi mới đi tìm người dùng.</p>
-<p>Công việc của tôi trải dài toàn bộ chuỗi: lấy dữ liệu từ các nền tảng bán hàng về BigQuery, chuẩn hoá và làm sạch, dựng data model hợp lý, viết measure DAX, rồi thiết kế báo cáo Power BI cho phòng kinh doanh, marketing và ban lãnh đạo dùng hằng ngày. Tôi cũng chịu trách nhiệm phần khó nhất và ít ai thấy: đảm bảo số liệu đúng và khớp nhau giữa các nguồn.</p>
-<p>Ba nguyên tắc tôi giữ: một chỉ số chỉ có một định nghĩa; số nào không truy được về nguồn thì không đưa lên báo cáo; và báo cáo tốt là báo cáo người ta mở lại vào tuần sau.</p>
-<p>Ngoài giờ làm tôi học thêm Python và cách ứng dụng AI vào quy trình phân tích — chủ yếu để rút ngắn phần việc lặp lại, dành thời gian cho phần diễn giải số liệu.</p></div>
+      <div><p>Tôi học Hệ thống thông tin quản lý (MIS) tại UEH và đi thẳng vào nghề dữ liệu: từ phân tích trải nghiệm khách hàng ở Prudential, BI cho một tập đoàn năng lượng hơn 10 công ty con, đến chuỗi bán lẻ mỹ phẩm đa kênh hiện tại. Tôi luôn bắt đầu một báo cáo bằng câu hỏi "người đọc sẽ ra quyết định gì từ con số này?".</p>
+<p>Tôi làm trọn chuỗi dữ liệu: đưa dữ liệu các nền tảng bán hàng về BigQuery, làm sạch, dựng data model, viết DAX và thiết kế báo cáo Power BI cho kinh doanh, marketing và ban lãnh đạo. Nguyên tắc của tôi: mỗi chỉ số chỉ có một định nghĩa, và số nào không truy được về nguồn thì không đưa lên báo cáo.</p></div>
       <aside class="facts">
         <h3>Thông tin nhanh</h3>
         <div class="row"><span class="k">Vị trí hiện tại</span><span class="v">BI / Data Analyst</span></div>
@@ -353,9 +351,9 @@ footer{background:#0A1E31;color:#8CA3B8;padding:30px 0;font-size:14px}
           <h3>Retail Data Hub: 5 nguồn → 1 nguồn duy nhất</h3>
           <p class="pdesc">Pipeline gom dữ liệu cửa hàng, Shopee, TikTok Shop, website và tồn kho ERP về một nơi, tự kiểm tra lỗi và tự làm mới lúc 06:00 mỗi sáng bằng GitHub Actions.</p>
           <div class="psr">
-            <div><h4>Vấn đề</h4><p>Mỗi hệ thống xuất dữ liệu một kiểu: khác định dạng ngày, múi giờ, mã sản phẩm, có dòng trùng. Mỗi phòng tự ghép Excel nên ra nhiều con số "doanh thu" khác nhau, lỗi chỉ lộ ra lúc chốt tháng.</p></div>
-            <div><h4>Giải pháp</h4><p>Nạp tăng dần theo watermark vào lake chia theo ngày; một file SQL duy nhất định nghĩa giờ Việt Nam, master SKU và doanh thu thuần cho mọi kênh; 9 phép kiểm tra chất lượng (độ mới, map mã, đối soát với báo cáo nguồn) chặn dữ liệu lỗi trước khi công bố.</p></div>
-            <div class="res"><h4>Kết quả</h4><p>Không ai phải chạy tay: README tự cập nhật trạng thái mỗi sáng, đối soát lệch 0.000% so với báo cáo nguồn, bắt được dòng trùng Shopee và mã combo livestream chưa có trong master data.</p></div>
+            <div><h4>Vấn đề</h4><p>Mỗi hệ thống xuất dữ liệu một kiểu, mỗi phòng tự ghép Excel nên ra nhiều con số "doanh thu" khác nhau.</p></div>
+            <div><h4>Giải pháp</h4><p>Pipeline nạp tăng dần, một file SQL định nghĩa chung mọi chỉ số và 9 phép kiểm tra chất lượng trước khi công bố.</p></div>
+            <div class="res"><h4>Kết quả</h4><p>Tự chạy mỗi sáng không cần ai chạy tay, đối soát lệch 0.000% so với báo cáo nguồn.</p></div>
           </div>
           <div class="tech-lbl">Công nghệ sử dụng</div>
           <div class="chips"><span class="chip">Python</span><span class="chip">SQL (DuckDB)</span><span class="chip">GitHub Actions</span><span class="chip">Thiết kế cho BigQuery</span><span class="chip">Kiểm soát chất lượng dữ liệu</span></div>
@@ -368,9 +366,9 @@ footer{background:#0A1E31;color:#8CA3B8;padding:30px 0;font-size:14px}
           <h3>Store Network Review: 1,000 Supermarkets</h3>
           <p class="pdesc">Báo cáo điều hành 13 trang cho một chuỗi 1.000 siêu thị giả lập, đi từ lúc tiếp nhận yêu cầu tới đề xuất giữ, cải tạo hay đóng từng cửa hàng. Dựng bằng HTML cùng AI (Claude), chạy ngay trên trình duyệt.</p>
           <div class="psr">
-            <div><h4>Vấn đề</h4><p>Chuỗi lớn luôn có hàng trăm cửa hàng lãi mỏng hoặc lỗ, nhưng báo cáo thường chỉ dừng ở "doanh thu bao nhiêu" mà không trả lời được "vì sao" và "nên làm gì với từng cửa hàng".</p></div>
-            <div><h4>Giải pháp</h4><p>Chấm điểm ưu tiên yêu cầu, lên khung phân tích bằng CRISP-DM, logic tree và MECE. Phân rã doanh thu = lượt vào × tỷ lệ chuyển đổi × AOV, rồi dùng PVM, Pareto/ABC, k-means, hồi quy yếu tố, DiD cho khuyến mãi, market basket, cohort/RFM và NPV. Mọi chỉ số có công thức và ví dụ tính ngay dưới từng trang; bộ lọc vùng, mô hình, tuổi cửa hàng cập nhật toàn bộ số.</p></div>
-            <div class="res"><h4>Kết quả</h4><p>Trên bộ dữ liệu mô phỏng: chỉ ra khoảng 223 tỷ lợi nhuận/năm có thể lấy lại (+15%), 97 cửa hàng lỗ kèm phương án NPV tốt nhất, và các đòn bẩy cụ thể như hết hàng, ca làm việc, khuyến mãi lỗ.</p></div>
+            <div><h4>Vấn đề</h4><p>Báo cáo thường dừng ở "doanh thu bao nhiêu", không trả lời được vì sao và nên làm gì với từng cửa hàng.</p></div>
+            <div><h4>Giải pháp</h4><p>Phân rã doanh thu thành lượt vào × tỷ lệ chuyển đổi × AOV, kết hợp Pareto/ABC, phân cụm và NPV.</p></div>
+            <div class="res"><h4>Kết quả</h4><p>Trên dữ liệu mô phỏng: chỉ ra khoảng 223 tỷ lợi nhuận/năm có thể lấy lại và phương án cho 97 cửa hàng lỗ.</p></div>
           </div>
           <div class="tech-lbl">Công nghệ sử dụng</div>
           <div class="chips"><span class="chip">HTML / JavaScript</span><span class="chip">Biểu đồ SVG</span><span class="chip">Có AI hỗ trợ (Claude)</span><span class="chip">CRISP-DM</span><span class="chip">Thống kê</span></div>
@@ -383,9 +381,9 @@ footer{background:#0A1E31;color:#8CA3B8;padding:30px 0;font-size:14px}
           <h3>Financial Reporting Package</h3>
           <p class="pdesc">Bộ báo cáo tài chính đầy đủ trên Power BI cho một tập đoàn năng lượng hơn 10 công ty con, phục vụ ban lãnh đạo xem kết quả theo năm, quý, tháng.</p>
           <div class="psr">
-            <div><h4>Vấn đề</h4><p>Báo cáo tài chính làm thủ công trên Excel cho từng công ty con, mất nhiều ngày để tổng hợp và khó xem chi tiết khi ban lãnh đạo hỏi sâu.</p></div>
-            <div><h4>Giải pháp</h4><p>Dựng P&amp;L, Cash Flow và Balance Sheet trên một model Power BI với drill-down năm / quý / tháng, drill-through, bookmark và bộ lọc; viết khoảng 1,000 dòng SQL (window functions, CTEs) để chuẩn bị và tối ưu dữ liệu.</p></div>
-            <div class="res"><h4>Kết quả</h4><p>Ban lãnh đạo tự xem báo cáo tài chính hợp nhất và đi sâu tới từng kỳ, từng công ty con trên một màn hình.</p></div>
+            <div><h4>Vấn đề</h4><p>Báo cáo tài chính làm tay trên Excel cho từng công ty con, mất nhiều ngày để tổng hợp.</p></div>
+            <div><h4>Giải pháp</h4><p>P&amp;L, Cash Flow và Balance Sheet trên một model Power BI, drill-down theo năm, quý, tháng.</p></div>
+            <div class="res"><h4>Kết quả</h4><p>Ban lãnh đạo tự xem số hợp nhất và đi sâu tới từng kỳ, từng công ty con.</p></div>
           </div>
           <div class="tech-lbl">Công nghệ sử dụng</div>
           <div class="chips"><span class="chip">Power BI</span><span class="chip">DAX</span><span class="chip">SQL</span><span class="chip">Báo cáo tài chính</span></div>
@@ -398,9 +396,9 @@ footer{background:#0A1E31;color:#8CA3B8;padding:30px 0;font-size:14px}
           <h3>TikTok Shop Performance Dashboard</h3>
           <p class="pdesc">Báo cáo Power BI theo dõi hiệu quả gian hàng TikTok Shop của một thương hiệu mỹ phẩm: doanh thu, nguồn đơn, quảng cáo và KOC so với kế hoạch tháng.</p>
           <div class="psr">
-            <div><h4>Vấn đề</h4><p>Dữ liệu TikTok Shop nằm rải ở nhiều file xuất tay (đơn hàng, livestream, video, affiliate, ads). Mỗi tháng phải ghép thủ công mới biết doanh thu đến từ đâu và kênh nào đang lỗ.</p></div>
-            <div><h4>Giải pháp</h4><p>Gom các nguồn về một data model; chuẩn hoá GMV, NMV, số đơn, tỷ lệ huỷ, CR, AOV; tách doanh thu theo livestream, video, affiliate/KOC và ads (ROAS); so sánh thực hiện với kế hoạch theo tháng, theo SKU.</p></div>
-            <div class="res"><h4>Kết quả</h4><p>Đội ngũ nhìn một màn hình là biết nguồn đơn nào hiệu quả, SKU nào hụt kế hoạch và khoản chi quảng cáo, KOC nào cần cắt, thay vì chờ tổng hợp cuối tháng.</p></div>
+            <div><h4>Vấn đề</h4><p>Dữ liệu TikTok Shop rải ở nhiều file xuất tay, cuối tháng mới biết doanh thu đến từ đâu.</p></div>
+            <div><h4>Giải pháp</h4><p>Gom về một data model, tách doanh thu theo livestream, video, affiliate và ads, so với kế hoạch tháng.</p></div>
+            <div class="res"><h4>Kết quả</h4><p>Nhìn một màn hình là biết nguồn đơn nào hiệu quả và khoản chi nào cần cắt.</p></div>
           </div>
           <div class="tech-lbl">Công nghệ sử dụng</div>
           <div class="chips"><span class="chip">Power BI</span><span class="chip">DAX</span><span class="chip">Power Query</span><span class="chip">Phân tích thương mại điện tử</span></div>
@@ -413,9 +411,9 @@ footer{background:#0A1E31;color:#8CA3B8;padding:30px 0;font-size:14px}
           <h3>KiotViet Auto Export Bot</h3>
           <p class="pdesc">Bot Python tự đăng nhập KiotViet, xuất danh sách vận đơn từ đầu tháng đến hôm qua, gộp thành một file Excel cho Power BI đọc và gửi email báo kết quả.</p>
           <div class="psr">
-            <div><h4>Vấn đề</h4><p>Mỗi sáng phải đăng nhập, chọn cột, chọn từng khoảng ngày, xuất file, chờ tải rồi ghép Excel bằng tay. Việc lặp lại và dễ sót ngày, thiếu cột.</p></div>
-            <div><h4>Giải pháp</h4><p>Selenium điều khiển trình duyệt theo tín hiệu (chờ lưới có dữ liệu thật mới xuất), chia tháng thành 3 đợt, chỉ coi file tải xong khi dung lượng ổn định, gộp bằng openpyxl và dựng lại Excel Table.</p></div>
-            <div class="res"><h4>Kết quả</h4><p>Không ai phải chạy tay; lỗi ở bước nào cũng có email kèm log ngay lập tức và file cũ được giữ nguyên, nên báo cáo không bao giờ đọc phải file dở.</p></div>
+            <div><h4>Vấn đề</h4><p>Mỗi sáng phải đăng nhập, xuất từng khoảng ngày rồi ghép Excel bằng tay, dễ sót ngày, thiếu cột.</p></div>
+            <div><h4>Giải pháp</h4><p>Bot Selenium chờ dữ liệu thật mới xuất, chia tháng thành 3 đợt rồi gộp thành một file Excel.</p></div>
+            <div class="res"><h4>Kết quả</h4><p>Không ai phải chạy tay; lỗi ở bước nào cũng báo ngay qua email và file cũ được giữ nguyên.</p></div>
           </div>
           <div class="tech-lbl">Công nghệ sử dụng</div>
           <div class="chips"><span class="chip">Python</span><span class="chip">Selenium</span><span class="chip">openpyxl</span><span class="chip">Task Scheduler</span><span class="chip">Cảnh báo qua email</span></div>
@@ -428,9 +426,9 @@ footer{background:#0A1E31;color:#8CA3B8;padding:30px 0;font-size:14px}
           <h3>Shopee Customer Behavior &amp; RFM</h3>
           <p class="pdesc">Một câu SQL trên BigQuery biến đơn hàng Shopee của nhiều shop thành bảng phân tích khách hàng cho Power BI.</p>
           <div class="psr">
-            <div><h4>Vấn đề</h4><p>Dữ liệu Shopee không trả lời được khách mới hay khách cũ, quay lại sau bao lâu, nhóm nào sắp rời bỏ; mỗi báo cáo lại tự tính một kiểu trong DAX.</p></div>
-            <div><h4>Giải pháp</h4><p>Phân bổ voucher về từng dòng sản phẩm; gắn nhãn new / active / return theo ngày rồi gộp lên tháng, quý, năm; chấm RFM trong từng shop thành 9 nhóm khách; nhận diện cross-selling và khách đa shop.</p></div>
-            <div class="res"><h4>Kết quả</h4><p>Mọi báo cáo khách hàng dùng chung một định nghĩa tính sẵn ở tầng SQL; 9 nhóm RFM phủ kín 64 tổ hợp điểm, không khách nào bị sót hay trùng nhóm.</p></div>
+            <div><h4>Vấn đề</h4><p>Dữ liệu Shopee không cho biết khách mới hay cũ, quay lại sau bao lâu, nhóm nào sắp rời bỏ.</p></div>
+            <div><h4>Giải pháp</h4><p>Phân bổ voucher về từng dòng, gắn nhãn new / active / return và chấm RFM riêng cho từng shop.</p></div>
+            <div class="res"><h4>Kết quả</h4><p>Mọi báo cáo khách hàng dùng chung một định nghĩa, tính sẵn ở tầng SQL.</p></div>
           </div>
           <div class="tech-lbl">Công nghệ sử dụng</div>
           <div class="chips"><span class="chip">BigQuery SQL</span><span class="chip">Window functions</span><span class="chip">RFM</span><span class="chip">Vòng đời khách hàng</span></div>
