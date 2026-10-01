@@ -1,0 +1,1196 @@
+<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><meta name="description" content="Báo cáo mô phỏng chuỗi 1.000 siêu thị — Thanh Hà"></head><body><title>Mạng lưới 1.000 siêu thị · Bản 2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  color-scheme:light;
+  --bg:#f3f5f1; --surface:#fcfcfb; --surface-2:#eef1ec; --line:#dde3dc; --line-2:#c9d2c8;
+  --ink:#122420; --ink-2:#4a5a55; --ink-3:#7a8a84;
+  --accent:#0e6b52; --accent-2:#e6f2ec; --tag:#f6d24a; --tag-ink:#3a2e00;
+  --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s4:#eda100; --s5:#e87ba4; --s6:#008300; --s7:#4a3aa7; --s8:#e34948;
+  --good:#0ca30c; --warn:#fab219; --serious:#ec835a; --crit:#d03b3b;
+  --seq1:#cde2fb; --seq2:#9ec5f4; --seq3:#6da7ec; --seq4:#3987e5; --seq5:#256abf; --seq6:#184f95; --seq7:#0d366b;
+  --div-neg:#e34948; --div-mid:#f0efec; --div-pos:#2a78d6;
+  --shadow:0 1px 2px rgba(18,36,32,.06),0 4px 14px rgba(18,36,32,.05);
+  --f-disp:"Barlow Condensed","Arial Narrow",Arial,sans-serif;
+  --f-body:"Be Vietnam Pro",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  color-scheme:dark;
+  --bg:#111715; --surface:#1a1f1d; --surface-2:#222926; --line:#2e3733; --line-2:#3c4742;
+  --ink:#eef3f0; --ink-2:#b7c3bd; --ink-3:#86938d;
+  --accent:#3fbf95; --accent-2:#1d302a; --tag:#f6d24a; --tag-ink:#2b2200;
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500; --s5:#d55181; --s6:#008300; --s7:#9085e9; --s8:#e66767;
+  --seq1:#12304f; --seq2:#184f95; --seq3:#1c5cab; --seq4:#2a78d6; --seq5:#5598e7; --seq6:#86b6ef; --seq7:#cde2fb;
+  --div-mid:#383835; --shadow:0 1px 2px rgba(0,0,0,.3);
+}}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#111715; --surface:#1a1f1d; --surface-2:#222926; --line:#2e3733; --line-2:#3c4742;
+  --ink:#eef3f0; --ink-2:#b7c3bd; --ink-3:#86938d;
+  --accent:#3fbf95; --accent-2:#1d302a; --tag:#f6d24a; --tag-ink:#2b2200;
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500; --s5:#d55181; --s6:#008300; --s7:#9085e9; --s8:#e66767;
+  --seq1:#12304f; --seq2:#184f95; --seq3:#1c5cab; --seq4:#2a78d6; --seq5:#5598e7; --seq6:#86b6ef; --seq7:#cde2fb;
+  --div-mid:#383835; --shadow:0 1px 2px rgba(0,0,0,.3);
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:14px;line-height:1.5;margin:0}
+.wrap{max-width:1280px;margin:0 auto;padding-inline:20px;padding-block:0 60px}
+h1,h2,h3{margin:0;text-wrap:balance}
+button,select,input{font:inherit;color:inherit}
+.num,.tn{font-variant-numeric:tabular-nums}
+/* header */
+.top{display:grid;grid-template-columns:1fr auto;gap:18px;align-items:end;padding-block:26px 18px}
+.brand{display:flex;gap:14px;align-items:center}
+.logo{width:46px;height:46px;border-radius:10px;background:var(--accent);display:grid;place-items:center;color:#fff;font-family:var(--f-disp);font-weight:700;font-size:22px;letter-spacing:.02em;flex:none}
+.eyebrow{font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:700}
+.top h1{font-family:var(--f-disp);font-weight:700;font-size:clamp(30px,4.4vw,46px);line-height:1;letter-spacing:.005em}
+.top p{margin:6px 0 0;color:var(--ink-2);max-width:62ch}
+.simtag{display:inline-flex;gap:6px;align-items:center;background:var(--tag);color:var(--tag-ink);font-weight:700;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;padding:4px 10px 4px 14px;border-radius:3px;position:relative;white-space:nowrap}
+.simtag::before{content:"";position:absolute;left:5px;top:50%;width:5px;height:5px;margin-top:-2.5px;border-radius:50%;background:var(--bg)}
+/* filter bar */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);margin-inline:-20px;padding:10px 20px}
+.bar-in{max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center}
+.fl{display:flex;gap:8px;align-items:center}
+.fl label{font-size:11.5px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.08em;font-weight:600}
+.fl select{background:var(--surface);border:1px solid var(--line-2);border-radius:8px;padding:6px 28px 6px 10px;appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--ink-3) 50%),linear-gradient(135deg,var(--ink-3) 50%,transparent 50%);background-position:calc(100% - 15px) 55%,calc(100% - 10px) 55%;background-size:5px 5px;background-repeat:no-repeat;cursor:pointer}
+.fl select:focus-visible,.tabs button:focus-visible,.chip:focus-visible,.btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.scope{margin-left:auto;font-size:12.5px;color:var(--ink-2)}
+.scope b{color:var(--ink)}
+.tabs{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;padding-block:14px 4px}
+.tabs::-webkit-scrollbar{display:none}
+.tabs button{border:0;background:transparent;padding:8px 14px;border-radius:999px;cursor:pointer;white-space:nowrap;color:var(--ink-2);font-weight:500}
+.tabs button[aria-selected="true"]{background:var(--ink);color:var(--bg)}
+.tabs button:hover:not([aria-selected="true"]){background:var(--surface-2)}
+/* layout */
+.sec{display:grid;gap:16px;padding-top:14px}
+.row{display:grid;gap:16px}
+.c2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.c3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.c32{grid-template-columns:minmax(0,2fr) minmax(0,1fr)}
+.c23{grid-template-columns:minmax(0,1fr) minmax(0,2fr)}
+@media (max-width:900px){.c2,.c3,.c32,.c23{grid-template-columns:minmax(0,1fr)}.top{grid-template-columns:1fr}.scope{margin-left:0;width:100%}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px;min-width:0}
+.card h3{font-size:15px;font-weight:600}
+.card .sub{color:var(--ink-3);font-size:12.5px;margin-top:2px}
+.ch{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap;margin-bottom:10px}
+/* KPI shelf tags */
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 14px 10px;position:relative;overflow:hidden}
+.kpi::after{content:"";position:absolute;right:-7px;top:50%;width:14px;height:14px;margin-top:-7px;border-radius:50%;background:var(--bg);border:1px solid var(--line)}
+.kpi small{display:block;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:600}
+.kpi b{display:block;font-family:var(--f-disp);font-weight:700;font-size:30px;line-height:1.1;margin-top:3px;font-variant-numeric:tabular-nums}
+.kpi b i{font-style:normal;font-size:16px;font-weight:600;color:var(--ink-2);margin-left:3px}
+.kpi .d{font-size:12px;margin-top:2px;display:flex;gap:6px;align-items:center;flex-wrap:wrap;color:var(--ink-3)}
+.up{color:var(--good);font-weight:600}.dn{color:var(--crit);font-weight:600}
+.pill{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:600;padding:2px 8px;border-radius:999px;background:var(--surface-2);color:var(--ink-2);white-space:nowrap}
+.pill::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--c,var(--ink-3))}
+/* AI box */
+.ai{border:1px solid color-mix(in srgb,var(--accent) 35%,var(--line));background:linear-gradient(180deg,var(--accent-2),var(--surface) 70%);border-radius:12px;padding:16px 18px}
+.ai-h{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-bottom:8px}
+.ai-h b{font-size:14px;display:flex;align-items:center;gap:8px}
+.ai-h b svg{flex:none}
+.ai-h span{font-size:11.5px;color:var(--ink-3)}
+.ai ol{margin:0;padding-left:20px;display:grid;gap:7px}
+.ai li{padding-left:2px}
+.ai li strong{font-weight:600}
+.hyp{font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--accent);margin-left:4px}
+/* charts */
+.viz{position:relative;width:100%}
+.viz svg{display:block;width:100%;height:auto;overflow:visible}
+.ax text,.lbl{fill:var(--ink-3);font-size:11px;font-family:var(--f-body)}
+.ax line,.grid line{stroke:var(--line);stroke-width:1}
+.grid line{stroke-dasharray:2 3}
+.lgd{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12px;color:var(--ink-2);margin-top:6px}
+.lgd span{display:inline-flex;align-items:center;gap:6px}
+.lgd i{width:14px;height:3px;border-radius:2px;background:var(--c)}
+.lgd i.dot{width:9px;height:9px;border-radius:50%}
+.lgd i.dash{background:repeating-linear-gradient(90deg,var(--c) 0 4px,transparent 4px 7px)}
+#tip{position:fixed;z-index:60;pointer-events:none;background:var(--ink);color:var(--bg);border-radius:8px;padding:8px 10px;font-size:12px;line-height:1.45;max-width:260px;box-shadow:0 6px 20px rgba(0,0,0,.2);opacity:0;transition:opacity .08s}
+#tip b{font-weight:600}
+#tip .tr{display:flex;justify-content:space-between;gap:14px}
+#tip .tr i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;background:var(--c)}
+.hit{fill:transparent;cursor:crosshair}
+/* table */
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:10px}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th,td{padding:8px 10px;text-align:left;border-bottom:1px solid var(--line);white-space:nowrap}
+th{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);font-weight:600;background:var(--surface-2);position:sticky;top:0}
+th.s{cursor:pointer;user-select:none}
+th.s:hover{color:var(--ink)}
+td.r,th.r{text-align:right;font-variant-numeric:tabular-nums}
+tbody tr{cursor:pointer}
+tbody tr:hover{background:var(--surface-2)}
+tbody tr:last-child td{border-bottom:0}
+.sp{display:inline-block;vertical-align:middle}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{border:1px solid var(--line-2);background:var(--surface);border-radius:999px;padding:5px 12px;cursor:pointer;font-size:12.5px}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.btn{border:1px solid var(--line-2);background:var(--surface);border-radius:8px;padding:6px 12px;cursor:pointer;font-size:12.5px}
+.muted{color:var(--ink-3)}
+.note{font-size:12.5px;color:var(--ink-2)}
+.quad{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-top:10px}
+@media (max-width:600px){.quad{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.quad>div{border:1px solid var(--line);border-radius:10px;padding:8px 10px;border-top:3px solid var(--c)}
+.quad b{font-family:var(--f-disp);font-size:24px;display:block;line-height:1.1}
+.quad small{color:var(--ink-3);font-size:11.5px}
+/* drawer */
+#drawer{position:fixed;inset:0;z-index:70;display:flex;justify-content:flex-end;background:rgba(10,20,17,.35)}
+#drawer .pn{width:min(560px,100%);height:100%;overflow-y:auto;background:var(--surface);padding:22px 22px calc(30px + env(safe-area-inset-bottom,0px));box-shadow:-10px 0 30px rgba(0,0,0,.15);display:grid;gap:14px;align-content:start}
+#drawer .x{justify-self:end}
+/* QA */
+.qa-in{display:flex;gap:8px;flex-wrap:wrap}
+.qa-in input{flex:1 1 260px;border:1px solid var(--line-2);border-radius:10px;padding:10px 12px;background:var(--surface)}
+.qa-a{border-left:3px solid var(--accent);padding:4px 0 4px 14px;display:grid;gap:8px}
+.qa-a .q{font-weight:600}
+/* process */
+.steps{display:grid;gap:10px;counter-reset:st}
+.step{display:grid;grid-template-columns:40px 1fr;gap:12px;align-items:start}
+.step::before{counter-increment:st;content:counter(st);width:34px;height:34px;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;font-family:var(--f-disp);font-weight:700;font-size:18px}
+.step b{display:block}
+.step .who{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+code,.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px;background:var(--surface-2);padding:1px 5px;border-radius:4px}
+pre{background:var(--surface-2);border-radius:10px;padding:12px 14px;overflow-x:auto;font-size:12px;line-height:1.55;margin:0;white-space:pre-wrap}
+.chk{display:grid;gap:6px}
+.chk div{display:flex;gap:8px;align-items:baseline}
+.ok{color:var(--good);font-weight:700}
+.bad{color:var(--crit);font-weight:700}
+footer{margin-top:28px;color:var(--ink-3);font-size:12px;display:grid;gap:4px}
+@media (prefers-reduced-motion:no-preference){.sec{animation:fi .25s ease-out}@keyframes fi{from{transform:translateY(4px)}to{transform:none}}}
+.plan-hero h2{font-family:var(--f-disp);font-size:30px;line-height:1.1;margin-top:4px}
+.flow3{display:flex;gap:10px;align-items:stretch;flex-wrap:wrap;margin-top:14px}
+.flow3>div{flex:1 1 200px;border:1px solid var(--line);border-radius:10px;padding:10px 12px;display:grid;gap:2px;background:var(--surface-2)}
+.flow3 span{font-family:var(--f-disp);font-weight:700;font-size:22px;color:var(--accent);line-height:1}
+.flow3 small{color:var(--ink-3)}.flow3>i{align-self:center;font-style:normal;color:var(--ink-3)}
+.crisp{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}
+.crisp>div{border:1px solid var(--line);border-radius:10px;padding:12px;display:grid;gap:4px;align-content:start;position:relative}
+.crisp .n{font-family:var(--f-disp);font-weight:700;font-size:28px;line-height:1;color:var(--accent)}
+.crisp small{color:var(--ink-3);font-size:11.5px;text-transform:uppercase;letter-spacing:.05em}
+.crisp p{margin:0;font-size:12.5px;color:var(--ink-2)}
+.crisp .out{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-top:4px;font-size:12px}
+.lt{display:grid;gap:12px}
+.lt-root{border:2px solid var(--ink);border-radius:12px;padding:12px 16px;display:grid;gap:2px;max-width:760px}
+.lt-root small{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:600}
+.lt-root b{font-size:16px}
+.lt-l1{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;position:relative;padding-left:16px;border-left:2px solid var(--line-2);margin-left:18px}
+.lt-b{display:grid;gap:8px;align-content:start;position:relative}
+.lt-b::before{content:"";position:absolute;left:-18px;top:16px;width:14px;height:2px;background:var(--line-2)}
+.lt-h{border-radius:10px;padding:8px 12px;background:color-mix(in srgb,var(--c) 14%,var(--surface));border:1px solid color-mix(in srgb,var(--c) 45%,var(--line));display:grid;gap:4px}
+.lt-h code{background:transparent;padding:0;white-space:normal;color:var(--ink-2)}
+.lt-l2{display:grid;gap:6px;padding-left:12px;border-left:2px dashed color-mix(in srgb,var(--c) 50%,var(--line))}
+.lt-leaf{text-align:left;border:1px solid var(--line);background:var(--surface);border-radius:8px;padding:8px 10px;display:grid;gap:2px;cursor:pointer;font-size:12.5px;color:var(--ink-2)}
+.lt-leaf b{color:var(--ink);font-size:13px}.lt-leaf em{font-style:normal;color:var(--accent);font-weight:600;font-size:12px;margin-top:2px}
+.lt-leaf:hover{border-color:var(--c)}.lt-leaf:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.sim{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:18px;align-items:start}
+@media (max-width:900px){.sim{grid-template-columns:minmax(0,1fr)}}
+.sim-in{display:grid;gap:10px}
+.sim-in label{display:grid;gap:4px;font-size:13px}
+.sim-in label span{display:flex;justify-content:space-between;gap:10px}
+.sim-in input[type=range]{width:100%;accent-color:var(--accent)}
+.sim-in .btn{justify-self:start}
+.sim-out .kpis{grid-template-columns:repeat(2,minmax(0,1fr))}
+.fx{margin-top:4px}
+.fxt table{table-layout:fixed;width:100%}.fxt th:nth-child(1){width:22%}.fxt th:nth-child(2){width:39%}
+.fxt td{white-space:normal!important;vertical-align:top;line-height:1.55}
+.fxe{color:var(--ink-2);font-variant-numeric:tabular-nums}.fxlive{color:var(--accent);font-size:10px;vertical-align:1px}
+@media(max-width:640px){.fxt table,.fxt tbody,.fxt tr,.fxt td{display:block;width:auto}.fxt thead{display:none}
+.fxt tr{padding:10px 12px;border-bottom:1px solid var(--line)}.fxt td{padding:2px 0!important;border:0!important}
+.fxt td[data-l="Công thức"]::before,.fxt td[data-l="Ví dụ"]::before{content:attr(data-l)': ';font-weight:600;color:var(--ink-3);font-size:12px}}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div class="brand">
+      <div class="logo" aria-hidden="true">1K</div>
+      <div>
+        <div class="eyebrow">Store Network Review · Chuỗi siêu thị giả lập</div>
+        <h1>Mạng lưới 1.000 siêu thị</h1>
+        <p>Báo cáo điều hành chuỗi: hiệu quả từng cửa hàng, traffic và chuyển đổi, cửa hàng mới, tồn kho, khuyến mãi, nhân sự. Mọi con số được sinh ngẫu nhiên có quy luật để minh hoạ cách phân tích.</p>
+      </div>
+    </div>
+    <div style="display:grid;gap:8px;justify-items:end">
+      <span class="simtag">Dữ liệu mô phỏng</span>
+      <span class="note"><b>Bản 2</b> · thêm trang “Sản phẩm &amp; giá”</span>
+      <span class="note">Kỳ: <b>T9/2025 – T8/2026</b> · cập nhật 28/09/2026</span>
+    </div>
+  </header>
+
+  <div class="bar">
+    <div class="bar-in">
+      <div class="fl"><label for="fRegion">Vùng</label><select id="fRegion"></select></div>
+      <div class="fl"><label for="fFormat">Mô hình</label><select id="fFormat"></select></div>
+      <div class="fl"><label for="fAge">Tuổi cửa hàng</label><select id="fAge"></select></div>
+      <button class="btn" id="fReset" type="button">Đặt lại</button>
+      <div class="scope" id="scope"></div>
+    </div>
+  </div>
+
+  <nav class="tabs" role="tablist" aria-label="Các trang báo cáo" id="tabs"></nav>
+  <main id="main"></main>
+
+  <footer>
+    <span>Dữ liệu mô phỏng: 1.000 cửa hàng × 20 tháng (T1/2025 – T8/2026), sinh bằng mô hình có mùa vụ Tết, đường cong trưởng thành của cửa hàng mới, khác biệt vùng và mô hình. Không phản ánh bất kỳ doanh nghiệp thật nào.</span>
+    <span>Đơn vị: đ (VND). Doanh thu thuần (DTT) sau chiết khấu, trước VAT. LFL = so sánh cùng kỳ chỉ tính cửa hàng mở trước 01/01/2024. Lợi nhuận cửa hàng = lãi gộp − hao hụt − thuê mặt bằng − nhân sự − vận hành − phân bổ logistics.</span>
+    <span>Thiết kế và phân tích: Thanh Hà · dựng cùng Claude (AI), số liệu được kiểm tra đối soát ở trang “Cách làm với AI”.</span>
+  </footer>
+</div>
+<div id="tip" role="tooltip"></div>
+<div id="drawer" hidden><div class="pn" id="drawerPn" role="dialog" aria-modal="true" aria-label="Chi tiết cửa hàng"></div></div>
+<script>
+/* ================= DỮ LIỆU MÔ PHỎNG ================= */
+function rng(seed){return function(){seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+const R=rng(20260928);
+const N=()=>{let u=0,v=0;while(!u)u=R();while(!v)v=R();return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v)};
+const clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
+
+const MONTHS=[];for(let i=0;i<20;i++){const y=2025+Math.floor(i/12),mo=i%12+1;MONTHS.push({i,y,mo,lab:'T'+mo+'/'+String(y).slice(2),days:new Date(y,mo,0).getDate()})}
+const SEASON=[1.22,.92,.96,.98,1,.97,.98,1,1,1.01,1.03,1.08, 1.10,1.20,.94,.99,1,.97,.98,1.01];
+const W12=[8,19]; // 12 tháng gần nhất: T9/25..T8/26
+const REGIONS=[
+ {k:'HN',n:'Hà Nội',cnt:170,rent:480e3,aov:172e3,gr:.045,wage:10.8e6,prov:['Cầu Giấy','Đống Đa','Hà Đông','Long Biên','Hoàng Mai','Thanh Xuân','Nam Từ Liêm','Tây Hồ']},
+ {k:'MB',n:'Bắc Bộ (khác)',cnt:130,rent:260e3,aov:148e3,gr:.065,wage:9e6,prov:['Hải Phòng','Bắc Ninh','Hải Dương','Thái Nguyên','Nam Định','Quảng Ninh','Vĩnh Phúc']},
+ {k:'MT',n:'Miền Trung',cnt:150,rent:240e3,aov:142e3,gr:.03,wage:8.6e6,prov:['Đà Nẵng','Huế','Nghệ An','Khánh Hoà','Quảng Nam','Bình Định','Thanh Hoá']},
+ {k:'HCM',n:'TP.HCM',cnt:250,rent:520e3,aov:182e3,gr:.035,wage:11.2e6,prov:['Q.7','Thủ Đức','Bình Thạnh','Gò Vấp','Tân Bình','Q.12','Bình Tân','Phú Nhuận']},
+ {k:'DNB',n:'Đông Nam Bộ',cnt:160,rent:300e3,aov:158e3,gr:.055,wage:9.6e6,prov:['Biên Hoà','Thủ Dầu Một','Dĩ An','Vũng Tàu','Long Thành','Bến Cát','Thuận An']},
+ {k:'TNB',n:'Tây Nam Bộ',cnt:140,rent:210e3,aov:138e3,gr:.02,wage:8.4e6,prov:['Cần Thơ','Long Xuyên','Mỹ Tho','Rạch Giá','Vĩnh Long','Cà Mau','Sóc Trăng']}
+];
+const FORMATS=[
+ {k:'MINI',n:'Mini',area:[90,150],tr:480,staff:6,aov:.9,share:.35,fresh:.8},
+ {k:'STD',n:'Tiêu chuẩn',area:[160,280],tr:820,staff:10,aov:1,share:.5,fresh:1},
+ {k:'LG',n:'Lớn',area:[300,480],tr:1350,staff:16,aov:1.14,share:.15,fresh:1.25}
+];
+const AGES=[{k:'OLD',n:'Mở trước 2024'},{k:'Y24',n:'Mở năm 2024'},{k:'NEW',n:'Mở 2025–2026'}];
+function pickFormat(){const u=R();return u<.35?FORMATS[0]:u<.85?FORMATS[1]:FORMATS[2]}
+function pickOpen(){const u=R();if(u<.70)return Math.floor(R()*60);if(u<.85)return 60+Math.floor(R()*12);if(u<.95)return 72+Math.floor(R()*12);return 84+Math.floor(R()*6)}
+
+const STORES=[];let sid=0;
+REGIONS.forEach(rg=>{for(let c=0;c<rg.cnt;c++){
+  sid++;const f=pickFormat();const open=pickOpen();
+  const area=Math.round(f.area[0]+R()*(f.area[1]-f.area[0]));
+  const q=Math.exp(N()*.27), mg=N();
+  const s={id:'ST-'+String(sid).padStart(4,'0'),reg:rg,fmt:f,open,area,q,mg,
+    loc:rg.prov[Math.floor(R()*rg.prov.length)],
+    gm:.19+.009*N()+(f.fresh-1)*.02,
+    oos0:clamp(.045-.012*mg+.006*N(),.012,.12),
+    shr0:clamp((.013+.004*(f.fresh-1)*4)*(1-.18*mg)+.002*N(),.005,.035),
+    staffN:Math.max(4,f.staff+Math.round(N())),
+    att0:clamp(.19+.03*mg+.02*N(),.08,.34),
+    qc0:clamp(84+5*mg+3*N(),55,99),
+    near0:clamp(.024-.006*mg+.004*N(),.005,.06),
+    slow0:clamp(.09-.02*mg+.015*N(),.02,.2),
+    m:[]};
+  s.age=open<60?'OLD':open<72?'Y24':'NEW';
+  const openY=2019+Math.floor(open/12),openM=open%12+1;s.openLab='T'+openM+'/'+openY;
+  for(const M of MONTHS){
+    const g=72+M.i; if(g<open){s.m.push(null);continue}
+    const age=g-open, ramp=1-.6*Math.exp(-age/7)-(age===0?.12:0);
+    const trf=f.tr*M.days*Math.pow(q,.8)*ramp*SEASON[M.i]*Math.pow(1+rg.gr,M.i/12)*(1+.04*N());
+    const oos=clamp(s.oos0*(1+.12*N())*(age<3?1.25:1),.008,.15);
+    const cr=clamp(.66+.03*(SEASON[M.i]-1)+.06*(q-1)-.9*(oos-.045)+.012*N(),.48,.84);
+    const bills=trf*cr;
+    const aov=rg.aov*f.aov*Math.pow(1.025,M.i/12)*(1+.08*(q-1))*(1+.02*N())*(M.i===0||M.i===13?1.12:1);
+    const rev=bills*aov;
+    const gmv=rev*clamp(s.gm+.004*N(),.17,.25);
+    const shr=rev*clamp(s.shr0*(1+.1*N()),.003,.05);
+    const rent=area*rg.rent;
+    const staff=s.staffN*rg.wage*(age<6?1.3:1);
+    const util=area*48e3+rev*.004;
+    const logi=rev*.03, other=rev*.016+32e6+(age<3?140e6:0);
+    const promo=rev*(.012+.006*R());
+    const profit=gmv-shr-rent-staff-util-logi-other;
+    s.m.push({trf,bills,cr,aov,rev,gm:gmv,shr,rent,staff,util,logi,other,profit,oos,lost:rev*oos*.6/(1-oos),promo,
+      hours:s.staffN*208,att:clamp(s.att0+.01*N(),.05,.4),qc:clamp(s.qc0+2*N(),50,100),tick:Math.max(0,Math.round(1.2+(g-open)/40+N()*.9)),
+      near:clamp(s.near0*(1+.1*N()),.003,.08),slow:clamp(s.slow0*(1+.1*N()),.01,.25),upt:aov/(27e3*(1+.02*N()))});
+  }
+  STORES.push(s);
+}});
+
+const CATS=[
+ {n:'Rau củ quả',sh:.14,shr:.055,oos:.062,gm:.27},{n:'Thịt, cá tươi',sh:.16,shr:.032,oos:.051,gm:.19},
+ {n:'Sữa & trứng',sh:.11,shr:.009,oos:.041,gm:.16},{n:'Đồ khô & gia vị',sh:.15,shr:.003,oos:.029,gm:.22},
+ {n:'Đồ uống',sh:.12,shr:.002,oos:.035,gm:.2},{n:'Bánh kẹo',sh:.09,shr:.004,oos:.045,gm:.25},
+ {n:'Đông lạnh',sh:.08,shr:.011,oos:.056,gm:.21},{n:'Hoá mỹ phẩm',sh:.15,shr:.002,oos:.025,gm:.24}];
+const PROMOS=[
+ {n:'Giảm 30% rau củ sau 19h',t:'Xả hàng tươi',up:.42,cost:.19,inc:.9,gmI:.08,sh:0.14},
+ {n:'Mua 2 tặng 1 đồ khô',t:'Mua nhiều',up:.36,cost:.24,inc:.55,gmI:.02,sh:0.16},
+ {n:'Thứ 4 thành viên x2 điểm',t:'Thành viên',up:.14,cost:.05,inc:.7,gmI:.06,sh:0.18},
+ {n:'Combo bữa sáng 39.000 đ',t:'Combo',up:.28,cost:.09,inc:.8,gmI:.07,sh:0.1},
+ {n:'Voucher 30.000 đ cho đơn 300.000 đ',t:'Voucher',up:.18,cost:.11,inc:.45,gmI:.01,sh:0.14},
+ {n:'Đồng giá 9.000 đ bánh kẹo',t:'Đồng giá',up:.31,cost:.16,inc:.5,gmI:.02,sh:0.08},
+ {n:'Tuần lễ trái cây nhập khẩu',t:'Sự kiện',up:.24,cost:.08,inc:.75,gmI:.09,sh:0.08},
+ {n:'Giảm 20% hàng cận date',t:'Xả cận date',up:.52,cost:.21,inc:.35,gmI:-.01,sh:0.12}];
+const HOURS=[];for(let h=6;h<=22;h++)HOURS.push(h);
+const DOW=['T2','T3','T4','T5','T6','T7','CN'];
+const HEAT=DOW.map((d,di)=>HOURS.map(h=>{const we=di>=5;let v=.25+.9*Math.exp(-((h-18.5)**2)/5)+.45*Math.exp(-((h-7.2)**2)/1.6)+.3*Math.exp(-((h-11.5)**2)/2.2);if(we)v+=.35*Math.exp(-((h-10)**2)/6)+.1;if(di===4)v*=1.06;return v*(1+.04*N())}));
+
+/* ---- Bổ sung: toạ độ, ăn khách giữa cửa hàng, không gian, khách hàng ---- */
+const R2=rng(777);const N2=()=>{let u=0,v=0;while(!u)u=R2();while(!v)v=R2();return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v)};
+const LOCC={};REGIONS.forEach((rg,ri)=>rg.prov.forEach((p,pi)=>{LOCC[rg.k+p]=[ri*120+R2()*60,pi*25+R2()*10]}));
+STORES.forEach(s=>{const c=LOCC[s.reg.k+s.loc];const r=Math.sqrt(R2())*2.6,a=R2()*6.283;s.xy=[c[0]+r*Math.cos(a),c[1]+r*Math.sin(a)];
+  s.shelfM=Math.round(s.area*.32*(1+.08*N2()));s.plano=clamp(86+5*s.mg+14*(s.q-1)+3*N2(),60,99);s.cover=clamp(26-4*s.mg+3*N2()+(s.fmt.k==='LG'?4:0),14,45);s.member=clamp(.56+.05*s.mg+.04*N2(),.35,.78)});
+const dist=(a,b)=>Math.hypot(a.xy[0]-b.xy[0],a.xy[1]-b.xy[1]);
+function scaleM(m,k){const r0=m.rev;m.trf*=k;m.bills*=k;m.rev*=k;m.gm*=k;m.shr*=k;m.util+=(k-1)*r0*.004;m.logi*=k;m.other+=(k-1)*r0*.016;m.lost*=k;m.promo*=k;m.profit=m.gm-m.shr-m.rent-m.staff-m.util-m.logi-m.other}
+const CANNI=[];
+STORES.filter(s=>s.open>=72).forEach(ns=>{STORES.forEach(o=>{if(o===ns||o.open>=ns.open-6)return;const d=dist(o,ns);if(d>3.5)return;
+  const eff=d<.5?-.10:d<1?-.055:d<1.5?-.025:0;const idx=ns.open-72;
+  if(eff)for(let i=Math.max(0,idx);i<20;i++){const m=o.m[i];if(!m)continue;const ramp=Math.min(1,(i-idx+1)/3);scaleM(m,1+eff*ramp*(1+.25*N2()))}
+  CANNI.push({ns,o,d,idx})})});
+
+/* cú sốc tháng 8/2026 ở một số cửa hàng (để minh hoạ cảnh báo bất thường) */
+const SHOCK=[];for(let k=0;k<60&&SHOCK.length<12;k++){const s=STORES[Math.floor(R2()*STORES.length)];if(s.open>=60||SHOCK.includes(s))continue;const f=.76+R2()*.1;scaleM(s.m[19],f);SHOCK.push(s)}
+/* ================= TIỆN ÍCH & BIỂU ĐỒ ================= */
+const nf=(v,d=0)=>Number(v).toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d});
+const fBn=(v,d=1)=>nf(v/1e9,d)+' tỷ';
+const fMn=(v,d=0)=>nf(v/1e6,d)+' tr';
+const fD=v=>nf(v)+' đ';
+const fK=v=>nf(v/1e3,0)+'k';
+const fP=(v,d=1)=>nf(v*100,d)+'%';
+const fPt=(v,d=1)=>(v>=0?'+':'')+nf(v*100,d)+'%';
+const fPP=(v,d=1)=>(v>=0?'+':'')+nf(v*100,d)+' điểm';
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const css=v=>getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+const SER=['--s1','--s2','--s3','--s4','--s5','--s6','--s7','--s8'].map(v=>'var('+v+')');
+const REGC={}; REGIONS.forEach((r,i)=>REGC[r.k]=SER[i]);
+const FMTC={MINI:SER[2],STD:SER[0],LG:SER[6]};
+const tip=document.getElementById('tip');
+function showTip(html,e){tip.innerHTML=html;tip.style.opacity=1;const w=tip.offsetWidth,h=tip.offsetHeight;let x=e.clientX+14,y=e.clientY+14;if(x+w>innerWidth-8)x=e.clientX-w-14;if(y+h>innerHeight-8)y=e.clientY-h-14;tip.style.left=Math.max(8,x)+'px';tip.style.top=Math.max(8,y)+'px'}
+function hideTip(){tip.style.opacity=0}
+function niceTicks(min,max,n=5){if(max===min)max=min+1;const span=max-min,step0=span/n,mag=Math.pow(10,Math.floor(Math.log10(step0))),err=step0/mag;const step=(err>=7.5?10:err>=3.5?5:err>=1.5?2:1)*mag;const lo=Math.floor(min/step)*step,hi=Math.ceil(max/step)*step;const t=[];for(let v=lo;v<=hi+step/2;v+=step){const x=+v.toFixed(10);t.push(Math.abs(x)<1e-9?0:x)}return t}
+const CH={};let chId=0;
+function sparkline(vals,w=80,h=22,col='var(--s1)'){const v=vals.filter(x=>x!=null);if(v.length<2)return'';const mn=Math.min(...v),mx=Math.max(...v);const pts=vals.map((x,i)=>x==null?null:[i/(vals.length-1)*(w-4)+2,h-3-(x-mn)/((mx-mn)||1)*(h-6)]).filter(Boolean);const last=pts[pts.length-1];return '<svg class="sp" width="'+w+'" height="'+h+'" viewBox="0 0 '+w+' '+h+'" aria-hidden="true"><polyline fill="none" stroke="'+col+'" stroke-width="1.6" stroke-linejoin="round" points="'+pts.map(p=>p.map(n=>n.toFixed(1)).join(',')).join(' ')+'"/><circle cx="'+last[0].toFixed(1)+'" cy="'+last[1].toFixed(1)+'" r="2.4" fill="'+col+'"/></svg>'}
+
+/* Line chart: o={labels, series:[{name,color,vals,dash,area}], fmt, h, min0, band} */
+function lineChartW(W,o){
+  const id='c'+(++chId),H=o.h||260,L=58,Rr=16,T=14,B=28;
+  const all=o.series.flatMap(s=>s.vals).filter(v=>v!=null);let mn=Math.min(...all),mx=Math.max(...all);if(o.min0!==false)mn=Math.min(0,mn);
+  const ticks=niceTicks(mn,mx,4);mn=ticks[0];mx=ticks[ticks.length-1];
+  const n=o.labels.length,X=i=>L+(n===1?0:i/(n-1))*(W-L-Rr),Y=v=>T+(1-(v-mn)/(mx-mn))*(H-T-B);
+  let g='<g class="grid">'+ticks.map(t=>'<line x1="'+L+'" x2="'+(W-Rr)+'" y1="'+Y(t)+'" y2="'+Y(t)+'"/>').join('')+'</g>';
+  g+='<g class="ax">'+ticks.map(t=>'<text x="'+(L-8)+'" y="'+(Y(t)+4)+'" text-anchor="end">'+esc(o.tick?o.tick(t):o.fmt(t))+'</text>').join('');
+  const every=Math.ceil(n/(o.maxX||10));o.labels.forEach((l,i)=>{if(i%every===0||(i===n-1&&(n-1)%every>=every*.6))g+='<text x="'+X(i)+'" y="'+(H-8)+'" text-anchor="middle">'+esc(l)+'</text>'});g+='</g>';
+  if(o.band)g+='<rect x="'+X(o.band[0])+'" y="'+T+'" width="'+(X(o.band[1])-X(o.band[0]))+'" height="'+(H-T-B)+'" fill="var(--surface-2)" opacity=".7"/><text class="lbl" x="'+(X(o.band[0])+6)+'" y="'+(T+12)+'">'+esc(o.bandLab||'')+'</text>';
+  o.series.forEach(s=>{let d='',pen=false;s.vals.forEach((v,i)=>{if(v==null){pen=false;return}d+=(pen?'L':'M')+X(i).toFixed(1)+' '+Y(v).toFixed(1);pen=true});
+    if(s.area){const idx=s.vals.map((v,i)=>v==null?null:i).filter(x=>x!=null);g+='<path d="'+d+'L'+X(idx[idx.length-1])+' '+Y(mn)+'L'+X(idx[0])+' '+Y(mn)+'Z" fill="'+s.color+'" opacity=".10"/>'}
+    g+='<path d="'+d+'" fill="none" stroke="'+s.color+'" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"'+(s.dash?' stroke-dasharray="5 4"':'')+'/>';
+    const li=s.vals.map((v,i)=>v==null?-1:i).filter(i=>i>=0).pop();if(li!=null&&!s.dash)g+='<circle cx="'+X(li)+'" cy="'+Y(s.vals[li])+'" r="4" fill="'+s.color+'" stroke="var(--surface)" stroke-width="2"/>'});
+  g+='<line class="xh" x1="0" x2="0" y1="'+T+'" y2="'+(H-B)+'" stroke="var(--ink-3)" stroke-width="1" opacity="0"/>';
+  g+='<rect class="hit" data-ch="'+id+'" x="'+L+'" y="'+T+'" width="'+(W-L-Rr)+'" height="'+(H-T-B)+'"/>';
+  CH[id]={type:'line',o,X,n,W,L,Rr};
+  const lg=o.series.length>1?'<div class="lgd">'+o.series.map(s=>'<span><i class="'+(s.dash?'dash':'')+'" style="--c:'+s.color+'"></i>'+esc(s.name)+'</span>').join('')+'</div>':'';
+  return '<div class="viz"><svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="'+esc(o.aria||'Biểu đồ đường')+'">'+g+'</svg></div>'+lg;
+}
+/* Horizontal bars: rows [{label,val,color,tip,sub}] */
+function barsHW(W,rows,o={}){
+  const id='c'+(++chId),rh=o.rh||28,L=Math.min(o.L||150,W*(o.L>200?.46:.34)),Rr=W<420?64:78,H=rows.length*rh+10;
+  const vals=rows.map(r=>r.val);let mn=Math.min(0,...vals),mx=Math.max(0,...vals);if(o.max)mx=o.max;
+  const X=v=>L+(v-mn)/((mx-mn)||1)*(W-L-Rr);
+  let g='';if(mn<0)g+='<line x1="'+X(0)+'" x2="'+X(0)+'" y1="0" y2="'+H+'" stroke="var(--line-2)"/>';
+  rows.forEach((r,i)=>{const y=i*rh+4,x0=X(Math.min(0,r.val)),x1=X(Math.max(0,r.val)),bw=Math.max(2,x1-x0);
+    g+='<text class="lbl" x="'+(L-10)+'" y="'+(y+rh/2+1)+'" text-anchor="end" style="fill:var(--ink-2);font-size:12px">'+esc(r.label)+'</text>';
+    g+='<rect x="'+x0+'" y="'+(y+4)+'" width="'+bw+'" height="'+(rh-10)+'" rx="3" fill="'+(r.color||'var(--s1)')+'"/>';
+    g+='<text class="lbl" x="'+(r.val<0?X(0)+6:x1+6)+'" y="'+(y+rh/2+1)+'" text-anchor="start" style="fill:var(--ink);font-size:12px;font-weight:600">'+esc(o.fmt?o.fmt(r.val):r.val)+'</text>';
+    g+='<rect class="hit" data-ch="'+id+'" data-i="'+i+'" x="0" y="'+y+'" width="'+W+'" height="'+rh+'"/>'});
+  CH[id]={type:'bars',rows,o};
+  return '<div class="viz"><svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="'+esc(o.aria||'Biểu đồ cột ngang')+'">'+g+'</svg></div>';
+}
+/* Vertical columns: o={labels, series:[{name,color,vals}], fmt, h, stacked} */
+function colsW(W,o){
+  const id='c'+(++chId),H=o.h||230,L=54,Rr=12,T=12,B=28,n=o.labels.length,k=o.series.length;
+  const tot=o.stacked?o.labels.map((_,i)=>o.series.reduce((a,s)=>a+(s.vals[i]||0),0)):o.series.flatMap(s=>s.vals);
+  const ticks=niceTicks(0,Math.max(...tot),4),mx=ticks[ticks.length-1],Y=v=>T+(1-v/mx)*(H-T-B),bw=(W-L-Rr)/n;
+  let g='<g class="grid">'+ticks.map(t=>'<line x1="'+L+'" x2="'+(W-Rr)+'" y1="'+Y(t)+'" y2="'+Y(t)+'"/>').join('')+'</g><g class="ax">'+ticks.map(t=>'<text x="'+(L-8)+'" y="'+(Y(t)+4)+'" text-anchor="end">'+esc(o.fmt(t))+'</text>').join('');
+  const every=Math.ceil(n/(o.maxX||12));o.labels.forEach((l,i)=>{if(i%every===0)g+='<text x="'+(L+bw*i+bw/2)+'" y="'+(H-8)+'" text-anchor="middle">'+esc(l)+'</text>'});g+='</g>';
+  o.labels.forEach((l,i)=>{let acc=0;const inner=bw*.72,x0=L+bw*i+(bw-inner)/2;
+    o.series.forEach((s,j)=>{const v=s.vals[i]||0;if(o.stacked){const y1=Y(acc+v),y0=Y(acc);g+='<rect x="'+x0+'" y="'+y1+'" width="'+inner+'" height="'+Math.max(0,y0-y1-(j<k-1?1.5:0))+'" fill="'+s.color+'"'+(j===k-1?' rx="2"':'')+'/>';acc+=v}
+      else{const w=inner/k;g+='<rect x="'+(x0+w*j+1)+'" y="'+Y(v)+'" width="'+Math.max(1,w-2)+'" height="'+(Y(0)-Y(v))+'" rx="2" fill="'+s.color+'"/>'}});
+    g+='<rect class="hit" data-ch="'+id+'" data-i="'+i+'" x="'+(L+bw*i)+'" y="'+T+'" width="'+bw+'" height="'+(H-T-B)+'"/>'});
+  CH[id]={type:'cols',o};
+  const lg=k>1?'<div class="lgd">'+o.series.map(s=>'<span><i class="dot" style="--c:'+s.color+'"></i>'+esc(s.name)+'</span>').join('')+'</div>':'';
+  return '<div class="viz"><svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="'+esc(o.aria||'Biểu đồ cột')+'">'+g+'</svg></div>'+lg;
+}
+/* Scatter: pts [{x,y,c,id,r}] */
+function scatterW(W,o){
+  const id='c'+(++chId),H=o.h||380,L=58,Rr=16,T=14,B=36;
+  const xs=o.pts.map(p=>p.x),ys=o.pts.map(p=>p.y);
+  const xt=niceTicks(Math.min(...xs),Math.max(...xs),5),yt=niceTicks(Math.min(...ys),Math.max(...ys),5);
+  const X=v=>L+(v-xt[0])/(xt[xt.length-1]-xt[0])*(W-L-Rr),Y=v=>T+(1-(v-yt[0])/(yt[yt.length-1]-yt[0]))*(H-T-B);
+  let g='<g class="grid">'+yt.map(t=>'<line x1="'+L+'" x2="'+(W-Rr)+'" y1="'+Y(t)+'" y2="'+Y(t)+'"/>').join('')+xt.map(t=>'<line y1="'+T+'" y2="'+(H-B)+'" x1="'+X(t)+'" x2="'+X(t)+'"/>').join('')+'</g>';
+  g+='<g class="ax">'+yt.map(t=>'<text x="'+(L-8)+'" y="'+(Y(t)+4)+'" text-anchor="end">'+esc(o.yfmt(t))+'</text>').join('')+xt.map(t=>'<text x="'+X(t)+'" y="'+(H-18)+'" text-anchor="middle">'+esc(o.xfmt(t))+'</text>').join('')+'<text x="'+(W-Rr)+'" y="'+(H-2)+'" text-anchor="end">'+esc(o.xlab)+'</text><text x="'+L+'" y="'+(T-2)+'" text-anchor="start">'+esc(o.ylab)+'</text></g>';
+  if(o.medX!=null){g+='<line x1="'+X(o.medX)+'" x2="'+X(o.medX)+'" y1="'+T+'" y2="'+(H-B)+'" stroke="var(--ink-3)" stroke-dasharray="4 4"/><line x1="'+L+'" x2="'+(W-Rr)+'" y1="'+Y(o.medY)+'" y2="'+Y(o.medY)+'" stroke="var(--ink-3)" stroke-dasharray="4 4"/>';
+    (o.qlab||[]).forEach(q=>{g+='<text class="lbl" x="'+(q[0]?W-Rr-6:L+6)+'" y="'+(q[1]?T+14:H-B-8)+'" text-anchor="'+(q[0]?'end':'start')+'" style="font-weight:600;fill:var(--ink-2)">'+esc(q[2])+'</text>'})}
+  if(o.zeroY&&yt[0]<0)g+='<line x1="'+L+'" x2="'+(W-Rr)+'" y1="'+Y(0)+'" y2="'+Y(0)+'" stroke="var(--crit)" stroke-width="1" opacity=".6"/>';
+  o.pts.forEach((p,i)=>{g+='<circle cx="'+X(p.x).toFixed(1)+'" cy="'+Y(p.y).toFixed(1)+'" r="'+(p.r||3.6)+'" fill="'+p.c+'" fill-opacity=".72" stroke="var(--surface)" stroke-width="1" data-ch="'+id+'" data-i="'+i+'" style="cursor:pointer"/>'});
+  CH[id]={type:'sc',o};
+  return '<div class="viz"><svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="'+esc(o.aria||'Biểu đồ phân tán')+'">'+g+'</svg></div>';
+}
+/* Heatmap */
+function heatmapW(W,m,rows,colsL,fmt,opt={}){
+  const id='c'+(++chId),L=opt.L||34,T=18,cw=(W-L-6)/colsL.length,rh=24,H=T+rows.length*rh+4;
+  const all=m.flat().filter(v=>v!=null),mn=Math.min(...all),mx=Math.max(...all),steps=['--seq1','--seq2','--seq3','--seq4','--seq5','--seq6','--seq7'];
+  const am=Math.max(Math.abs(mn),Math.abs(mx))||1;
+  let g='<g class="ax">'+colsL.map((c,j)=>'<text x="'+(L+cw*j+cw/2)+'" y="12" text-anchor="middle">'+esc(c)+'</text>').join('')+rows.map((r,i)=>'<text x="'+(L-6)+'" y="'+(T+rh*i+rh/2+4)+'" text-anchor="end">'+esc(r)+'</text>').join('')+'</g>';
+  m.forEach((row,i)=>row.forEach((v,j)=>{if(v==null)return;let fill;
+    if(opt.div){const a=Math.min(1,Math.abs(v)/am);fill='color-mix(in srgb,'+(v<0?'var(--div-neg)':'var(--div-pos)')+' '+Math.round(15+a*85)+'%,var(--div-mid))'}
+    else{const k=Math.min(6,Math.floor((v-mn)/((mx-mn)||1)*7));fill='var('+steps[k]+')'}
+    g+='<rect x="'+(L+cw*j+1)+'" y="'+(T+rh*i+1)+'" width="'+(cw-2)+'" height="'+(rh-2)+'" rx="3" fill="'+fill+'" data-ch="'+id+'" data-i="'+i+'" data-j="'+j+'"/>';
+    if(opt.txt&&cw>30)g+='<text x="'+(L+cw*j+cw/2)+'" y="'+(T+rh*i+rh/2+4)+'" text-anchor="middle" style="font-size:10.5px;fill:'+((opt.div?Math.abs(v)/am>.55:(v-mn)/((mx-mn)||1)>.55)?'#fff':'var(--ink)')+';pointer-events:none">'+esc(opt.txt(v))+'</text>'}));
+  CH[id]={type:'heat',m,rows,colsL,fmt,sfx:opt.sfx==null?'h':opt.sfx};
+  const lg=opt.div?'<div class="lgd"><span><i class="dot" style="--c:var(--div-neg);border-radius:2px;width:18px"></i>'+esc(opt.neg||'Âm')+'</span><span><i class="dot" style="--c:var(--div-mid);border-radius:2px;width:18px"></i>Cân bằng</span><span><i class="dot" style="--c:var(--div-pos);border-radius:2px;width:18px"></i>'+esc(opt.pos||'Dương')+'</span></div>':'<div class="lgd"><span>Thấp</span>'+steps.map(s=>'<i class="dot" style="--c:var('+s+');border-radius:2px;width:18px"></i>').join('')+'<span>Cao</span></div>';
+  return '<div class="viz"><svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="'+esc(opt.aria||'Bản đồ nhiệt')+'">'+g+'</svg></div>'+lg;
+}
+/* Waterfall: steps [{n,v,total?}] */
+function waterfallW(W,steps,fmt){
+  if(W<560)return barsHW(W,steps.map(s=>({label:s.n,val:s.v,color:s.total?'var(--ink-2)':s.v<0?'var(--div-neg)':'var(--s3)'})),{fmt,L:130});
+  const id='c'+(++chId),H=270,L=58,Rr=10,T=18,B=40,n=steps.length,bw=(W-L-Rr)/n;
+  let acc=0;const bars=steps.map(s=>{if(s.total){const b={s,y0:0,y1:s.v};acc=s.v;return b}const b={s,y0:acc,y1:acc+s.v};acc+=s.v;return b});
+  const ticks=niceTicks(Math.min(0,...bars.map(b=>Math.min(b.y0,b.y1))),Math.max(...bars.map(b=>Math.max(b.y0,b.y1))),4),mn=ticks[0],mx=ticks[ticks.length-1],Y=v=>T+(1-(v-mn)/(mx-mn))*(H-T-B);
+  let g='<g class="grid">'+ticks.map(t=>'<line x1="'+L+'" x2="'+(W-Rr)+'" y1="'+Y(t)+'" y2="'+Y(t)+'"/>').join('')+'</g><g class="ax">'+ticks.map(t=>'<text x="'+(L-8)+'" y="'+(Y(t)+4)+'" text-anchor="end">'+esc(fmt(t))+'</text>').join('')+'</g>';
+  bars.forEach((b,i)=>{const x=L+bw*i+bw*.16,w=bw*.68,yt=Y(Math.max(b.y0,b.y1)),yb=Y(Math.min(b.y0,b.y1));const col=b.s.total?'var(--ink-2)':b.s.v<0?'var(--div-neg)':'var(--s3)';
+    g+='<rect x="'+x+'" y="'+yt+'" width="'+w+'" height="'+Math.max(1.5,yb-yt)+'" rx="2" fill="'+col+'"/>';
+    if(i<n-1)g+='<line x1="'+(x+w)+'" x2="'+(x+bw)+'" y1="'+Y(b.y1)+'" y2="'+Y(b.y1)+'" stroke="var(--ink-3)" stroke-dasharray="2 2"/>';
+    g+='<text class="lbl" x="'+(x+w/2)+'" y="'+(yt-5)+'" text-anchor="middle" style="fill:var(--ink);font-weight:600">'+esc(fmt(b.s.v))+'</text>';
+    const words=b.s.n.split(' ');const l1=words.slice(0,Math.ceil(words.length/2)).join(' '),l2=words.slice(Math.ceil(words.length/2)).join(' ');
+    g+='<text class="lbl" x="'+(x+w/2)+'" y="'+(H-22)+'" text-anchor="middle">'+esc(l1)+'</text><text class="lbl" x="'+(x+w/2)+'" y="'+(H-9)+'" text-anchor="middle">'+esc(l2)+'</text>';
+    g+='<rect class="hit" data-ch="'+id+'" data-i="'+i+'" x="'+(L+bw*i)+'" y="'+T+'" width="'+bw+'" height="'+(H-T-B)+'"/>'});
+  CH[id]={type:'wf',steps,fmt};
+  return '<div class="viz"><svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Biểu đồ thác nước lợi nhuận cửa hàng">'+g+'</svg></div>';
+}
+const DEFER=[];
+function defer(fn){const id='v'+DEFER.length;DEFER.push({id,fn});return '<div class="vz" data-vz="'+id+'"></div>'}
+const lineChart=(...a)=>defer(W=>lineChartW(W,...a)),barsH=(...a)=>defer(W=>barsHW(W,...a)),cols=(...a)=>defer(W=>colsW(W,...a)),scatter=(...a)=>defer(W=>scatterW(W,...a)),heatmap=(...a)=>defer(W=>heatmapW(W,...a)),waterfall=(...a)=>defer(W=>waterfallW(W,...a));
+function drawAll(root){root.querySelectorAll('[data-vz]').forEach(el=>{const d=DEFER.find(x=>x.id===el.dataset.vz);if(!d)return;const W=Math.max(300,Math.round(el.clientWidth));el.innerHTML=d.fn(W)})}
+let rzT;let lastW=innerWidth;addEventListener('resize',()=>{clearTimeout(rzT);rzT=setTimeout(()=>{if(Math.abs(innerWidth-lastW)<8)return;lastW=innerWidth;for(const k in CH)delete CH[k];drawAll(document)},180)});
+/* Tương tác chung */
+document.addEventListener('mousemove',e=>{
+  const t=e.target;if(!t.dataset||!t.dataset.ch){if(tip.style.opacity==='1'&&!t.closest('.viz'))hideTip();return}
+  const c=CH[t.dataset.ch];if(!c)return;
+  if(c.type==='line'){const svg=t.ownerSVGElement,pt=svg.createSVGPoint();pt.x=e.clientX;pt.y=e.clientY;const p=pt.matrixTransform(svg.getScreenCTM().inverse());
+    const i=Math.max(0,Math.min(c.n-1,Math.round((p.x-c.L)/((c.W-c.L-c.Rr)/(c.n-1||1)))));const xh=svg.querySelector('.xh');xh.setAttribute('x1',c.X(i));xh.setAttribute('x2',c.X(i));xh.setAttribute('opacity',.6);
+    showTip('<b>'+esc(c.o.labels[i])+'</b>'+c.o.series.filter(s=>s.vals[i]!=null).map(s=>'<div class="tr"><span><i style="--c:'+s.color+'"></i>'+esc(s.name)+'</span><b>'+esc(c.o.fmt(s.vals[i]))+'</b></div>').join('')+(c.o.extra?c.o.extra(i):''),e)}
+  else if(c.type==='bars'){const r=c.rows[+t.dataset.i];showTip('<b>'+esc(r.label)+'</b><div>'+(r.tip||esc(c.o.fmt?c.o.fmt(r.val):r.val))+'</div>',e)}
+  else if(c.type==='cols'){const i=+t.dataset.i;showTip('<b>'+esc(c.o.labels[i])+'</b>'+c.o.series.map(s=>'<div class="tr"><span><i style="--c:'+s.color+'"></i>'+esc(s.name)+'</span><b>'+esc(c.o.fmt(s.vals[i]||0))+'</b></div>').join(''),e)}
+  else if(c.type==='sc'){const p=c.o.pts[+t.dataset.i];showTip(c.o.tip(p),e)}
+  else if(c.type==='heat'){const i=+t.dataset.i,j=+t.dataset.j;showTip('<b>'+esc(c.rows[i])+' · '+esc(c.colsL[j])+c.sfx+'</b><div>'+esc(c.fmt(c.m[i][j]))+'</div>',e)}
+  else if(c.type==='wf'){const s=c.steps[+t.dataset.i];showTip('<b>'+esc(s.n)+'</b><div>'+esc(c.fmt(s.v))+(s.pct!=null?' · '+fP(s.pct)+' DTT':'')+'</div>',e)}
+});
+document.addEventListener('mouseout',e=>{if(e.target.dataset&&e.target.dataset.ch){hideTip();const svg=e.target.ownerSVGElement;const xh=svg&&svg.querySelector('.xh');if(xh)xh.setAttribute('opacity',0)}});
+document.addEventListener('click',e=>{const t=e.target;if(t.dataset&&t.dataset.ch){const c=CH[t.dataset.ch];if(c&&c.type==='sc'&&c.o.click)c.o.click(c.o.pts[+t.dataset.i])}});
+/* ================= TIẾP NHẬN & KẾ HOẠCH ================= */
+const REQS=[
+ {id:'A',n:'Báo cáo hiệu quả 1.000 cửa hàng cho kỳ duyệt ngân sách Q4',from:'Giám đốc vận hành',imp:9,urg:9,eff:7,data:8,dec:'Làm ngay',me:true},
+ {id:'B',n:'Sửa lệch số doanh thu vùng Miền Trung trên dashboard tuần',from:'Quản lý vùng',imp:7,urg:10,eff:2,data:9,dec:'Làm ngay (sửa trước, 2 giờ)'},
+ {id:'C',n:'Dự báo nhu cầu hàng tươi theo cửa hàng',from:'Phòng cung ứng',imp:8,urg:4,eff:9,data:5,dec:'Lên lịch thành dự án riêng'},
+ {id:'D',n:'Hiệu quả voucher 30.000 đ',from:'Marketing',imp:6,urg:5,eff:4,data:8,dec:'Gộp vào trang Khuyến mãi của báo cáo A'},
+ {id:'E',n:'Traffic theo giờ cho 1 vùng',from:'Quản lý vùng',imp:3,urg:7,eff:1,data:10,dec:'Hướng dẫn dùng bộ lọc có sẵn'},
+ {id:'F',n:'Doanh thu so với thời tiết',from:'BOD (ý tưởng)',imp:3,urg:2,eff:6,data:3,dec:'Đưa vào danh sách chờ'}];
+const WT={imp:.4,urg:.3,eff:.15,data:.15};
+const score=r=>r.imp*WT.imp+r.urg*WT.urg+(10-r.eff)*WT.eff+r.data*WT.data;
+function prioMatrix(W){
+  const H=Math.round(Math.min(360,W*.62)),L=46,Rr=12,T=14,B=38;const X=v=>L+(v/11)*(W-L-Rr),Y=v=>T+(1-v/11)*(H-T-B);
+  let g='<rect x="'+X(5)+'" y="'+Y(11)+'" width="'+(X(11)-X(5))+'" height="'+(Y(5)-Y(11))+'" fill="var(--accent-2)"/>';
+  g+='<g class="grid">'+[0,2.5,5,7.5,10,11].map(t=>'<line x1="'+L+'" x2="'+(W-Rr)+'" y1="'+Y(t)+'" y2="'+Y(t)+'"/><line y1="'+T+'" y2="'+(H-B)+'" x1="'+X(t)+'" x2="'+X(t)+'"/>').join('')+'</g>';
+  g+='<line x1="'+X(5)+'" x2="'+X(5)+'" y1="'+T+'" y2="'+(H-B)+'" stroke="var(--ink-3)"/><line x1="'+L+'" x2="'+(W-Rr)+'" y1="'+Y(5)+'" y2="'+Y(5)+'" stroke="var(--ink-3)"/>';
+  const q=[[X(11)-6,Y(11)+14,'end','LÀM NGAY'],[L+6,Y(11)+14,'start','LÊN LỊCH'],[X(11)-6,Y(0)-8,'end','LÀM NHANH / TỰ PHỤC VỤ'],[L+6,Y(0)-8,'start','DANH SÁCH CHỜ']];
+  g+=q.map(a=>'<text class="lbl" x="'+a[0]+'" y="'+a[1]+'" text-anchor="'+a[2]+'" style="font-weight:700;letter-spacing:.06em;fill:var(--ink-2)">'+a[3]+'</text>').join('');
+  g+='<g class="ax"><text x="'+(W-Rr)+'" y="'+(H-6)+'" text-anchor="end">Mức cấp thiết →</text><text x="'+L+'" y="'+(H-6)+'" text-anchor="start">thấp</text><text x="12" y="'+(T+10)+'">Tác</text><text x="12" y="'+(T+23)+'">động</text><text x="12" y="'+(T+36)+'">↑</text></g>';
+  REQS.forEach(r=>{const cx=X(r.urg),cy=Y(r.imp),rad=8+ (10-r.eff)*.6;g+='<circle cx="'+cx+'" cy="'+cy+'" r="'+rad+'" fill="'+(r.me?'var(--accent)':'var(--s1)')+'" fill-opacity="'+(r.me?1:.75)+'" stroke="var(--surface)" stroke-width="2"/><text x="'+cx+'" y="'+(cy+4)+'" text-anchor="middle" style="fill:#fff;font-weight:700;font-size:12px">'+r.id+'</text>'});
+  return '<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Ma trận ưu tiên các yêu cầu báo cáo">'+g+'</svg>'}
+const TREE={q:'Cửa hàng nào cần can thiệp, vì sao, và làm gì trong quý tới để tăng lợi nhuận chuỗi?',kids:[
+ {n:'Doanh thu',f:'DTT = Lượt vào × Tỷ lệ chuyển đổi × AOV = Σ (SL × Giá) theo sản phẩm',kids:[
+   {n:'Lượt vào',q:['Traffic tăng hay giảm, ở vùng nào?','Giờ nào, ngày nào đông?'],go:'tr'},
+   {n:'Tỷ lệ chuyển đổi',q:['Vì sao khách vào mà không mua?','Hết hàng có làm giảm CR không?'],go:'tr'},
+   {n:'AOV · UPT',q:['Giỏ hàng lớn lên hay nhỏ đi?','Mua kèm, combo đóng góp bao nhiêu?'],go:'pm'},
+   {n:'Khách hàng',q:['Bao nhiêu khách quay lại?','Nhóm khách nào sắp rời bỏ?'],go:'kh'},
+   {n:'Sản phẩm & giá',q:['DT tăng nhờ bán nhiều hơn hay nhờ tăng giá?','Ngành nào tăng giá thì mất khách?'],go:'sp'}]},
+ {n:'Chi phí & lợi nhuận',f:'LN cửa hàng = Lãi gộp − Hao hụt − Thuê − Nhân sự − Vận hành',kids:[
+   {n:'Lãi gộp & hao hụt',q:['Ngành hàng nào hao hụt nhiều?','Hàng cận date, bán chậm bao nhiêu?'],go:'iv'},
+   {n:'Thuê mặt bằng',q:['Cửa hàng nào thuê trên 4.5% DTT?','DT/m² có bù được giá thuê?'],go:'st'},
+   {n:'Nhân sự',q:['Doanh thu mỗi giờ công?','Điểm phục vụ ảnh hưởng CR?'],go:'hr'}]},
+ {n:'Mạng lưới cửa hàng',f:'Chuỗi = Cửa hàng hiện hữu + Cửa hàng mới (loại trừ nhau, đủ 1.000)',kids:[
+   {n:'Cửa hàng hiện hữu',q:['LFL từng vùng?','Nhóm nào trong ma trận 4 ô?'],go:'st'},
+   {n:'Cửa hàng mới',q:['Bao lâu thì có lãi?','Cửa hàng nào chậm hơn kỳ vọng?'],go:'nw'},
+   {n:'Vị trí & không gian',q:['Cửa hàng mới ăn khách cửa hàng cũ?','Nên đóng, cải tạo hay chuyển Mini?'],go:'nt'}]},
+ {n:'Đòn bẩy thương mại',f:'Hiệu quả = Lãi gộp tăng thêm ÷ Chi phí chương trình',kids:[
+   {n:'Khuyến mãi',q:['Chương trình nào ROI > 1?','Nên cắt chương trình nào?'],go:'pm'},
+   {n:'Tồn kho',q:['Hết hàng làm mất bao nhiêu DT?','10 cửa hàng cần sửa cung ứng?'],go:'iv'},
+   {n:'Tổng hợp cơ hội',q:['Mỗi đòn bẩy đáng bao nhiêu tỷ?','Nếu CR +1 điểm thì sao?'],go:'op'}]}]};
+function treeHTML(){
+  return '<div class="lt"><div class="lt-root"><small>Câu hỏi gốc (từ người yêu cầu)</small><b>'+esc(TREE.q)+'</b></div><div class="lt-l1">'+
+   TREE.kids.map((k,i)=>'<div class="lt-b" style="--c:'+SER[[0,1,2,6][i]]+'"><div class="lt-h"><b>'+esc(k.n)+'</b><code>'+esc(k.f)+'</code></div><div class="lt-l2">'+
+     k.kids.map(c=>'<button class="lt-leaf" type="button" data-go="'+c.go+'"><b>'+esc(c.n)+'</b>'+c.q.map(x=>'<span>'+esc(x)+'</span>').join('')+'<em>Xem trang '+esc(TABS.find(t=>t[0]===c.go)[1])+' →</em></button>').join('')+'</div></div>').join('')+'</div></div>'}
+function secPlan(A){
+  const R=REQS.map(r=>Object.assign({},r,{sc:score(r)})).sort((a,b)=>b.sc-a.sc);
+  const steps=[
+   ['Hiểu bài toán','Business understanding','Gặp người yêu cầu, chốt câu hỏi gốc, quyết định sẽ ra và hạn chót. Viết thành 1 trang đề bài.','Đề bài 1 trang','Ngày 1'],
+   ['Hiểu dữ liệu','Data understanding','Dựng logic tree từ câu hỏi gốc, liệt kê chỉ số cho từng nhánh, kiểm tra nguồn: POS, camera đếm người, kho, nhân sự, khuyến mãi.','Danh mục chỉ số + nguồn','Ngày 2'],
+   ['Chuẩn bị dữ liệu','Data preparation','Ghép cửa hàng × tháng, chuẩn hoá mã cửa hàng, tách cửa hàng mới, xử lý tháng thiếu, đối soát tổng với kế toán.','Bảng dữ liệu sạch','Ngày 3–4'],
+   ['Phân tích','Exploratory analysis','Đi từng nhánh của cây: phân rã doanh thu, ma trận 4 ô, cohort cửa hàng mới, ROI khuyến mãi, hết hàng → CR.','Nhận định có số','Ngày 5–6'],
+   ['Kiểm chứng','Validation','Đối soát tổng, hỏi lại người vận hành vùng về nguyên nhân, đánh dấu phần còn là giả thuyết.','Checklist đối soát','Ngày 7'],
+   ['Trình bày','Visualization & presentation','Mỗi trang trả lời một nhánh của cây, mở đầu bằng nhận định, kết thúc bằng hành động và người phụ trách.','Báo cáo + buổi trình bày','Ngày 8']];
+  const mece=[
+   ['Theo vùng','6 vùng, mỗi cửa hàng thuộc đúng 1 vùng',REGIONS.map(r=>STORES.filter(s=>s.reg.k===r.k).length)],
+   ['Theo mô hình','Mini · Tiêu chuẩn · Lớn',FORMATS.map(f=>STORES.filter(s=>s.fmt.k===f.k).length)],
+   ['Theo tuổi','Mở trước 2024 · 2024 · 2025–2026',AGES.map(a=>STORES.filter(s=>s.age===a.k).length)]];
+  return '<section class="sec">'+
+  '<div class="card plan-hero"><div class="eyebrow">Trước khi mở Power BI</div><h2>Tôi nhận một yêu cầu báo cáo như thế nào</h2><p class="note" style="max-width:72ch;margin:6px 0 0">Không phải yêu cầu nào cũng cần một báo cáo mới. Tôi đi qua 3 bước: <b>xét mức ưu tiên</b>, <b>lên kế hoạch theo CRISP-DM</b>, rồi <b>dựng logic tree theo nguyên tắc MECE</b> để không sót khía cạnh nào. Các trang sau của báo cáo này là kết quả của đúng 3 bước đó.</p>'+
+   '<div class="flow3"><div><span>1</span><b>Có cần làm, làm lúc nào?</b><small>Ma trận ưu tiên · chấm điểm</small></div><i>→</i><div><span>2</span><b>Làm những gì, bao lâu?</b><small>CRISP-DM 6 bước</small></div><i>→</i><div><span>3</span><b>Phân tích những khía cạnh nào?</b><small>Logic tree · 5W1H · MECE</small></div></div></div>'+
+  '<div class="row c2">'+card('Bước 1 · Phiếu tiếp nhận yêu cầu','Câu trả lời cho 5W1H trước khi bắt đầu','<div class="tbl"><table><tbody>'+[
+    ['Ai hỏi (Who)','Giám đốc vận hành chuỗi · người dùng: 6 quản lý vùng'],['Hỏi gì (What)','Cửa hàng nào cần can thiệp, vì sao, làm gì trong quý tới'],['Vì sao (Why)','Duyệt ngân sách Q4: cải tạo, đóng, chuyển mô hình hay đầu tư thêm'],['Khi nào (When)','Trình bày 10/10/2026 · dữ liệu T1/2025 – T8/2026'],['Ở đâu (Where)','1.000 cửa hàng, 6 vùng, 3 mô hình'],['Như thế nào (How)','Báo cáo tương tác + 1 buổi trình bày 30 phút']
+   ].map(r=>'<tr style="cursor:default"><td><b>'+esc(r[0])+'</b></td><td style="white-space:normal">'+esc(r[1])+'</td></tr>').join('')+'</tbody></table></div><div class="note" style="margin-top:8px"><b>Quyết định sẽ ra:</b> danh sách cửa hàng cần can thiệp kèm hành động và người phụ trách. Nếu người yêu cầu không nêu được quyết định này, tôi hỏi lại trước khi làm.</div>')+
+   card('Bước 1 · Ma trận ưu tiên các yêu cầu đang chờ','Kích thước chấm: càng lớn càng ít công sức · vùng tô màu: làm ngay',defer(W=>prioMatrix(W))+'<div class="lgd"><span><i class="dot" style="--c:var(--accent)"></i>Báo cáo này (A)</span><span><i class="dot" style="--c:var(--s1)"></i>Yêu cầu khác cùng tuần</span></div>')+'</div>'+
+  card('Bước 1 · Chấm điểm và quyết định','Điểm = 40% tác động + 30% cấp thiết + 15% công sức (ít công sức điểm cao) + 15% dữ liệu sẵn sàng','<div class="tbl"><table><thead><tr><th>Yêu cầu</th><th>Người hỏi</th><th class="r">Tác động</th><th class="r">Cấp thiết</th><th class="r">Công sức</th><th class="r">Dữ liệu</th><th class="r">Điểm</th><th>Quyết định</th></tr></thead><tbody>'+
+   R.map(r=>'<tr style="cursor:default'+(r.me?';background:var(--accent-2)':'')+'"><td style="white-space:normal;min-width:220px"><b>'+r.id+'.</b> '+esc(r.n)+'</td><td>'+esc(r.from)+'</td><td class="r">'+r.imp+'</td><td class="r">'+r.urg+'</td><td class="r">'+r.eff+'</td><td class="r">'+r.data+'</td><td class="r"><b>'+nf(r.sc,1)+'</b></td><td style="white-space:normal;min-width:180px">'+esc(r.dec)+'</td></tr>').join('')+'</tbody></table></div><div class="note" style="margin-top:8px">Thang 1–10. Việc nhỏ nhưng gấp (B, E) được xử lý nhanh hoặc chuyển thành tự phục vụ để không chen vào báo cáo lớn. Yêu cầu D được gộp vào báo cáo A thay vì làm riêng.</div>')+
+  card('Bước 2 · Kế hoạch theo CRISP-DM','6 bước, 8 ngày làm việc, mỗi bước có đầu ra kiểm tra được','<div class="crisp">'+steps.map((s,i)=>'<div><span class="n">'+(i+1)+'</span><b>'+esc(s[0])+'</b><small>'+esc(s[1])+'</small><p>'+esc(s[2])+'</p><div class="out"><span class="pill" style="--c:var(--accent)">'+esc(s[3])+'</span><span class="muted">'+esc(s[4])+'</span></div></div>').join('')+'</div>')+
+  card('Bước 3 · Logic tree của câu hỏi gốc','Mỗi nhánh tách theo công thức nên các nhánh không trùng nhau và cộng lại đủ bài toán (MECE). Bấm vào ô để mở trang trả lời nhánh đó.',treeHTML())+
+  card('Bước 3 · Kiểm tra MECE cho các chiều cắt','Mỗi cửa hàng thuộc đúng 1 nhóm (không trùng) và tổng các nhóm bằng 1.000 (không sót)','<div class="tbl"><table><thead><tr><th>Chiều cắt</th><th>Các nhóm</th><th class="r">Số cửa hàng từng nhóm</th><th class="r">Tổng</th><th>Kết quả</th></tr></thead><tbody>'+
+   mece.map(m=>{const t=sum(m[2]);return '<tr style="cursor:default"><td><b>'+esc(m[0])+'</b></td><td>'+esc(m[1])+'</td><td class="r">'+m[2].map(v=>nf(v)).join(' + ')+'</td><td class="r"><b>'+nf(t)+'</b></td><td><span class="'+(t===STORES.length?'ok':'bad')+'">'+(t===STORES.length?'✓ Đủ, không trùng':'✗ Lệch')+'</span></td></tr>'}).join('')+
+   '<tr style="cursor:default"><td><b>Doanh thu</b></td><td>Lượt vào × CR × AOV</td><td class="r">'+fBn(A.t12.trf*A.t12.cr*A.t12.aov,1)+'</td><td class="r"><b>'+fBn(A.t12.rev,1)+'</b></td><td><span class="ok">✓ Khớp</span></td></tr></tbody></table></div>')+
+  '</section>'}
+/* ================= PHÂN TÍCH NÂNG CAO ================= */
+const R3=rng(4242);const N3=()=>{let u=0,v=0;while(!u)u=R3();while(!v)v=R3();return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v)};
+const CM=st=>st.gm/st.rev-st.shrP-.05; // biên đóng góp trên mỗi đồng doanh thu tăng thêm
+const ageM=s=>91-s.open;
+
+/* ---- Cầu phân rã doanh thu (PVM) ---- */
+function pvm(A){
+  let T0=0,T1=0,B0=0,B1=0,R0=0,R1=0,nc0=0,nc1=0;
+  A.S.forEach(s=>{for(let i=0;i<8;i++){const a=s.m[i],b=s.m[i+12];if(s.open<60){T0+=a.trf;B0+=a.bills;R0+=a.rev;T1+=b.trf;B1+=b.bills;R1+=b.rev}else{nc0+=a?a.rev:0;nc1+=b?b.rev:0}}});
+  if(!T0)return null;const C0=B0/T0,C1=B1/T1,A0=R0/B0,A1=R1/B1;
+  const eT=(T1-T0)*C0*A0,eC=T1*(C1-C0)*A0,eA=T1*C1*(A1-A0);
+  return {base:R0+nc0,end:R1+nc1,eT,eC,eA,eN:nc1-nc0,T0,T1,C0,C1,A0,A1}}
+/* ---- Dự báo & bất thường ---- */
+function forecast(A){const m=A.mon;const g=sum(m.slice(16,20).map(x=>x.rev))/sum(m.slice(4,8).map(x=>x.rev));return [8,9,10,11].map(i=>m[i].rev*g)}
+function anomalies(A){return A.full.map(x=>{const s=x.s,base=[13,14,15,16,17,18].map(i=>s.m[i].rev/SEASON[i]);const mu=sum(base)/6,sd=Math.sqrt(sum(base.map(v=>(v-mu)**2))/5)||1;const exp=mu*SEASON[19];const z=(s.m[19].rev-exp)/(sd*SEASON[19]);return {x,z,exp,act:s.m[19].rev,d:s.m[19].rev/exp-1}}).filter(o=>o.z<-2.5).sort((a,b)=>a.z-b.z)}
+/* ---- Cơ hội ---- */
+function opportunities(A){
+  const F=A.full;if(!F.length)return [];const q=(f,p)=>pct(F.map(x=>x[f]),p);
+  const crQ1=q('cr',.25),crM=median(F.map(x=>x.cr)),ooQ3=q('oos',.75),ooM=median(F.map(x=>x.oos)),shQ3=q('shrP',.75),shM=median(F.map(x=>x.shrP));
+  const aovM={};REGIONS.forEach(r=>{aovM[r.k+'']=median(F.filter(x=>x.s.reg.k===r.k).map(x=>x.aov))});
+  const o=[];
+  const add=(n,d,st,how)=>o.push({n,d,v:sum(st),cnt:st.filter(v=>v>0).length,how});
+  add('Nâng tỷ lệ chuyển đổi','CR',F.map(x=>x.cr<=crQ1?x.trf*(crM-x.cr)*x.aov*CM(x):0),'25% cửa hàng CR thấp nhất lên trung vị · Chuẩn hoá hàng chủ lực, sắp xếp lại lối đi, đào tạo tư vấn');
+  add('Giảm hết hàng','OOS',F.map(x=>x.oos>=ooQ3?x.lost*(1-ooM/x.oos)*CM(x):0),'25% cửa hàng hết hàng cao nhất về trung vị · Đặt hàng theo dự báo, mức tồn tối thiểu cho top 50 mã');
+  add('Giảm hao hụt','Hao hụt',F.map(x=>x.shrP>=shQ3?x.rev*(x.shrP-shM):0),'25% cửa hàng hao hụt cao nhất về trung vị · Giảm giá hàng tươi sau 19h, kiểm tra nhập hàng');
+  add('Nâng giá trị giỏ hàng (AOV)','AOV',F.map(x=>{const m=aovM[x.s.reg.k];return x.aov<m?x.bills*(m-x.aov)*.5*CM(x):0}),'Cửa hàng dưới trung vị vùng, thu hẹp 50% khoảng cách · Combo, mua kèm tại quầy, trưng bày điểm cuối lối đi');
+  add('Đàm phán tiền thuê','Thuê',F.map(x=>x.rent/x.rev>.045?x.rent*.1:0),'Giảm 10% ở cửa hàng có tiền thuê > 4.5% DTT · Gom hợp đồng theo vùng để đàm phán');
+  add('Xử lý cửa hàng lỗ','Mạng lưới',closeCands(A).map(c=>Math.max(0,c.best.v-c.opts[0].v)/2.487),'Chọn phương án NPV tốt nhất · Cải tạo, chuyển Mini hoặc đóng (xem trang Mạng lưới)');
+  return o.sort((a,b)=>b.v-a.v)}
+/* ---- Quyết định đóng / chuyển mô hình ---- */
+const ANN=2.487; // hệ số chiết khấu 3 năm, 10%/năm
+function closeCands(A){return A.full.filter(x=>x.profit<0).map(x=>{const cm=CM(x);
+  const opts=[{n:'Giữ nguyên',v:x.profit*ANN},{n:'Cải tạo',v:-800e6+(x.profit+x.rev*.12*cm)*ANN},{n:'Chuyển Mini',v:-250e6+(x.profit-x.rev*.25*cm+x.rent*.45+x.staff*.35)*ANN},{n:'Đóng cửa',v:-300e6+x.rev*.35*cm*ANN}];
+  const best=opts.slice().sort((a,b)=>b.v-a.v)[0];return {x,opts,best}}).sort((a,b)=>(b.best.v-b.opts[0].v)-(a.best.v-a.opts[0].v))}
+/* ---- Hồi quy yếu tố ---- */
+function solve(M,v){const n=v.length,a=M.map((r,i)=>r.concat([v[i]]));for(let i=0;i<n;i++){let p=i;for(let k=i+1;k<n;k++)if(Math.abs(a[k][i])>Math.abs(a[p][i]))p=k;[a[i],a[p]]=[a[p],a[i]];const d=a[i][i]||1e-12;for(let j=i;j<=n;j++)a[i][j]/=d;for(let k=0;k<n;k++)if(k!==i){const f=a[k][i];for(let j=i;j<=n;j++)a[k][j]-=f*a[i][j]}}return a.map(r=>r[n])}
+function drivers(A){
+  const F=A.full;if(F.length<30)return null;
+  const feats=[['DT/m² (log)',x=>Math.log(x.revM2)],['Tiền thuê % DTT',x=>x.rent/x.rev],['Nhân sự % DTT',x=>x.staff/x.rev],['% hết hàng',x=>x.oos],['% hao hụt',x=>x.shrP],['Điểm phục vụ',x=>x.qc],['Tuổi cửa hàng (tháng)',x=>ageM(x.s)],['Tỷ lệ chuyển đổi',x=>x.cr]];
+  const X=F.map(x=>feats.map(f=>f[1](x))),y=F.map(x=>x.margin);const k=feats.length,n=F.length;
+  const mu=feats.map((_,j)=>sum(X.map(r=>r[j]))/n),sd=feats.map((_,j)=>Math.sqrt(sum(X.map(r=>(r[j]-mu[j])**2))/n)||1);
+  const my=sum(y)/n,sy=Math.sqrt(sum(y.map(v=>(v-my)**2))/n);
+  const Z=X.map(r=>r.map((v,j)=>(v-mu[j])/sd[j])),zy=y.map(v=>(v-my)/sy);
+  const M=[...Array(k)].map((_,i)=>[...Array(k)].map((_,j)=>sum(Z.map(r=>r[i]*r[j]))+(i===j?1e-6:0))),b=[...Array(k)].map((_,i)=>sum(Z.map((r,t)=>r[i]*zy[t])));
+  const beta=solve(M,b);const pred=Z.map(r=>sum(r.map((v,j)=>v*beta[j])));const r2=1-sum(zy.map((v,t)=>(v-pred[t])**2))/sum(zy.map(v=>v*v));
+  return {r2,rows:feats.map((f,j)=>({n:f[0],b:beta[j]})).sort((a,b)=>Math.abs(b.b)-Math.abs(a.b)),n}}
+/* ---- Phân cụm cửa hàng tương đồng (k-means, k=3) ---- */
+function clusters(A){
+  const F=A.full;if(F.length<30)return null;const fe=[x=>x.aov,x=>x.trf/365/x.s.area,x=>x.s.member];
+  const X=F.map(x=>fe.map(f=>f(x)));const mu=fe.map((_,j)=>sum(X.map(r=>r[j]))/X.length),sd=fe.map((_,j)=>Math.sqrt(sum(X.map(r=>(r[j]-mu[j])**2))/X.length)||1);
+  const Z=X.map(r=>r.map((v,j)=>(v-mu[j])/sd[j]));
+  let C=[[1.2,0,0],[-.6,1.1,0],[-.6,-.9,0]];let lab=[];
+  for(let it=0;it<25;it++){lab=Z.map(z=>{let b=0,bd=1e9;C.forEach((c,i)=>{const d=sum(z.map((v,j)=>(v-c[j])**2));if(d<bd){bd=d;b=i}});return b});C=C.map((c,i)=>{const mem=Z.filter((_,t)=>lab[t]===i);return mem.length?c.map((_,j)=>sum(mem.map(m=>m[j]))/mem.length):c})}
+  const names=['Khu thu nhập cao, giỏ lớn','Đông khách, giỏ nhỏ','Khách thưa'];
+  const G=[0,1,2].map(i=>{const st=F.filter((_,t)=>lab[t]===i);const mg=st.map(x=>x.margin);const p75=pct(mg,.75);return {i,n:names[i],st,c:C[i].map((v,j)=>v*sd[j]+mu[j]),med:median(mg),p75,gap:sum(st.map(x=>x.margin<p75?(p75-x.margin)*x.rev*.3:0))}});
+  F.forEach((x,t)=>x.cl=lab[t]);return G}
+function secOpp(A){
+  const O=opportunities(A),tot=sum(O.map(o=>o.v)),P=pvm(A);
+  const srt=A.full.slice().sort((a,b)=>b.profit-a.profit),tp=sum(srt.filter(x=>x.profit>0).map(x=>x.profit));let acc=0,k80=0;const cum=srt.map((x,i)=>{acc+=x.profit;if(!k80&&acc>=.8*tp)k80=i+1;return acc});
+  const tot12=sum(srt.map(x=>x.profit));let cA=0,cB=0;srt.forEach((x,i)=>{const c=cum[i]/tp;if(c<=.8)cA++;else if(c<=.95)cB++});const cC=srt.length-cA-cB;
+  const abc=[['A',srt.slice(0,cA)],['B',srt.slice(cA,cA+cB)],['C',srt.slice(cA+cB)]];
+  const Dv=drivers(A),G=clusters(A);
+  const step=Math.max(1,Math.floor(srt.length/50));const labs=[],vals=[];for(let i=0;i<srt.length;i+=step){labs.push(nf((i+1)/srt.length*100,0)+'%');vals.push(cum[i]/tp)}labs.push('100%');vals.push(cum[cum.length-1]/tp);
+  const ins=['<strong>Tổng cơ hội ước tính '+fBn(tot,0)+' lợi nhuận/năm</strong>, tương đương +'+fP(tot/Math.max(1,A.t12.profit),0)+' so với lợi nhuận cửa hàng hiện tại. Lớn nhất là “'+esc(O[0].n.toLowerCase())+'” ('+fBn(O[0].v,0)+').<span class="hyp">Giả thuyết</span>',
+    '<strong>'+fP(k80/(srt.length||1),0)+' số cửa hàng tạo ra 80% lợi nhuận dương</strong>. Nhóm C ('+nf(cC)+' cửa hàng) cộng lại '+fBn(sum(abc[2][1].map(x=>x.profit)),1)+'; nhiều cửa hàng trong nhóm này kéo lợi nhuận chung xuống.',
+    Dv?'<strong>Yếu tố giải thích % lợi nhuận mạnh nhất: '+esc(Dv.rows[0].n.toLowerCase())+'</strong>, tiếp theo là '+esc(Dv.rows[1].n.toLowerCase())+' (mô hình giải thích '+fP(Dv.r2,0)+' khác biệt giữa các cửa hàng).':''];
+  return '<section class="sec">'+aiBox('Nhận định tự động · cơ hội & mô phỏng',ins.filter(Boolean))+
+   '<div class="row c32">'+card('Định lượng cơ hội','Lợi nhuận cửa hàng tăng thêm mỗi năm nếu đưa nhóm yếu về mức trung vị (tính trên '+nf(A.full.length)+' cửa hàng đủ 12 tháng)',barsH(O.map(o=>({label:o.n,val:o.v,color:'var(--s3)',tip:fBn(o.v,1)+'/năm · '+nf(o.cnt)+' cửa hàng<br>'+esc(o.how)})),{fmt:v=>fBn(v,1),L:190}))+
+    '<div class="card"><h3>Tổng cơ hội</h3><div class="sub">Cộng các đòn bẩy, chưa trừ phần trùng nhau</div><div class="kpi" style="margin-top:10px"><small>Lợi nhuận tăng thêm / năm</small><b>'+nf(tot/1e9,0)+'<i>tỷ đ</i></b><div class="d">hiện tại '+fBn(A.t12.profit,0)+' · '+dlt(tot/Math.max(1,A.t12.profit))+'</div></div><div class="note" style="margin-top:10px">Cách tính: với mỗi cửa hàng yếu, khoảng cách tới trung vị × doanh thu × biên đóng góp ('+fP(median(A.full.map(CM)),0)+' mỗi đồng doanh thu tăng thêm). Các đòn bẩy có phần chồng lấn nên con số này là mức trần.</div></div></div>'+
+   card('Mô phỏng what-if','Kéo thanh trượt để xem lợi nhuận chuỗi thay đổi thế nào (áp dụng cho '+nf(A.full.length)+' cửa hàng trong bộ lọc)',simUI())+
+   '<div class="row c2">'+card('Pareto lợi nhuận','Lợi nhuận luỹ kế khi xếp cửa hàng từ lãi nhiều tới lỗ nhiều · nét đứt: 80%',lineChart({labels:labs,series:[{name:'Lợi nhuận luỹ kế',color:'var(--s1)',vals,area:true},{name:'80%',color:'var(--ink-3)',vals:labs.map(()=>.8),dash:true}],fmt:v=>fP(v,0),min0:true,maxX:6,h:240,aria:'Đường Pareto lợi nhuận cửa hàng'}))+
+    card('Phân nhóm ABC','A: tạo 80% lợi nhuận dương · B: 15% tiếp theo · C: phần còn lại','<div class="tbl"><table><thead><tr><th>Nhóm</th><th class="r">Số CH</th><th class="r">% CH</th><th class="r">Lợi nhuận 12T</th><th class="r">DT/m² trung vị</th><th class="r">% LN</th><th>Hướng xử lý</th></tr></thead><tbody>'+abc.map((g,i)=>{const st=g[1];return '<tr style="cursor:default"><td><b>'+g[0]+'</b></td><td class="r">'+nf(st.length)+'</td><td class="r">'+fP(st.length/(srt.length||1),0)+'</td><td class="r '+(sum(st.map(x=>x.profit))<0?'dn':'')+'">'+fBn(sum(st.map(x=>x.profit)),1)+'</td><td class="r">'+fMn(median(st.map(x=>x.revM2)),2)+'</td><td class="r">'+fP(sum(st.map(x=>x.profit))/(sum(st.map(x=>x.rev))||1))+'</td><td>'+['Bảo vệ, nhân rộng mô hình','Tối ưu chi phí','Can thiệp hoặc tái cấu trúc'][i]+'</td></tr>'}).join('')+'</tbody></table></div>')+'</div>'+
+   '<div class="row c2">'+(Dv?card('Yếu tố nào quyết định % lợi nhuận?','Hồi quy tuyến tính chuẩn hoá trên '+nf(Dv.n)+' cửa hàng · R² = '+nf(Dv.r2,2)+' · thanh xanh: tăng yếu tố thì lợi nhuận tăng',barsH(Dv.rows.map(r=>({label:r.n,val:r.b,color:r.b>=0?'var(--div-pos)':'var(--div-neg)',tip:'Hệ số chuẩn hoá '+nf(r.b,2)+': tăng 1 độ lệch chuẩn thì % lợi nhuận thay đổi '+nf(r.b,2)+' độ lệch chuẩn'})),{fmt:v=>(v>=0?'+':'')+nf(v,2),L:160})+'<p class="note">Hệ số cho biết mức độ liên quan, chưa chứng minh nhân quả. Nên kiểm chứng bằng thử nghiệm ở cửa hàng mẫu.</p>'):'')+
+    (G?card('Nhóm cửa hàng tương đồng (k-means)','Gom theo AOV, lượt khách/m²/ngày và tỷ lệ khách thành viên · so trong nhóm công bằng hơn so cả chuỗi',scatter({pts:A.full.map(x=>({x:x.aov/1e3,y:x.trf/365/x.s.area,c:SER[[0,1,2][x.cl]],id:x.s.id,st:x,r:3})),xfmt:v=>nf(v,0)+'k',yfmt:v=>nf(v,1),xlab:'AOV (nghìn đ)',ylab:'Lượt khách / m² / ngày',h:260,tip:p=>'<b>'+p.id+'</b><div>'+esc(G[p.st.cl].n)+'</div><div class="tr"><span>% LN</span><b>'+fP(p.st.margin)+'</b></div>',click:p=>openStore(p.id)})+'<div class="lgd">'+G.map(g=>'<span><i class="dot" style="--c:'+SER[g.i]+'"></i>'+esc(g.n)+' ('+nf(g.st.length)+')</span>').join('')+'</div>'+
+     '<div class="tbl" style="margin-top:10px"><table><thead><tr><th>Nhóm</th><th class="r">AOV</th><th class="r">Khách/m²/ngày</th><th class="r">% LN trung vị</th><th class="r">% LN top 25%</th><th class="r">Cơ hội</th></tr></thead><tbody>'+G.map(g=>'<tr style="cursor:default"><td>'+esc(g.n)+'</td><td class="r">'+fK(g.c[0])+'</td><td class="r">'+nf(g.c[1],1)+'</td><td class="r">'+fP(g.med)+'</td><td class="r">'+fP(g.p75)+'</td><td class="r">'+fBn(g.gap,1)+'</td></tr>').join('')+'</tbody></table></div><p class="note">Cơ hội = 30% khoảng cách tới mức top 25% của chính nhóm đó.</p>'):'')+'</div>'+
+   '</section>'}
+/* ---- What-if ---- */
+const SIM={cr:0,aov:0,oos:0,shr:0,rent:0,staff:0,trf:0};
+const SIMDEF=[['trf','Lượt vào',-10,10,1,'%'],['cr','Tỷ lệ chuyển đổi',-3,3,.5,' điểm'],['aov','AOV',-10,10,1,'%'],['oos','Giảm hết hàng',0,3,.5,' điểm'],['shr','Giảm hao hụt',0,1,.1,' điểm'],['rent','Tiền thuê',-20,10,1,'%'],['staff','Chi phí nhân sự',-15,15,1,'%']];
+function simUI(){return '<div class="sim"><div class="sim-in">'+SIMDEF.map(d=>'<label for="sim-'+d[0]+'"><span>'+esc(d[1])+' <b id="simv-'+d[0]+'">'+nf(SIM[d[0]],d[4]<1?1:0)+d[5]+'</b></span><input type="range" id="sim-'+d[0]+'" min="'+d[2]+'" max="'+d[3]+'" step="'+d[4]+'" value="'+SIM[d[0]]+'"></label>').join('')+'<button class="btn" type="button" id="simReset">Đặt lại</button></div><div class="sim-out" id="simOut"></div></div>'}
+function simCalc(A){let rev0=0,rev=0,p0=0,p=0,neg0=0,neg=0;
+  A.full.forEach(x=>{const f=(1+SIM.trf/100)*((x.cr+SIM.cr/100)/x.cr)*(1+SIM.aov/100)*(1+.6*(Math.min(SIM.oos/100,x.oos))/(1-x.oos));
+    const r=x.rev*f,gm=r*x.gm/x.rev,sh=r*Math.max(0,x.shrP-SIM.shr/100),rent=x.rent*(1+SIM.rent/100),stf=x.staff*(1+SIM.staff/100),ut=x.util+(r-x.rev)*.004,lg=x.logi*f,ot=x.other+(r-x.rev)*.016;
+    const pr=gm-sh-rent-stf-ut-lg-ot;rev0+=x.rev;rev+=r;p0+=x.profit;p+=pr;if(x.profit<0)neg0++;if(pr<0)neg++});
+  return {rev0,rev,p0,p,neg0,neg}}
+function simRender(A){const r=simCalc(A),o=document.getElementById('simOut');if(!o)return;
+  o.innerHTML='<div class="kpis">'+kpi('Doanh thu 12T',nf(r.rev/1e9,0),'tỷ đ',dlt(r.rev/r.rev0-1))+kpi('Lợi nhuận cửa hàng',nf(r.p/1e9,0),'tỷ đ',dlt(r.p/r.p0-1)+' · '+(r.p-r.p0>=0?'+':'')+fBn(r.p-r.p0,0))+kpi('% lợi nhuận',fP(r.p/r.rev),'',dlt(r.p/r.rev-r.p0/r.rev0,true,fPP))+kpi('Cửa hàng lỗ',nf(r.neg),'',(r.neg-r.neg0<=0?'<span class="up">':'<span class="dn">')+(r.neg-r.neg0>0?'+':'')+nf(r.neg-r.neg0)+' so với hiện tại</span>')+'</div>'+
+   '<p class="note" style="margin-top:8px">Ví dụ: tăng CR 1 điểm và giảm hết hàng 1 điểm cùng lúc thường mang lại nhiều lợi nhuận hơn giảm 10% tiền thuê, vì tác động lên toàn bộ doanh thu.</p>'}
+function bindSim(A){SIMDEF.forEach(d=>{const el=document.getElementById('sim-'+d[0]);if(!el)return;el.oninput=()=>{SIM[d[0]]=+el.value;document.getElementById('simv-'+d[0]).textContent=nf(SIM[d[0]],d[4]<1?1:0)+d[5];simRender(A)}});
+  const b=document.getElementById('simReset');if(b)b.onclick=()=>{Object.keys(SIM).forEach(k=>SIM[k]=0);render()};simRender(A)}
+
+/* ---- Khách hàng ---- */
+function secCust(A){
+  const t=A.t12,mem=sum(A.ST.map(x=>x.rev*x.s.member))/t.rev,share=t.rev/sum([...STAT.values()].map(x=>x.rev));
+  const members=3.2e6*share;
+  const mix=[.22,.55,.14,.09],labsM=MONTHS.map(x=>x.lab);
+  const series=[['Khách mới','var(--s2)'],['Quay lại ≤ 90 ngày','var(--s1)'],['91–180 ngày','var(--s3)'],['181–365 ngày','var(--s7)']].map((s,k)=>({name:s[0],color:s[1],vals:A.mon.map((m,i)=>m.bills*mem*(mix[k]+(k===0?-.0015*i:k===1?.0015*i:0)))}));
+  const coh=[];for(let c=0;c<12;c++){const row=[];for(let k=1;k<=12;k++){row.push(c+k>19?null:clamp(.18+.42*Math.exp(-k/7)+.015*N3()+(c>=6?.02:0),.05,.9))}coh.push(row)}
+  const seg=[['Trung thành cao','Mua ≥ 4 lần/tháng, chi tiêu cao',.09,.31,9.8e6,'Ưu đãi riêng, giữ chân'],['Trung thành','Mua đều 2–3 lần/tháng',.16,.26,5.2e6,'Tăng giỏ hàng bằng combo'],['Tiềm năng','Mới, tần suất đang tăng',.18,.15,2.6e6,'Nhắc mua lần 2 trong 14 ngày'],['Cần giữ chân','Tần suất giảm 3 tháng gần đây',.14,.12,2.9e6,'Voucher cá nhân hoá'],['Ngủ đông','Không mua 60–120 ngày',.21,.09,1.1e6,'Chiến dịch quay lại'],['Đã rời bỏ','Không mua > 120 ngày',.22,.07,.4e6,'Khảo sát lý do, không chi nhiều']];
+  const trips=[['Mua bổ sung nhanh','≤ 5 món, tối ngày thường',.46,.24,.48],['Bữa ăn trong ngày','Rau, thịt, gia vị',.31,.34,1.02],['Mua dự trữ','> 15 món, cuối tuần',.17,.33,1.78],['Dịp đặc biệt','Tết, lễ, quà',.06,.09,1.4]];
+  const rules=[['Rau lá','Thịt heo',.061,.38,2.4],['Sữa tươi','Bánh mì',.044,.29,2.1],['Mì gói','Trứng gà',.052,.33,1.9],['Bia lon','Snack',.038,.41,2.8],['Tã trẻ em','Sữa công thức',.012,.47,5.6],['Gạo','Nước mắm',.027,.22,1.7],['Trái cây nhập khẩu','Sữa chua',.019,.26,1.8],['Nước giặt','Nước xả vải',.024,.44,3.9]];
+  const topics=[['Hàng tươi không đạt',.21,.82],['Hết hàng món cần mua',.18,.9],['Chờ thanh toán lâu',.15,.88],['Giá và khuyến mãi',.14,.55],['Thái độ nhân viên',.12,.64],['Vệ sinh, mùi cửa hàng',.1,.77],['Chỗ để xe',.1,.71]];const cmt=18400*share;
+  const ins=['<strong>Khách thành viên tạo '+fP(mem,0)+' doanh thu</strong>. Nhóm “Trung thành cao” chỉ '+fP(seg[0][2],0)+' số thành viên nhưng '+fP(seg[0][3],0)+' doanh thu thành viên.',
+    '<strong>Tỷ lệ quay lại sau 3 tháng khoảng '+fP(sum(coh.slice(0,9).map(r=>r[2]))/9,0)+'</strong>, ổn định ở mức '+fP(sum(coh.slice(0,6).map(r=>r[11]))/6,0)+' sau 1 năm. Các đợt khách từ T7/2025 giữ chân tốt hơn khoảng 2 điểm.<span class="hyp">Giả thuyết</span>',
+    '<strong>Mua bổ sung nhanh chiếm '+fP(trips[0][2],0)+' hoá đơn nhưng '+fP(trips[0][3],0)+' doanh thu</strong>. Quầy thanh toán nhanh và kệ đồ ăn liền gần cửa giúp nhóm này.',
+    '<strong>AI đọc '+nf(cmt)+' góp ý</strong>: hàng tươi và hết hàng là 2 chủ đề tiêu cực nhiều nhất, trùng với kết quả ở trang Tồn kho.'];
+  return '<section class="sec"><div class="kpis">'+kpi('Khách thành viên',nf(members/1e6,2),'triệu','ước theo bộ lọc')+kpi('% DT từ thành viên',fP(mem,0),'','')+kpi('Quay lại sau 3 tháng',fP(sum(coh.slice(0,9).map(r=>r[2]))/9,0),'','trung bình các đợt')+kpi('CLV trung bình',nf(sum(seg.map(s=>s[2]*s[4]))/1e6,1),'tr đ','giá trị 24 tháng / thành viên')+'</div>'+
+   aiBox('Nhận định tự động · khách hàng',ins)+
+   '<div class="row c2">'+card('Hoá đơn thành viên theo nhóm khách','Khách mới và khách quay lại theo khoảng cách lần mua trước (như báo cáo showroom)',cols({labels:labsM,series,stacked:true,fmt:v=>nf(v/1e6,1)+' tr',h:240,maxX:10}))+
+    card('Tỷ lệ giữ chân theo đợt khách','Hàng: tháng mua lần đầu · cột: số tháng sau · % khách còn mua',heatmap(coh,MONTHS.slice(0,12).map(m=>m.lab),[...Array(12)].map((_,i)=>'+'+(i+1)),v=>fP(v,0)+' còn mua',{L:44,sfx:' tháng',txt:v=>nf(v*100,0),aria:'Bảng giữ chân khách theo đợt'}))+'</div>'+
+   card('Phân nhóm RFM và giá trị vòng đời (CLV)','Recency · Frequency · Monetary trên khách thành viên · CLV = giá trị dự kiến 24 tháng','<div class="tbl"><table><thead><tr><th>Nhóm</th><th>Đặc điểm</th><th class="r">% thành viên</th><th class="r">Số khách</th><th class="r">% DT thành viên</th><th class="r">CLV</th><th>Hành động</th></tr></thead><tbody>'+seg.map(s=>'<tr style="cursor:default"><td><b>'+esc(s[0])+'</b></td><td>'+esc(s[1])+'</td><td class="r">'+fP(s[2],0)+'</td><td class="r">'+nf(members*s[2]/1e3,0)+'k</td><td class="r">'+fP(s[3],0)+'</td><td class="r">'+fMn(s[4],1)+'</td><td>'+esc(s[5])+'</td></tr>').join('')+'</tbody></table></div>')+
+   '<div class="row c2">'+card('Loại chuyến mua','Chia hoá đơn theo số món, giờ và ngày mua','<div class="tbl"><table><thead><tr><th>Loại</th><th>Nhận diện</th><th class="r">% hoá đơn</th><th class="r">% DT</th><th class="r">AOV/TB</th></tr></thead><tbody>'+trips.map(r=>'<tr style="cursor:default"><td><b>'+esc(r[0])+'</b></td><td>'+esc(r[1])+'</td><td class="r">'+fP(r[2],0)+'</td><td class="r">'+fP(r[3],0)+'</td><td class="r">'+nf(r[4],2)+'×</td></tr>').join('')+'</tbody></table></div>')+
+    card('Market basket · món hay mua cùng nhau','Support: % hoá đơn có cả 2 món · Confidence: mua món A thì % mua món B · Lift > 1: mua cùng nhiều hơn ngẫu nhiên','<div class="tbl"><table><thead><tr><th>Nếu mua</th><th>Thì mua</th><th class="r">Support</th><th class="r">Confidence</th><th class="r">Lift</th></tr></thead><tbody>'+rules.sort((a,b)=>b[4]-a[4]).map(r=>'<tr style="cursor:default"><td>'+esc(r[0])+'</td><td>'+esc(r[1])+'</td><td class="r">'+fP(r[2],1)+'</td><td class="r">'+fP(r[3],0)+'</td><td class="r"><b>'+nf(r[4],1)+'</b></td></tr>').join('')+'</tbody></table></div><p class="note">Dùng để xếp kệ gần nhau và làm combo: tã và sữa công thức có lift cao nhất nhưng support thấp, hợp làm combo cho nhóm khách có con nhỏ.</p>')+'</div>'+
+   card('AI phân loại góp ý của khách','AI gán chủ đề cho '+nf(cmt)+' góp ý từ app, tổng đài và mạng xã hội (dữ liệu mô phỏng) · thanh: số góp ý · rê chuột xem % tiêu cực',barsH(topics.map(t=>({label:t[0],val:cmt*t[1],color:t[2]>.75?'var(--s8)':'var(--s4)',tip:nf(cmt*t[1])+' góp ý · '+fP(t[2],0)+' tiêu cực'})),{fmt:v=>nf(v),L:170}))+'</section>'}
+
+/* ---- Mạng lưới & không gian ---- */
+function secNet(A){
+  const ids=new Set(A.S.map(s=>s.id));const pairs=CANNI.filter(c=>ids.has(c.o.id)&&c.idx>=3&&c.idx<=16);
+  const ch=c=>{const o=c.o,i=c.idx;const b=[i-3,i-2,i-1].map(k=>o.m[k].trf/SEASON[k]),a=[i+1,i+2,i+3].map(k=>o.m[k].trf/SEASON[k]);return sum(a)/sum(b)-1};
+  const bk=[['< 0,5 km',0,.5],['0,5–1 km',.5,1],['1–1,5 km',1,1.5],['2–3,5 km (đối chứng)',2,3.5]];
+  const bv=bk.map(b=>{const p=pairs.filter(c=>c.d>=b[1]&&c.d<b[2]);return {n:b[0],v:p.length?sum(p.map(ch))/p.length:0,c:p.length}});const ctrl=bv[3].v;
+  const aff=new Set(CANNI.filter(c=>ids.has(c.o.id)&&c.d<1.5).map(c=>c.o.id)).size;
+  const byNew={};CANNI.filter(c=>c.d<1.5&&ids.has(c.ns.id)).forEach(c=>{const e=c.d<.5?.1:c.d<1?.055:.025;const st=STAT.get(c.o.id);(byNew[c.ns.id]=byNew[c.ns.id]||{ns:c.ns,n:0,loss:0}).n++;byNew[c.ns.id].loss+=st.rev*(e/(1-e))*Math.min(1,(20-c.idx)/12)});
+  const topNew=Object.values(byNew).sort((a,b)=>b.loss-a.loss).slice(0,8);
+  const F=A.full;const sp=F.map(x=>({x,spm:x.revM/x.s.shelfM,inv:(x.rev/365)*(1-x.gm/x.rev)*x.s.cover}));sp.forEach(o=>o.gmroi=o.x.gm/o.inv);
+  const gmF=FORMATS.filter(f=>F.some(x=>x.s.fmt.k===f.k)).map(f=>{const s=sp.filter(o=>o.x.s.fmt.k===f.k);return {f,v:sum(s.map(o=>o.x.gm))/sum(s.map(o=>o.inv))}});
+  const bins=[14,18,22,26,30,34,38,42];const hist=bins.map(b=>F.filter(x=>x.s.cover>=b&&x.s.cover<b+4).length);
+  const fr=A.t12.rev*.30;const mk=[['15h',.40,.012,.09],['17h',.25,.020,.05],['19h',.15,.031,.03],['21h',.08,.046,.02],['Không giảm giá',0,.068,.015]].map(o=>({n:o[0],md:o[1],shr:o[2],oos:o[3],v:fr*(.235-o[1]*.3*.5-o[2]-o[3]*.6*.235)}));const bestMk=mk.slice().sort((a,b)=>b.v-a.v)[0];
+  const CC=closeCands(A);const cnt={};CC.forEach(c=>cnt[c.best.n]=(cnt[c.best.n]||0)+1);const gain=sum(CC.map(c=>c.best.v-c.opts[0].v));
+  const ins=['<strong>Cửa hàng mới mở trong bán kính 0,5 km làm cửa hàng cũ giảm '+fP(-(bv[0].v-ctrl),1)+' lượt khách</strong> so với nhóm đối chứng; ảnh hưởng gần như hết sau 1,5 km. '+nf(aff)+' cửa hàng cũ đang chịu tác động.<span class="hyp">Giả thuyết</span>',
+    '<strong>Giảm giá hàng tươi lúc '+esc(bestMk.n)+' cho lãi sau hao hụt cao nhất</strong> ('+fBn(bestMk.v,0)+'/năm), hơn phương án không giảm giá '+fBn(bestMk.v-mk[4].v,0)+'.',
+    '<strong>Với '+nf(CC.length)+' cửa hàng lỗ</strong>, phương án có NPV 3 năm tốt nhất: '+Object.entries(cnt).map(e=>esc(e[0].toLowerCase())+' '+e[1]).join(', ')+'. Tổng NPV cải thiện '+fBn(gain,1)+' so với giữ nguyên.'];
+  return '<section class="sec"><div class="kpis">'+kpi('DT / mét kệ / tháng',nf(median(sp.map(o=>o.spm))/1e6,1),'tr đ','trung vị')+kpi('GMROI',nf(sum(F.map(x=>x.gm))/sum(sp.map(o=>o.inv)),1),'×','lãi gộp ÷ vốn tồn kho')+kpi('Số ngày tồn kho',nf(median(F.map(x=>x.s.cover)),0),'ngày','trung vị')+kpi('Tuân thủ planogram',nf(median(F.map(x=>x.s.plano)),0),'%','chấm điểm trưng bày')+kpi('CH cũ bị ăn khách',nf(aff),'','trong bán kính 1,5 km')+'</div>'+
+   aiBox('Nhận định tự động · mạng lưới & không gian',ins)+
+   '<div class="row c2">'+card('Cửa hàng mới ăn khách cửa hàng cũ','Thay đổi lượt khách của cửa hàng cũ 3 tháng sau so với 3 tháng trước khi cửa hàng mới khai trương (đã khử mùa vụ)',barsH(bv.map((b,i)=>({label:b.n,val:b.v,color:i===3?'var(--ink-3)':'var(--div-neg)',tip:fPt(b.v,1)+' · '+nf(b.c)+' cặp cửa hàng'})),{fmt:v=>fPt(v,1),L:160}))+
+    card('Cửa hàng mới gây ăn khách nhiều nhất','Doanh thu 12 tháng ước mất ở các cửa hàng cũ trong bán kính 1,5 km','<div class="tbl"><table><thead><tr><th>Cửa hàng mới</th><th>Khai trương</th><th class="r">CH cũ gần</th><th class="r">DT ước mất</th></tr></thead><tbody>'+topNew.map(o=>'<tr data-store="'+o.ns.id+'"><td><b>'+o.ns.id+'</b> <span class="muted">'+esc(o.ns.loc)+'</span></td><td>'+o.ns.openLab+'</td><td class="r">'+nf(o.n)+'</td><td class="r">'+fMn(o.loss,0)+'</td></tr>').join('')+'</tbody></table></div>')+'</div>'+
+   '<div class="row c2">'+card('Tuân thủ trưng bày và doanh thu mỗi mét kệ','Mỗi chấm là 1 cửa hàng',scatter({pts:sp.map(o=>({x:o.x.s.plano,y:o.spm/1e6,c:FMTC[o.x.s.fmt.k],id:o.x.s.id,st:o.x,r:3})),xfmt:v=>nf(v,0)+'%',yfmt:v=>nf(v,0),xlab:'% tuân thủ planogram',ylab:'DT / mét kệ / tháng (triệu đ)',h:280,tip:p=>'<b>'+p.id+'</b><div class="tr"><span>Planogram</span><b>'+nf(p.st.s.plano,0)+'%</b></div>',click:p=>openStore(p.id)}))+
+    '<div class="card"><div class="ch"><div><h3>GMROI theo mô hình</h3><div class="sub">Mỗi đồng vốn tồn kho tạo ra bao nhiêu đồng lãi gộp mỗi năm</div></div></div>'+barsH(gmF.map(g=>({label:g.f.n,val:g.v,color:FMTC[g.f.k]})),{fmt:v=>nf(v,1)+'×',L:100})+'<h3 style="margin-top:14px;font-size:15px">Phân bố số ngày tồn kho</h3>'+cols({labels:bins.map(b=>b+'–'+(b+3)),series:[{name:'Số cửa hàng',color:'var(--s1)',vals:hist}],fmt:v=>nf(v),h:170})+'</div></div>'+
+   card('Đánh đổi hàng tươi: giảm giá lúc mấy giờ?','Giảm giá sớm thì hao hụt thấp nhưng mất lãi; không giảm thì hao hụt và hết hàng tối cao · lãi sau hao hụt của nhóm rau, thịt, cá',barsH(mk.map(o=>({label:'Giảm giá từ '+o.n,val:o.v,color:o===bestMk?'var(--s3)':'var(--s1)',tip:'Hàng bán giảm giá '+fP(o.md,0)+' · hao hụt '+fP(o.shr,1)+' · hết hàng buổi tối '+fP(o.oos,1)})).map(r=>{r.label=r.label.replace('Giảm giá từ Không giảm giá','Không giảm giá');return r}),{fmt:v=>fBn(v,0),L:170}))+
+   card('Quyết định với cửa hàng lỗ: giữ, cải tạo, chuyển Mini hay đóng?','NPV 3 năm, chiết khấu 10%/năm · cải tạo 800 triệu (+12% DT) · chuyển Mini 250 triệu (thuê −45%, nhân sự −35%, DT −25%) · đóng 300 triệu (35% doanh thu chuyển sang cửa hàng gần)','<div class="tbl"><table><thead><tr><th>Cửa hàng</th><th class="r">% LN</th><th class="r">Giữ nguyên</th><th class="r">Cải tạo</th><th class="r">Chuyển Mini</th><th class="r">Đóng</th><th>Đề xuất</th></tr></thead><tbody>'+CC.slice(0,12).map(c=>'<tr data-store="'+c.x.s.id+'"><td><b>'+c.x.s.id+'</b> <span class="muted">'+esc(c.x.s.loc)+'</span></td><td class="r dn">'+fP(c.x.margin)+'</td>'+c.opts.map(o=>'<td class="r'+(o===c.best?' up':'')+'">'+fBn(o.v,2)+'</td>').join('')+'<td><span class="pill" style="--c:var(--accent)">'+esc(c.best.n)+'</span></td></tr>').join('')+'</tbody></table></div><p class="note">Hiển thị 12 / '+nf(CC.length)+' cửa hàng lỗ, xếp theo mức NPV cải thiện. Đây là sàng lọc ban đầu; quyết định cuối cần khảo sát mặt bằng và hợp đồng thuê.</p>')+'</section>'}
+
+/* ---- Bổ sung cho các trang cũ ---- */
+function ovExtra(A){
+  const P=pvm(A),fc=forecast(A),an=anomalies(A);let s='';
+  if(P){const st=[{n:'DTT T1–T8/2025',v:P.base,total:true},{n:'Cửa hàng mở từ 2024',v:P.eN},{n:'Lượt vào (LFL)',v:P.eT},{n:'Tỷ lệ chuyển đổi (LFL)',v:P.eC},{n:'AOV (LFL)',v:P.eA},{n:'DTT T1–T8/2026',v:P.end,total:true}];
+    s+=card('Doanh thu tăng nhờ đâu? (cầu phân rã)','T1–T8/2026 so T1–T8/2025 · tách phần cửa hàng mới và 3 yếu tố của cửa hàng so sánh được: lượt vào × CR × AOV',waterfall(st,v=>fBn(v,0))+'<p class="note">Cửa hàng so sánh được: lượt vào '+fPt(P.T1/P.T0-1)+', CR '+fPP(P.C1-P.C0,2)+', AOV '+fPt(P.A1/P.A0-1)+'. Các phần cộng lại đúng bằng mức tăng.</p>')}
+  const labs=MONTHS.map(x=>x.lab).concat(['T9/26','T10/26','T11/26','T12/26']);
+  const act=A.mon.map(m=>m.rev).concat([null,null,null,null]),fcv=A.mon.map((m,i)=>i===19?m.rev:null).concat(fc),hi=A.mon.map(()=>null).concat(fc.map(v=>v*1.04)),lo=A.mon.map(()=>null).concat(fc.map(v=>v*.96));
+  s+='<div class="row c2">'+card('Dự báo 4 tháng tới','Theo cùng kỳ năm trước × tốc độ tăng 4 tháng gần nhất · vùng ±4%',lineChart({labels:labs,series:[{name:'Thực tế',color:'var(--s1)',vals:act},{name:'Dự báo',color:'var(--s2)',vals:fcv,dash:true},{name:'Cận trên',color:'var(--ink-3)',vals:hi,dash:true},{name:'Cận dưới',color:'var(--ink-3)',vals:lo,dash:true}],fmt:v=>fBn(v,0),tick:v=>nf(v/1e9,0),h:240,maxX:8}))+
+   card('Cảnh báo bất thường tháng 8/2026','Doanh thu thấp hơn dải kiểm soát của chính cửa hàng (z < −2.5 so với 6 tháng trước, đã khử mùa vụ)',an.length?'<div class="tbl"><table><thead><tr><th>Cửa hàng</th><th class="r">Kỳ vọng</th><th class="r">Thực tế</th><th class="r">Lệch</th><th class="r">z</th></tr></thead><tbody>'+an.slice(0,8).map(o=>'<tr data-store="'+o.x.s.id+'"><td><b>'+o.x.s.id+'</b> <span class="muted">'+esc(o.x.s.loc)+'</span></td><td class="r">'+fBn(o.exp,2)+'</td><td class="r">'+fBn(o.act,2)+'</td><td class="r dn">'+fPt(o.d)+'</td><td class="r">'+nf(o.z,1)+'</td></tr>').join('')+'</tbody></table></div><p class="note">'+nf(an.length)+' cửa hàng bị gắn cờ. Hệ thống gửi cảnh báo cho quản lý vùng kiểm tra nguyên nhân (sửa đường, đối thủ mới, sự cố thiết bị).</p>':'<p class="note">Không có cửa hàng nào vượt ngưỡng trong bộ lọc.</p>')+'</div>';
+  return s}
+function hrExtra(A){
+  const t=A.t12,n=A.openNow||1,tot=sum(HEAT.flat());const need=HEAT.map(r=>r.map(v=>v/tot*t.trf/52/n/16));
+  const plan=HOURS.map(h=>{const avg=sum(A.full.map(x=>x.s.staffN))/(A.full.length||1);return h<14?avg*.5:avg*.5});
+  const gap=need.map(r=>r.map((v,j)=>plan[j]-v));
+  let worst=[0,0,0];gap.forEach((r,i)=>r.forEach((v,j)=>{if(v<worst[0])worst=[v,i,j]}));
+  return card('Xếp ca so với lượt khách','Nhân viên trong ca trừ nhân viên cần theo lượt khách (1 người phục vụ 16 khách/giờ, gồm thu ngân và bổ sung hàng) · đỏ: thiếu người · xanh: thừa người · trung bình mỗi cửa hàng',heatmap(gap,DOW,HOURS.map(String),v=>(v>=0?'Thừa ':'Thiếu ')+nf(Math.abs(v),1)+' người',{div:true,neg:'Thiếu người',pos:'Thừa người',txt:v=>nf(v,1),aria:'Chênh lệch nhân sự theo giờ'})+'<p class="note">Thiếu nhiều nhất vào '+DOW[worst[1]]+' '+HOURS[worst[2]]+'h ('+nf(-worst[0],1)+' người). Chuyển 1 người từ khung 13–15h sang 17–20h không tăng chi phí mà giảm thời gian chờ thanh toán.</p>')}
+function pmExtra(A){
+  const w=[];for(let k=-4;k<=8;k++)w.push(k<0?'Tuần '+k:k===0?'Bắt đầu':'Tuần +'+k);
+  const seas=w.map((_,i)=>1+.03*(i>=4?1:0)*Math.min(1,(i-3)/3)+.01*N3());
+  const ctrl=w.map((_,i)=>100*seas[i]*(1+.008*N3())),test=w.map((_,i)=>100*seas[i]*(1+(i>4?.065:0)+.008*N3()));
+  const pre=a=>sum(a.slice(0,4))/4,dur=a=>sum(a.slice(5))/8;const naive=dur(test)/pre(test)-1,did=(dur(test)/pre(test))-(dur(ctrl)/pre(ctrl));
+  return card('Thử nghiệm có đối chứng: Combo bữa sáng','120 cửa hàng chạy chương trình, 120 cửa hàng tương đồng không chạy · chỉ số doanh thu nhóm hàng ăn sáng (4 tuần trước = 100)',lineChart({labels:w,series:[{name:'Cửa hàng thử nghiệm',color:'var(--s1)',vals:test},{name:'Cửa hàng đối chứng',color:'var(--s2)',vals:ctrl}],fmt:v=>nf(v,1),min0:false,h:230,maxX:7})+'<div class="row c2" style="margin-top:10px"><div class="kpi"><small>So trước / sau (cách thường làm)</small><b>'+fPt(naive)+'</b><div class="d">gồm cả tăng theo mùa</div></div><div class="kpi"><small>Chênh lệch có đối chứng (DiD)</small><b>'+fPt(did)+'</b><div class="d">tác động thật của chương trình</div></div></div><p class="note">So trước/sau thổi phồng hiệu quả khoảng '+nf((naive-did)*100,1)+' điểm vì doanh thu cả chuỗi cũng tăng theo mùa. Phương pháp difference-in-differences loại phần đó ra.</p>')}
+/* ================= CÔNG THỨC TÍNH THEO TỪNG TAB ================= */
+/* mỗi dòng: [chỉ số, công thức, ví dụ (chuỗi hoặc hàm A→chuỗi), ghi chú] · ví dụ dạng hàm = tính trên số đang lọc */
+const T_=v=>fBn(v,0),T1_=v=>fBn(v,1),K_=v=>nf(v/1e3,0)+'k đ';
+function exStore(A){const F=A.full;if(!F.length)return null;const s=[...F].sort((a,b)=>a.rev-b.rev);return s[Math.floor(s.length/2)]}
+function lflParts(A){let a=0,b=0,n=0;A.S.filter(s=>s.open<60).forEach(s=>{n++;for(let i=0;i<8;i++){a+=s.m[i].rev;b+=s.m[i+12].rev}});return {a,b,n}}
+const FX_COMMON={
+ ch:['Số cửa hàng','Đếm cửa hàng khớp bộ lọc · "đang mở" = có doanh thu tháng T8/2026',A=>nf(A.S.length)+' cửa hàng khớp bộ lọc, trong đó '+nf(A.openNow)+' có doanh thu T8/2026'],
+ dtt:['DTT (doanh thu thuần)','Σ doanh thu bán hàng − chiết khấu − hàng trả lại, trước VAT, cộng 12 tháng T9/2025–T8/2026',A=>'Cộng 12 tháng của '+nf(A.S.length)+' cửa hàng = '+T_(A.t12.rev)],
+ lfl:['LFL (tăng trưởng cùng kỳ)','DTT T1–T8/2026 ÷ DTT T1–T8/2025 − 1, chỉ tính cửa hàng mở trước 01/01/2024',A=>{const p=lflParts(A);return p.a?T_(p.b)+' ÷ '+T_(p.a)+' − 1 = '+fPt(p.b/p.a-1)+' ('+nf(p.n)+' cửa hàng)':'Không có cửa hàng đủ điều kiện'}],
+ ln:['Lợi nhuận cửa hàng','Lãi gộp − hao hụt − thuê mặt bằng − nhân sự − điện nước − logistics − khác',A=>{const t=A.t12;return T_(t.gm)+' − '+T_(t.shr)+' − '+T_(t.rent)+' − '+T_(t.staff)+' − '+T_(t.util)+' − '+T_(t.logi)+' − '+T_(t.other)+' = '+T_(t.profit)}],
+ pln:['% LN (biên lợi nhuận)','Lợi nhuận cửa hàng ÷ DTT · âm = cửa hàng lỗ',A=>T_(A.t12.profit)+' ÷ '+T_(A.t12.rev)+' = '+fP(A.t12.margin)],
+ m2:['DT/m²/tháng','(DTT 12 tháng ÷ số tháng mở) ÷ diện tích bán hàng · bảng vùng lấy trung vị các cửa hàng',A=>{const x=exStore(A);return x?x.s.id+': '+fMn(x.rev,0)+' ÷ '+x.n+' tháng ÷ '+nf(x.s.area)+' m² = '+nf(x.revM2/1e6,2)+' tr':'—'}],
+ cr:['CR (tỷ lệ chuyển đổi)','Số hoá đơn ÷ lượt khách vào (camera đếm người)',A=>nf(A.t12.bills/1e6,1)+' triệu hoá đơn ÷ '+nf(A.t12.trf/1e6,1)+' triệu lượt vào = '+fP(A.t12.cr)],
+ aov:['AOV (giá trị hoá đơn TB)','DTT ÷ số hoá đơn',A=>T_(A.t12.rev)+' ÷ '+nf(A.t12.bills/1e6,1)+' triệu hoá đơn = '+K_(A.t12.aov)],
+ chlo:['CH lỗ','Đếm cửa hàng đủ 12 tháng có lợi nhuận cửa hàng < 0',A=>nf(A.full.filter(x=>x.profit<0).length)+' / '+nf(A.full.length)+' cửa hàng đủ 12 tháng đang lỗ'],
+ trf:['Lượt vào (traffic)','Σ số người đi qua cửa (camera) · traffic/cửa hàng/ngày = lượt vào ÷ số cửa hàng ÷ 365',A=>nf(A.t12.trf/1e6,0)+' triệu ÷ '+nf(A.S.length)+' ÷ 365 = '+nf(A.t12.trf/(A.S.length||1)/365,0)+' lượt/cửa hàng/ngày'],
+ oos:['Tỷ lệ hết hàng (OOS)','Số mã hết hàng ÷ số mã trong danh mục, bình quân theo trọng số DTT','Cửa hàng có 5,000 mã, 250 mã hết → 250 ÷ 5,000 = 5.0%'],
+ lost:['Doanh thu mất do hết hàng','DTT × OOS ÷ (1 − OOS) × 60% · giả định 60% khách không mua món thay thế',A=>T_(A.t12.rev)+' × '+fP(A.t12.oos)+' ÷ (1 − '+fP(A.t12.oos)+') × 60% ≈ '+T_(A.t12.lost)]
+};
+const FX={
+ pl:[
+  ['Điểm ưu tiên yêu cầu','0.4 × Tác động + 0.3 × Khẩn cấp + 0.15 × (10 − Công sức) + 0.15 × Sẵn dữ liệu (mỗi tiêu chí 1–10)',()=>{const r=REQS[0];return 'Yêu cầu A: 0.4×'+r.imp+' + 0.3×'+r.urg+' + 0.15×(10−'+r.eff+') + 0.15×'+r.data+' = '+nf(score(r),2)}],
+  ['Ma trận ưu tiên','Trục ngang: Khẩn cấp · trục dọc: Tác động · ngưỡng 6','Tác động 9, Khẩn cấp 9 → ô "Làm ngay"; Tác động 8, Khẩn cấp 4 → "Lên lịch"'],
+  ['MECE','Các nhánh con không trùng nhau và cộng lại đủ nhánh cha','Lợi nhuận = Doanh thu − Chi phí; Doanh thu = Lượt vào × CR × AOV']
+ ],
+ ov:['ch','dtt','lfl','ln','pln','m2','cr','aov','chlo',
+  ['DTT so kế hoạch','DTT thực tế tháng ÷ kế hoạch tháng',A=>A.target[18]?'T7/2026: '+T_(A.mon[18].rev)+' ÷ '+T_(A.target[18])+' = '+fP(A.mon[18].rev/A.target[18]):'—'],
+  ['PVM (phân rã tăng trưởng)','Δ Lượt vào = (T₁ − T₀) × CR₀ × AOV₀ · Δ CR = T₁ × (CR₁ − CR₀) × AOV₀ · Δ AOV = T₁ × CR₁ × (AOV₁ − AOV₀) · cửa hàng mới tách riêng',A=>{const P=pvm(A);return P?T_(P.base)+' + mới '+T_(P.eN)+' + lượt vào '+T_(P.eT)+' + CR '+T_(P.eC)+' + AOV '+T_(P.eA)+' = '+T_(P.end):'—'}],
+  ['Dự báo tháng tới','DTT cùng tháng năm trước × (DTT T5–T8/2026 ÷ DTT T5–T8/2025)',A=>{const m=A.mon,g=sum(m.slice(16,20).map(x=>x.rev))/sum(m.slice(4,8).map(x=>x.rev));return 'T9/2026 = '+T_(m[8].rev)+' × '+nf(g,3)+' = '+T_(m[8].rev*g)}],
+  ['Cửa hàng bất thường','z = (DTT T8/2026 − kỳ vọng) ÷ (độ lệch chuẩn × hệ số mùa) · kỳ vọng = TB 6 tháng trước đã khử mùa × hệ số mùa T8 · gắn cờ khi z < −2.5',A=>{const a=anomalies(A)[0];return a?a.x.s.id+': thực tế '+fMn(a.act)+' so kỳ vọng '+fMn(a.exp)+' → z = '+nf(a.z,1):'Không có cửa hàng nào z < −2.5'}]],
+ op:['ln','pln','chlo',
+  ['Định lượng cơ hội','Σ (mức trung vị − mức hiện tại) × doanh thu liên quan × biên đóng góp (≈13%) · chỉ tính 25% cửa hàng yếu nhất','CR 60% → trung vị 66.6%, 1.8 triệu lượt vào × 6.6 điểm × AOV 170k × 13% ≈ 2.6 tỷ/năm'],
+  ['Pareto','% lợi nhuận luỹ kế khi xếp cửa hàng từ lãi nhiều → lỗ nhiều','Cộng dồn đến cửa hàng thứ 398 (43%) thì đạt 80% lợi nhuận dương'],
+  ['Nhóm ABC','A: tạo 80% lợi nhuận dương · B: 15% tiếp theo · C: phần còn lại','Cửa hàng có luỹ kế 85% → nhóm B; luỹ kế 97% → nhóm C'],
+  ['Hệ số yếu tố (driver)','Hồi quy tuyến tính trên biến chuẩn hoá z = (x − TB) ÷ độ lệch chuẩn → % LN · R² = % khác biệt được giải thích',A=>{const d=drivers(A);return d?'Hệ số '+esc(d.rows[0].n)+' = '+nf(d.rows[0].b,2)+': tăng 1 độ lệch chuẩn thì % LN giảm '+nf(Math.abs(d.rows[0].b),2)+' độ lệch chuẩn':'Cần ≥ 30 cửa hàng'}],
+  ['Nhóm tương đồng (k-means)','Gom 3 nhóm theo AOV, lượt khách/m²/ngày, % thành viên (đã chuẩn hoá); cơ hội = 30% khoảng cách tới top 25% của nhóm','Cửa hàng % LN 2%, top 25% nhóm 6%, DTT 20 tỷ → (6% − 2%) × 20 tỷ × 30% = 240 tr'],
+  ['Mô phỏng what-if','DTT mới = Lượt vào × (1 + Δ) × (CR + Δ) × AOV × (1 + Δ); các dòng chi phí tính lại','Lượt vào +2%, CR +1 điểm: 100 × 1.02 × 0.676 × 170k thay cho 100 × 0.666 × 170k → DTT +3.5%']],
+ st:['dtt','m2','pln','lfl','cr','aov','chlo',
+  ['Góc phần tư hiệu quả','Trục ngang: DT/m² so trung vị · trục dọc: % LN so 3%',A=>'DT/m² ≥ '+nf(A.mx/1e6,2)+' tr và % LN ≥ 3% → "Ngôi sao"; DT/m² thấp và % LN < 3% → "Cần can thiệp"'],
+  ['Nhóm tương tự','Trung vị các cửa hàng cùng vùng và cùng mô hình (trong chi tiết cửa hàng)','ST-0036 Tây Hồ so với trung vị các cửa hàng Tiêu chuẩn ở Hà Nội'],
+  ['% chi phí','Từng dòng chi phí ÷ DTT · gắn cờ thuê > 4.5% hoặc nhân sự > 7.5%',A=>{const x=exStore(A);return x?x.s.id+': thuê '+fMn(x.rent)+' ÷ '+fMn(x.rev)+' = '+fP(x.rent/x.rev):'—'}]],
+ tr:['trf','cr','aov',
+  ['UPT (số món/hoá đơn)','Tổng số món bán ÷ số hoá đơn',A=>'Bình quân '+nf(A.t12.upt,1)+' món/hoá đơn · ví dụ 12 triệu món ÷ 1.5 triệu hoá đơn = 8.0'],
+  ['Phễu mua hàng','Lượt vào → số hoá đơn (= lượt vào × CR) → hoá đơn có mua kèm · mỗi tầng % so tầng đầu',A=>'100 lượt vào → '+nf(A.t12.cr*100,0)+' hoá đơn → '+nf(A.t12.cr*A.t12.att*100,0)+' hoá đơn có mua kèm'],
+  ['Traffic theo giờ','Lượt vào trung bình mỗi giờ theo thứ, cộng các cửa hàng đang lọc','Khung 18–19h CN cao nhất → xếp thêm thu ngân'],
+  ['DTT','Lượt vào × CR × AOV',A=>nf(A.t12.trf/1e6,1)+' tr × '+fP(A.t12.cr)+' × '+K_(A.t12.aov)+' = '+T_(A.t12.rev)]],
+ kh:[
+  ['% DT từ thành viên','DT hoá đơn có mã thành viên ÷ DTT','17,000 tỷ ÷ 30,586 tỷ = 56%'],
+  ['Tỷ lệ giữ chân (cohort)','Khách của đợt tháng M còn mua ở tháng M + k ÷ số khách mua lần đầu tháng M','Đợt T1/25 có 100,000 khách, 45,000 còn mua ở tháng +3 → 45%'],
+  ['RFM','R: số ngày từ lần mua gần nhất · F: số lần mua · M: tổng chi tiêu; mỗi trục chấm 1–5 theo phân vị','R = 5, F = 5, M = 5 → "Trung thành cao"; R = 1 → "Đã rời bỏ"'],
+  ['CLV (giá trị vòng đời)','AOV × số lần mua/tháng × 24 tháng × xác suất còn mua','200k × 4 lần × 24 tháng × 51% ≈ 9.8 tr'],
+  ['Support','Số hoá đơn có cả A và B ÷ tổng hoá đơn','Rau lá + thịt heo xuất hiện trong 61,000 / 1,000,000 hoá đơn = 6.1%'],
+  ['Confidence','Số hoá đơn có cả A và B ÷ số hoá đơn có A','61,000 ÷ 160,000 hoá đơn có rau lá = 38%'],
+  ['Lift','Confidence ÷ (% hoá đơn có B) · > 1 là mua cùng nhiều hơn ngẫu nhiên','38% ÷ 16% hoá đơn có thịt heo = 2.4'],
+  ['AOV so TB (loại chuyến mua)','AOV của loại chuyến ÷ AOV chung','Mua dự trữ 302k ÷ 170k = 1.78×']],
+ nw:['ch',
+  ['Đường cong trưởng thành','DTT trung bình mỗi cửa hàng ở tháng thứ k kể từ ngày mở, theo đợt mở; so với cửa hàng trưởng thành','Tháng thứ 10: 2.3 tỷ ÷ 2.55 tỷ của cửa hàng trưởng thành = 90%'],
+  ['Tháng có lãi đầu tiên','Tháng đầu tiên lợi nhuận cửa hàng ≥ 0, tính từ tháng khai trương','Mở T1/2025, lãi lần đầu T8/2025 → tháng thứ 8'],
+  ['Chỉ số so kỳ vọng','DTT T8/2026 ÷ DTT kỳ vọng ở cùng tuổi, cùng vùng và mô hình · < 1 là chậm','1.6 tỷ ÷ 2.0 tỷ kỳ vọng = 0.80']],
+ nt:[
+  ['Ăn khách (cannibalization)','Lượt vào CH cũ 3 tháng sau ÷ 3 tháng trước khi CH mới mở − 1 (đã khử mùa) · tác động thực = nhóm gần − nhóm đối chứng 2–3.5 km','< 0,5 km: −7.2% − (+3.0% đối chứng) = −10.2%'],
+  ['DT ước mất','DTT CH cũ × tác động ÷ (1 − tác động), cộng các CH cũ trong 1.5 km','24 tỷ × 10% ÷ 90% = 2.7 tỷ cho 1 cửa hàng cũ'],
+  ['DT/mét kệ/tháng','DTT tháng TB ÷ số mét kệ trưng bày',A=>{const x=exStore(A);return x?x.s.id+': '+fMn(x.revM,0)+' ÷ '+nf(x.s.shelfM)+' m kệ = '+nf(x.revM/x.s.shelfM/1e6,1)+' tr':'—'}],
+  ['GMROI','Lãi gộp năm ÷ tồn kho bình quân (giá vốn)',A=>{const x=exStore(A);if(!x)return '—';const inv=(x.rev/365)*(1-x.gm/x.rev)*x.s.cover;return x.s.id+': '+fMn(x.gm)+' ÷ '+fMn(inv)+' = '+nf(x.gm/inv,1)+'×'}],
+  ['Số ngày tồn kho','Tồn kho bình quân (giá vốn) ÷ giá vốn hàng bán mỗi ngày','2.2 tỷ tồn ÷ 81 tr giá vốn/ngày = 27 ngày'],
+  ['Tuân thủ planogram','Số vị trí trưng bày đúng sơ đồ ÷ tổng vị trí kiểm tra','172 ÷ 200 vị trí = 86%'],
+  ['Lãi hàng tươi sau hao hụt','Lãi gộp hàng tươi − phần mất khi giảm giá − hàng huỷ','Giảm giá từ 19h: 1,900 − 180 − 93 = 1,627 tỷ'],
+  ['NPV 3 năm','Σ dòng tiền năm t ÷ (1 + 10%)ᵗ − vốn ban đầu (t = 1…3); hệ số gộp = 2.487',A=>{const c=closeCands(A)[0];if(!c)return 'Không có cửa hàng lỗ';const o=c.opts[3];return c.x.s.id+' đóng cửa: −300 tr + 35% × DTT '+fMn(c.x.rev)+' × biên đóng góp '+fP(CM(c.x))+' × 2.487 = '+fBn(o.v,2)}]],
+ iv:['oos','lost',
+  ['Hao hụt','Giá trị hàng mất, hỏng, huỷ ÷ DTT',A=>T_(A.t12.shr)+' ÷ '+T_(A.t12.rev)+' = '+fP(A.t12.shr/A.t12.rev,2)],
+  ['Hàng cận date','Giá trị tồn còn < 30 ngày hạn dùng ÷ giá trị tồn','80 tr ÷ 2.2 tỷ = 3.6%'],
+  ['Hàng bán chậm','Giá trị tồn không bán trong 60 ngày ÷ giá trị tồn','150 tr ÷ 2.2 tỷ = 6.8%']],
+ pm:[
+  ['Chi phí khuyến mãi','Giảm giá + quà tặng + trưng bày của chương trình ÷ DTT','Chi phí 45 tỷ ÷ DT trong CT 300 tỷ = 15%'],
+  ['Uplift DT','DT trong chương trình ÷ DT nền dự kiến − 1','300 tỷ ÷ 250 tỷ − 1 = +20%'],
+  ['Lãi gộp tăng thêm','DT tăng thêm × biên lãi gộp + thay đổi lãi gộp do giá bán','50 tỷ × 21% + (−3 tỷ) = 7.5 tỷ'],
+  ['ROI khuyến mãi','Lãi gộp tăng thêm ÷ chi phí chương trình · > 1 là có lời','7.5 tỷ ÷ 5 tỷ = 1.5'],
+  ['Tỷ lệ mua kèm','Hoá đơn có món mua kèm ÷ tổng hoá đơn',A=>'Bình quân '+fP(A.t12.att)+' · ví dụ 280 ÷ 1,000 hoá đơn = 28%'],
+  ['DiD (so với đối chứng)','(Sau ÷ Trước − 1) nhóm chạy CT − (Sau ÷ Trước − 1) nhóm không chạy','Nhóm chạy +9.5%, đối chứng +3.0% → hiệu quả thật +6.5%']],
+ hr:[
+  ['DT/giờ công','DTT ÷ tổng giờ công · giờ công = số nhân viên × 208 giờ/tháng',A=>T_(A.t12.rev)+' ÷ '+nf(A.t12.hours/1e6,2)+' triệu giờ = '+K_(A.t12.rev/A.t12.hours)],
+  ['Điểm phục vụ','TB điểm chấm qua camera và khảo sát khách (thang 100)','Camera 82, khảo sát 86 → 84'],
+  ['Phiếu bảo trì TB','Số phiếu sửa chữa ÷ số cửa hàng ÷ số tháng','31 phiếu ÷ 12 tháng = 2.6 phiếu/cửa hàng/tháng'],
+  ['Nhân viên cần','Lượt khách trong giờ ÷ 16 khách/người/giờ (gồm thu ngân và bổ sung hàng)','112 khách lúc 18h ÷ 16 = 7 người'],
+  ['Thừa / thiếu người','Nhân viên có trong ca − nhân viên cần · âm là thiếu','6.3 − 7.0 = −0.7 → thiếu người']],
+ qa:[['Hỏi đáp dữ liệu','Mỗi câu hỏi gắn với 1 phép tính cố định trên dữ liệu đang lọc','"Cửa hàng nào lỗ?" → lọc % LN < 0, xếp theo lợi nhuận']],
+ ai:[['Kiểm tra đối soát','Tổng từng cửa hàng = tổng chuỗi · số trên nhận định = số trên biểu đồ',A=>'Σ DTT '+nf(A.S.length)+' cửa hàng = '+T_(sum(A.ST.map(x=>x.rev)))+' = tổng chuỗi '+T_(A.t12.rev)]]
+};
+function formulaCard(tab,A){
+  const rows=(FX[tab]||[]).map(r=>typeof r==='string'?FX_COMMON[r]:r);if(!rows.length)return '';
+  const ex=r=>{try{return typeof r[2]==='function'?r[2](A):esc(r[2]||'')}catch(e){return '—'}};
+  return '<section class="sec fx">'+card('Công thức tính các chỉ số','Định nghĩa cố định dùng cho mọi biểu đồ, bảng và nhận định ở trên · <span class="fxlive">●</span> ví dụ tính trên số đang lọc, còn lại là ví dụ minh hoạ',
+   '<div class="tbl fxt"><table><thead><tr><th>Chỉ số</th><th>Công thức</th><th>Ví dụ</th></tr></thead><tbody>'+
+   rows.map(r=>'<tr style="cursor:default"><td data-l="Chỉ số"><b>'+esc(r[0])+'</b></td><td data-l="Công thức">'+esc(r[1])+'</td><td data-l="Ví dụ" class="fxe">'+(typeof r[2]==='function'?'<span class="fxlive">●</span> ':'')+ex(r)+'</td></tr>').join('')+
+   '</tbody></table></div>')+'</section>'}
+/* ================= TỔNG HỢP ================= */
+const PLANF=[1.02,.985,1.06,1.03,1.01,1.055,1.025,1.0];
+const F={reg:'ALL',fmt:'ALL',age:'ALL'};
+const FIELDS=['rev','profit','gm','shr','trf','bills','lost','promo','hours','rent','staff','util','logi','other','tick'];
+const sum=a=>a.reduce((x,y)=>x+y,0);
+const median=a=>{const b=[...a].sort((x,y)=>x-y);if(!b.length)return 0;const h=b.length>>1;return b.length%2?b[h]:(b[h-1]+b[h])/2};
+const pct=(a,p)=>{const b=[...a].sort((x,y)=>x-y);return b[Math.min(b.length-1,Math.max(0,Math.floor(p*b.length)))]};
+function filt(){return STORES.filter(s=>(F.reg==='ALL'||s.reg.k===F.reg)&&(F.fmt==='ALL'||s.fmt.k===F.fmt)&&(F.age==='ALL'||s.age===F.age))}
+function storeStats(s){
+  const o={s};FIELDS.forEach(f=>o[f]=0);let n=0,oosW=0,qc=0,att=0,near=0,slow=0,upt=0;
+  for(let i=W12[0];i<=W12[1];i++){const m=s.m[i];if(!m)continue;n++;FIELDS.forEach(f=>o[f]+=m[f]);oosW+=m.oos*m.rev;qc+=m.qc;att+=m.att*m.bills;near+=m.near;slow+=m.slow;upt+=m.upt*m.bills}
+  o.n=n;o.margin=o.profit/o.rev;o.revM=o.rev/n;o.revM2=o.revM/s.area;o.cr=o.bills/o.trf;o.aov=o.rev/o.bills;o.oos=oosW/o.rev;o.qc=qc/n;o.att=att/o.bills;o.near=near/n;o.slow=slow/n;o.upt=upt/o.bills;o.shrP=o.shr/o.rev;o.rph=o.rev/o.hours;
+  if(s.open<60){let a=0,b=0;for(let i=0;i<8;i++){a+=s.m[i].rev;b+=s.m[i+12].rev}o.lfl=b/a-1}else o.lfl=null;
+  o.spark=s.m.map(m=>m?m.rev:null);
+  const g=Math.floor;o.full=n===12;
+  return o}
+const STAT=new Map(STORES.map(s=>[s.id,storeStats(s)]));
+function quadOf(st,mx,my){return st.revM2>=mx?(st.margin>=my?0:1):(st.margin>=my?2:3)}
+const QUAD=[{n:'Ngôi sao',d:'DT/m² cao, lãi cao',c:'var(--good)'},{n:'Bán tốt, lãi mỏng',d:'Kiểm tra giá thuê, nhân sự, khuyến mãi',c:'var(--warn)'},{n:'Hiệu quả, còn dư địa',d:'Lãi tốt nhưng traffic thấp',c:'var(--s1)'},{n:'Cần can thiệp',d:'DT/m² thấp và lãi thấp',c:'var(--crit)'}];
+function agg(){
+  const S=filt(),ST=S.map(s=>STAT.get(s.id));
+  const mon=MONTHS.map(M=>{const o={open:0,oosW:0,attW:0,qc:0,uptW:0,crN:0};FIELDS.forEach(f=>o[f]=0);S.forEach(s=>{const m=s.m[M.i];if(!m)return;o.open++;FIELDS.forEach(f=>o[f]+=m[f]);o.oosW+=m.oos*m.rev;o.attW+=m.att*m.bills;o.qc+=m.qc;o.uptW+=m.upt*m.bills});o.cr=o.bills/o.trf;o.aov=o.rev/o.bills;o.oos=o.oosW/o.rev;o.att=o.attW/o.bills;o.upt=o.uptW/o.bills;o.margin=o.profit/o.rev;o.qc/=o.open||1;return o});
+  const t12={};FIELDS.forEach(f=>t12[f]=sum(mon.slice(W12[0],W12[1]+1).map(m=>m[f])));
+  t12.cr=t12.bills/t12.trf;t12.aov=t12.rev/t12.bills;t12.margin=t12.profit/t12.rev;t12.oos=sum(mon.slice(W12[0]).map(m=>m.oosW))/t12.rev;t12.att=sum(mon.slice(W12[0]).map(m=>m.attW))/t12.bills;t12.upt=sum(mon.slice(W12[0]).map(m=>m.uptW))/t12.bills;
+  const L=S.filter(s=>s.open<60);let a=0,b=0;L.forEach(s=>{for(let i=0;i<8;i++){a+=s.m[i].rev;b+=s.m[i+12].rev}});
+  const ytd25=sum(mon.slice(0,8).map(m=>m.rev)),ytd26=sum(mon.slice(12,20).map(m=>m.rev));
+  const full=ST.filter(x=>x.full),mx=median(full.map(x=>x.revM2)),my=.03;
+  const area=sum(S.filter(s=>s.m[19]).map(s=>s.area));
+  return {S,ST,full,mon,t12,lfl:a?b/a-1:null,lflN:L.length,ytdG:ytd25?ytd26/ytd25-1:null,mx,my,area,openNow:mon[19].open,
+    target:mon.map((m,i)=>i>=12?m.rev*PLANF[i-12]:null)}
+}
+/* ================= SẢN PHẨM & GIÁ (bản 2) =================
+   DTT = Σ (SL × Giá) theo ngành hàng. Tổng DTT và tổng SL món mỗi tháng lấy đúng
+   từ dữ liệu cửa hàng (SL = UPT × số hoá đơn), chỉ phần chia theo ngành hàng là mô phỏng thêm. */
+const CATQ=[ // giá/món gốc, tăng giá/năm, xu hướng nhu cầu/năm, độ co giãn theo giá
+ {p0:17e3,inf:.07,tr:.05,el:-.6},   // Rau củ quả
+ {p0:64e3,inf:.09,tr:-.03,el:-1.1}, // Thịt, cá tươi
+ {p0:29e3,inf:.04,tr:.02,el:-.4},   // Sữa & trứng
+ {p0:25e3,inf:.035,tr:.03,el:-.5},  // Đồ khô & gia vị
+ {p0:14e3,inf:.025,tr:.07,el:-1.4}, // Đồ uống
+ {p0:20e3,inf:.06,tr:-.01,el:-1.2}, // Bánh kẹo
+ {p0:48e3,inf:.03,tr:.02,el:-.8},   // Đông lạnh
+ {p0:56e3,inf:.015,tr:-.02,el:-.3}  // Hoá mỹ phẩm
+];
+const RSP=rng(31337);const NSP=()=>{let u=0,v=0;while(!u)u=RSP();while(!v)v=RSP();return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v)};
+const CATRAW=CATS.map((c,ci)=>{const q=CATQ[ci],P=[],W=[];
+  MONTHS.forEach(M=>{const t=M.i/12,tet=(M.i===0||M.i===13);
+    let p=q.p0*Math.pow(1+q.inf,t)*(1+.012*NSP());if(tet&&(ci===4||ci===5))p*=.96;
+    let qty=c.sh/q.p0*Math.pow(1+q.tr,t)*Math.pow(p/q.p0,q.el)*(1+.02*NSP());if(tet)qty*=[1,1.15,1,1,1.25,1.3,1.05,1][ci];
+    P.push(p);W.push(p*qty)});
+  return {P,W}});
+const CATW=MONTHS.map(M=>{const s=CATRAW.reduce((a,r)=>a+r.W[M.i],0);return CATRAW.map(r=>r.W[M.i]/s)});
+/* mã hàng (SKU): tỷ trọng doanh thu trong ngành theo phân phối log-normal */
+const SKUN=[120,90,110,260,180,200,100,180];
+const SKUS=[];CATS.forEach((c,ci)=>{const w=[];for(let k=0;k<SKUN[ci];k++)w.push(Math.exp(1.35*NSP()));const s=w.reduce((a,b)=>a+b,0);w.forEach(x=>SKUS.push({ci,w:x/s}))});
+
+function catSplit(rev,qty){return MONTHS.map(M=>{const i=M.i,R=rev[i],Qt=qty[i];if(!R||!Qt)return null;
+  /* Giữ giá từng ngành đúng như mô phỏng; nghiêng tỷ trọng DT giữa ngành rẻ/đắt (hệ số th) sao cho Σ DT ngành ÷ giá ngành = đúng SL món thực tế */
+  const P=CATRAW.map(r=>r.P[i]),w=CATW[i],tgt=R/Qt;
+  const avg=th=>{const u=w.map((x,c)=>x*Math.pow(P[c]/27e3,th));return sum(u)/sum(u.map((x,c)=>x/P[c]))};
+  let lo=-8,hi=8;for(let k=0;k<60;k++){const m=(lo+hi)/2;if(avg(m)<tgt)lo=m;else hi=m}
+  const u=w.map((x,c)=>x*Math.pow(P[c]/27e3,(lo+hi)/2)),su=sum(u);
+  return CATS.map((c,ci)=>{const r=R*u[ci]/su;return {r,p:P[ci],q:r/P[ci]}})})}
+function monRQ(stores){const rev=MONTHS.map(()=>0),qty=MONTHS.map(()=>0);stores.forEach(s=>s.m.forEach((m,i)=>{if(!m)return;rev[i]+=m.rev;qty[i]+=m.upt*m.bills}));return {rev,qty}}
+function catWin(cs,lo,hi){return CATS.map((c,ci)=>{let r=0,q=0;for(let i=lo;i<=hi;i++){const x=cs[i]&&cs[i][ci];if(x){r+=x.r;q+=x.q}}return {c,ci,r,q,p:q?r/q:0}})}
+/* Cầu Giá – Lượng – Mix: cửa hàng so sánh được (mở trước 2024), T1–T8/2025 so T1–T8/2026 */
+function prodPV(A){
+  const L=A.S.filter(s=>s.open<60);if(!L.length)return null;
+  const a=monRQ(L),cs=catSplit(a.rev,a.qty),c0=catWin(cs,0,7),c1=catWin(cs,12,19);
+  const R0=sum(c0.map(x=>x.r)),R1=sum(c1.map(x=>x.r)),Q0=sum(c0.map(x=>x.q)),Q1=sum(c1.map(x=>x.q)),P0=R0/Q0,P1=R1/Q1;
+  const eV=(Q1-Q0)*P0,eP=sum(c1.map((x,ci)=>x.q*(x.p-c0[ci].p))),eM=Q1*sum(c0.map((x,ci)=>x.p*(c1[ci].q/Q1-x.q/Q0)));
+  let n0=0,n1=0;A.S.filter(s=>s.open>=60).forEach(s=>{for(let i=0;i<8;i++){const m0=s.m[i],m1=s.m[i+12];n0+=m0?m0.rev:0;n1+=m1?m1.rev:0}});
+  const cat=c0.map((x,ci)=>{const y=c1[ci];return {c:x.c,ci,r0:x.r,r1:y.r,dP:y.p/x.p-1,dQ:y.q/x.q-1,eP:y.q*(y.p-x.p),eV:x.p*(y.q-x.q)}});
+  return {c0,c1,cat,R0,R1,Q0,Q1,P0,P1,eV,eP,eM,eN:n1-n0,base:R0+n0,end:R1+n1,nL:L.length,pxChg:eP/(R1-eP)}}
+/* 12 tháng gần nhất + chỉ số giá theo tháng, trên toàn bộ cửa hàng đang lọc */
+function prodAll(A){
+  const rev=A.mon.map(m=>m.rev),qty=A.mon.map(m=>m.uptW),cs=catSplit(rev,qty);
+  const t=catWin(cs,W12[0],W12[1]).map(x=>Object.assign(x,{gm:x.c.gm}));
+  const b=catWin(cs,0,11),bR=sum(b.map(x=>x.r)),bQ=sum(b.map(x=>x.q)),bQm=b.map(x=>x.q/12);
+  const idx=MONTHS.map(M=>{const x=cs[M.i];if(!x)return null;
+    return {avg:(rev[M.i]/qty[M.i])/(bR/bQ)*100,las:sum(x.map((y,ci)=>y.p*bQm[ci]))/sum(b.map((y,ci)=>y.p*bQm[ci]))*100}});
+  const R=sum(t.map(x=>x.r)),Q=sum(t.map(x=>x.q));
+  /* Pareto / ABC mã hàng */
+  const sk=SKUS.map(s=>({ci:s.ci,r:t[s.ci].r*s.w})).sort((x,y)=>y.r-x.r);let cum=0;
+  sk.forEach(s=>{cum+=s.r;s.cum=cum/R;s.g=s.cum-s.r/R<.8?'A':s.cum-s.r/R<.95?'B':'C'});
+  const nA=sk.filter(s=>s.g==='A').length,curve=[];for(let k=0;k<=20;k++){const n=Math.round(sk.length*k/20);curve.push(n?sk[n-1].cum:0)}
+  const abc=CATS.map((c,ci)=>{const g=x=>sk.filter(s=>s.ci===ci&&s.g===x);return {c,A:g('A').length,B:g('B').length,C:g('C').length,cR:sum(g('C').map(s=>s.r))}});
+  return {t,idx,R,Q,sk,nA,curve,abc,cR:sum(sk.filter(s=>s.g==='C').map(s=>s.r))}}
+
+function secProd(A){
+  const P=prodPV(A),X=prodAll(A),t=A.t12;
+  const two='<div class="row c2">'+
+   card('Cách nhìn 1 · từ cửa hàng','Các trang Tổng quan, Traffic & chuyển đổi','<p style="margin:0"><b>DTT = Lượt vào × Tỷ lệ chuyển đổi × AOV</b></p><p class="note" style="margin:6px 0 0">Trả lời: cửa hàng có kéo được khách không, khách vào có mua không, mỗi hoá đơn bao nhiêu tiền. Dùng cho vận hành cửa hàng và marketing.</p>')+
+   card('Cách nhìn 2 · từ sản phẩm','Trang này','<p style="margin:0"><b>DTT = Σ (SL bán × Giá) của từng ngành hàng / mã</b></p><p class="note" style="margin:6px 0 0">Trả lời: bán gì, bao nhiêu món, giá bao nhiêu; doanh thu tăng nhờ bán nhiều hơn, nhờ tăng giá hay nhờ khách đổi sang hàng khác (mix). Dùng cho ngành hàng, thu mua, định giá.</p>')+'</div>';
+  if(!P)return '<section class="sec">'+two+'<div class="card">Bộ lọc đang chọn không có cửa hàng mở trước 2024 nên không tách được Giá – Lượng – Mix. Chọn "Tuổi cửa hàng: Tất cả" hoặc "Mở trước 2024".</div></section>';
+  const g=P.R1/P.R0-1,top=[...P.cat].sort((a,b)=>b.dP-a.dP),sens=P.cat.filter(c=>c.dP>0&&c.dQ<0).sort((a,b)=>a.dQ/a.dP-b.dQ/b.dP)[0],win=P.cat.filter(c=>c.dP>.01&&c.dQ>0).sort((a,b)=>b.dQ-a.dQ)[0];
+  const ins=['<strong>Cửa hàng so sánh được tăng '+fPt(g)+'</strong>: lượng món đóng góp '+fBn(P.eV,0)+', giá '+fBn(P.eP,0)+', mix '+fBn(P.eM,0)+'. Phần lớn tăng trưởng đến từ <strong>bán được nhiều món hơn</strong>, đây là tăng trưởng thật, không phải chỉ do tăng giá.',
+    '<strong>Giá bình quân/món chỉ đổi '+fPt(P.P1/P.P0-1)+', nhưng giá từng ngành hàng tăng '+fPt(P.pxChg)+'</strong>. Khoảng chênh là do khách chuyển sang ngành rẻ hơn (mix '+fBn(P.eM,0)+'). Nếu chỉ nhìn AOV hoặc giá bình quân sẽ kết luận nhầm là "giá không tăng".<span class="hyp">Giả thuyết</span>',
+    sens?'<strong>'+esc(sens.c.n)+' nhạy giá nhất</strong>: giá '+fPt(sens.dP)+', lượng '+fPt(sens.dQ)+' (co giãn ≈ '+nf(sens.dQ/sens.dP,1)+'). Tăng giá tiếp ở ngành này sẽ mất khách; nên giữ giá các mã chủ lực, bù lãi bằng mã khác.'+(win?' Ngược lại <strong>'+esc(win.c.n)+'</strong> tăng giá '+fPt(win.dP)+' mà lượng vẫn '+fPt(win.dQ)+'.':''):'Không có ngành nào vừa tăng giá vừa giảm lượng trong bộ lọc này.',
+    '<strong>'+fP(X.nA/X.sk.length,0)+' mã ('+nf(X.nA)+'/'+nf(X.sk.length)+') tạo 80% doanh thu</strong>. Nhóm C có '+nf(sum(X.abc.map(a=>a.C)))+' mã nhưng chỉ '+fP(X.cR/X.R)+' doanh thu: ứng viên rà soát danh mục, nhường kệ cho mã nhóm A (đối chiếu hàng bán chậm ở trang Tồn kho).<span class="hyp">Giả thuyết</span>'];
+  const wf=[{n:'DTT T1–T8/2025',v:P.base,total:true},{n:'Cửa hàng mở từ 2024',v:P.eN},{n:'Lượng món (LFL)',v:P.eV},{n:'Giá (LFL)',v:P.eP},{n:'Mix ngành hàng (LFL)',v:P.eM},{n:'DTT T1–T8/2026',v:P.end,total:true}];
+  const mx=Math.max(...P.cat.map(c=>c.r1));
+  const pts=P.cat.map((c,i)=>({x:c.dP,y:c.dQ,c:SER[i],r:5+9*Math.sqrt(c.r1/mx),cat:c}));
+  return '<section class="sec">'+
+   '<div class="kpis">'+kpi('SL bán 12 tháng',nf(X.Q/1e6,0),'triệu món',nf(X.Q/t.bills,1)+' món/hoá đơn')+kpi('Giá bình quân/món',nf(X.R/X.Q/1e3,1),'k đ','DTT ÷ SL món')+kpi('Tăng trưởng LFL',fPt(g),'','T1–T8/2026 so 2025')+kpi('Do lượng món',fBn(P.eV,0),'',fPt(P.eV/P.R0)+' DTT kỳ trước')+kpi('Do giá',fBn(P.eP,0),'','giá ngành '+fPt(P.pxChg))+kpi('Do mix',fBn(P.eM,0),'',P.eM<0?'chuyển sang hàng rẻ hơn':'chuyển sang hàng đắt hơn')+'</div>'+
+   two+aiBox('Nhận định tự động · sản phẩm & giá',ins)+
+   card('Cầu Giá – Lượng – Mix','DTT T1–T8/2025 → T1–T8/2026 · cửa hàng so sánh được ('+nf(P.nL)+') tách thành lượng, giá, mix; cửa hàng mới tách riêng',waterfall(wf,v=>fBn(v,0))+'<p class="note">Cùng điểm đầu và điểm cuối với cầu ở trang Tổng quan, chỉ khác cách chia: Tổng quan chia theo lượt vào × CR × AOV, trang này chia theo SL × giá. Các phần cộng lại đúng bằng mức tăng.</p>')+
+   '<div class="row c2">'+card('Giá bình quân/món và giá thật của các ngành hàng','Chỉ số, bình quân 2025 = 100 · khoảng cách giữa 2 đường là hiệu ứng mix',lineChart({labels:MONTHS.map(x=>x.lab),series:[{name:'Giá ngành hàng (giữ nguyên cơ cấu 2025)',color:'var(--s2)',vals:X.idx.map(x=>x&&x.las)},{name:'Giá bình quân/món (DTT ÷ SL)',color:'var(--s1)',vals:X.idx.map(x=>x&&x.avg),dash:true}],fmt:v=>nf(v,1),min0:false,h:240}))+
+   card('Giá tăng thì lượng thay đổi thế nào','Mỗi chấm là 1 ngành hàng · T1–T8/2026 so 2025 · cửa hàng so sánh được · chấm càng to doanh thu càng lớn',scatter({pts,h:300,xfmt:v=>fPt(v,0),yfmt:v=>fPt(v,0),xlab:'Thay đổi giá →',ylab:'↑ Thay đổi lượng',medX:0,medY:0,qlab:[[1,1,'Tăng giá vẫn bán thêm'],[1,0,'Tăng giá, mất lượng'],[0,1,'Giảm giá, bán thêm'],[0,0,'Giảm cả giá lẫn lượng']],tip:p=>'<b>'+esc(p.cat.c.n)+'</b><div>Giá '+fPt(p.cat.dP)+' · lượng '+fPt(p.cat.dQ)+'</div><div>Co giãn ≈ '+(Math.abs(p.cat.dP)>.005?nf(p.cat.dQ/p.cat.dP,1):'—')+'</div>'}))+'</div>'+
+   card('Ngành hàng: lượng, giá và đóng góp tăng trưởng','12 tháng T9/2025–T8/2026 trên cửa hàng đang lọc · cột tăng trưởng tính trên cửa hàng so sánh được','<div class="tbl"><table><thead><tr><th>Ngành hàng</th><th class="r">DTT 12T</th><th class="r">SL (triệu món)</th><th class="r">Giá/món</th><th class="r">% lãi gộp</th><th class="r">Δ giá</th><th class="r">Δ lượng</th><th class="r">Hiệu ứng giá</th><th class="r">Hiệu ứng lượng</th></tr></thead><tbody>'+
+     X.t.map((x,i)=>{const c=P.cat[i];return '<tr style="cursor:default"><td>'+esc(x.c.n)+'</td><td class="r">'+fBn(x.r,0)+'</td><td class="r">'+nf(x.q/1e6,1)+'</td><td class="r">'+K_(x.p)+'</td><td class="r">'+fP(x.gm,0)+'</td><td class="r">'+fPt(c.dP)+'</td><td class="r '+(c.dQ<0?'dn':'up')+'">'+fPt(c.dQ)+'</td><td class="r">'+fBn(c.eP,1)+'</td><td class="r">'+fBn(c.eV,1)+'</td></tr>'}).join('')+'</tbody></table></div>')+
+   '<div class="row c2">'+card('Đường Pareto mã hàng','% doanh thu luỹ kế khi xếp '+nf(X.sk.length)+' mã từ bán chạy → bán chậm',lineChart({labels:X.curve.map((_,k)=>k*5+'%'),series:[{name:'% DT luỹ kế',color:'var(--s3)',vals:X.curve,area:true}],fmt:v=>fP(v,0),h:240,maxX:11}))+
+   card('Nhóm ABC theo ngành hàng','A: 80% DT đầu · B: 15% tiếp · C: 5% cuối','<div class="tbl"><table><thead><tr><th>Ngành hàng</th><th class="r">A</th><th class="r">B</th><th class="r">C</th><th class="r">DT nhóm C</th></tr></thead><tbody>'+X.abc.map(a=>'<tr style="cursor:default"><td>'+esc(a.c.n)+'</td><td class="r">'+nf(a.A)+'</td><td class="r">'+nf(a.B)+'</td><td class="r">'+nf(a.C)+'</td><td class="r">'+fBn(a.cR,1)+'</td></tr>').join('')+'</tbody></table></div>')+'</div>'+
+   '<p class="note">SL và giá theo ngành hàng, mã hàng là phần mô phỏng thêm ở bản 2. Tổng DTT và tổng SL món mỗi tháng khớp với các trang khác (SL = UPT × số hoá đơn).</p></section>'}
+
+FX.sp=[
+ ['DTT theo sản phẩm','Σ (SL bán × giá bình quân) của từng ngành hàng hoặc từng mã',A=>{const x=prodAll(A).t[0];return esc(x.c.n)+': '+nf(x.q/1e6,1)+' triệu món × '+K_(x.p)+' = '+T_(x.r)}],
+ ['Giá bình quân/món','DTT ÷ tổng SL món bán · SL món = UPT × số hoá đơn',A=>{const x=prodAll(A);return T_(x.R)+' ÷ '+nf(x.Q/1e6,0)+' triệu món = '+nf(x.R/x.Q/1e3,1)+'k đ'}],
+ ['Hiệu ứng lượng','(SL₁ − SL₀) × giá bình quân₀ · SL₀, SL₁: tổng món T1–T8/2025 và T1–T8/2026 của cửa hàng so sánh được',A=>{const P=prodPV(A);return P?'('+nf(P.Q1/1e6,0)+' − '+nf(P.Q0/1e6,0)+' triệu món) × '+K_(P.P0)+' = '+T_(P.eV):'—'}],
+ ['Hiệu ứng giá','Σ theo ngành: SL₁ × (giá₁ − giá₀)',A=>{const P=prodPV(A);if(!P)return '—';const c=P.c1[1],d=P.c0[1];return esc(c.c.n)+': '+nf(c.q/1e6,1)+' triệu × ('+K_(c.p)+' − '+K_(d.p)+') = '+T1_(c.q*(c.p-d.p))+' · cộng 8 ngành = '+T_(P.eP)}],
+ ['Hiệu ứng mix','SL₁ × Σ theo ngành: giá₀ × (tỷ trọng SL₁ − tỷ trọng SL₀) · âm = khách chuyển sang ngành rẻ hơn',A=>{const P=prodPV(A);return P?'Kết quả '+T_(P.eM)+' · kiểm tra: lượng + giá + mix = '+T_(P.eV+P.eP+P.eM)+' = '+T_(P.R1)+' − '+T_(P.R0):'—'}],
+ ['Chỉ số giá giữ nguyên cơ cấu','Σ (giá tháng × SL bình quân/tháng 2025) ÷ Σ (giá bình quân 2025 × SL bình quân/tháng 2025) × 100 · còn gọi là chỉ số Laspeyres','Giỏ 2025 trị giá 100 tỷ theo giá 2025, cùng giỏ đó theo giá T8/2026 là 106 tỷ → chỉ số 106'],
+ ['Độ co giãn theo giá','% thay đổi SL ÷ % thay đổi giá cùng kỳ · nhỏ hơn −1 là nhạy giá',A=>{const P=prodPV(A);if(!P)return '—';const c=P.cat[1];return esc(c.c.n)+': '+fPt(c.dQ)+' ÷ '+fPt(c.dP)+' = '+nf(c.dQ/c.dP,2)}],
+ ['Nhóm ABC mã hàng','Xếp mã theo DT giảm dần, cộng dồn: A tới 80% DT, B tới 95%, C phần còn lại',A=>{const x=prodAll(A);return nf(x.nA)+' / '+nf(x.sk.length)+' mã thuộc nhóm A = '+fP(x.nA/x.sk.length,0)+' số mã'}]
+];
+
+/* ================= GIAO DIỆN ================= */
+const TABS=[['pl','Tiếp nhận & kế hoạch'],['ov','Tổng quan'],['op','Cơ hội & mô phỏng'],['st','Hiệu quả cửa hàng'],['tr','Traffic & chuyển đổi'],['sp','Sản phẩm & giá'],['kh','Khách hàng'],['nw','Cửa hàng mới'],['nt','Mạng lưới & không gian'],['iv','Tồn kho & hao hụt'],['pm','Khuyến mãi & giỏ hàng'],['hr','Nhân sự & phục vụ'],['qa','Hỏi đáp dữ liệu'],['ai','Cách làm với AI']];
+let TAB='pl';try{const h=location.hash.slice(1);if(TABS.some(t=>t[0]===h))TAB=h;else{const s=localStorage.getItem('sm1k-tab');if(s&&TABS.some(t=>t[0]===s))TAB=s}}catch(e){}
+const $=s=>document.querySelector(s);
+function opt(el,items){el.innerHTML=items.map(i=>'<option value="'+i[0]+'">'+esc(i[1])+'</option>').join('')}
+opt($('#fRegion'),[['ALL','Toàn quốc']].concat(REGIONS.map(r=>[r.k,r.n])));
+opt($('#fFormat'),[['ALL','Tất cả']].concat(FORMATS.map(f=>[f.k,f.n])));
+opt($('#fAge'),[['ALL','Tất cả']].concat(AGES.map(a=>[a.k,a.n])));
+$('#fRegion').onchange=e=>{F.reg=e.target.value;render()};$('#fFormat').onchange=e=>{F.fmt=e.target.value;render()};$('#fAge').onchange=e=>{F.age=e.target.value;render()};
+$('#fReset').onclick=()=>{F.reg=F.fmt=F.age='ALL';$('#fRegion').value=$('#fFormat').value=$('#fAge').value='ALL';render()};
+function tabsUI(){$('#tabs').innerHTML=TABS.map(t=>'<button role="tab" aria-selected="'+(t[0]===TAB)+'" data-t="'+t[0]+'" id="tab-'+t[0]+'">'+esc(t[1])+'</button>').join('');$('#tabs').querySelectorAll('button').forEach(b=>b.onclick=()=>{TAB=b.dataset.t;try{localStorage.setItem('sm1k-tab',TAB)}catch(e){}render();window.scrollTo({top:$('.bar').offsetTop,behavior:'smooth'})})}
+const ICON_AI='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3l1.8 4.6L18.5 9.4l-4.7 1.8L12 16l-1.8-4.8L5.5 9.4l4.7-1.8z" fill="var(--accent)"/><path d="M18.5 14.5l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z" fill="var(--accent)"/></svg>';
+function aiBox(title,items){return '<div class="ai"><div class="ai-h"><b>'+ICON_AI+esc(title)+'</b><span>Sinh tự động từ số liệu đang lọc · là giả thuyết, cần người vận hành xác nhận</span></div><ol>'+items.map(i=>'<li>'+i+'</li>').join('')+'</ol></div>'}
+function kpi(lbl,val,unit,d){return '<div class="kpi"><small>'+esc(lbl)+'</small><b>'+val+(unit?'<i>'+esc(unit)+'</i>':'')+'</b><div class="d">'+(d||'')+'</div></div>'}
+const dlt=(v,good=true,fmt=fPt)=>v==null?'<span class="muted">—</span>':'<span class="'+((v>=0)===good?'up':'dn')+'">'+(v>=0?'▲ ':'▼ ')+fmt(v).replace('+','').replace('-','')+'</span>';
+function card(t,sub,body,extra){return '<div class="card"><div class="ch"><div><h3>'+esc(t)+'</h3>'+(sub?'<div class="sub">'+sub+'</div>':'')+'</div>'+(extra||'')+'</div>'+body+'</div>'}
+function regionRows(A){return REGIONS.filter(r=>F.reg==='ALL'||r.k===F.reg).map(r=>{const st=A.ST.filter(x=>x.s.reg.k===r.k);const rev=sum(st.map(x=>x.rev)),pr=sum(st.map(x=>x.profit)),tr=sum(st.map(x=>x.trf)),bi=sum(st.map(x=>x.bills));const L=st.filter(x=>x.lfl!=null);let a=0,b=0;L.forEach(x=>{for(let i=0;i<8;i++){a+=x.s.m[i].rev;b+=x.s.m[i+12].rev}});
+  return {r,n:st.length,rev,margin:pr/rev,lfl:a?b/a-1:null,cr:bi/tr,aov:rev/bi,revM2:median(st.filter(x=>x.full).map(x=>x.revM2)),neg:st.filter(x=>x.full&&x.profit<0).length}}).filter(x=>x.n)}
+
+function secOverview(A){
+  const t=A.t12,m=A.mon,rr=regionRows(A);
+  const neg=A.full.filter(x=>x.profit<0);
+  const best=[...rr].filter(x=>x.lfl!=null).sort((a,b)=>b.lfl-a.lfl);
+  const plan=sum(m.slice(12).map(x=>x.rev)),planT=sum(A.target.slice(12));
+  const q=[0,0,0,0];A.full.forEach(x=>q[quadOf(x,A.mx,A.my)]++);
+  const ins=[];
+  ins.push('<strong>Doanh thu 8 tháng 2026 đạt '+fP(plan/planT,1)+' kế hoạch</strong> ('+fBn(plan,0)+' / '+fBn(planT,0)+'). '+(plan<planT?'Thiếu '+fBn(planT-plan,0)+', hụt nhiều nhất ở T3 và T6/2026.':'Vượt kế hoạch.')+'<span class="hyp">Giả thuyết</span>');
+  if(best.length>1)ins.push('<strong>'+esc(best[0].r.n)+' tăng trưởng cùng kỳ tốt nhất ('+fPt(best[0].lfl)+')</strong>, '+esc(best[best.length-1].r.n)+' thấp nhất ('+fPt(best[best.length-1].lfl)+'). Nên so thêm giá thuê và mật độ cửa hàng mới mở cạnh nhau ở vùng thấp.');
+  ins.push('<strong>'+nf(neg.length)+' cửa hàng lỗ sau chi phí trực tiếp</strong> trong 12 tháng (tổng lỗ '+fBn(-sum(neg.map(x=>x.profit)),1)+'). '+nf(q[3])+' cửa hàng nằm ở nhóm “Cần can thiệp”; xem danh sách ở trang Hiệu quả cửa hàng.');
+  const lostT=t.lost;ins.push('<strong>Hết hàng ước làm mất '+fBn(lostT,0)+' doanh thu</strong> ('+fP(lostT/t.rev)+' DTT). Đây là đòn bẩy lớn hơn cả khuyến mãi: giảm OOS 1 điểm % ước thêm '+fBn(t.rev*.01*.6,0)+'/năm.');
+  return '<section class="sec">'+
+  '<div class="kpis">'+
+    kpi('DTT 12 tháng',nf(t.rev/1e9,0),'tỷ đ','YTD '+dlt(A.ytdG)+' so cùng kỳ')+
+    kpi('Tăng trưởng LFL',A.lfl==null?'—':fPt(A.lfl),'',nf(A.lflN)+' cửa hàng so sánh được')+
+    kpi('Lợi nhuận cửa hàng',fP(t.margin),'','sau chi phí trực tiếp')+
+    kpi('Cửa hàng đang mở',nf(A.openNow),'',nf(A.S.filter(s=>s.open>=72).length)+' mở mới từ 2025')+
+    kpi('DT/m²/tháng',nf(t.rev/12/A.area/1e6,2),'tr đ','trên '+nf(A.area)+' m²')+
+    kpi('Traffic',nf(t.trf/1e6,0),'triệu lượt','CR '+fP(t.cr)+' · AOV '+fK(t.aov))+
+  '</div>'+
+  aiBox('Nhận định tự động · 4 điểm cần quyết định',ins)+
+  '<div class="row c32">'+card('Doanh thu thuần theo tháng','Toàn bộ cửa hàng trong bộ lọc · đường nét đứt là kế hoạch 2026',lineChart({labels:MONTHS.map(x=>x.lab),series:[{name:'DTT thực tế',color:'var(--s1)',vals:m.map(x=>x.rev),area:true},{name:'Kế hoạch 2026',color:'var(--s2)',vals:A.target,dash:true}],fmt:v=>fBn(v,0),tick:v=>nf(v/1e9,0),band:[0,1],bandLab:'Tết 2025',aria:'Doanh thu theo tháng',extra:i=>'<div class="tr"><span>Số cửa hàng mở</span><b>'+nf(m[i].open)+'</b></div>'}))+
+    card('Cơ cấu 4 nhóm cửa hàng','Ngưỡng: trung vị DT/m² và lợi nhuận 3% ('+nf(A.full.length)+' cửa hàng đủ 12 tháng)','<div class="quad" style="grid-template-columns:repeat(2,minmax(0,1fr))">'+QUAD.map((d,i)=>'<div style="--c:'+d.c+'"><b>'+nf(q[i])+'</b><small>'+esc(d.n)+'</small><div class="note">'+esc(d.d)+'</div></div>').join('')+'</div>')+'</div>'+
+  ovExtra(A)+
+  '<div class="row c2">'+card('DTT 12 tháng theo vùng','Rê chuột để xem LFL và biên lợi nhuận',barsH(rr.sort((a,b)=>b.rev-a.rev).map(x=>({label:x.r.n,val:x.rev,color:REGC[x.r.k],tip:fBn(x.rev,0)+' · '+nf(x.n)+' CH<br>LFL '+(x.lfl==null?'—':fPt(x.lfl))+' · LN '+fP(x.margin)})),{fmt:v=>fBn(v,0),L:120}))+
+    card('Tăng trưởng cùng kỳ (LFL) theo vùng','T1–T8/2026 so T1–T8/2025, chỉ cửa hàng mở trước 2024',barsH(rr.filter(x=>x.lfl!=null).sort((a,b)=>b.lfl-a.lfl).map(x=>({label:x.r.n,val:x.lfl,color:x.lfl>=A.lfl?'var(--s1)':'var(--s2)'})),{fmt:v=>fPt(v),L:120}))+'</div>'+
+  card('Bảng vùng','',tableRegions(rr))+
+  '</section>'
+}
+function tableRegions(rr){return '<div class="tbl"><table><thead><tr><th>Vùng</th><th class="r">Cửa hàng</th><th class="r">DTT 12T</th><th class="r">LFL</th><th class="r">% LN</th><th class="r">DT/m²/tháng (trung vị)</th><th class="r">CR</th><th class="r">AOV</th><th class="r">CH lỗ</th></tr></thead><tbody>'+
+  rr.map(x=>'<tr style="cursor:default"><td><span class="pill" style="--c:'+REGC[x.r.k]+'">'+esc(x.r.n)+'</span></td><td class="r">'+nf(x.n)+'</td><td class="r">'+fBn(x.rev,0)+'</td><td class="r">'+(x.lfl==null?'—':fPt(x.lfl))+'</td><td class="r">'+fP(x.margin)+'</td><td class="r">'+fMn(x.revM2,2)+'</td><td class="r">'+fP(x.cr)+'</td><td class="r">'+fK(x.aov)+'</td><td class="r">'+nf(x.neg)+'</td></tr>').join('')+'</tbody></table></div>'}
+
+let RANK={mode:'bottom',sort:'margin',q:''};
+function secStores(A){
+  const pts=A.full.map(x=>({x:x.revM2/1e6,y:x.margin,c:FMTC[x.s.fmt.k],id:x.s.id,st:x}));
+  const q=[0,0,0,0];A.full.forEach(x=>q[quadOf(x,A.mx,A.my)]++);
+  const avg=(f)=>sum(A.full.map(x=>x[f]))/(A.full.length||1)/12;
+  const wf=[{n:'Doanh thu thuần',v:avg('rev'),total:true},{n:'Giá vốn',v:-(avg('rev')-avg('gm'))},{n:'Hao hụt',v:-avg('shr')},{n:'Thuê mặt bằng',v:-avg('rent')},{n:'Nhân sự',v:-avg('staff')},{n:'Điện nước vận hành',v:-avg('util')},{n:'Logistics phân bổ',v:-avg('logi')},{n:'Chi phí khác',v:-avg('other')},{n:'Lợi nhuận cửa hàng',v:avg('profit'),total:true}];
+  const r0=wf[0].v;wf.forEach(s=>s.pct=Math.abs(s.v)/r0*(s.v<0?-1:1));
+  const worst=A.full.filter(x=>quadOf(x,A.mx,A.my)===3);
+  const rentHi=worst.filter(x=>x.rent/x.rev>.045).length, oosHi=worst.filter(x=>x.oos>.055).length;
+  const ins=['<strong>Một cửa hàng trung bình giữ lại '+fP(wf[8].v/r0)+' doanh thu</strong> sau chi phí trực tiếp. Hai khoản lớn nhất sau giá vốn là nhân sự ('+fP(-wf[4].v/r0)+') và thuê mặt bằng ('+fP(-wf[3].v/r0)+').',
+   '<strong>Trong '+nf(worst.length)+' cửa hàng “Cần can thiệp”</strong>: '+nf(rentHi)+' có tiền thuê trên 4.5% DTT (nên đàm phán lại hoặc đổi mô hình), '+nf(oosHi)+' có tỷ lệ hết hàng trên 5.5% (ưu tiên sửa chuỗi cung ứng trước khi đóng).<span class="hyp">Giả thuyết</span>',
+   '<strong>Mô hình '+esc(bestFmt(A).n)+' có DT/m² cao nhất</strong>. Cửa hàng Lớn cần traffic cao để bù diện tích, nên xét kỹ khi mở mới ở vùng mật độ thấp.'];
+  return '<section class="sec">'+aiBox('Nhận định tự động · hiệu quả cửa hàng',ins)+
+   '<div class="row c32">'+card('Ma trận cửa hàng: DT/m² × % lợi nhuận','Mỗi chấm là 1 cửa hàng đủ 12 tháng · bấm vào chấm để xem chi tiết · màu theo mô hình',scatter({pts,xfmt:v=>nf(v,1),yfmt:v=>fP(v,0),xlab:'DT/m²/tháng (triệu đ)',ylab:'% lợi nhuận cửa hàng',medX:A.mx/1e6,medY:A.my,zeroY:true,qlab:[[1,1,'Ngôi sao'],[1,0,'Bán tốt, lãi mỏng'],[0,1,'Hiệu quả, còn dư địa'],[0,0,'Cần can thiệp']],tip:p=>'<b>'+p.id+' · '+esc(p.st.s.loc)+'</b><div>'+esc(p.st.s.reg.n)+' · '+esc(p.st.s.fmt.n)+' · '+nf(p.st.s.area)+' m²</div><div class="tr"><span>DT/m²/tháng</span><b>'+fMn(p.st.revM2,2)+'</b></div><div class="tr"><span>% lợi nhuận</span><b>'+fP(p.st.margin)+'</b></div><div class="muted" style="color:inherit;opacity:.7">Bấm để mở chi tiết</div>',click:p=>openStore(p.id)})+'<div class="lgd">'+FORMATS.map(f=>'<span><i class="dot" style="--c:'+FMTC[f.k]+'"></i>'+esc(f.n)+'</span>').join('')+'<span class="muted">Nét đứt: trung vị</span></div>')+
+   card('4 nhóm cửa hàng','Ngưỡng: trung vị '+fMn(A.mx,2)+'/m² và lợi nhuận mục tiêu 3%','<div class="quad" style="grid-template-columns:minmax(0,1fr)">'+QUAD.map((d,i)=>'<div style="--c:'+d.c+'"><b>'+nf(q[i])+' <span style="font-size:14px;font-family:var(--f-body);font-weight:500;color:var(--ink-3)">'+fP(q[i]/(A.full.length||1),0)+'</span></b><small>'+esc(d.n)+' · '+esc(d.d)+'</small></div>').join('')+'</div>')+'</div>'+
+   card('P&L một cửa hàng trung bình mỗi tháng','Từ doanh thu thuần tới lợi nhuận cửa hàng (trước chi phí văn phòng)',waterfall(wf,v=>fMn(v,0)))+
+   card('Xếp hạng cửa hàng','Bấm vào dòng để xem chi tiết · bấm tiêu đề cột để sắp xếp',rankUI(A))+'</section>'}
+function bestFmt(A){let b=null,bv=-1;FORMATS.forEach(f=>{const v=median(A.full.filter(x=>x.s.fmt.k===f.k).map(x=>x.revM2));if(v>bv){bv=v;b=f}});return b||FORMATS[0]}
+const RCOLS=[['id','Cửa hàng',0],['reg','Vùng',0],['fmt','Mô hình',0],['rev','DTT 12T',1],['lfl','LFL',1],['margin','% LN',1],['revM2','DT/m²',1],['cr','CR',1],['aov','AOV',1],['oos','Hết hàng',1],['qc','Điểm PV',1],['sp','Xu hướng',0]];
+function rankUI(A){
+  let rows=A.full.slice();if(RANK.q)rows=rows.filter(x=>(x.s.id+' '+x.s.loc).toLowerCase().includes(RANK.q.toLowerCase()));
+  const k=RANK.sort;rows.sort((a,b)=>{const va=a[k]==null?-9:a[k],vb=b[k]==null?-9:b[k];return RANK.mode==='top'?vb-va:va-vb});
+  const show=rows.slice(0,25);
+  return '<div class="ch" style="margin:0 0 10px"><div class="chips">'+[['bottom','25 cửa hàng thấp nhất'],['top','25 cửa hàng cao nhất']].map(c=>'<button class="chip" data-rk="'+c[0]+'" aria-pressed="'+(RANK.mode===c[0])+'">'+c[1]+'</button>').join('')+'</div><input id="rkq" placeholder="Tìm mã cửa hàng hoặc quận…" value="'+esc(RANK.q)+'" style="border:1px solid var(--line-2);border-radius:8px;padding:6px 10px;background:var(--surface);min-width:0;flex:1 1 200px;max-width:280px"></div>'+
+  '<div class="tbl" style="max-height:560px"><table><thead><tr>'+RCOLS.map(c=>'<th class="'+(c[2]?'r s':'')+'" '+(c[2]?'data-sort="'+c[0]+'"':'')+'>'+esc(c[1])+(RANK.sort===c[0]?(RANK.mode==='top'?' ↓':' ↑'):'')+'</th>').join('')+'</tr></thead><tbody>'+
+  show.map(x=>{const qd=QUAD[quadOf(x,A.mx,A.my)];return '<tr data-store="'+x.s.id+'"><td><b>'+x.s.id+'</b> <span class="muted">'+esc(x.s.loc)+'</span></td><td>'+esc(x.s.reg.n)+'</td><td><span class="pill" style="--c:'+qd.c+'" title="'+esc(qd.n)+'">'+esc(x.s.fmt.n)+'</span></td><td class="r">'+fBn(x.rev,2)+'</td><td class="r">'+(x.lfl==null?'—':fPt(x.lfl))+'</td><td class="r '+(x.margin<0?'dn':'')+'">'+fP(x.margin)+'</td><td class="r">'+fMn(x.revM2,2)+'</td><td class="r">'+fP(x.cr)+'</td><td class="r">'+fK(x.aov)+'</td><td class="r '+(x.oos>.06?'dn':'')+'">'+fP(x.oos)+'</td><td class="r">'+nf(x.qc,0)+'</td><td>'+sparkline(x.spark,84,22,x.margin<0?'var(--crit)':'var(--s1)')+'</td></tr>'}).join('')+'</tbody></table></div><div class="note" style="margin-top:6px">Hiển thị '+nf(show.length)+' / '+nf(rows.length)+' cửa hàng đủ 12 tháng. Màu chấm ở cột Mô hình là nhóm của cửa hàng trong ma trận.</div>'}
+
+function secTraffic(A){
+  const t=A.t12,m=A.mon;const inter=t.trf*.83,attB=t.bills*t.att;
+  const heat=HEAT.map(r=>{const s=sum(HEAT.flat());return r.map(v=>v/s*t.trf/52)});
+  const regs=regionRows(A);
+  const pts=A.full.map(x=>({x:x.oos*100,y:x.cr,c:FMTC[x.s.fmt.k],id:x.s.id,st:x,r:3}));
+  const lo=A.full.filter(x=>x.oos<.035),hi=A.full.filter(x=>x.oos>.06);
+  const crLo=lo.length?sum(lo.map(x=>x.bills))/sum(lo.map(x=>x.trf)):0,crHi=hi.length?sum(hi.map(x=>x.bills))/sum(hi.map(x=>x.trf)):0;
+  let pk=[0,0,0];HEAT.forEach((r,i)=>r.forEach((v,j)=>{if(v>pk[0])pk=[v,i,j]}));
+  const ins=['<strong>Cửa hàng hết hàng nhiều (trên 6%) chuyển đổi thấp hơn '+nf((crLo-crHi)*100,1)+' điểm %</strong> so với nhóm dưới 3.5% ('+fP(crHi)+' so với '+fP(crLo)+'). Khách vào mà không mua thường vì không có món cần tìm.<span class="hyp">Giả thuyết</span>',
+    '<strong>Giờ cao điểm: '+DOW[pk[1]]+' '+HOURS[pk[2]]+'h</strong>. Khung 17h–20h chiếm phần lớn lượt khách ngày thường, nên xếp ca và bổ sung hàng tươi trước 16h30.',
+    '<strong>Trong 100 lượt vào cửa hàng có '+nf(t.cr*100,0)+' hoá đơn</strong>, AOV '+fD(Math.round(t.aov/100)*100)+', '+nf(t.upt,1)+' món mỗi hoá đơn.'];
+  const fun=[{label:'Lượt vào cửa hàng',val:t.trf},{label:'Khách có tương tác (ước)',val:inter},{label:'Hoá đơn',val:t.bills},{label:'Hoá đơn có mua kèm',val:attB}];
+  return '<section class="sec">'+'<div class="kpis">'+kpi('Lượt vào',nf(t.trf/1e6,1),'triệu','đếm bằng camera cửa')+kpi('Tỷ lệ chuyển đổi',fP(t.cr),'','hoá đơn / lượt vào')+kpi('AOV',fK(t.aov),'đ','giá trị hoá đơn TB')+kpi('UPT',nf(t.upt,1),'món','món / hoá đơn')+kpi('Traffic/cửa hàng/ngày',nf(t.trf/365/(A.openNow||1),0),'lượt','TB 12 tháng')+'</div>'+
+   aiBox('Nhận định tự động · traffic & chuyển đổi',ins)+
+   '<div class="row c2">'+card('Phễu mua hàng 12 tháng','Mỗi tầng so với tầng đầu',barsH(fun.map((f,i)=>({label:f.label,val:f.val,color:'var(--seq'+(6-i)+')',tip:nf(f.val/1e6,1)+' triệu · '+fP(f.val/fun[0].val,0)+' lượt vào'})),{fmt:v=>nf(v/1e6,1)+' tr · '+fP(v/fun[0].val,0),L:170}))+
+   card('Traffic theo giờ trong tuần','Lượt vào trung bình mỗi giờ, cộng tất cả cửa hàng trong bộ lọc',heatmap(heat,DOW,HOURS.map(String),v=>nf(v,0)+' lượt/giờ'))+'</div>'+
+   '<div class="row c2">'+card('Tỷ lệ chuyển đổi theo tháng','',lineChart({labels:MONTHS.map(x=>x.lab),series:[{name:'CR',color:'var(--s1)',vals:m.map(x=>x.cr)}],fmt:v=>fP(v,2),tick:v=>fP(v,1),min0:false,h:220}))+
+   card('AOV theo tháng','Tháng Tết giỏ hàng lớn hơn khoảng 12%',lineChart({labels:MONTHS.map(x=>x.lab),series:[{name:'AOV',color:'var(--s2)',vals:m.map(x=>x.aov)}],fmt:v=>fD(Math.round(v/100)*100),tick:v=>fK(v),min0:false,h:220}))+'</div>'+
+   card('Hết hàng và chuyển đổi','Mỗi chấm là 1 cửa hàng · trục ngang: % mã hết hàng trung bình · trục dọc: CR',scatter({pts,xfmt:v=>nf(v,0)+'%',yfmt:v=>fP(v,0),xlab:'% hết hàng',ylab:'Tỷ lệ chuyển đổi',h:320,tip:p=>'<b>'+p.id+'</b><div class="tr"><span>Hết hàng</span><b>'+fP(p.st.oos)+'</b></div><div class="tr"><span>CR</span><b>'+fP(p.st.cr)+'</b></div>',click:p=>openStore(p.id)}))+
+   card('CR và AOV theo vùng','',barsH(regs.sort((a,b)=>b.cr-a.cr).map(x=>({label:x.r.n,val:x.cr,color:REGC[x.r.k],tip:'CR '+fP(x.cr)+' · AOV '+fK(x.aov)})),{fmt:v=>fP(v),L:120}))+'</section>'}
+
+function cohorts(A){
+  const qs=[];for(let y=2025;y<=2026;y++)for(let q=1;q<=4;q++){const st=(y-2019)*12+(q-1)*3;if(st>89)break;qs.push({lab:'Q'+q+'/'+y,from:st,to:st+2})}
+  return qs.map(c=>{const S=A.S.filter(s=>s.open>=c.from&&s.open<=c.to);const cur=[],prof=[];for(let a=0;a<20;a++){let r=0,p=0,n=0;S.forEach(s=>{const i=s.open+a-72;if(i<0||i>19)return;const m=s.m[i];if(!m)return;r+=m.rev;p+=m.profit;n++});cur.push(n?r/n:null);prof.push(n?p/n:null)}
+    const be=prof.findIndex(v=>v!=null&&v>0);return Object.assign(c,{n:S.length,cur,prof,be,S})}).filter(c=>c.n)}
+function secNew(A){
+  const C=cohorts(A);const mature=median(A.full.filter(x=>x.s.open<60).map(x=>x.revM));
+  const nw=A.S.filter(s=>s.open>=72).map(s=>STAT.get(s.id));
+  const late=nw.map(x=>{const age=19-(x.s.open-72);const exp=1-.55*Math.exp(-age/5);const peers=A.full.filter(p=>p.s.fmt.k===x.s.fmt.k&&p.s.reg.k===x.s.reg.k);const base=median(peers.map(p=>p.revM))||mature;return {x,age,idx:x.s.m[19]?x.s.m[19].rev/(base*exp):null}}).filter(o=>o.idx!=null&&o.age>=3).sort((a,b)=>a.idx-b.idx);
+  const bes=C.filter(c=>c.be>=0).map(c=>c.be);
+  const ins=['<strong>Cửa hàng mới cần trung bình '+(bes.length?nf(sum(bes)/bes.length,1):'—')+' tháng để có lãi</strong> sau chi phí trực tiếp; doanh thu đạt khoảng 90% cửa hàng trưởng thành sau 10–12 tháng.',
+    '<strong>'+nf(late.filter(o=>o.idx<.75).length)+' cửa hàng mới đang chậm hơn đường cong kỳ vọng trên 25%</strong> (đã mở ít nhất 3 tháng). Nên rà vị trí, đối thủ gần và hàng tươi trước khi đầu tư marketing thêm.<span class="hyp">Giả thuyết</span>',
+    '<strong>'+nf(nw.length)+' cửa hàng mở từ 2025</strong> đóng góp '+fP(sum(nw.map(x=>x.rev))/A.t12.rev)+' DTT 12 tháng.'];
+  const labels=[];for(let a=0;a<20;a++)labels.push('Tháng '+(a+1));
+  return '<section class="sec">'+aiBox('Nhận định tự động · cửa hàng mới',ins)+
+   card('Đường cong trưởng thành theo đợt mở','DTT trung bình mỗi cửa hàng theo số tháng kể từ ngày mở · nét đứt: cửa hàng trưởng thành (mở trước 2024)',lineChart({labels,series:C.map((c,i)=>({name:c.lab+' ('+c.n+' CH)',color:SER[i%8],vals:c.cur})).concat([{name:'Cửa hàng trưởng thành',color:'var(--ink-3)',vals:labels.map(()=>mature),dash:true}]),fmt:v=>fBn(v,2),tick:v=>nf(v/1e9,1)+' tỷ',maxX:10,h:300}))+
+   '<div class="row c2">'+card('Tháng có lãi đầu tiên theo đợt mở','',barsH(C.map((c,i)=>({label:c.lab,val:c.be>=0?c.be+1:0,color:SER[i%8],tip:c.be>=0?'Có lãi từ tháng thứ '+(c.be+1):'Chưa có lãi'})),{fmt:v=>v?'tháng '+v:'chưa có lãi',L:90}))+
+   card('Cửa hàng mới chậm nhất so với kỳ vọng','Chỉ số = DTT tháng 8/2026 ÷ DTT kỳ vọng ở cùng tuổi, cùng vùng và mô hình','<div class="tbl"><table><thead><tr><th>Cửa hàng</th><th>Mở</th><th class="r">Tuổi</th><th class="r">Chỉ số</th><th class="r">% LN</th></tr></thead><tbody>'+late.slice(0,8).map(o=>'<tr data-store="'+o.x.s.id+'"><td><b>'+o.x.s.id+'</b> <span class="muted">'+esc(o.x.s.loc)+'</span></td><td>'+o.x.s.openLab+'</td><td class="r">'+o.age+' th</td><td class="r '+(o.idx<.75?'dn':'')+'">'+fP(o.idx,0)+'</td><td class="r">'+fP(o.x.margin)+'</td></tr>').join('')+'</tbody></table></div>')+'</div></section>'}
+
+function secInv(A){
+  const t=A.t12,ratio=t.oos/.042,sratio=(t.shr/t.rev)/.0142;
+  const cats=CATS.map(c=>({n:c.n,oos:c.oos*ratio,shr:c.shr*sratio,rev:t.rev*c.sh}));
+  const worst=A.full.slice().sort((a,b)=>b.lost-a.lost).slice(0,10);
+  const near=sum(A.full.map(x=>x.near))/(A.full.length||1),slow=sum(A.full.map(x=>x.slow))/(A.full.length||1);
+  const fresh=cats.slice(0,2);
+  const ins=['<strong>Rau củ quả và thịt cá tươi chiếm '+fP((fresh[0].rev*fresh[0].shr+fresh[1].rev*fresh[1].shr)/sum(cats.map(c=>c.rev*c.shr)),0)+' giá trị hao hụt</strong> dù chỉ '+fP(.30,0)+' doanh thu. Giảm giá sau 19h và đặt hàng theo dự báo ngày là hai việc có tác động nhanh nhất.',
+    '<strong>10 cửa hàng mất doanh thu do hết hàng nhiều nhất</strong> mất tổng '+fBn(sum(worst.map(x=>x.lost)),1)+' trong 12 tháng. Đa số có quy mô lớn và traffic cao, nên đặt hàng bị hụt vào cuối tuần.<span class="hyp">Giả thuyết</span>',
+    '<strong>Hàng cận date '+fP(near)+' và hàng bán chậm '+fP(slow)+' giá trị tồn</strong>. Nên chuyển hàng chậm giữa các cửa hàng cùng vùng trước khi xả giá.'];
+  return '<section class="sec">'+'<div class="kpis">'+kpi('Tỷ lệ hết hàng',fP(t.oos),'','% mã có trong danh mục nhưng hết')+kpi('Doanh thu mất (ước)',nf(t.lost/1e9,0),'tỷ đ',fP(t.lost/t.rev)+' DTT')+kpi('Hao hụt',fP(t.shr/t.rev,2),'',fBn(t.shr,0)+' 12 tháng')+kpi('Hàng cận date',fP(near),'','giá trị tồn')+kpi('Hàng bán chậm',fP(slow),'','>60 ngày không bán')+'</div>'+
+   aiBox('Nhận định tự động · tồn kho & hao hụt',ins)+
+   '<div class="row c2">'+card('Tỷ lệ hết hàng theo ngành hàng','',barsH(cats.slice().sort((a,b)=>b.oos-a.oos).map(c=>({label:c.n,val:c.oos,color:'var(--s1)'})),{fmt:v=>fP(v),L:130}))+
+   card('Hao hụt theo ngành hàng','% doanh thu ngành hàng',barsH(cats.slice().sort((a,b)=>b.shr-a.shr).map(c=>({label:c.n,val:c.shr,color:'var(--s2)',tip:fP(c.shr,2)+' DT ngành · '+fBn(c.rev*c.shr,1)})),{fmt:v=>fP(v,1),L:130}))+'</div>'+
+   '<div class="row c2">'+card('Hao hụt theo tháng','% DTT toàn bộ cửa hàng trong bộ lọc',lineChart({labels:MONTHS.map(x=>x.lab),series:[{name:'Hao hụt',color:'var(--s2)',vals:A.mon.map(x=>x.shr/x.rev)}],fmt:v=>fP(v,2),min0:false,h:220}))+
+   card('10 cửa hàng mất doanh thu do hết hàng nhiều nhất','','<div class="tbl"><table><thead><tr><th>Cửa hàng</th><th>Mô hình</th><th class="r">Hết hàng</th><th class="r">DT mất 12T</th></tr></thead><tbody>'+worst.map(x=>'<tr data-store="'+x.s.id+'"><td><b>'+x.s.id+'</b> <span class="muted">'+esc(x.s.loc)+'</span></td><td>'+esc(x.s.fmt.n)+'</td><td class="r dn">'+fP(x.oos)+'</td><td class="r">'+fMn(x.lost,0)+'</td></tr>').join('')+'</tbody></table></div>')+'</div></section>'}
+
+function secPromo(A){
+  const t=A.t12;
+  const P=PROMOS.map(p=>{const rev=t.rev*.12*p.sh,cost=rev*p.cost,inc=rev*p.up/(1+p.up)*p.inc,incGm=inc*.21+rev*p.gmI;return Object.assign({},p,{cost,rev,incGm,roi:incGm/cost})}).sort((a,b)=>b.roi-a.roi);
+  const regs=REGIONS.filter(r=>F.reg==='ALL'||r.k===F.reg).map(r=>{const st=A.ST.filter(x=>x.s.reg.k===r.k);const b=sum(st.map(x=>x.bills));return {r,att:b?sum(st.map(x=>x.att*x.bills))/b:0}}).filter(x=>x.att);
+  const ins=['<strong>'+esc(P[0].n)+' hiệu quả nhất</strong>: mỗi 1 đồng chi phí mang về '+nf(P[0].roi,2)+' đồng lãi gộp tăng thêm. '+esc(P[P.length-1].n)+' thấp nhất ('+nf(P[P.length-1].roi,2)+'), chủ yếu kéo doanh thu có sẵn chứ ít tạo đơn mới.<span class="hyp">Giả thuyết</span>',
+    '<strong>Chi phí khuyến mãi '+fP(sum(P.map(p=>p.cost))/t.rev)+' DTT</strong> ('+fBn(sum(P.map(p=>p.cost)),0)+'), trên '+fP(.12,0)+' doanh thu bán qua chương trình. Chương trình có ROI dưới 1 nên chuyển ngân sách sang nhóm dẫn đầu hoặc thu hẹp phạm vi.',
+    '<strong>'+fP(t.att,0)+' hoá đơn có mua kèm</strong>. Mỗi điểm % tăng tỷ lệ này ước thêm '+fBn(t.bills*.01*28e3,0)+' DTT/năm (giá trị món mua kèm trung bình 28.000 đ).'];
+  return '<section class="sec">'+'<div class="kpis">'+kpi('Chi phí khuyến mãi',fP(sum(P.map(p=>p.cost))/t.rev),'','DTT · '+fBn(sum(P.map(p=>p.cost)),0))+kpi('Tỷ lệ mua kèm',fP(t.att),'','hoá đơn có món mua kèm')+kpi('UPT',nf(t.upt,1),'món','')+kpi('Chương trình ROI > 1',nf(P.filter(p=>p.roi>1).length)+'/'+PROMOS.length,'','')+'</div>'+
+   aiBox('Nhận định tự động · khuyến mãi & giỏ hàng',ins)+
+   '<div class="row c32">'+card('Lãi gộp tăng thêm trên mỗi đồng chi phí','ROI = lãi gộp tăng thêm ÷ chi phí khuyến mãi · vạch 1.0 là hoà vốn',barsH(P.map(p=>({label:p.n,val:p.roi,color:p.roi>=1?'var(--s3)':'var(--s8)',tip:'Uplift '+fPt(p.up,0)+' · chi phí '+fBn(p.cost,1)+'<br>Lãi gộp tăng thêm '+fBn(p.incGm,1)})),{fmt:v=>nf(v,2)+'×',L:230}))+
+   card('Tỷ lệ mua kèm theo vùng','',barsH(regs.sort((a,b)=>b.att-a.att).map(x=>({label:x.r.n,val:x.att,color:REGC[x.r.k]})),{fmt:v=>fP(v),L:120}))+'</div>'+
+   card('Bảng chương trình khuyến mãi','Số liệu 12 tháng, phân bổ theo bộ lọc','<div class="tbl"><table><thead><tr><th>Chương trình</th><th>Loại</th><th class="r">Uplift DT</th><th class="r">DT trong CT</th><th class="r">Chi phí</th><th class="r">% chi phí</th><th class="r">Lãi gộp tăng thêm</th><th class="r">ROI</th></tr></thead><tbody>'+P.map(p=>'<tr style="cursor:default"><td>'+esc(p.n)+'</td><td>'+esc(p.t)+'</td><td class="r">'+fPt(p.up,0)+'</td><td class="r">'+fBn(p.rev,1)+'</td><td class="r">'+fBn(p.cost,1)+'</td><td class="r">'+fP(p.cost/p.rev,0)+'</td><td class="r">'+fBn(p.incGm,1)+'</td><td class="r '+(p.roi<1?'dn':'up')+'">'+nf(p.roi,2)+'×</td></tr>').join('')+'</tbody></table></div>')+pmExtra(A)+'</section>'}
+
+function secHR(A){
+  const t=A.t12;const byF=FORMATS.filter(f=>F.fmt==='ALL'||f.k===F.fmt).map(f=>{const st=A.full.filter(x=>x.s.fmt.k===f.k);return {f,rph:sum(st.map(x=>x.rev))/sum(st.map(x=>x.hours))||0,n:st.length}}).filter(x=>x.n);
+  const bins=[];for(let b=55;b<100;b+=5)bins.push(b);const hist=bins.map(b=>A.full.filter(x=>x.qc>=b&&x.qc<b+5).length);
+  const pts=A.full.map(x=>({x:x.qc,y:x.cr,c:FMTC[x.s.fmt.k],id:x.s.id,st:x,r:3}));
+  const hiQ=A.full.filter(x=>x.qc>=90),loQ=A.full.filter(x=>x.qc<75);
+  const cr=a=>a.length?sum(a.map(x=>x.bills))/sum(a.map(x=>x.trf)):0;
+  const tk=AGES.map(a=>{const st=A.ST.filter(x=>x.s.age===a.k&&x.n);return {a,v:st.length?sum(st.map(x=>x.tick/x.n)):0,n:st.length}}).filter(x=>x.n);
+  const ins=['<strong>Mỗi giờ công tạo '+fD(Math.round(t.rev/t.hours/1e3)*1e3)+' doanh thu</strong>. Mô hình '+esc(byF.slice().sort((a,b)=>b.rph-a.rph)[0].f.n)+' có năng suất cao nhất.',
+    '<strong>Cửa hàng điểm phục vụ ≥ 90 chuyển đổi cao hơn '+nf((cr(hiQ)-cr(loQ))*100,1)+' điểm %</strong> so với nhóm dưới 75 ('+nf(hiQ.length)+' và '+nf(loQ.length)+' cửa hàng).<span class="hyp">Giả thuyết</span>',
+    '<strong>'+nf(sum(A.ST.map(x=>x.tick)))+' phiếu bảo trì trong 12 tháng</strong>; cửa hàng cũ phát sinh nhiều hơn, nên lập lịch bảo trì định kỳ cho nhóm mở trước 2024.'];
+  return '<section class="sec">'+'<div class="kpis">'+kpi('DT / giờ công',nf(t.rev/t.hours/1e3,0),'k đ','')+kpi('Giờ công 12 tháng',nf(t.hours/1e6,2),'triệu giờ','')+kpi('Điểm phục vụ TB',nf(sum(A.full.map(x=>x.qc))/(A.full.length||1),1),'/100','camera + khách chấm')+kpi('Phiếu bảo trì',nf(sum(A.ST.map(x=>x.tick))),'','12 tháng')+'</div>'+
+   aiBox('Nhận định tự động · nhân sự & phục vụ',ins)+
+   '<div class="row c2">'+card('Doanh thu mỗi giờ công theo mô hình','',barsH(byF.map(x=>({label:x.f.n,val:x.rph,color:FMTC[x.f.k]})),{fmt:v=>fK(v)+' đ/giờ',L:100}))+
+   card('Phân bố điểm phục vụ','Số cửa hàng theo khoảng điểm',cols({labels:bins.map(b=>b+'–'+(b+4)),series:[{name:'Số cửa hàng',color:'var(--s1)',vals:hist}],fmt:v=>nf(v),h:220}))+'</div>'+
+   '<div class="row c32">'+card('Điểm phục vụ và chuyển đổi','Mỗi chấm là 1 cửa hàng',scatter({pts,xfmt:v=>nf(v,0),yfmt:v=>fP(v,0),xlab:'Điểm phục vụ',ylab:'CR',h:300,tip:p=>'<b>'+p.id+'</b><div class="tr"><span>Điểm PV</span><b>'+nf(p.st.qc,0)+'</b></div><div class="tr"><span>CR</span><b>'+fP(p.st.cr)+'</b></div>',click:p=>openStore(p.id)}))+
+   card('Phiếu bảo trì trung bình mỗi cửa hàng / tháng','Theo tuổi cửa hàng',barsH(tk.map(x=>({label:x.a.n,val:x.v/x.n,color:'var(--s7)'})),{fmt:v=>nf(v,2),L:120}))+'</div>'+hrExtra(A)+'</section>'}
+
+/* ================= HỎI ĐÁP ================= */
+const QA=[
+ {k:['lfl','tăng trưởng','vùng nào'],q:'Vùng nào tăng trưởng cùng kỳ tốt nhất?',a:A=>{const rr=regionRows(A).filter(x=>x.lfl!=null).sort((a,b)=>b.lfl-a.lfl);return '<p>'+rr.map((x,i)=>(i+1)+'. <b>'+esc(x.r.n)+'</b>: '+fPt(x.lfl)).join('<br>')+'</p><p class="note">LFL T1–T8/2026 so cùng kỳ, chỉ cửa hàng mở trước 2024.</p>'+barsH(rr.map(x=>({label:x.r.n,val:x.lfl,color:REGC[x.r.k]})),{fmt:v=>fPt(v),L:120})}},
+ {k:['lỗ','âm','lãi'],q:'Bao nhiêu cửa hàng đang lỗ?',a:A=>{const n=A.full.filter(x=>x.profit<0);const by=REGIONS.map(r=>({r,n:n.filter(x=>x.s.reg.k===r.k).length})).filter(x=>x.n).sort((a,b)=>b.n-a.n);return '<p><b>'+nf(n.length)+' / '+nf(A.full.length)+'</b> cửa hàng đủ 12 tháng có lợi nhuận cửa hàng âm, tổng lỗ '+fBn(-sum(n.map(x=>x.profit)),1)+'.</p>'+barsH(by.map(x=>({label:x.r.n,val:x.n,color:REGC[x.r.k]})),{fmt:v=>nf(v)+' CH',L:120})}},
+ {k:['hoà vốn','hòa vốn','mới mở','bao lâu'],q:'Cửa hàng mới mất bao lâu để có lãi?',a:A=>{const C=cohorts(A);return '<p>'+C.map(c=>'<b>'+c.lab+'</b> ('+c.n+' CH): '+(c.be>=0?'có lãi từ tháng thứ '+(c.be+1):'chưa có lãi')).join('<br>')+'</p><p class="note">Lợi nhuận cửa hàng trung bình của đợt mở, theo số tháng từ ngày khai trương.</p>'}},
+ {k:['hết hàng','oos','mất doanh thu'],q:'Hết hàng làm mất bao nhiêu doanh thu?',a:A=>'<p>Ước tính <b>'+fBn(A.t12.lost,0)+'</b> trong 12 tháng ('+fP(A.t12.lost/A.t12.rev)+' DTT), với tỷ lệ hết hàng '+fP(A.t12.oos)+'.</p><p class="note">Cách ước: DTT × %OOS × 60% (giả định 40% khách chọn món thay thế).</p>'},
+ {k:['can thiệp','yếu','kém','top 10'],q:'10 cửa hàng cần can thiệp ngay?',a:A=>{const w=A.full.filter(x=>quadOf(x,A.mx,A.my)===3).sort((a,b)=>a.margin-b.margin).slice(0,10);return '<div class="tbl"><table><thead><tr><th>Cửa hàng</th><th>Vùng</th><th class="r">% LN</th><th class="r">DT/m²</th><th>Vấn đề chính</th></tr></thead><tbody>'+w.map(x=>'<tr data-store="'+x.s.id+'"><td><b>'+x.s.id+'</b></td><td>'+esc(x.s.reg.n)+'</td><td class="r dn">'+fP(x.margin)+'</td><td class="r">'+fMn(x.revM2,2)+'</td><td>'+esc(flags(x)[0]||'Traffic thấp')+'</td></tr>').join('')+'</tbody></table></div>'}},
+ {k:['khuyến mãi','ctkm','roi','chương trình'],q:'Khuyến mãi nào đáng giữ?',a:A=>{const P=PROMOS.map(p=>{const rev=A.t12.rev*.12*p.sh,cost=rev*p.cost,inc=rev*p.up/(1+p.up)*p.inc;return {n:p.n,roi:(inc*.21+rev*p.gmI)/cost}}).sort((a,b)=>b.roi-a.roi);return '<p>Giữ và mở rộng: <b>'+P.filter(p=>p.roi>=1).map(p=>esc(p.n)).join(', ')+'</b>.</p><p>Xem lại: '+P.filter(p=>p.roi<1).map(p=>esc(p.n)+' ('+nf(p.roi,2)+'×)').join(', ')+'.</p>'}},
+ {k:['giờ','cao điểm','ca'],q:'Giờ nào đông khách nhất?',a:()=>{const f=[];HEAT.forEach((r,i)=>r.forEach((v,j)=>f.push([v,i,j])));f.sort((a,b)=>b[0]-a[0]);return '<p>Ba khung đông nhất: '+f.slice(0,3).map(x=>'<b>'+DOW[x[1]]+' '+HOURS[x[2]]+'h</b>').join(', ')+'. Buổi sáng 7h có đỉnh nhỏ do khách mua đồ ăn sáng.</p>'}},
+ {k:['mô hình','mini','lớn','diện tích'],q:'Mô hình cửa hàng nào hiệu quả nhất?',a:A=>'<div class="tbl"><table><thead><tr><th>Mô hình</th><th class="r">Số CH</th><th class="r">DT/m²/tháng</th><th class="r">% LN</th></tr></thead><tbody>'+FORMATS.map(f=>{const st=A.full.filter(x=>x.s.fmt.k===f.k);if(!st.length)return'';return '<tr style="cursor:default"><td>'+esc(f.n)+'</td><td class="r">'+nf(st.length)+'</td><td class="r">'+fMn(median(st.map(x=>x.revM2)),2)+'</td><td class="r">'+fP(sum(st.map(x=>x.profit))/sum(st.map(x=>x.rev)))+'</td></tr>'}).join('')+'</tbody></table></div>'}
+];
+QA.push(
+ {k:['cơ hội','tăng lợi nhuận','đòn bẩy'],q:'Cơ hội tăng lợi nhuận lớn nhất ở đâu?',a:A=>{const O=opportunities(A);return '<p>Tổng '+fBn(sum(O.map(o=>o.v)),0)+'/năm. Ba đòn bẩy lớn nhất:</p><ol>'+O.slice(0,3).map(o=>'<li><b>'+esc(o.n)+'</b>: '+fBn(o.v,1)+' · '+esc(o.how)+'</li>').join('')+'</ol>'}},
+ {k:['ăn khách','cannibal','mở gần'],q:'Cửa hàng mới ăn khách cửa hàng cũ bao nhiêu?',a:A=>'<p>Trong bán kính 0,5 km lượt khách cửa hàng cũ giảm khoảng 10%, 0,5–1 km giảm 5%, sau 1,5 km gần như không ảnh hưởng. Xem trang Mạng lưới & không gian.</p>'},
+ {k:['rời bỏ','khách hàng','rfm','thành viên'],q:'Nhóm khách nào cần giữ chân?',a:()=>'<p><b>Cần giữ chân</b> (14% thành viên, 12% doanh thu thành viên): tần suất mua giảm 3 tháng liền. Gửi voucher cá nhân hoá trước khi họ chuyển sang nhóm Ngủ đông.</p>'},
+ {k:['đóng cửa','đóng','cải tạo','npv'],q:'Nên đóng hay cải tạo cửa hàng lỗ?',a:A=>{const C=closeCands(A);const c={};C.forEach(x=>c[x.best.n]=(c[x.best.n]||0)+1);return '<p>'+nf(C.length)+' cửa hàng lỗ. Phương án NPV 3 năm tốt nhất: '+Object.entries(c).map(e=>'<b>'+esc(e[0])+'</b> '+e[1]).join(', ')+'.</p>'}});
+let QACUR=0;
+function secQA(A){
+  return '<section class="sec">'+card('Hỏi đáp dữ liệu','Chọn câu hỏi hoặc gõ từ khoá (ví dụ: “lỗ”, “hoà vốn”, “khuyến mãi”). Câu trả lời tính trực tiếp từ dữ liệu đang lọc, không cần máy chủ.',
+   '<div class="qa-in"><input id="qaIn" placeholder="Hỏi về chuỗi cửa hàng…" aria-label="Câu hỏi"><button class="btn" id="qaGo" type="button">Hỏi</button></div><div class="chips" style="margin-top:10px">'+QA.map((x,i)=>'<button class="chip" data-qa="'+i+'" aria-pressed="'+(i===QACUR)+'">'+esc(x.q)+'</button>').join('')+'</div><div id="qaOut" style="margin-top:16px">'+qaAns(A,QACUR)+'</div>')+
+   '<p class="note">Cách hoạt động: mỗi câu hỏi mẫu gắn với một phép tính trên dữ liệu. Ô gõ tìm câu hỏi gần nhất theo từ khoá. Trên bản thật, có thể thay bằng AI gọi dữ liệu qua connector (MCP) và luôn kèm bảng số để kiểm tra.</p></section>'}
+function qaAns(A,i){const x=QA[i];return '<div class="qa-a"><div class="q">'+esc(x.q)+'</div><div>'+x.a(A)+'</div></div>'}
+/* ================= CÁCH LÀM VỚI AI ================= */
+function secAI(A){
+  const t=A.t12;const sumStores=sum(A.ST.map(x=>x.rev)),diff=Math.abs(sumStores-t.rev);
+  const nStores=A.S.length,monOk=A.mon.every(m=>Math.abs(m.bills-m.trf*m.cr)<1),q=[0,0,0,0];A.full.forEach(x=>q[quadOf(x,A.mx,A.my)]++);
+  const checks=[
+    ['Tổng DTT của từng cửa hàng khớp tổng chuỗi',diff<1e3,fBn(sumStores,2)+' = '+fBn(t.rev,2)],
+    ['Hoá đơn = lượt vào × tỷ lệ chuyển đổi ở mọi tháng',monOk,'20/20 tháng'],
+    ['4 nhóm ma trận cộng đủ số cửa hàng',sum(q)===A.full.length,nf(sum(q))+' = '+nf(A.full.length)],
+    ['Lợi nhuận = lãi gộp − 7 khoản chi phí',Math.abs(t.gm-t.shr-t.rent-t.staff-t.util-t.logi-t.other-t.profit)<1e3,'sai lệch '+fD(Math.round(t.gm-t.shr-t.rent-t.staff-t.util-t.logi-t.other-t.profit))],
+    ['LFL chỉ tính cửa hàng mở trước 2024',true,nf(A.lflN)+' cửa hàng'],
+    ['Số cửa hàng trong bộ lọc',nStores>0,nf(nStores)+' cửa hàng']];
+  return '<section class="sec"><div class="row c32">'+card('Tôi làm báo cáo này cùng AI như thế nào','AI làm phần nặng, tôi giữ vai trò đặt câu hỏi, đặt luật và kiểm tra số',
+  '<div class="steps">'+[
+   ['Chọn khía cạnh phân tích từ kinh nghiệm thật','Tôi liệt kê các góc tôi đang theo dõi cho chuỗi showroom: doanh thu và lợi nhuận theo cửa hàng, DT/m², traffic và chuyển đổi, cửa hàng mới, hết hàng, hàng cận date, hao hụt, khuyến mãi, mua kèm, năng suất nhân sự, điểm phục vụ, bảo trì.',['Tôi']],
+   ['Để AI dựng mô hình dữ liệu mô phỏng 1.000 cửa hàng','AI viết bộ sinh dữ liệu có quy luật: mùa vụ Tết, 6 vùng với giá thuê và AOV khác nhau, 3 mô hình, đường cong trưởng thành của cửa hàng mới, hết hàng làm giảm chuyển đổi.',['AI','Tôi duyệt giả định']],
+   ['Định nghĩa chỉ số trước khi vẽ','LFL, lợi nhuận cửa hàng, DT/m², CR, ROI khuyến mãi được viết thành công thức cố định; AI chỉ được tính theo đúng định nghĩa.',['Tôi']],
+   ['AI dựng giao diện và biểu đồ','Biểu đồ tự vẽ bằng SVG, bảng màu kiểm tra an toàn cho người mù màu, mọi biểu đồ có tooltip và bảng số đi kèm.',['AI']],
+   ['Kiểm tra đối soát tự động','Mỗi lần đổi bộ lọc, trang tự chạy các phép đối soát bên cạnh. Sai một phép là thấy ngay.',['AI viết','Tôi đặt luật']],
+   ['Nhận định AI luôn gắn nhãn giả thuyết','Nhận định được sinh từ số đang lọc và đánh dấu “Giả thuyết”. Người vận hành xác nhận nguyên nhân thật trước khi ra quyết định.',['AI','Tôi xác nhận']]
+  ].map(s=>'<div class="step"><div><b>'+esc(s[0])+'</b><div class="note">'+esc(s[1])+'</div><div class="who">'+s[2].map(w=>'<span class="pill" style="--c:'+(w.startsWith('AI')?'var(--accent)':'var(--s2)')+'">'+esc(w)+'</span>').join('')+'</div></div></div>').join('')+'</div>')+
+  card('Đối soát tự động','Chạy lại mỗi khi đổi bộ lọc','<div class="chk">'+checks.map(c=>'<div><span class="'+(c[1]?'ok':'bad')+'">'+(c[1]?'✓':'✗')+'</span><span>'+esc(c[0])+'<br><span class="muted">'+esc(c[2])+'</span></span></div>').join('')+'</div>')+'</div>'+
+  card('Các phương pháp phân tích đã dùng','Mỗi phương pháp trả lời một nhánh của logic tree','<div class="tbl"><table><thead><tr><th>Phương pháp</th><th>Dùng để</th><th>Trang</th></tr></thead><tbody>'+[
+   ['Logic tree · 5W1H · MECE','Chia câu hỏi gốc thành nhánh không trùng, không sót','Tiếp nhận & kế hoạch'],['Ma trận ưu tiên · chấm điểm có trọng số','Quyết định làm gì trước','Tiếp nhận & kế hoạch'],['CRISP-DM','Lên kế hoạch 6 bước','Tiếp nhận & kế hoạch'],
+   ['Cầu phân rã doanh thu (PVM)','Tách tăng trưởng thành cửa hàng mới, lượt vào, CR, AOV','Tổng quan'],['Dự báo theo mùa vụ','Doanh thu 4 tháng tới','Tổng quan'],['Dải kiểm soát (z-score)','Phát hiện cửa hàng bất thường','Tổng quan'],
+   ['Định lượng cơ hội','Quy đổi khoảng cách thành tỷ đồng','Cơ hội & mô phỏng'],['Mô phỏng what-if','Thử kịch bản trước khi quyết định','Cơ hội & mô phỏng'],['Pareto · ABC','Cửa hàng nào tạo ra lợi nhuận','Cơ hội & mô phỏng'],['Hồi quy chuẩn hoá','Yếu tố nào giải thích lợi nhuận','Cơ hội & mô phỏng'],['Phân cụm k-means','So sánh cửa hàng tương đồng','Cơ hội & mô phỏng'],
+   ['Ma trận 4 ô · thác nước P&L','Phân nhóm và bóc chi phí cửa hàng','Hiệu quả cửa hàng'],['Phễu · bản đồ nhiệt','Traffic và chuyển đổi theo giờ','Traffic & chuyển đổi'],
+   ['Cohort giữ chân · RFM · CLV','Khách quay lại, nhóm khách, giá trị vòng đời','Khách hàng'],['Market basket (support, confidence, lift)','Món hay mua cùng nhau','Khách hàng'],['AI phân loại văn bản','Chủ đề góp ý của khách','Khách hàng'],
+   ['Cohort cửa hàng mới','Đường cong trưởng thành, tháng có lãi','Cửa hàng mới'],['Phân tích ăn khách theo khoảng cách','Tác động của cửa hàng mới lên cửa hàng cũ','Mạng lưới & không gian'],['GMROI · ngày tồn kho · planogram','Hiệu quả không gian và vốn tồn kho','Mạng lưới & không gian'],['NPV 3 năm','Giữ, cải tạo, chuyển Mini hay đóng','Mạng lưới & không gian'],
+   ['Thử nghiệm có đối chứng (DiD)','Tác động thật của khuyến mãi','Khuyến mãi & giỏ hàng'],['ROI khuyến mãi','Chương trình nào đáng giữ','Khuyến mãi & giỏ hàng'],['Nhu cầu nhân sự theo giờ','Xếp ca theo lượt khách','Nhân sự & phục vụ']
+  ].map(r=>'<tr style="cursor:default"><td><b>'+esc(r[0])+'</b></td><td style="white-space:normal">'+esc(r[1])+'</td><td>'+esc(r[2])+'</td></tr>').join('')+'</tbody></table></div>')+
+  card('Ví dụ câu lệnh tôi dùng với AI','','<pre>Bạn là BI analyst của chuỗi 1.000 siêu thị. Dựng bộ dữ liệu mô phỏng 20 tháng\ncho từng cửa hàng với các cột: lượt vào, tỷ lệ chuyển đổi, AOV, DTT, lãi gộp,\nhao hụt, thuê mặt bằng, nhân sự, tỷ lệ hết hàng, điểm phục vụ.\nLuật:\n- LFL chỉ tính cửa hàng mở trước 01/01/2024.\n- Lợi nhuận cửa hàng = lãi gộp − hao hụt − thuê − nhân sự − vận hành − logistics.\n- Cửa hàng mới đạt ~90% doanh thu trưởng thành sau 10–12 tháng.\n- Mọi nhận định phải kèm con số và gắn nhãn "Giả thuyết".\nSau khi dựng, tự đối soát: tổng từng cửa hàng = tổng chuỗi.</pre>')+
+  card('Từ điển chỉ số','','<div class="tbl"><table><thead><tr><th>Chỉ số</th><th>Công thức</th></tr></thead><tbody>'+[
+   ['DTT','Doanh thu thuần sau chiết khấu, trước VAT'],['LFL','DTT T1–T8/2026 ÷ T1–T8/2025 − 1, cửa hàng mở trước 2024'],['CR','Số hoá đơn ÷ lượt vào (camera đếm người)'],['AOV','DTT ÷ số hoá đơn'],['UPT','Số món ÷ số hoá đơn'],['DT/m²','DTT tháng trung bình ÷ diện tích bán hàng'],['Lợi nhuận cửa hàng','Lãi gộp − hao hụt − thuê − nhân sự − điện nước − logistics − khác'],['Doanh thu mất do hết hàng','DTT × %OOS ÷ (1 − %OOS) × 60%'],['ROI khuyến mãi','Lãi gộp tăng thêm ÷ chi phí chương trình']
+  ].map(r=>'<tr style="cursor:default"><td><b>'+esc(r[0])+'</b></td><td style="white-space:normal">'+esc(r[1])+'</td></tr>').join('')+'</tbody></table></div>')+'</section>'}
+
+/* ================= CHI TIẾT CỬA HÀNG ================= */
+function flags(x){const f=[];if(x.margin<0)f.push('Lợi nhuận âm');if(x.rent/x.rev>.045)f.push('Tiền thuê cao ('+fP(x.rent/x.rev)+' DTT)');if(x.oos>.06)f.push('Hết hàng cao ('+fP(x.oos)+')');if(x.shrP>.02)f.push('Hao hụt cao ('+fP(x.shrP,2)+')');if(x.qc<75)f.push('Điểm phục vụ thấp ('+nf(x.qc,0)+')');if(x.lfl!=null&&x.lfl<0)f.push('Doanh thu giảm so cùng kỳ ('+fPt(x.lfl)+')');if(x.staff/x.rev>.075)f.push('Chi phí nhân sự cao ('+fP(x.staff/x.rev)+' DTT)');return f}
+function openStore(id){
+  const x=STAT.get(id);if(!x)return;const s=x.s;
+  const peers=STORES.filter(p=>p.reg.k===s.reg.k&&p.fmt.k===s.fmt.k&&p.id!==id).map(p=>STAT.get(p.id)).filter(p=>p.full);
+  const pm=MONTHS.map((_,i)=>median(peers.map(p=>p.s.m[i]?p.s.m[i].rev:null).filter(v=>v!=null))||null);
+  const cmp=(lbl,v,pv,fmt,hiGood=true,pp=false)=>'<div class="kpi"><small>'+esc(lbl)+'</small><b style="font-size:24px">'+fmt(v)+'</b><div class="d">Nhóm tương tự: '+fmt(pv)+' '+(pv?(pp?dlt(v-pv,hiGood,fPP):dlt((v-pv)/Math.abs(pv),hiGood)):'')+'</div></div>';
+  const md=f=>median(peers.map(p=>p[f]));
+  const fl=flags(x);
+  const acts=[];if(x.rent/x.rev>.045)acts.push('Đàm phán lại giá thuê hoặc thu hẹp diện tích');if(x.oos>.06)acts.push('Rà lịch giao hàng và mức tồn tối thiểu cho top 50 mã bán chạy');if(x.shrP>.02)acts.push('Giảm giá hàng tươi sau 19h, đặt hàng theo dự báo ngày');if(x.qc<75)acts.push('Đào tạo lại quy trình phục vụ, kiểm tra camera 2 tuần');if(!acts.length)acts.push('Giữ nguyên vận hành, dùng làm cửa hàng mẫu cho vùng');
+  $('#drawerPn').innerHTML='<button class="btn x" type="button" id="dClose">Đóng ✕</button><div><div class="eyebrow">'+esc(s.reg.n)+' · '+esc(s.fmt.n)+'</div><h2 style="font-family:var(--f-disp);font-size:34px">'+s.id+' · '+esc(s.loc)+'</h2><div class="note">'+nf(s.area)+' m² · khai trương '+s.openLab+' · '+nf(s.staffN)+' nhân viên</div></div>'+
+   '<div class="kpis">'+cmp('DTT tháng TB',x.revM,md('revM'),v=>fBn(v,2))+cmp('% lợi nhuận',x.margin,md('margin'),v=>fP(v),true,true)+cmp('CR',x.cr,md('cr'),v=>fP(v),true,true)+cmp('AOV',x.aov,md('aov'),v=>fK(v))+cmp('Hết hàng',x.oos,md('oos'),v=>fP(v),false,true)+cmp('Điểm phục vụ',x.qc,md('qc'),v=>nf(v,0))+'</div>'+
+   card('Doanh thu theo tháng','So với trung vị '+nf(peers.length)+' cửa hàng cùng vùng và mô hình',lineChart({labels:MONTHS.map(m=>m.lab),series:[{name:s.id,color:'var(--s1)',vals:x.spark},{name:'Trung vị nhóm',color:'var(--ink-3)',vals:pm,dash:true}],fmt:v=>fBn(v,2),tick:v=>nf(v/1e9,1),h:220}))+
+   card('Lợi nhuận cửa hàng theo tháng','',cols({labels:MONTHS.map(m=>m.lab),series:[{name:'Lợi nhuận',color:'var(--s3)',vals:s.m.map(m=>m?Math.max(0,m.profit):0)},{name:'Lỗ',color:'var(--s8)',vals:s.m.map(m=>m?Math.max(0,-m.profit):0)}],fmt:v=>fMn(v,0),h:180,maxX:10}))+
+   '<div class="card"><h3>Cảnh báo</h3><div class="chips" style="margin-top:8px">'+(fl.length?fl.map(f=>'<span class="pill" style="--c:var(--crit)">'+esc(f)+'</span>').join(''):'<span class="pill" style="--c:var(--good)">Không có cảnh báo</span>')+'</div><h3 style="margin-top:14px">Đề xuất hành động <span class="hyp">Giả thuyết</span></h3><ol style="margin:6px 0 0;padding-left:20px">'+acts.map(a=>'<li>'+esc(a)+'</li>').join('')+'</ol></div>';
+  $('#drawer').hidden=false;drawAll($('#drawerPn'));$('#dClose').onclick=closeStore;$('#dClose').focus()}
+function closeStore(){$('#drawer').hidden=true;hideTip()}
+$('#drawer').addEventListener('click',e=>{if(e.target.id==='drawer')closeStore()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('#drawer').hidden)closeStore()});
+
+/* ================= RENDER ================= */
+let A=null;
+function render(){
+  A=agg();for(const k in CH)delete CH[k];
+  $('#scope').innerHTML='Đang xem <b>'+nf(A.S.length)+'</b> cửa hàng · <b>'+nf(A.openNow)+'</b> đang mở';
+  tabsUI();
+  const f={pl:secPlan,op:secOpp,kh:secCust,nt:secNet,ov:secOverview,st:secStores,tr:secTraffic,sp:secProd,nw:secNew,iv:secInv,pm:secPromo,hr:secHR,qa:secQA,ai:secAI}[TAB];
+  DEFER.length=0;$('#main').innerHTML=A.S.length?f(A)+formulaCard(TAB,A):'<div class="card" style="margin-top:14px">Không có cửa hàng nào khớp bộ lọc. Bấm “Đặt lại”.</div>';
+  drawAll($('#main'));
+  $('#main').querySelectorAll('tr[data-store]').forEach(r=>r.onclick=()=>openStore(r.dataset.store));
+  $('#main').querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>{TAB=b.dataset.go;try{localStorage.setItem('sm1k-tab',TAB)}catch(e){}render();window.scrollTo({top:$('.bar').offsetTop,behavior:'smooth'})});
+  $('#main').querySelectorAll('[data-rk]').forEach(b=>b.onclick=()=>{RANK.mode=b.dataset.rk;render()});
+  $('#main').querySelectorAll('th[data-sort]').forEach(h=>h.onclick=()=>{if(RANK.sort===h.dataset.sort)RANK.mode=RANK.mode==='top'?'bottom':'top';else RANK.sort=h.dataset.sort;render()});
+  const q=$('#rkq');if(q){q.oninput=()=>{RANK.q=q.value;const pos=q.selectionStart;render();const n=$('#rkq');n.focus();n.setSelectionRange(pos,pos)}}
+  $('#main').querySelectorAll('[data-qa]').forEach(b=>b.onclick=()=>{QACUR=+b.dataset.qa;render()});
+  if(TAB==='op')bindSim(A);
+  const qi=$('#qaIn');if(qi){const go=()=>{const v=qi.value.toLowerCase().trim();if(!v)return;let best=-1,bs=0;QA.forEach((x,i)=>{const sc=x.k.filter(k=>v.includes(k)).length+(x.q.toLowerCase().includes(v)?2:0);if(sc>bs){bs=sc;best=i}});
+    const out=$('#qaOut');if(best<0){out.innerHTML='<div class="qa-a"><div class="q">'+esc(qi.value)+'</div><div class="note">Chưa có phép tính cho câu này. Thử các từ: lỗ, hoà vốn, hết hàng, khuyến mãi, giờ cao điểm, mô hình, tăng trưởng.</div></div>'}else{QACUR=best;out.innerHTML=qaAns(A,best);drawAll(out);$('#main').querySelectorAll('[data-qa]').forEach(b=>b.setAttribute('aria-pressed',+b.dataset.qa===best));out.querySelectorAll('tr[data-store]').forEach(r=>r.onclick=()=>openStore(r.dataset.store))}};
+    $('#qaGo').onclick=go;qi.onkeydown=e=>{if(e.key==='Enter')go()}}
+}
+render();
+</script>
+<a href="/#projects" style="position:fixed;left:14px;bottom:14px;z-index:60;background:#0f172a;color:#fff;font:600 13px/1 system-ui,sans-serif;padding:10px 14px;border-radius:999px;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.2)">← Về portfolio</a></body></html>
