@@ -240,6 +240,9 @@ footer{margin-top:28px;color:var(--ink-3);font-size:12px;display:grid;gap:4px}
 .ln2 .opp{display:inline-block;background:color-mix(in srgb,var(--good) 16%,var(--surface));color:var(--good);border-radius:999px;padding:0 7px;font-size:11px;font-weight:700;white-space:nowrap}
 .ln2 .fx2{font-size:12px;font-weight:600;line-height:1.35;background:rgba(0,0,0,.18);border-radius:6px;padding:4px 7px;margin:3px 0 1px}
 .lt2-fx{font-size:13.5px;color:var(--ink);margin-top:2px}
+.tt{border-bottom:1px dotted currentColor;cursor:help;position:relative;outline:none}
+.tt:hover::after,.tt:focus::after{content:attr(data-tip);position:absolute;left:0;top:calc(100% + 6px);z-index:30;width:250px;max-width:70vw;background:#141413;color:#fff;font:500 11.5px/1.45 var(--f-body,system-ui);letter-spacing:0;text-transform:none;padding:8px 10px;border-radius:8px;box-shadow:0 6px 20px rgba(0,0,0,.25);white-space:normal;text-align:left}
+.lt2-col:last-child .tt:hover::after,.lt2-col:last-child .tt:focus::after{left:auto;right:0}
 /* ===== Bản 2c: chỗ trỏ kết luận/nhận định ↔ chart ===== */
 ol.kn{list-style:none;padding-left:0;margin:0;display:grid;gap:7px}
 ol.kn>li{display:grid;grid-template-columns:30px minmax(0,1fr);gap:8px;align-items:start;border-radius:8px;padding:2px 4px;margin:0 -4px}
@@ -1363,9 +1366,11 @@ function conclTop(A){const T=treeCalc(A),SP=T.SP,ns=newStats(A),ps=promoStats(A)
    '<div class="more"><b style="color:#fff">Nên làm dù chưa quy ra tiền:</b> '+q.join(' · ')+'</div></div>'}
 
 /* ---- Logic tree có số và kết luận ---- */
-function ln2(o){return '<div class="ln2 '+(o.cls||'')+'" style="--c:'+o.c+'" data-go="'+o.go+'" role="button" tabindex="0"><span class="t">'+o.t+(o.v!=null?'<em>'+o.v+'<small>'+(o.vs||'đã xảy ra · 8 tháng')+'</small></em>':'')+'</span>'+
+function ln2(o){return '<div class="ln2 '+(o.cls||'')+'" style="--c:'+o.c+'" data-go="'+o.go+'" role="button" tabindex="0"><span class="t"><span>'+o.t+'</span>'+(o.v!=null?'<em>'+o.v+'<small>'+(o.vs||tt('đã xảy ra · 8 tháng','DXR'))+'</small></em>':'')+'</span>'+
   (o.f?'<span class="fx2">'+o.f+'</span>':'')+(o.k?'<span class="k">'+o.k+'</span>':'')+(o.ev||[]).filter(Boolean).map(e=>'<span class="ev">'+e+'</span>').join('')+(o.na?'<span class="na">'+o.na+'</span>':'')+
   (o.d?'<span class="do"><b>Làm gì:</b> '+o.d+'</span>':'')+(o.go&&!o.h?'<span class="tb">Trang '+esc(TABN(o.go))+' →</span>':'')+'</div>'}
+function tt(l,k){return '<span class="tt" tabindex="0" data-tip="'+esc(TTG[k]||k)+'">'+l+'</span>'}
+const TTG={"DTT": "Doanh thu thuần: doanh thu sau chiết khấu, khuyến mãi và hàng trả lại.", "LV": "Số lượt khách bước vào cửa hàng, đếm bằng camera ở cửa.", "CR": "Tỷ lệ chuyển đổi = Số hoá đơn ÷ Lượt vào. Ví dụ CR 66.5% nghĩa là cứ 100 lượt khách vào thì có khoảng 66 hoá đơn.", "UPT": "Số món trung bình trên 1 hoá đơn (Units Per Transaction). Ví dụ UPT 6.3 = mỗi hoá đơn có khoảng 6 món.", "GM": "Giá bán bình quân của 1 món = DTT ÷ tổng số món bán ra. Phụ thuộc giá từng ngành và cơ cấu (mix) hàng khách mua.", "CHHH": "Cửa hàng mở trước 2024, có đủ số liệu cùng kỳ năm trước nên so sánh được (LFL).", "CHM": "Cửa hàng mở từ 01/2024, chưa có đủ cùng kỳ để so sánh; tách riêng để không làm méo tăng trưởng.", "LFL": "Like-for-like: tăng trưởng của cùng một nhóm cửa hàng so với cùng kỳ năm trước (T1–T8/2026 so T1–T8/2025).", "GV": "Giá vốn hàng bán: giá nhập của hàng đã bán ra.", "BN": "Tỷ trọng ngành = phần DTT của ngành trong tổng DTT; biên ngành = % lãi gộp của ngành đó. Bán nhiều ngành biên cao thì % lãi gộp chung tăng.", "HH": "Giá trị hàng phải huỷ hoặc mất: hàng tươi hỏng, hàng hết hạn, mất mát, sai lệch kiểm kê.", "CPVH": "Chi phí vận hành tại cửa hàng (trước chi phí văn phòng): thuê mặt bằng, lương nhân viên, điện nước, logistics phân bổ và chi phí khác.", "DG": "Cách quy ra lợi nhuận: phần thay đổi của chỉ số nhân với số liệu năm trước, cộng 4 nhánh lại đúng bằng lợi nhuận tăng thêm.", "DXR": "Phần đóng góp vào lợi nhuận tăng thêm T1–T8/2026 so với T1–T8/2025 (số đã xảy ra, không phải dự báo)."};
 function tone(v,eps){return v>eps?'g':v<-eps?'r':'w'}
 function treeHTML2(A){
   const T=treeCalc(A),SP=T.SP,cd=crDrv(A),ns=newStats(A),cn=canni(A),ps=promoStats(A),mk=freshMk(A),iv=invStats(A),dv=drivers(A),sg=staffGap(A);
@@ -1378,11 +1383,11 @@ function treeHTML2(A){
   const star=Object.entries(nodeOpp).sort((a,b)=>b[1]-a[1])[0];const st=id=>(star&&star[1]>0&&star[0]===id?' star':'')+(path.has(id)?' path':'');
   const sens=SP?SP.cat.filter(x=>x.dP>0&&x.dQ<0).sort((a,b)=>a.eV-b.eV)[0]:null,win=SP?SP.cat.filter(x=>x.dP>.01&&x.dQ>0).sort((a,b)=>b.dQ-a.dQ)[0]:null;
   const lfl=T.l0.rev?T.l1.rev/T.l0.rev-1:null;
-  const A1=ln2({t:'A1 · Mạng lưới ('+nf(T.nN)+' CH mở từ 2024)',v:sgn(T.A1),c:c.A,cls:tone(T.A1,eps)+st('A1'),go:'nw',k:'lãi gộp của cửa hàng mới',
+  const A1=ln2({t:'A1 · Mạng lưới ('+tt(nf(T.nN)+' CH mở từ 2024','CHM')+')',v:sgn(T.A1),c:c.A,cls:tone(T.A1,eps)+st('A1'),go:'nw',k:'lãi gộp của cửa hàng mới',
      ev:['Trừ chi phí riêng của CH mới ('+nf(T.newCost/1e9,0)+' tỷ ở C, D) còn <b>'+sgn(T.A1-T.newCost)+'</b> ròng',ns.be!=null?'CH mới mất '+nf(ns.be,1)+' tháng để có lãi; '+nf(ns.lateN)+' CH chậm hơn kỳ vọng &gt; 25%':'',cn.eff>0?'CH mới trong 0,5 km làm CH cũ mất '+fP(cn.eff,1)+' lượt khách':''],
      d:'rà vị trí '+nf(ns.lateN)+' CH mới đang chậm; không mở mới trong bán kính 1 km CH cũ'});
   const A2=T.SP||T.TR?[
-   ln2({t:'A2 · Cửa hàng hiện hữu ('+nf(T.nL)+' CH)',v:sgn(T.A2),c:c.A,cls:tone(T.A2,eps)+st('A2'),go:'ov',k:'DTT LFL '+(lfl==null?'—':fPt(lfl))+' = Lượt vào × CR × UPT × Giá/món'}),
+   ln2({t:'A2 · '+tt('Cửa hàng hiện hữu ('+nf(T.nL)+' CH)','CHHH'),v:sgn(T.A2),c:c.A,cls:tone(T.A2,eps)+st('A2'),go:'ov',k:'DTT '+tt('LFL','LFL')+' '+(lfl==null?'—':fPt(lfl))+' = Lượt vào × CR × UPT × Giá/món'}),
    ln2({t:'A2.1 · Lượt vào '+fPt(T.TR[1]/T.TR[0]-1),v:sgn(T.eT*T.m0),c:c.A,cls:tone(T.eT*T.m0,eps),go:'kh',k:'= Số khách × Số lần ghé/khách',
      ev:[fP(RET3,0)+' khách quay lại sau 3 tháng, còn '+fP(RET12,0)+' sau 1 năm','9% khách "trung thành cao" tạo 31% DT thành viên'],d:'kéo khách quay lại ở mốc 3 tháng (nhóm "Cần giữ chân", "Ngủ đông")'}),
    ln2({t:'A2.2 · CR '+fP(T.CR[0])+' → '+fP(T.CR[1]),v:sgn(T.eC*T.m0),c:c.A,cls:tone(T.eC*T.m0,eps)+st('A2.2'),go:'tr',k:'= Hoá đơn ÷ Lượt vào',
@@ -1394,19 +1399,19 @@ function treeHTML2(A){
      ev:[T.eM<0?'Khách chuyển sang hàng rẻ hơn, bù lại phần tăng giá':'Khách chuyển sang hàng đắt hơn',sens?esc(sens.c.n)+': giá '+fPt(sens.dP)+', lượng '+fPt(sens.dQ)+' (mất lượng nhiều nhất)':''],
      d:(sens?'giữ giá mã '+esc(sens.c.n.toLowerCase())+' chủ lực':'theo dõi giá từng ngành')+(win?'; tăng giá ở ngành ít nhạy ('+esc(win.c.n.toLowerCase())+' giá '+fPt(win.dP)+' vẫn bán thêm '+fPt(win.dQ)+')':'')})
   ].join(''):ln2({t:'A2 · Cửa hàng hiện hữu',c:c.A,cls:'z',go:'ov',na:'Bộ lọc không có cửa hàng mở trước 2024'});
-  const colA='<div class="lt2-col">'+ln2({t:'A · Doanh thu',v:sgn(T.A),c:c.A,cls:'h'+(path.has('A')?' path':''),go:'ov',h:1,f:'DTT = Lượt vào × CR × UPT × Giá/món<br>(cửa hàng hiện hữu + cửa hàng mới)',k:'Đóng góp: '+'ΔDTT '+sgn(T.dRev)+' × biên lãi gộp '+fP(T.m0)})+
+  const colA='<div class="lt2-col">'+ln2({t:'A · Doanh thu',v:sgn(T.A),c:c.A,cls:'h'+(path.has('A')?' path':''),go:'ov',h:1,f:tt('DTT','DTT')+' = '+tt('Lượt vào','LV')+' × '+tt('CR','CR')+' × '+tt('UPT','UPT')+' × '+tt('Giá/món','GM')+'<br>('+tt('cửa hàng hiện hữu','CHHH')+' + '+tt('cửa hàng mới','CHM')+')',k:tt('Đóng góp','DG')+': '+'ΔDTT '+sgn(T.dRev)+' × biên lãi gộp '+fP(T.m0)})+
     '<div class="lt2-sub"><div class="lt2-grp" style="--c:'+c.A+'">'+A1+'</div><div class="lt2-grp" style="--c:'+c.A+'">'+A2+'</div></div></div>';
-  const colB='<div class="lt2-col">'+ln2({t:'B · % Lãi gộp',v:sgn(T.B),c:c.B,cls:'h'+(path.has('B')?' path':''),go:'sp',h:1,f:'% lãi gộp = (DTT − Giá vốn) ÷ DTT<br>= Σ tỷ trọng ngành × biên ngành',k:'Đóng góp: '+fP(T.m0,2)+' → '+fP(T.m1,2)+' × DTT 2026'})+
+  const colB='<div class="lt2-col">'+ln2({t:'B · % Lãi gộp',v:sgn(T.B),c:c.B,cls:'h'+(path.has('B')?' path':''),go:'sp',h:1,f:'% lãi gộp = ('+tt('DTT','DTT')+' − '+tt('Giá vốn','GV')+') ÷ DTT<br>= Σ '+tt('tỷ trọng ngành × biên ngành','BN'),k:tt('Đóng góp','DG')+': '+fP(T.m0,2)+' → '+fP(T.m1,2)+' × DTT 2026'})+
     ln2({t:'B1 · Cơ cấu ngành hàng',v:sgn(T.B1),c:c.B,cls:tone(T.B1,eps)+st('B1'),go:'sp',k:'ngành biên cao tăng hay giảm tỷ trọng',d:'đẩy trưng bày ngành biên cao (bánh kẹo, rau củ, hoá mỹ phẩm)'})+
     ln2({t:'B2 · Biên trong từng ngành',v:sgn(T.B2),c:c.B,cls:tone(T.B2,eps)+st('B2'),go:'sp',k:'giá bán − giá vốn, gồm giảm giá khuyến mãi',na:'phần còn lại của B sau B1'})+
     ln2({t:'B3 · Khuyến mãi (nằm trong B2)',v:fP(ps.cost/A.t12.rev),vs:'chi phí / DTT',c:c.B,cls:ps.bad.length?'w':'g',go:'pm',k:'ROI = lãi gộp tăng thêm ÷ chi phí CT',
      ev:[nf(ps.cost/1e9,0)+' tỷ chi phí; '+nf(ps.good.length)+'/'+nf(ps.P.length)+' chương trình ROI &gt; 1'],d:ps.bad.length?'cắt '+nf(ps.bad.length)+' CT ROI &lt; 1, dồn ngân sách cho "'+esc(ps.P[0].n)+'" (ROI '+nf(ps.P[0].roi,2)+')':'giữ cơ cấu chương trình hiện tại'})+'</div>';
-  const colC='<div class="lt2-col">'+ln2({t:'C · Hao hụt',v:sgn(T.C),c:c.C,cls:'h'+(path.has('C')?' path':''),go:'iv',h:1,f:'Hao hụt = DTT × % hao hụt<br>(hàng tươi + cận date + mất mát)',k:fP(T.a0.shr/T.a0.rev,2)+' → '+fP(T.a1.shr/T.a1.rev,2)+' DTT · '+sgn(T.Cn)+' do CH mới'})+
+  const colC='<div class="lt2-col">'+ln2({t:'C · Hao hụt',v:sgn(T.C),c:c.C,cls:'h'+(path.has('C')?' path':''),go:'iv',h:1,f:tt('Hao hụt','HH')+' = DTT × % hao hụt<br>(hàng tươi + cận date + mất mát)',k:fP(T.a0.shr/T.a0.rev,2)+' → '+fP(T.a1.shr/T.a1.rev,2)+' DTT · '+sgn(T.Cn)+' do CH mới'})+
     ln2({t:'C1 · Hàng tươi sống',v:fP(FRESH,0),vs:'tỷ trọng hao hụt',c:c.C,cls:'r'+st('C1'),go:'iv',k:'rau củ, thịt cá: 30% DT',ev:['Giảm giá lúc '+esc(mk.best.n)+' cho lãi sau hao hụt cao nhất'],d:'giảm hao hụt '+nf(T.oc('shr'))+' CH cao nhất về trung vị '+oppT(T.ov('shr'))})+
     ln2({t:'C2 · Cận date, bán chậm',v:fP(iv.slow,1),vs:'tồn &gt; 60 ngày',c:c.C,cls:'w',go:'iv',k:'cận date '+fP(iv.near,1)+' giá trị tồn',d:'chuyển hàng chậm giữa CH cùng vùng trước khi xả giá'})+
     ln2({t:'C3 · Mất mát, sai lệch kiểm kê',c:c.C,cls:'z',go:'iv',na:'chưa có dữ liệu trong bộ mô phỏng'})+'</div>';
   const cc=closeCands(A);
-  const colD='<div class="lt2-col">'+ln2({t:'D · Chi phí vận hành',v:sgn(T.D),c:c.D,cls:'h'+(path.has('D')?' path':''),go:'st',h:1,f:'CPVH = Thuê + Nhân sự<br>+ Điện nước, logistics, khác',k:'Thuê '+sgn(T.D1[0])+' · nhân sự '+sgn(T.D2[0])+' · khác '+sgn(T.D3[0])})+
+  const colD='<div class="lt2-col">'+ln2({t:'D · Chi phí vận hành',v:sgn(T.D),c:c.D,cls:'h'+(path.has('D')?' path':''),go:'st',h:1,f:tt('CPVH','CPVH')+' = Thuê + Nhân sự<br>+ Điện nước, logistics, khác',k:'Thuê '+sgn(T.D1[0])+' · nhân sự '+sgn(T.D2[0])+' · khác '+sgn(T.D3[0])})+
     ln2({t:'D1 · Thuê mặt bằng',v:sgn(T.D1[0]),c:c.D,cls:tone(T.D1[0],eps)+st('D1'),go:'nt',k:sgn(T.D1[2])+' CH mới · '+sgn(T.D1[1])+' CH cũ',ev:[nf(cc.length)+' CH lỗ; '+nf(T.oc('rent'))+' CH thuê &gt; 4.5% DTT'],
      d:'xử lý '+nf(cc.length)+' CH lỗ theo NPV '+oppT(T.ov('close'))+'; đàm phán thuê '+nf(T.oc('rent'))+' CH '+oppT(T.ov('rent'))})+
     ln2({t:'D2 · Nhân sự',v:sgn(T.D2[0]),c:c.D,cls:tone(T.D2[0],eps)+st('D2'),go:'hr',k:sgn(T.D2[2])+' CH mới · '+sgn(T.D2[1])+' CH cũ',ev:[dv?'"'+esc(dv.rows[0].n)+'" là yếu tố giải thích % lợi nhuận mạnh nhất':''],
@@ -1418,7 +1423,7 @@ function treeHTML2(A){
    '<div>Lợi nhuận cửa hàng T1–T8/2026: <b>'+nf(T.LN1/1e9,0)+' tỷ</b> · <b class="'+(T.dLN>=0?'up':'dn')+'">'+sgn(T.dLN)+(T.LN0>0?' ('+fPt(T.dLN/T.LN0)+')':'')+'</b> so cùng kỳ</div>'+
    '<div class="lt2-fx">Lợi nhuận cửa hàng = <b>DTT</b> × <b>% lãi gộp</b> − <b>Hao hụt</b> − <b>Chi phí vận hành</b></div><code>ΔLN = A Doanh thu ('+sgn(T.A)+') + B % lãi gộp ('+sgn(T.B)+') + C Hao hụt ('+sgn(T.C)+') + D Chi phí vận hành ('+sgn(T.D)+') = '+sgn(T.dLN)+'</code></div>'+
    '<div class="lt2-l1">'+colA+colB+colC+colD+'</div>'+
-   '<div class="lt2-lg"><span><i style="background:var(--s1)"></i>Doanh thu</span><span><i style="background:var(--s3)"></i>% lãi gộp</span><span><i style="background:var(--s2)"></i>Hao hụt</span><span><i style="background:var(--s7)"></i>Chi phí vận hành</span><span><i style="outline:3px solid var(--crit)"></i>Đường kéo LN xuống nhiều nhất</span><span><i style="outline:3px solid #e0a800"></i>Cơ hội lớn nhất</span><span>Số ở góc ô = đóng góp vào ΔLN (đã xảy ra, 8 tháng) · ✓ có số liệu chứng minh · in nghiêng: chưa có dữ liệu · bấm ô để mở trang trả lời ô đó</span></div></div>'}
+   '<div class="lt2-lg"><span><i style="background:var(--s1)"></i>Doanh thu</span><span><i style="background:var(--s3)"></i>% lãi gộp</span><span><i style="background:var(--s2)"></i>Hao hụt</span><span><i style="background:var(--s7)"></i>Chi phí vận hành</span><span><i style="outline:3px solid var(--crit)"></i>Đường kéo LN xuống nhiều nhất</span><span><i style="outline:3px solid #e0a800"></i>Cơ hội lớn nhất</span><span>Số ở góc ô = đóng góp vào ΔLN (đã xảy ra, 8 tháng) · chữ gạch chấm: rê chuột hoặc chạm để xem giải thích · ✓ có số liệu chứng minh · in nghiêng: chưa có dữ liệu · bấm ô để mở trang trả lời ô đó</span></div></div>'}
 
 /* ---- Trang Tiếp nhận & kế hoạch: thay logic tree cũ bằng cây có số ---- */
 function secPlan(A){
@@ -1698,6 +1703,8 @@ function secHR(A){
   drop('sp',['Hiệu ứng lượng']);
   FX.pm=FX.pm.concat(take('kh',['Support','Confidence','Lift']));
 })();
+
+document.addEventListener('click',e=>{if(e.target.closest&&e.target.closest('.tt')){e.stopPropagation();e.preventDefault()}},true);
 
 
 /* ================= BẢN 2c · KẾT LUẬN/NHẬN ĐỊNH ↔ CHART, "ĐỌC CHART" (mẫu: trang Tồn kho & hao hụt) ================= */
