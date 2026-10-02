@@ -274,6 +274,74 @@ ol.kn>li{display:grid;grid-template-columns:30px minmax(0,1fr);gap:8px;align-ite
 .cn{display:grid;grid-template-columns:30px minmax(0,1fr);gap:8px;align-items:start;margin-top:10px;padding:8px 10px;border-radius:8px;background:color-mix(in srgb,#e0a800 9%,var(--surface));font-size:13px;color:var(--ink-2)}
 .cn b:not(.kno){color:var(--ink)}
 
+/* ===== Bản 2f · gọn & chuẩn (mẫu: Tổng quan, Tiếp nhận & kế hoạch) — giữ bảng màu ===== */
+body[data-tab=ov] .sec,body[data-tab=pl] .sec{gap:22px}
+body[data-tab=ov] .card h3,body[data-tab=pl] .card h3{font-size:16px;font-weight:700}
+body[data-tab=ov] .card .sub,body[data-tab=pl] .card .sub{font-size:12px;margin-top:3px}
+/* link chart gom thành 1 nút */
+.refs.fold{position:relative;display:inline-flex;margin-top:3px}
+.refbtn{font:inherit;font-size:11.5px;font-weight:600;color:var(--accent);background:transparent;border:1px solid color-mix(in srgb,var(--accent) 35%,var(--line));border-radius:999px;padding:0 9px;cursor:pointer;line-height:1.7}
+.cc .refbtn{color:#8fe6c0;border-color:#2c5a4f}
+.refpop{display:none;position:absolute;left:0;top:calc(100% + 4px);z-index:40;min-width:260px;max-width:440px;background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,.18);padding:6px}
+.refs.fold:hover .refpop,.refs.fold:focus-within .refpop,.refs.fold.open .refpop{display:grid;gap:2px}
+.refpop .ref,.cc .refpop .ref{display:block;color:var(--ink);text-decoration:none;font-weight:500;font-size:12.5px;padding:5px 8px;border-radius:6px}
+.refpop .ref:hover{background:var(--surface-2);color:var(--accent)}
+/* nhãn N và nhãn ô con: viền mảnh; K giữ vàng */
+body[data-tab=ov] .cn .kno,body[data-tab=pl] .cn .kno{background:transparent;color:var(--accent);border:1px solid color-mix(in srgb,var(--accent) 40%,var(--line))}
+body[data-tab=pl] .nc{background:transparent;color:inherit;border:1px solid currentColor;opacity:.85;font-weight:700}
+body[data-tab=pl] .nc:hover{opacity:1;background:#fff;color:var(--ink)}
+/* KPI chuẩn hoá */
+body[data-tab=ov] .kpi{padding:14px 16px 12px}
+body[data-tab=ov] .kpi b{font-size:32px}
+.kpi .spk{display:block;margin-top:6px;width:100%;height:26px}
+/* nguồn dưới chart */
+.src{margin:10px 0 0;font-size:11px;color:var(--ink-3);letter-spacing:.01em}
+.src b{font-weight:600;color:var(--ink-2)}
+
+/* ===== bố cục trang web: menu dọc bên trái theo logic tree ===== */
+.tabs .nb,.tabs .tnav{display:none}
+@media (min-width:901px){
+ .wrap{max-width:none;display:grid;grid-template-columns:262px minmax(0,1fr);column-gap:32px;padding-left:0;padding-right:32px}
+ .wrap>*{grid-column:2;min-width:0}
+ .wrap>#tabs{grid-column:1;grid-row:1 / span 20;position:sticky;top:0;align-self:start;height:100vh;overflow-y:auto;display:block;padding:18px 12px 28px;background:var(--surface);border-right:1px solid var(--line);border-bottom:0}
+ .wrap>#tabs>button{display:none}
+ .wrap>.top .brand>.logo{display:none}
+ .wrap>.top{padding-top:22px}
+ .bar{margin-inline:0;padding-inline:0}
+ .tabs .nb{display:flex;gap:10px;align-items:center;padding:4px 8px 14px;margin-bottom:6px;border-bottom:1px solid var(--line)}
+ .tabs .nb .logo{width:34px;height:34px;font-size:16px;border-radius:8px}
+ .tabs .nb b{display:block;font-size:13px;line-height:1.25;color:var(--ink)}
+ .tabs .nb small{display:block;font-size:11px;color:var(--ink-3)}
+ .tabs .tnav{display:grid;gap:1px}
+ .tabs .ng{font-size:12.5px;font-weight:800;color:var(--accent);letter-spacing:.01em;padding:14px 10px 4px;border-top:1px solid var(--line);margin-top:8px}
+ .tabs .ng:first-child{border-top:0}
+ .tabs .ni{display:flex;gap:8px;align-items:flex-start;width:100%;text-align:left;border:0;background:transparent;border-radius:8px;padding:7px 10px;cursor:pointer;color:var(--ink-2);font:inherit;font-size:13.5px;border-left:3px solid transparent;line-height:1.3}
+ .tabs .ni .nt{display:grid}
+ .tabs .ni small{font-size:11px;color:var(--ink-3);font-weight:500}
+ .tabs .ni.l1{padding-left:18px}.tabs .ni.l2{padding-left:34px}
+ .tabs .nl{font-size:13px;color:var(--ink-2);padding:7px 10px 3px 18px;display:flex;gap:8px;font-weight:600}
+ .tabs .cd{flex:none;min-width:30px;font-size:10.5px;font-weight:800;color:var(--accent);background:var(--accent-2);border-radius:4px;padding:1px 4px;text-align:center;margin-top:1px}
+ .tabs .ni:hover{background:var(--surface-2);color:var(--ink)}
+ .tabs .ni[aria-current="page"]{background:var(--accent-2);color:var(--accent);font-weight:700;border-left-color:var(--accent)}
+ .tabs .ni[aria-current="page"] .cd{background:var(--accent);color:#fff}
+}
+@media (min-width:901px){.tabs .ni .nt{min-width:0;white-space:normal}.tabs .ni{white-space:normal}}
+/* tiêu đề trang */
+.ph{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px;align-items:end;padding:22px 0 16px;margin-top:6px;border-bottom:2px solid var(--accent)}
+.ph-bc{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);font-weight:700}
+.ph-bc span{color:var(--ink-3);margin:0 3px}.ph-bc b{background:var(--accent);color:#fff;border-radius:4px;padding:0 6px}
+.ph h2{font-family:var(--f-disp);font-weight:700;font-size:clamp(34px,4vw,48px);line-height:1;margin:6px 0 4px;color:var(--ink)}
+.ph p{margin:0;color:var(--ink-2);font-size:14px;max-width:70ch}
+.ph-r{text-align:right;display:grid;gap:1px;background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:10px;padding:10px 16px;min-width:230px}
+.ph-r small{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);font-weight:700}
+.ph-r b{font-family:var(--f-disp);font-size:32px;line-height:1.05}
+.ph-r span{font-size:11.5px;color:var(--ink-3)}.ph-r em{font-style:normal;font-size:11.5px;color:var(--ink-2);margin-top:3px}
+@media (max-width:700px){.ph{grid-template-columns:1fr}.ph-r{text-align:left}}
+body[data-tab]:not([data-tab="pl"]) .wrap>.top{display:none}
+body[data-tab]:not([data-tab="pl"]) .bar{margin-top:14px}
+.tabs .nb small.nsim{color:#8a6a00;font-weight:600;margin-top:2px}
+.ph-r b i{font-style:normal;font-size:16px;color:var(--ink-2);margin-left:3px}
+.ph-bc b{white-space:nowrap}
 </style>
 
 <div class="wrap">
@@ -1716,7 +1784,7 @@ document.addEventListener('click',e=>{const g=e.target.closest&&e.target.closest
 
 
 /* ================= BẢN 2c · KẾT LUẬN/NHẬN ĐỊNH ↔ CHART, "ĐỌC CHART" (mẫu: trang Tồn kho & hao hụt) ================= */
-function mkB(x,y,t){const w=10+t.length*6.6;return '<g class="mk" pointer-events="none"><rect x="'+x.toFixed(1)+'" y="'+y.toFixed(1)+'" width="'+w.toFixed(1)+'" height="16" rx="8" fill="#e0a800"/><text x="'+(x+w/2).toFixed(1)+'" y="'+(y+11.5).toFixed(1)+'" text-anchor="middle" style="font-size:10.5px;font-weight:700;fill:#2b2200">'+esc(t)+'</text></g>'}
+function mkBc(x,y,t){const w=10+t.length*6.6;return '<g class="mk" pointer-events="none"><rect x="'+x.toFixed(1)+'" y="'+y.toFixed(1)+'" width="'+w.toFixed(1)+'" height="16" rx="8" fill="#e0a800"/><text x="'+(x+w/2).toFixed(1)+'" y="'+(y+11.5).toFixed(1)+'" text-anchor="middle" style="font-size:10.5px;font-weight:700;fill:#2b2200">'+esc(t)+'</text></g>'}
 /* trỏ tới chart (c: tiêu đề card) hoặc ô KPI (k: nhãn KPI), tab mặc định là trang hiện tại */
 function refC(c,tab){return '<a class="ref" role="button" tabindex="0" data-rt="'+(tab||TAB)+'" data-rc="'+esc(c)+'">↳ '+(tab&&tab!==TAB?'trang '+esc(TABN(tab))+' · ':'')+'chart “'+esc(c)+'”</a>'}
 function refK(k,tab){return '<a class="ref" role="button" tabindex="0" data-rt="'+(tab||TAB)+'" data-rk="'+esc(k)+'">↳ ô KPI “'+esc(k)+'”</a>'}
@@ -1845,7 +1913,7 @@ const mCol=(a,id,i)=>{if(i<0||!a[0])return;a[0].marks=Object.assign(a[0].marks||
 const mSc=(a,id,x,y)=>{if(!a[0])return;a[0].notes=(a[0].notes||[]).concat([{x,y,t:id}])};
 const hyp=t=>'<span class="hyp">'+(t||'Giả thuyết')+'</span>';
 function aiBox(title,items){return SPEC[TAB]?'':aiBox0(title,items)}
-function card(t,sub,body,extra){
+function cardD(t,sub,body,extra){
   const S=SPEC[TAB]&&SPEC[TAB].c&&SPEC[TAB].c[t];
   if(!S||typeof A==='undefined'||!A)return card0(t,sub,body,extra);
   const id='N'+(NC+1);let r=null;try{r=S(A,id,body)}catch(e){console.error(t,e);r=null}
@@ -1987,7 +2055,69 @@ function renumN(){const cn=[...document.querySelectorAll('#main .cn')].filter(el
 function linkPages(root){const T2=TABS.filter(t=>t[0]!==TAB).slice().sort((a,b)=>b[1].length-a[1].length);const re=new RegExp('([Tt]rang )('+T2.map(t=>t[1].replace(/[.*+?^${}()|[\]\\]/g,'\\$&')).join('|')+')','g');
   const w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);const L=[];let n;while(n=w.nextNode()){if(n.parentElement.closest('a,.go,.go2,[data-go],.ref,svg,.tt,.nc,h3,.fxt,.tbl'))continue;re.lastIndex=0;if(re.test(n.textContent))L.push(n)}
   L.forEach(n=>{const f=document.createDocumentFragment();let last=0,m;re.lastIndex=0;const t=n.textContent;while(m=re.exec(t)){f.append(t.slice(last,m.index));const sp=document.createElement('span');sp.className='go2';sp.dataset.go=T2.find(x=>x[1]===m[2])[0];sp.textContent=m[0]+' →';f.append(sp);last=m.index+m[0].length}f.append(t.slice(last));n.replaceWith(f)})}
-function drawAll(root){if(root&&root.id==='main'){renumN();linkPages(root)}drawAll0(root)}
+function drawAllD(root){if(root&&root.id==='main'){renumN();linkPages(root)}drawAll0(root)}
+
+/* ===== Bản 2f · gọn & chuẩn, áp dụng mẫu cho trang Tổng quan + Tiếp nhận & kế hoạch ===== */
+const POL=new Set(['pl','ov','op','st','tr','sp','kh','nw','nt','iv','pm','hr']);
+function mkB(x,y,t){if(!POL.has(TAB))return mkBc(x,y,t);const w=10+t.length*6.4;return '<g class="mk" pointer-events="none"><rect x="'+x.toFixed(1)+'" y="'+y.toFixed(1)+'" width="'+w.toFixed(1)+'" height="16" rx="4" fill="var(--surface)" stroke="var(--accent)" stroke-width="1"/><text x="'+(x+w/2).toFixed(1)+'" y="'+(y+11.5).toFixed(1)+'" text-anchor="middle" style="font-size:10.5px;font-weight:700;fill:var(--accent)">'+esc(t)+'</text></g>'}
+/* nguồn dưới chart */
+const SRC_P={'Doanh thu thuần theo tháng':'T1/2025–T8/2026','Doanh thu tăng nhờ đâu? (cầu phân rã nối tiếp)':'T1–T8/2026 so T1–T8/2025','Dự báo 4 tháng tới':'thực tế đến T8/2026, dự báo T9–T12/2026','Cảnh báo bất thường tháng 8/2026':'T8/2026 so 6 tháng trước','DTT 12 tháng theo vùng':'T9/2025–T8/2026','Tăng trưởng cùng kỳ (LFL) theo vùng':'T1–T8/2026 so cùng kỳ','Bảng vùng':'T9/2025–T8/2026',[TREE_T]:'T1–T8/2026 so T1–T8/2025 · cơ hội tính trên 12 tháng'};
+function srcLine(t){const fl=[F.reg==='ALL'?'Toàn quốc':(REGIONS.find(r=>r.k===F.reg)||{}).n,F.fmt==='ALL'?'mọi mô hình':(FORMATS.find(f=>f.k===F.fmt)||{}).n,F.age==='ALL'?'mọi tuổi CH':(AGES.find(a=>a.k===F.age)||{}).n].join(' · ');
+  return '<p class="src"><b>Nguồn:</b> dữ liệu mô phỏng · '+nf(A.S.length)+' cửa hàng ('+esc(fl)+')'+(SRC_P[t]?' · '+SRC_P[t]:'')+'</p>'}
+const SRC_X=new Set(['Công thức tính các chỉ số','Bước 1 · Phiếu tiếp nhận yêu cầu','Bước 1 · Ma trận ưu tiên các yêu cầu đang chờ','Bước 1 · Chấm điểm và quyết định','Bước 2 · Kế hoạch theo CRISP-DM','Bước 3 · Kiểm tra MECE cho các chiều cắt','Mô phỏng what-if','Tổng cơ hội','Cách nhìn 1 · từ cửa hàng','Cách nhìn 2 · từ sản phẩm']);
+function card(t,sub,body,extra){if(!POL.has(TAB)||SRC_X.has(t)||!(SRC_P[t]||/data-vz=|class="tbl"/.test(body)))return cardD(t,sub,body,extra);return cardD(t,sub,body+srcLine(t),extra)}
+/* sparkline trong KPI */
+function spark(vals,col){const w=200,h=26,mn=Math.min(...vals),mx=Math.max(...vals),X=i=>i/(vals.length-1)*w,Y=v=>h-2-(v-mn)/((mx-mn)||1)*(h-4);
+  const d=vals.map((v,i)=>(i?'L':'M')+X(i).toFixed(1)+' '+Y(v).toFixed(1)).join(' ');return '<svg class="spk" viewBox="0 0 '+w+' '+h+'" preserveAspectRatio="none" aria-hidden="true"><path d="'+d+'" fill="none" stroke="'+col+'" stroke-width="1.6" vector-effect="non-scaling-stroke"/><circle cx="'+X(vals.length-1)+'" cy="'+Y(vals[vals.length-1])+'" r="2.4" fill="'+col+'"/></svg>'}
+function polish(root){
+  document.body.dataset.tab=TAB;if(PH_ON.has(TAB)&&!root.querySelector('.ph'))root.insertAdjacentHTML('afterbegin',pageHead());if(!POL.has(TAB))return;
+  /* gom link chart */
+  root.querySelectorAll('.refs').forEach(r=>{const a=[...r.querySelectorAll(':scope > .ref')];if(!a.length||r.classList.contains('fold'))return;
+    r.classList.add('fold');const pop=document.createElement('div');pop.className='refpop';a.forEach(x=>{x.textContent=x.textContent.replace(/^↳\s*/,'');pop.append(x)});
+    const b=document.createElement('button');b.type='button';b.className='refbtn';b.textContent='↗ '+a.length+' chart';b.setAttribute('aria-label','Xem '+a.length+' chart chứng minh');b.onclick=e=>{e.stopPropagation();r.classList.toggle('open')};r.append(b,pop)});
+  /* link chen giữa câu ("Nên làm dù chưa quy ra tiền") -> chip ngắn, rê chuột xem tên chart */
+  root.querySelectorAll('.cc .more .ref, .cn .ref').forEach(x=>{if(x.dataset.short)return;x.dataset.short=1;x.title=x.textContent.replace(/^↳\s*/,'');x.textContent='↗ chart';x.classList.add('refmini')});
+  /* KPI: mũi tên + sparkline */
+  if(TAB==='ov'){const m=A.mon,T=treeCalc(A);const add=(lab,vals,col)=>{const s=[...root.querySelectorAll('.kpi small')].find(x=>x.textContent===lab);if(s&&!s.parentElement.querySelector('.spk'))s.parentElement.insertAdjacentHTML('beforeend',spark(vals,col))};
+    add('DTT 12 tháng',m.map(x=>x.rev),'var(--s1)');add('Lợi nhuận T1–T8/2026',m.map(x=>x.profit),'var(--s3)');add('Cửa hàng đang mở',m.map(x=>x.open),'var(--s7)');
+}
+  /* dấu âm chuẩn "−" */
+  const w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);let n;while(n=w.nextNode()){const t=n.textContent;if(/(^|[\s(·:])-(?=\d)/.test(t))n.textContent=t.replace(/(^|[\s(·:])-(?=\d)/g,'$1−')}}
+document.addEventListener('click',e=>{if(!(e.target.closest&&e.target.closest('.refs.fold')))document.querySelectorAll('.refs.fold.open').forEach(x=>x.classList.remove('open'))});
+function drawAll(root){drawAllD(root);navGroups();if(root&&root.id==='main')polish(root)}
+
+/* thanh điều hướng dọc theo logic tree */
+const NAVT=[{t:'Tiếp nhận & kế hoạch',k:'pl',sub:'Logic tree, kết luận'},{t:'Tổng quan',k:'ov'},{t:'Hiệu quả cửa hàng',k:'st',sub:'Xếp hạng, nhóm cửa hàng'},
+ {h:'A. Doanh thu'},{c:'A1',t:'Mạng lưới',k:'nw',sub:'Cửa hàng mới'},{c:'A2',t:'Cửa hàng hiện hữu',lab:1},
+ {c:'A2.1',t:'Lượt vào',k:'kh',sub:'Khách hàng',l:2},{c:'A2.2',t:'Tỷ lệ chuyển đổi',k:'tr',sub:'Traffic & chuyển đổi',l:2},{c:'A2.3',t:'Số món / hoá đơn',k:'pm',sub:'Giỏ hàng & khuyến mãi',l:2},{c:'A2.4',t:'Giá / món',k:'sp',sub:'Sản phẩm & giá',l:2},
+ {h:'B. % Lãi gộp'},{c:'B1·B2',t:'Cơ cấu & biên ngành',k:'sp',sub:'Sản phẩm & giá'},{c:'B3',t:'Khuyến mãi',k:'pm',sub:'Giỏ hàng & khuyến mãi'},
+ {h:'C. Hao hụt'},{c:'C1–C3',t:'Hàng tươi, cận date, mất mát',k:'iv',sub:'Tồn kho & hao hụt'},
+ {h:'D. Chi phí vận hành'},{c:'D1',t:'Thuê mặt bằng',k:'nt',sub:'Mặt bằng & không gian'},{c:'D2',t:'Nhân sự',k:'hr',sub:'Nhân sự & phục vụ'},{c:'D3',t:'Điện nước, logistics, khác',k:'st',sub:'Hiệu quả cửa hàng'},
+ {h:'Công cụ'},{t:'Cơ hội & mô phỏng',k:'op'},{t:'Hỏi đáp dữ liệu',k:'qa'},{t:'Cách làm với AI',k:'ai'}];
+function navGroups(){const nav=document.getElementById('tabs');if(!nav||nav.querySelector('.tnav'))return;
+  const html='<div class="nb"><div class="logo" aria-hidden="true">1K</div><div><b>Mạng lưới 1.000 siêu thị</b><small>Báo cáo điều hành · Bản 2</small><small class="nsim">Dữ liệu mô phỏng · T9/2025–T8/2026</small></div></div><div class="tnav">'+NAVT.map(e=>e.h?'<div class="ng">'+esc(e.h)+'</div>':e.lab?'<div class="nl l1"><span class="cd">'+e.c+'</span>'+esc(e.t)+'</div>':
+    '<button type="button" class="ni'+(e.c?' l'+(e.l||1):'')+'" data-t="'+e.k+'" aria-current="'+(e.k===TAB?'page':'false')+'">'+(e.c?'<span class="cd">'+e.c+'</span>':'')+'<span class="nt"><span>'+esc(e.t)+'</span>'+(e.sub?'<small>'+esc(e.sub)+'</small>':'')+'</span></button>').join('')+'</div>';
+  nav.insertAdjacentHTML('afterbegin',html);
+  nav.querySelectorAll('.tnav .ni').forEach(b=>b.onclick=()=>{TAB=b.dataset.t;try{localStorage.setItem('sm1k-tab',TAB)}catch(e){}render();window.scrollTo({top:0,behavior:'smooth'})})}
+/* tiêu đề trang: biết đang ở ô nào của logic tree (mẫu: A1 · Mạng lưới) */
+const PH_ON=new Set(['ov','op','st','tr','sp','kh','nw','nt','iv','pm','hr','qa','ai']);
+function pageHead(){const T=treeCalc(A),D='Đóng góp vào ΔLN',P='đã xảy ra · T1–T8/2026';const H={
+  ov:{bc:[['Tổng hợp']],t:'Tổng quan',q:'Lợi nhuận chuỗi thay đổi thế nào, nhờ đâu, và nên làm gì trước?',v:T.dLN,vl:'ΔLN cửa hàng',f:'ΔLN = A + B + C + D'},
+  op:{bc:[['Công cụ']],t:'Cơ hội & mô phỏng',q:'Mỗi đòn bẩy đáng bao nhiêu tiền mỗi năm? Thử kịch bản what-if.',v:T.oppTot,vl:'Tổng cơ hội / năm',p:'mức trần · nhóm yếu về trung vị',f:'Σ các đòn bẩy, chưa trừ chồng lấn'},
+  st:{bc:[['Tổng hợp'],['D. Chi phí vận hành','D3']],pg:'Hiệu quả cửa hàng',t:'Hiệu quả cửa hàng',q:'Cửa hàng nào cần can thiệp, vì sao? Chi phí điện nước, logistics, khác thay đổi ra sao?',v:T.D3[0],vl:'Ô D3 · '+D,f:'Điện nước + logistics + chi phí khác'},
+  nw:{bc:[['A. Doanh thu','A1']],pg:'Cửa hàng mới',t:'Mạng lưới',q:'Cửa hàng mở từ 2024 mang về bao nhiêu, bao lâu có lãi, có ăn khách cửa hàng cũ không?',v:T.A1,f:'Lãi gộp từ CH mới = ΔDTT CH mới × biên lãi gộp'},
+  kh:{bc:[['A. Doanh thu','A2.1']],pg:'Khách hàng',t:'Lượt vào',q:'Lượt vào tăng nhờ khách mới hay khách quay lại? Giữ chân khách thế nào?',v:T.eT*T.m0,f:'Lượt vào = Số khách × Số lần ghé'},
+  tr:{bc:[['A. Doanh thu','A2.2']],pg:'Traffic & chuyển đổi',t:'Tỷ lệ chuyển đổi',q:'Khách vào có mua không? Vì sao vào mà không mua?',v:T.eC*T.m0,f:'CR = Hoá đơn ÷ Lượt vào'},
+  pm:{bc:[['A. Doanh thu','A2.3'],['B. % Lãi gộp','B3']],pg:'Giỏ hàng & khuyến mãi',t:'Số món / hoá đơn & khuyến mãi',q:'Mỗi hoá đơn có thêm món không? Chương trình khuyến mãi nào đáng tiền?',v:T.eU*T.m0,vl:'Ô A2.3 · '+D,f:'UPT = SL món ÷ Hoá đơn'},
+  sp:{bc:[['A. Doanh thu','A2.4'],['B. % Lãi gộp','B1·B2']],pg:'Sản phẩm & giá',t:'Giá / món & cơ cấu ngành',q:'Doanh thu tăng nhờ lượng, giá hay mix? Ngành nào nhạy giá?',v:T.eG*T.m0,vl:'Ô A2.4 · '+D,f:'Giá/món = Giá ngành × Mix'},
+  iv:{bc:[['C. Hao hụt','C1–C3']],pg:'Tồn kho & hao hụt',t:'Hao hụt & tồn kho',q:'Hao hụt và hết hàng nằm ở đâu, giảm thế nào?',v:T.C,f:'Hao hụt = DTT × % hao hụt'},
+  nt:{bc:[['D. Chi phí vận hành','D1']],pg:'Mặt bằng & không gian',t:'Thuê mặt bằng',q:'Cửa hàng lỗ nên giữ, cải tạo, chuyển Mini hay đóng? Tiền thuê có hợp lý?',v:T.D1[0],f:'Tiền thuê ÷ DTT · NPV 3 năm'},
+  hr:{bc:[['D. Chi phí vận hành','D2']],pg:'Nhân sự & phục vụ',t:'Nhân sự',q:'Năng suất giờ công và xếp ca có khớp với lượt khách không?',v:T.D2[0],f:'Nhân sự ÷ DTT · DT / giờ công'},
+  qa:{bc:[['Công cụ']],t:'Hỏi đáp dữ liệu',q:'Đặt câu hỏi bằng lời, báo cáo trả lời bằng số và bảng.'},
+  ai:{bc:[['Công cụ']],t:'Cách làm với AI',q:'Quy trình, phương pháp và cách đối soát khi làm báo cáo này cùng AI.'}}[TAB];
+  if(!H)return '';const bc=H.bc.map(g=>esc(g[0])+(g[1]?' <span>›</span> <b>'+esc(g[1])+'</b>':'')).join(' <span>·</span> ')+(H.pg?' <span>·</span> trang '+esc(H.pg):'');
+  return '<div class="ph"><div class="ph-l"><div class="ph-bc">'+bc+'</div><h2>'+esc(H.t)+'</h2><p>'+esc(H.q)+'</p></div>'+
+   (H.v!=null?'<div class="ph-r"><small>'+esc(H.vl||D)+'</small><b class="'+(H.v>=0?'up':'dn')+'">'+sgn(H.v)+(H.p?'<i>/năm</i>':'')+'</b><span>'+esc(H.p||P)+'</span><em>'+esc(H.f)+'</em></div>':'')+'</div>'}
 
 render();
 </script>
