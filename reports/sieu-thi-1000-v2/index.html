@@ -245,6 +245,7 @@ footer{margin-top:28px;color:var(--ink-3);font-size:12px;display:grid;gap:4px}
 .lt2-col:last-child .tt:hover::after,.lt2-col:last-child .tt:focus::after{left:auto;right:0}
 .nc{display:inline-block;vertical-align:super;font-size:9.5px;font-weight:800;line-height:1;padding:2px 4px;margin-left:2px;border-radius:5px;background:#e0a800;color:#2b2200;cursor:pointer}
 .nc:hover{background:#fff}
+.go2{color:var(--accent);font-weight:700;cursor:pointer;text-decoration:underline dotted;text-underline-offset:3px}
 /* ===== Bản 2c: chỗ trỏ kết luận/nhận định ↔ chart ===== */
 ol.kn{list-style:none;padding-left:0;margin:0;display:grid;gap:7px}
 ol.kn>li{display:grid;grid-template-columns:30px minmax(0,1fr);gap:8px;align-items:start;border-radius:8px;padding:2px 4px;margin:0 -4px}
@@ -517,7 +518,7 @@ function heatmapW(W,m,rows,colsL,fmt,opt={}){
 }
 /* Waterfall: steps [{n,v,total?}] */
 function waterfallW(W,steps,fmt){
-  if(W<560)return barsHW(W,steps.map(s=>({label:s.n,val:s.v,color:s.total?'var(--ink-2)':s.v<0?'var(--div-neg)':'var(--s3)'})),{fmt,L:130});
+  if(W<560)return barsHW(W,steps.map(s=>({label:s.n,val:s.v,color:s.total?'var(--ink-2)':s.v<0?'var(--div-neg)':'var(--s3)',mark:s.mark})),{fmt,L:130});
   const id='c'+(++chId),H=270,L=58,Rr=10,T=18,B=40,n=steps.length,bw=(W-L-Rr)/n;
   let acc=0;const bars=steps.map(s=>{if(s.total){const b={s,y0:0,y1:s.v};acc=s.v;return b}const b={s,y0:acc,y1:acc+s.v};acc+=s.v;return b});
   const ticks=niceTicks(Math.min(0,...bars.map(b=>Math.min(b.y0,b.y1))),Math.max(...bars.map(b=>Math.max(b.y0,b.y1))),4),mn=ticks[0],mx=ticks[ticks.length-1],Y=v=>T+(1-(v-mn)/(mx-mn))*(H-T-B);
@@ -529,7 +530,7 @@ function waterfallW(W,steps,fmt){
     const words=b.s.n.split(' ');const l1=words.slice(0,Math.ceil(words.length/2)).join(' '),l2=words.slice(Math.ceil(words.length/2)).join(' ');
     g+='<text class="lbl" x="'+(x+w/2)+'" y="'+(H-22)+'" text-anchor="middle">'+esc(l1)+'</text><text class="lbl" x="'+(x+w/2)+'" y="'+(H-9)+'" text-anchor="middle">'+esc(l2)+'</text>';
     g+='<rect class="hit" data-ch="'+id+'" data-i="'+i+'" x="'+(L+bw*i)+'" y="'+T+'" width="'+bw+'" height="'+(H-T-B)+'"/>'});
-  CH[id]={type:'wf',steps,fmt};
+  bars.forEach((b,i)=>{if(b.s.mark){const x=L+bw*i+bw*.16,w=bw*.68,yt=Y(Math.max(b.y0,b.y1));g+=mkB(x+w/2-(10+b.s.mark.length*6.6)/2,Math.max(1,yt-38),b.s.mark)}});CH[id]={type:'wf',steps,fmt};
   return '<div class="viz"><svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Biểu đồ thác nước lợi nhuận cửa hàng">'+g+'</svg></div>';
 }
 const DEFER=[];
@@ -1541,14 +1542,16 @@ function secTraffic(A){
    card('Nguyên nhân 2 · điểm phục vụ và chuyển đổi','Mỗi chấm là 1 cửa hàng',scatter({pts:ptq,xfmt:v=>nf(v,0),yfmt:v=>fP(v,0),xlab:'Điểm phục vụ',ylab:'CR',h:300,tip:p=>'<b>'+p.id+'</b><div class="tr"><span>Điểm PV</span><b>'+nf(p.st.qc,0)+'</b></div><div class="tr"><span>CR</span><b>'+fP(p.st.cr)+'</b></div>',click:p=>openStore(p.id)}))+'</div></section>'}
 
 /* ---- Sản phẩm & giá: bỏ cầu riêng (đã gộp vào Tổng quan), đi sâu giá ngành và mix ---- */
+const WF_SP='Doanh thu tăng nhờ lượng, giá hay mix?';
 function secProd(A){
   let h=secProd0(A);const P=prodPV(A),T=treeCalc(A);
   {const k0=h.indexOf('<div class="kpis">');if(k0>0&&k0<h.indexOf('<div class="ai">')){const k1=h.indexOf('</div></div></div>',k0)+18;const kp=h.slice(k0,k1);h=h.slice(0,k0)+h.slice(k1);const e=h.indexOf('</ol></div>',h.indexOf('<div class="ai">'));if(e>0)h=h.slice(0,e+11)+kp+h.slice(e+11)}}
   const a2=h.indexOf('<div class="row c2"><div class="card"><div class="ch"><div><h3>Cách nhìn 1'),b2=h.indexOf('<div class="ai">');
   if(a2>0&&b2>a2){const two=h.slice(a2,b2);h=h.slice(0,a2)+h.slice(b2);const e=h.indexOf('</ol></div>',h.indexOf('<div class="ai">'));if(e>0)h=h.slice(0,e+11)+two+h.slice(e+11)}
   const w0=h.indexOf('<div class="card"><div class="ch"><div><h3>Cầu Giá – Lượng – Mix');
-  if(w0>0){const w1=h.indexOf('<div class="row c2">',w0);if(w1>w0)h=h.slice(0,w0)+h.slice(w1)}
-  h=h.replace('<b>DTT = Lượt vào × Tỷ lệ chuyển đổi × AOV</b>','<b>DTT = Lượt vào × Tỷ lệ chuyển đổi × UPT × Giá/món</b>').replace('Các trang Tổng quan, Traffic & chuyển đổi','Trang Traffic & chuyển đổi, Giỏ hàng & khuyến mãi');
+  if(w0>0){const w1=h.indexOf('<div class="row c2">',w0);if(w1>w0){const wf=P?[{n:'DTT T1–T8/2025 (CH hiện hữu)',v:P.R0,total:true},{n:'Lượng món',v:P.eV},{n:'Giá ngành',v:P.eP},{n:'Mix ngành hàng',v:P.eM},{n:'DTT T1–T8/2026 (CH hiện hữu)',v:P.R1,total:true}]:null;
+    h=h.slice(0,w0)+(wf?card(WF_SP,nf(P.nL)+' cửa hàng so sánh được (mở trước 2024) · T1–T8/2026 so T1–T8/2025 · DTT = Σ SL món × Giá, tách thành lượng, giá và mix · cửa hàng mới xem ở cầu doanh thu trang Tổng quan',waterfall(wf,v=>fBn(v,0))):'')+h.slice(w1)}}
+  h=h.replace('<b>DTT = Lượt vào × Tỷ lệ chuyển đổi × AOV</b>','<b>DTT = Lượt vào × Tỷ lệ chuyển đổi × UPT × Giá/món</b>').replace('Các trang Tổng quan, Traffic & chuyển đổi','Xem chi tiết: <span class="go2" data-go="tr">trang Traffic &amp; chuyển đổi →</span> (lượt vào, CR) · <span class="go2" data-go="pm">trang Giỏ hàng &amp; khuyến mãi →</span> (UPT) · <span class="go2" data-go="ov">cầu doanh thu ở Tổng quan →</span>').replace('<div class="sub">Trang này</div>','<div class="sub">Trang này · lượng, giá, mix: <span class="go2" data-jumpc="'+WF_SP+'">chart thác nước bên dưới ↓</span></div>');
   if(!P)return h;
   const sens=P.cat.filter(c=>c.dP>0&&c.dQ<0).sort((a,b)=>a.eV-b.eV)[0],win=P.cat.filter(c=>c.dP>.01&&c.dQ>0).sort((a,b)=>b.dQ-a.dQ)[0];
   const X=prodAll(A);
@@ -1709,6 +1712,7 @@ function secHR(A){
 
 document.addEventListener('click',e=>{if(e.target.closest&&e.target.closest('.tt')){e.stopPropagation();e.preventDefault()}},true);
 document.addEventListener('click',e=>{const n=e.target.closest&&e.target.closest('.nc');if(!n)return;e.stopPropagation();e.preventDefault();jumpTo(document.getElementById('nd-'+n.dataset.nj))},true);
+document.addEventListener('click',e=>{const g=e.target.closest&&e.target.closest('[data-jumpc]');if(!g)return;const h=[...document.querySelectorAll('#main .card h3')].find(x=>x.textContent===g.dataset.jumpc);if(h)jumpTo(h.closest('.card'))});
 
 
 /* ================= BẢN 2c · KẾT LUẬN/NHẬN ĐỊNH ↔ CHART, "ĐỌC CHART" (mẫu: trang Tồn kho & hao hụt) ================= */
@@ -1915,7 +1919,9 @@ SPEC.tr={k:A=>[{k:'cr',refs:[refC('Nguyên nhân 1 · hết hàng và chuyển �
 }};
 /* ---------- Sản phẩm & giá ---------- */
 const spPick=P=>({sens:P?P.cat.filter(c=>c.dP>0&&c.dQ<0).sort((a,b)=>a.eV-b.eV)[0]:null,win:P?P.cat.filter(c=>c.dP>.01&&c.dQ>0).sort((a,b)=>b.dQ-a.dQ)[0]:null});
-SPEC.sp={k:A=>{const P=prodPV(A);if(!P)return [];const s=spPick(P);return [s.sens?{refs:[refC('Giá tăng thì lượng thay đổi thế nào'),refC('Ngành hàng: lượng, giá và đóng góp tăng trưởng')]}:null,s.win?{refs:[refC('Giá tăng thì lượng thay đổi thế nào')]}:null,{refs:[refC('Nhóm ABC theo ngành hàng'),refC('Đường Pareto mã hàng'),refC('Phân bố số ngày tồn kho','iv')]},{refs:[refC('Giá bình quân/món và giá thật của các ngành hàng')]}].filter(Boolean)},c:{
+function spWF(A,id){const P=prodPV(A);if(!P)return null;const g=P.R1/P.R0-1;return {n:'<b>DTT cửa hàng hiện hữu '+fPt(g)+' ('+sgn(P.R1-P.R0)+')</b>: bán thêm món '+sgn(P.eV)+' là phần chính; giá ngành '+sgn(P.eP)+' nhưng khách chuyển sang hàng rẻ hơn làm mix '+sgn(P.eM)+', gần như xoá phần tăng giá. Ba phần cộng lại đúng bằng mức tăng.',use:['K1','K4'],mark:a=>{const st=a[0];if(st&&st[1]){st[1].mark=id;st[3].mark=id}}}}
+SPEC.sp={k:A=>{const P=prodPV(A);if(!P)return [];const s=spPick(P);return [s.sens?{refs:[refC('Giá tăng thì lượng thay đổi thế nào'),refC(WF_SP),refC('Ngành hàng: lượng, giá và đóng góp tăng trưởng')]}:null,s.win?{refs:[refC('Giá tăng thì lượng thay đổi thế nào')]}:null,{refs:[refC('Nhóm ABC theo ngành hàng'),refC('Đường Pareto mã hàng'),refC('Phân bố số ngày tồn kho','iv')]},{refs:[refC(WF_SP),refC('Giá bình quân/món và giá thật của các ngành hàng')]}].filter(Boolean)},c:{
+ [WF_SP]:spWF,
  'Giá bình quân/món và giá thật của các ngành hàng':A=>{const P=prodPV(A);if(!P)return null;return {n:'<b>Giá từng ngành '+fPt(P.pxChg)+' nhưng giá/món chỉ '+fPt(P.P1/P.P0-1)+'</b>: khoảng cách giữa 2 đường là mix ('+sgn(P.eM)+' DT), khách chuyển sang hàng rẻ hơn. Chỉ nhìn giá/món sẽ tưởng “giá không tăng”.',use:['K4']}},
  'Giá tăng thì lượng thay đổi thế nào':(A,id)=>{const P=prodPV(A);if(!P)return null;const s=spPick(P);const el=P.cat.filter(c=>c.dP>0&&c.dQ<0).sort((a,b)=>a.dQ/a.dP-b.dQ/b.dP)[0];
    return {n:(s.sens?'<b>'+esc(s.sens.c.n)+' mất lượng nhiều nhất</b>: giá '+fPt(s.sens.dP)+', lượng '+fPt(s.sens.dQ)+'. ':'')+(s.win?esc(s.win.c.n)+' giá '+fPt(s.win.dP)+' vẫn bán thêm '+fPt(s.win.dQ)+'. ':'')+(el?esc(el.c.n)+' nhạy giá nhất (co giãn ≈ '+nf(el.dQ/el.dP,1)+').':''),use:['K1','K2'],mark:a=>{if(s.sens)mSc(a,id,s.sens.dP,s.sens.dQ);if(s.win)mSc(a,id,s.win.dP,s.win.dQ)}}},
@@ -1977,7 +1983,11 @@ function renumN(){const cn=[...document.querySelectorAll('#main .cn')].filter(el
   cn.forEach(el=>{const n=map[el.id.split('-').pop()];el.id='rf-'+TAB+'-'+n;const b=el.querySelector('.kno');if(b)b.textContent=n});
   const fx=s=>typeof s==='string'?s.replace(/N\d+/g,m=>map[m]||m):s;
   DEFER.forEach(d=>{const a=d.args;if(!a||!a[0])return;const o=a[0];if(Array.isArray(o))o.forEach(r=>{if(r&&r.mark)r.mark=fx(r.mark)});else{if(o.marks)for(const k in o.marks)o.marks[k]=fx(o.marks[k]);if(o.notes)o.notes.forEach(n=>n.t=fx(n.t))}})}
-function drawAll(root){if(root&&root.id==='main')renumN();drawAll0(root)}
+/* chữ "trang <tên trang>" trong nội dung -> link bấm sang trang đó */
+function linkPages(root){const T2=TABS.filter(t=>t[0]!==TAB).slice().sort((a,b)=>b[1].length-a[1].length);const re=new RegExp('([Tt]rang )('+T2.map(t=>t[1].replace(/[.*+?^${}()|[\]\\]/g,'\\$&')).join('|')+')','g');
+  const w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);const L=[];let n;while(n=w.nextNode()){if(n.parentElement.closest('a,.go,.go2,[data-go],.ref,svg,.tt,.nc,h3,.fxt,.tbl'))continue;re.lastIndex=0;if(re.test(n.textContent))L.push(n)}
+  L.forEach(n=>{const f=document.createDocumentFragment();let last=0,m;re.lastIndex=0;const t=n.textContent;while(m=re.exec(t)){f.append(t.slice(last,m.index));const sp=document.createElement('span');sp.className='go2';sp.dataset.go=T2.find(x=>x[1]===m[2])[0];sp.textContent=m[0]+' →';f.append(sp);last=m.index+m[0].length}f.append(t.slice(last));n.replaceWith(f)})}
+function drawAll(root){if(root&&root.id==='main'){renumN();linkPages(root)}drawAll0(root)}
 
 render();
 </script>
