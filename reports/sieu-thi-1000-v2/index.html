@@ -1,4 +1,4 @@
-<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><meta name="description" content="Báo cáo mô phỏng chuỗi 1.000 siêu thị — Thanh Hà"></head><body><title>Mạng lưới 1.000 siêu thị · Bản 2</title>
+<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><meta name="description" content="Báo cáo mô phỏng chuỗi 1.000 siêu thị — Thanh Hà"></head><body><title>Mạng lưới 1.000 siêu thị</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap">
 <style>
@@ -338,10 +338,15 @@ body[data-tab=ov] .kpi b{font-size:32px}
 .ph-r span{font-size:11.5px;color:var(--ink-3)}.ph-r em{font-style:normal;font-size:11.5px;color:var(--ink-2);margin-top:3px}
 @media (max-width:700px){.ph{grid-template-columns:1fr}.ph-r{text-align:left}}
 body[data-tab]:not([data-tab="pl"]) .wrap>.top{display:none}
-body[data-tab]:not([data-tab="pl"]) .bar{margin-top:14px}
 .tabs .nb small.nsim{color:#8a6a00;font-weight:600;margin-top:2px}
 .ph-r b i{font-style:normal;font-size:16px;color:var(--ink-2);margin-left:3px}
 .ph-bc b{white-space:nowrap}
+/* header + bộ lọc thành 1 khối màu, tách với phần phân tích bên dưới */
+.wrap>.top,.wrap>.ph{background:var(--accent-2);border-radius:14px 14px 0 0;margin-top:18px;padding:22px 24px 14px!important;border-bottom:0}
+.wrap>.ph .ph-r{background:var(--surface);border:0;border-left:4px solid var(--accent)}
+.bar{position:sticky;background:var(--accent-2)!important;border-bottom:0!important;border-radius:0 0 14px 14px;margin:0!important;padding:10px 24px 16px!important;box-shadow:0 1px 0 color-mix(in srgb,var(--accent) 18%,transparent)}
+.wrap>#main{margin-top:8px}
+.tabs .nb small.nsim{color:var(--accent)}
 </style>
 
 <div class="wrap">
@@ -356,8 +361,6 @@ body[data-tab]:not([data-tab="pl"]) .bar{margin-top:14px}
     </div>
     <div style="display:grid;gap:8px;justify-items:end">
       <span class="simtag">Dữ liệu mô phỏng</span>
-      <span class="note"><b>Bản 2</b> · logic tree có kết luận · trang “Sản phẩm &amp; giá”</span>
-      <span class="note">Kỳ: <b>T9/2025 – T8/2026</b> · cập nhật 28/09/2026</span>
     </div>
   </header>
 
@@ -2070,7 +2073,7 @@ function card(t,sub,body,extra){if(!POL.has(TAB)||SRC_X.has(t)||!(SRC_P[t]||/dat
 function spark(vals,col){const w=200,h=26,mn=Math.min(...vals),mx=Math.max(...vals),X=i=>i/(vals.length-1)*w,Y=v=>h-2-(v-mn)/((mx-mn)||1)*(h-4);
   const d=vals.map((v,i)=>(i?'L':'M')+X(i).toFixed(1)+' '+Y(v).toFixed(1)).join(' ');return '<svg class="spk" viewBox="0 0 '+w+' '+h+'" preserveAspectRatio="none" aria-hidden="true"><path d="'+d+'" fill="none" stroke="'+col+'" stroke-width="1.6" vector-effect="non-scaling-stroke"/><circle cx="'+X(vals.length-1)+'" cy="'+Y(vals[vals.length-1])+'" r="2.4" fill="'+col+'"/></svg>'}
 function polish(root){
-  document.body.dataset.tab=TAB;if(PH_ON.has(TAB)&&!root.querySelector('.ph'))root.insertAdjacentHTML('afterbegin',pageHead());if(!POL.has(TAB))return;
+  document.body.dataset.tab=TAB;{const old=document.querySelector('.wrap>.ph');if(old)old.remove();if(PH_ON.has(TAB)){const bar=document.querySelector('.wrap>.bar');if(bar)bar.insertAdjacentHTML('beforebegin',pageHead())}}if(!POL.has(TAB))return;
   /* gom link chart */
   root.querySelectorAll('.refs').forEach(r=>{const a=[...r.querySelectorAll(':scope > .ref')];if(!a.length||r.classList.contains('fold'))return;
     r.classList.add('fold');const pop=document.createElement('div');pop.className='refpop';a.forEach(x=>{x.textContent=x.textContent.replace(/^↳\s*/,'');pop.append(x)});
@@ -2095,7 +2098,7 @@ const NAVT=[{t:'Tiếp nhận & kế hoạch',k:'pl',sub:'Logic tree, kết lu�
  {h:'D. Chi phí vận hành'},{c:'D1',t:'Thuê mặt bằng',k:'nt',sub:'Mặt bằng & không gian'},{c:'D2',t:'Nhân sự',k:'hr',sub:'Nhân sự & phục vụ'},{c:'D3',t:'Điện nước, logistics, khác',k:'st',sub:'Hiệu quả cửa hàng'},
  {h:'Công cụ'},{t:'Cơ hội & mô phỏng',k:'op'},{t:'Hỏi đáp dữ liệu',k:'qa'},{t:'Cách làm với AI',k:'ai'}];
 function navGroups(){const nav=document.getElementById('tabs');if(!nav||nav.querySelector('.tnav'))return;
-  const html='<div class="nb"><div class="logo" aria-hidden="true">1K</div><div><b>Mạng lưới 1.000 siêu thị</b><small>Báo cáo điều hành · Bản 2</small><small class="nsim">Dữ liệu mô phỏng · T9/2025–T8/2026</small></div></div><div class="tnav">'+NAVT.map(e=>e.h?'<div class="ng">'+esc(e.h)+'</div>':e.lab?'<div class="nl l1"><span class="cd">'+e.c+'</span>'+esc(e.t)+'</div>':
+  const html='<div class="nb"><div class="logo" aria-hidden="true">1K</div><div><b>Mạng lưới 1.000 siêu thị</b><small>Báo cáo điều hành chuỗi</small><small class="nsim">Dữ liệu mô phỏng · T9/2025–T8/2026</small></div></div><div class="tnav">'+NAVT.map(e=>e.h?'<div class="ng">'+esc(e.h)+'</div>':e.lab?'<div class="nl l1"><span class="cd">'+e.c+'</span>'+esc(e.t)+'</div>':
     '<button type="button" class="ni'+(e.c?' l'+(e.l||1):'')+'" data-t="'+e.k+'" aria-current="'+(e.k===TAB?'page':'false')+'">'+(e.c?'<span class="cd">'+e.c+'</span>':'')+'<span class="nt"><span>'+esc(e.t)+'</span>'+(e.sub?'<small>'+esc(e.sub)+'</small>':'')+'</span></button>').join('')+'</div>';
   nav.insertAdjacentHTML('afterbegin',html);
   nav.querySelectorAll('.tnav .ni').forEach(b=>b.onclick=()=>{TAB=b.dataset.t;try{localStorage.setItem('sm1k-tab',TAB)}catch(e){}render();window.scrollTo({top:0,behavior:'smooth'})})}
