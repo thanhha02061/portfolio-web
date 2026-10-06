@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="vi"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Thanh Hà — Business Intelligence Analyst</title>
+<meta name="description" content="Portfolio của Thanh Hà — Business Intelligence Analyst. Power BI, BigQuery, SQL, phân tích dữ liệu bán lẻ đa kênh.">
+<style>
+:root{
+  --ink:#0F2A43; --ink-2:#3A5470; --ink-3:#7B8FA5;
+  --surface:#FFFFFF; --surface-2:#F5F8FB; --surface-3:#EAF0F6;
+  --line:#DCE5EE; --line-2:#C9D8E6;
+  --accent:#1A5FE8; --accent-2:#1544B8; --accent-soft:#EAF1FF;
+  --accent-cyan:#0099CC; --dot:rgba(26,95,232,.085); --glow:rgba(26,63,204,.12);
+  --green:#1E7F52; --gold:#C9852A; --gold-soft:#FBF2E4;
+  --r:14px;
+  --shadow:0 1px 2px rgba(15,42,67,.05), 0 8px 24px rgba(15,42,67,.06);
+  --shadow-h:0 2px 4px rgba(15,42,67,.06), 0 16px 40px rgba(15,42,67,.11);
+  --font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+html{background:linear-gradient(180deg,#EFF5FF 0%,#FFFFFF 48%,#EDF4FF 100%);background-attachment:fixed}
+body{color:var(--ink);font-family:var(--font);line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+section{padding:88px 0;background:transparent}
+.section-alt{background:linear-gradient(160deg, rgba(238,245,255,.92) 0%, rgba(255,255,255,.72) 58%, rgba(242,247,255,.92) 100%)}
+
+/* ---------- NAV ---------- */
+header{position:sticky;top:0;z-index:60;background:rgba(252,253,255,.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:68px;gap:20px}
+.logo{display:flex;align-items:center;gap:11px;font-weight:800;font-size:16px;letter-spacing:-.015em}
+.logo .mark{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-cyan));color:#fff;display:grid;place-items:center;font-size:14px;font-weight:800;flex:0 0 auto}
+.logo small{display:block;font-weight:500;font-size:11.5px;color:var(--ink-3);letter-spacing:.02em}
+.menu{display:flex;gap:28px}
+.menu a{font-size:14.5px;color:var(--ink-2);font-weight:500;padding:5px 0;border-bottom:2px solid transparent;transition:.15s;white-space:nowrap}
+.menu a:hover{color:var(--accent)}
+.menu a.on{color:var(--accent);border-bottom-color:var(--accent)}
+.burger{display:none;background:none;border:1px solid var(--line);border-radius:9px;width:40px;height:38px;font-size:17px;color:var(--ink);cursor:pointer}
+
+/* ---------- BUTTONS ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:12px 21px;border-radius:10px;font-size:14.5px;font-weight:600;border:1px solid transparent;cursor:pointer;transition:.18s;font-family:inherit}
+.btn-p{background:var(--accent);color:#fff}
+.btn-p:hover{background:var(--accent-2)}
+.btn-s{background:#fff;color:var(--ink);border-color:var(--line-2)}
+.btn-s:hover{border-color:var(--accent);color:var(--accent)}
+.icon-btn{width:44px;height:44px;padding:0;border-radius:10px;background:var(--accent-soft);color:var(--accent);border:1px solid #D3E1FB;display:inline-grid;place-items:center;font-size:14px;font-weight:700;transition:.18s}
+.icon-btn:hover{background:var(--accent);color:#fff}
+
+/* ---------- HERO ---------- */
+.hero{padding:76px 0 70px;background:
+  radial-gradient(circle at 84% 6%, var(--glow) 0%, transparent 48%),
+  radial-gradient(700px 380px at 4% 92%, rgba(0,153,204,.07) 0%, transparent 60%)}
+.hero-grid{display:grid;grid-template-columns:1.18fr .82fr;gap:56px;align-items:center}
+.badge{display:inline-flex;align-items:center;gap:9px;font-size:13px;font-weight:600;color:var(--accent);background:var(--accent-soft);padding:6px 14px;border-radius:999px;margin-bottom:20px}
+.badge .dot{width:7px;height:7px;border-radius:50%;background:#2E9E6B;box-shadow:0 0 0 3px rgba(46,158,107,.18)}
+h1{font-size:clamp(36px,4.9vw,56px);line-height:1.08;letter-spacing:-.03em;font-weight:800}
+h1 span{color:var(--accent)}
+.role{font-size:17px;font-weight:600;color:var(--accent);margin-top:8px}
+.hero p{color:var(--ink-2);font-size:16.5px;margin-top:20px;max-width:56ch}
+.hero p.claim{color:var(--ink);font-weight:600;margin-top:16px}
+.hero-actions{display:flex;gap:12px;align-items:center;margin-top:30px;flex-wrap:wrap}
+.photo{position:relative;overflow:hidden;aspect-ratio:4/5;border-radius:20px;background:var(--surface-3);border:1px solid var(--line);display:grid;place-items:center;text-align:center;color:var(--ink-3);font-size:13.5px;padding:26px;box-shadow:var(--shadow)}
+.photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.photo:has(img){background:#fff}
+.photo img.portrait{inset:auto 0 0 0;height:108%;object-position:50% 100%}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:56px}
+.stat{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:22px 20px;box-shadow:var(--shadow)}
+.stat .n{font-size:31px;font-weight:800;letter-spacing:-.03em;line-height:1.1}
+.stat .l{font-size:13px;color:var(--ink-3);margin-top:6px;font-weight:500}
+
+/* ---------- SECTION HEAD ---------- */
+.head{max-width:64ch;margin-bottom:46px}
+.head.mid{text-align:center;margin-left:auto;margin-right:auto}
+.kick{font-size:12.5px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--accent);margin-bottom:11px}
+h2{font-size:clamp(28px,3.4vw,39px);letter-spacing:-.025em;font-weight:800;line-height:1.16}
+.head p{color:var(--ink-2);margin-top:13px;font-size:16px}
+
+/* ---------- ABOUT ---------- */
+.about{display:grid;grid-template-columns:1.1fr .9fr;gap:52px;align-items:start}
+.about p{color:var(--ink-2);margin-bottom:15px}
+.about p:last-child{margin-bottom:0}
+.facts{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:24px 26px;box-shadow:var(--shadow)}
+.facts h3{font-size:17px;font-weight:700;margin-bottom:8px}
+.facts .row{display:flex;justify-content:space-between;gap:18px;padding:12px 0;border-bottom:1px solid var(--line);font-size:14.5px}
+.facts .row:last-child{border-bottom:0;padding-bottom:0}
+.facts .row .k{color:var(--ink-3);font-weight:500;flex:0 0 auto}
+.facts .row .v{font-weight:600;text-align:right}
+
+/* ---------- SKILLS ---------- */
+.sk-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.sk{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:26px;box-shadow:var(--shadow);transition:.2s}
+.sk:hover{transform:translateY(-2px);box-shadow:var(--shadow-h)}
+.sk-top{display:flex;align-items:center;gap:13px;margin-bottom:12px}
+.sk-ico{width:40px;height:40px;border-radius:11px;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;font-size:17px;font-weight:700;flex:0 0 auto}
+.sk h3{font-size:17px;font-weight:700}
+.sk .desc{font-size:14px;color:var(--ink-3);margin-bottom:20px}
+.bar-row{margin-bottom:14px}
+.bar-row:last-child{margin-bottom:0}
+.bar-lbl{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-size:13.5px;margin-bottom:6px}
+.bar-lbl b{font-weight:600}
+.bar-lbl i{font-style:normal;color:var(--ink-3);font-size:12.5px;font-variant-numeric:tabular-nums}
+.track{height:6px;border-radius:99px;background:#E4EBF7;overflow:hidden}
+.fill{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--accent),var(--accent-cyan))}
+
+/* ---------- PROJECTS ---------- */
+.proj{display:grid;gap:24px}
+.pcard{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;display:grid;grid-template-columns:.9fr 1.1fr;box-shadow:var(--shadow);transition:.2s}
+.pcard:hover{box-shadow:var(--shadow-h)}
+.pcard:nth-child(even){grid-template-columns:1.1fr .9fr}
+.pcard:nth-child(even) .pshot{order:2;border-right:0;border-left:1px solid var(--line)}
+.pshot{position:relative;overflow:hidden;background:linear-gradient(140deg,#EDF3FF,#E3F3FA);display:grid;place-items:center;text-align:center;color:var(--ink-3);font-size:13px;padding:32px;min-height:280px;border-right:1px solid var(--line)}
+.pshot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pbody{padding:30px}
+.pbody h3{font-size:21px;font-weight:800;letter-spacing:-.02em}
+.pdesc{color:var(--ink-2);font-size:15px;margin-top:9px}
+.psr{margin-top:20px}
+.psr>div{margin-bottom:14px}
+.psr h4{font-size:12px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3);margin-bottom:3px}
+.psr p{font-size:14.5px;color:var(--ink-2)}
+.psr .res{background:var(--accent-soft);border-left:3px solid var(--accent);border-radius:0 9px 9px 0;padding:12px 15px;margin-bottom:0}
+.psr .res h4{color:var(--accent)}
+.psr .res p{color:var(--ink)}
+.tech-lbl{font-size:12px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3);margin:20px 0 9px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-size:12.5px;font-weight:600;color:var(--accent);background:var(--accent-soft);border:1px solid #D3E1FB;border-radius:7px;padding:5px 11px}
+.pactions{display:flex;gap:11px;margin-top:22px;flex-wrap:wrap}
+.pactions .btn{padding:10px 18px;font-size:14px}
+.pcard.feat{border-color:#CFE0FB}
+.pcard.feat .pshot{padding:0;cursor:pointer}
+.pcard.feat .pshot img{object-position:left top;transition:transform .35s}
+.pcard.feat:hover .pshot img{transform:scale(1.03)}
+.pbadge{position:absolute;left:14px;bottom:14px;background:#0f172a;color:#fff;font-size:12px;font-weight:600;padding:6px 11px;border-radius:999px;letter-spacing:.01em}
+
+/* ---------- LIVE WORK ---------- */
+.wgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.wcard{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:22px;box-shadow:var(--shadow);
+ display:flex;flex-direction:column;transition:.2s}
+a.wcard:hover{transform:translateY(-2px);box-shadow:var(--shadow-h);border-color:#B9D2F5}
+.wtool{align-self:flex-start;font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+ color:var(--accent);background:var(--accent-soft);border:1px solid #D3E1FB;border-radius:6px;padding:4px 9px;margin-bottom:13px}
+.wcard h3{font-size:16.5px;font-weight:700;line-height:1.35}
+.wcard p{font-size:14px;color:var(--ink-2);margin-top:8px;flex:1}
+.wgo{margin-top:15px;font-size:13.5px;font-weight:600;color:var(--accent)}
+
+/* ---------- EXPERIENCE ---------- */
+.tl{max-width:790px;margin:0 auto;position:relative;padding-left:32px}
+.tl::before{content:"";position:absolute;left:7px;top:10px;bottom:10px;width:2px;background:var(--line-2)}
+.tli{position:relative;padding-bottom:36px}
+.tli:last-child{padding-bottom:0}
+.tli::before{content:"";position:absolute;left:-31px;top:8px;width:12px;height:12px;border-radius:50%;background:#fff;border:2.5px solid var(--accent)}
+.tw{font-size:13px;font-weight:700;color:var(--accent);letter-spacing:.02em}
+.tli h3{font-size:18px;font-weight:700;margin:5px 0 2px}
+.torg{font-size:14.5px;color:var(--ink-3);margin-bottom:12px}
+.tli ul{list-style:none;display:grid;gap:8px}
+.tli li{position:relative;padding-left:19px;font-size:15px;color:var(--ink-2)}
+.tli li::before{content:"";position:absolute;left:3px;top:10px;width:5px;height:5px;border-radius:50%;background:var(--accent)}
+
+/* ---------- ACHIEVEMENTS ---------- */
+.ach{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.acard{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:24px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.acard::after{content:"";position:absolute;top:0;right:0;border-width:0 42px 42px 0;border-style:solid;border-color:transparent var(--gold-soft) transparent transparent}
+.medal{font-size:22px;margin-bottom:12px}
+.acard h3{font-size:16.5px;font-weight:700;line-height:1.35}
+.acard p{font-size:14px;color:var(--ink-2);margin-top:8px}
+.year{display:inline-block;margin-top:13px;font-size:12.5px;font-weight:700;color:var(--gold);background:var(--gold-soft);border-radius:7px;padding:4px 11px}
+
+/* ---------- BLOG ---------- */
+.posts{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.post{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:24px;box-shadow:var(--shadow);transition:.2s;display:flex;flex-direction:column}
+.post:hover{transform:translateY(-2px);box-shadow:var(--shadow-h)}
+.post .date{font-size:12.5px;color:var(--ink-3);font-weight:600;letter-spacing:.03em}
+.post h3{font-size:17px;margin:9px 0 10px;font-weight:700;line-height:1.35}
+.post p{font-size:14.5px;color:var(--ink-2);flex:1}
+.post .more{display:inline-block;margin-top:15px;font-size:14px;font-weight:600;color:var(--accent)}
+.blog-cta{text-align:center;margin-top:32px}
+
+/* ---------- CONTACT ---------- */
+.contact{background:var(--ink);color:#fff}
+.contact .kick{color:#7FB6EC}
+.contact h2{color:#fff}
+.contact .head p{color:#B9CBDC}
+.c-grid{display:grid;grid-template-columns:.92fr 1.08fr;gap:52px;align-items:start}
+.c-grid h3{font-size:21px;font-weight:800;letter-spacing:-.02em;margin-bottom:11px}
+.c-grid>div>p{color:#B9CBDC;font-size:15px;margin-bottom:24px}
+.cline{display:flex;gap:14px;align-items:center;margin-bottom:15px}
+.cline .ci{width:42px;height:42px;border-radius:11px;background:rgba(255,255,255,.09);display:grid;place-items:center;font-size:16px;flex:0 0 auto}
+.cline small{display:block;font-size:12.5px;color:#8CA3B8;line-height:1.4}
+.cline b{font-weight:600;font-size:15px}
+.follow{font-size:13.5px;font-weight:700;margin:22px 0 10px;color:#B9CBDC}
+.socials{display:flex;gap:10px}
+.contact .icon-btn{background:rgba(255,255,255,.09);color:#D9E5F0;border-color:rgba(255,255,255,.16)}
+.contact .icon-btn:hover{background:#2A84D8;color:#fff;border-color:#2A84D8}
+form{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.13);border-radius:16px;padding:28px}
+label{display:block;font-size:13px;font-weight:600;color:#B9CBDC;margin-bottom:7px}
+input,textarea{width:100%;padding:12px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.06);color:#fff;font-family:inherit;font-size:15px;resize:vertical}
+input::placeholder,textarea::placeholder{color:#7D95AC}
+input:focus,textarea:focus{outline:none;border-color:#7FB6EC}
+.fg{margin-bottom:16px}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+form .btn-p{width:100%;background:#2A84D8;padding:13px}
+form .btn-p:hover{background:#1668B8}
+.formnote{font-size:12.5px;color:#8CA3B8;margin-top:12px;text-align:center}
+
+/* ---------- FOOTER ---------- */
+footer{background:#0A1E31;color:#8CA3B8;padding:30px 0;font-size:14px}
+.foot{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;align-items:center}
+
+/* ---------- RESPONSIVE ---------- */
+@media(max-width:980px){
+  .hero-grid,.about,.c-grid{grid-template-columns:1fr;gap:38px}
+  .photo{max-width:330px}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .sk-grid,.ach,.posts,.wgrid{grid-template-columns:1fr 1fr}
+  .pcard,.pcard:nth-child(even){grid-template-columns:1fr}
+  .pcard:nth-child(even) .pshot{order:0;border-left:0}
+  .pshot{border-right:0;border-bottom:1px solid var(--line);min-height:210px}
+}
+@media(max-width:680px){
+  section{padding:60px 0}
+  .menu{display:none}
+  .burger{display:grid;place-items:center}
+  .sk-grid,.ach,.posts,.wgrid,.frow{grid-template-columns:1fr}
+  .stats{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="#home"><span class="mark">TH</span><span>Thanh Hà<small>Business Intelligence Analyst</small></span></a>
+    <nav class="menu">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="burger" aria-label="Menu">☰</button>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="home">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <span class="badge"><span class="dot"></span>Đang mở cơ hội mới</span>
+        <h1>Hi, I am <span>Thanh Hà</span></h1>
+        <div class="role">Business Intelligence Analyst</div>
+        <p>Tôi xây dựng và vận hành hệ thống báo cáo Power BI trên nền BigQuery cho ngành bán lẻ mỹ phẩm — hợp nhất dữ liệu từ KiotViet, Haravan, Shopee, TikTok Shop và showroom thành một nguồn số liệu duy nhất mà ban lãnh đạo tin dùng mỗi ngày.</p>
+        <p class="claim">Tôi tin rằng một chỉ số chỉ nên có một định nghĩa duy nhất — đó là điều kiện để dữ liệu trở thành quyết định.</p>
+        <div class="hero-actions">
+          <a class="btn btn-p" href="/cv/Nguyen-Thi-Thanh-Ha-CV.pdf" target="_blank" rel="noopener">⬇ Download CV</a>
+          
+          <a class="icon-btn" href="https://github.com/thanhha02061/Porfolio-Projects" title="GitHub">Gh</a>
+          <a class="icon-btn" href="mailto:email-cua-ban@example.com" title="Email">@</a>
+        </div>
+      </div>
+      <div class="photo">
+        <img class="portrait" src="/images/chan-dung-900.jpg" srcset="/images/chan-dung-560.jpg 560w, /images/chan-dung-900.jpg 900w, /images/chan-dung.jpg 1920w" sizes="(max-width:980px) 330px, 420px" alt="Thanh Hà" decoding="async" onerror="this.remove()">
+        <div>Ảnh chân dung<br>tỉ lệ 4:5<br><br><span>images/chan-dung.jpg</span></div>
+      </div>
+    </div>
+    <div class="stats">
+      <div class="stat"><div class="n">4+</div><div class="l">Năm kinh nghiệm</div></div>
+      <div class="stat"><div class="n">15+</div><div class="l">Báo cáo đang vận hành</div></div>
+      <div class="stat"><div class="n">5</div><div class="l">Kênh bán hợp nhất</div></div>
+      <div class="stat"><div class="n">100+</div><div class="l">Người dùng nội bộ</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section id="about">
+  <div class="wrap">
+    <div class="head">
+      <div class="kick">About</div>
+      <h2>Người ở giữa dữ liệu thô và quyết định kinh doanh</h2>
+    </div>
+    <div class="about">
+      <div><p>Tôi bắt đầu từ nghiệp vụ bán lẻ trước khi chuyển sang phân tích dữ liệu, nên cách tôi làm báo cáo luôn bắt đầu bằng câu hỏi "người đọc sẽ ra quyết định gì từ con số này?" — thay vì làm dashboard cho đẹp rồi mới đi tìm người dùng.</p>
+<p>Công việc của tôi trải dài toàn bộ chuỗi: lấy dữ liệu từ các nền tảng bán hàng về BigQuery, chuẩn hoá và làm sạch, dựng data model hợp lý, viết measure DAX, rồi thiết kế báo cáo Power BI cho phòng kinh doanh, marketing và ban lãnh đạo dùng hằng ngày. Tôi cũng chịu trách nhiệm phần khó nhất và ít ai thấy: đảm bảo số liệu đúng và khớp nhau giữa các nguồn.</p>
+<p>Ba nguyên tắc tôi giữ: một chỉ số chỉ có một định nghĩa; số nào không truy được về nguồn thì không đưa lên báo cáo; và báo cáo tốt là báo cáo người ta mở lại vào tuần sau.</p>
+<p>Ngoài giờ làm tôi học thêm Python và cách ứng dụng AI vào quy trình phân tích — chủ yếu để rút ngắn phần việc lặp lại, dành thời gian cho phần diễn giải số liệu.</p></div>
+      <aside class="facts">
+        <h3>Thông tin nhanh</h3>
+        <div class="row"><span class="k">Vị trí hiện tại</span><span class="v">BI / Data Analyst</span></div>
+<div class="row"><span class="k">Ngành</span><span class="v">Bán lẻ mỹ phẩm &amp; TMĐT</span></div>
+<div class="row"><span class="k">Địa điểm</span><span class="v">TP. Hồ Chí Minh</span></div>
+<div class="row"><span class="k">Công cụ chính</span><span class="v">Power BI, BigQuery</span></div>
+<div class="row"><span class="k">Ngôn ngữ</span><span class="v">SQL, DAX, Python</span></div>
+<div class="row"><span class="k">Ngoại ngữ</span><span class="v">Tiếng Anh — đọc hiểu tài liệu</span></div>
+<div class="row"><span class="k">Trạng thái</span><span class="v">Sẵn sàng trao đổi</span></div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SKILLS ============ -->
+<section class="section-alt" id="skills">
+  <div class="wrap">
+    <div class="head mid">
+      <div class="kick">Expertise</div>
+      <h2>My Skills</h2>
+      <p>Không chỉ dùng công cụ — tôi hiểu vì sao chọn công cụ đó cho bài toán đó.</p>
+    </div>
+    <div class="sk-grid">
+      <div class="sk">
+        <div class="sk-top"><div class="sk-ico">&lt;/&gt;</div><h3>Technical Skills</h3></div>
+        <div class="desc">Công cụ tôi dùng hằng ngày để đưa dữ liệu từ nguồn tới báo cáo.</div>
+        <div class="bar-row"><div class="bar-lbl"><b>Power BI (DAX, Power Query)</b><i>90%</i></div><div class="track"><div class="fill" style="width:90%"></div></div></div>
+<div class="bar-row"><div class="bar-lbl"><b>SQL / BigQuery</b><i>85%</i></div><div class="track"><div class="fill" style="width:85%"></div></div></div>
+<div class="bar-row"><div class="bar-lbl"><b>Excel &amp; Google Sheets</b><i>85%</i></div><div class="track"><div class="fill" style="width:85%"></div></div></div>
+<div class="bar-row"><div class="bar-lbl"><b>Python (pandas)</b><i>60%</i></div><div class="track"><div class="fill" style="width:60%"></div></div></div>
+      </div>
+      <div class="sk">
+        <div class="sk-top"><div class="sk-ico">◎</div><h3>Core Competencies</h3></div>
+        <div class="desc">Phần quyết định báo cáo có đúng và có bền hay không.</div>
+        <div class="bar-row"><div class="bar-lbl"><b>Data modeling (star schema)</b><i>90%</i></div><div class="track"><div class="fill" style="width:90%"></div></div></div>
+<div class="bar-row"><div class="bar-lbl"><b>Làm sạch &amp; kiểm soát chất lượng dữ liệu</b><i>90%</i></div><div class="track"><div class="fill" style="width:90%"></div></div></div>
+<div class="bar-row"><div class="bar-lbl"><b>Thiết kế dashboard &amp; trực quan hoá</b><i>88%</i></div><div class="track"><div class="fill" style="width:88%"></div></div></div>
+<div class="bar-row"><div class="bar-lbl"><b>Tối ưu hiệu năng model</b><i>80%</i></div><div class="track"><div class="fill" style="width:80%"></div></div></div>
+      </div>
+      <div class="sk">
+        <div class="sk-top"><div class="sk-ico">◈</div><h3>Specializations</h3></div>
+        <div class="desc">Hiểu nghiệp vụ bán lẻ đủ sâu để số liệu hợp nhất không bị sai lệch.</div>
+        <div class="bar-row"><div class="bar-lbl"><b>Phân tích bán lẻ đa kênh</b><i>90%</i></div><div class="track"><div class="fill" style="width:90%"></div></div></div>
+<div class="bar-row"><div class="bar-lbl"><b>Doanh thu &amp; lợi nhuận gộp</b><i>85%</i></div><div class="track"><div class="fill" style="width:85%"></div></div></div>
+<div class="bar-row"><div class="bar-lbl"><b>Tồn kho &amp; giá vốn</b><i>80%</i></div><div class="track"><div class="fill" style="width:80%"></div></div></div>
+<div class="bar-row"><div class="bar-lbl"><b>Hiệu quả SKU &amp; sell-through</b><i>78%</i></div><div class="track"><div class="fill" style="width:78%"></div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROJECTS ============ -->
+<section id="projects">
+  <div class="wrap">
+    <div class="head mid">
+      <div class="kick">Portfolio</div>
+      <h2>My Projects</h2>
+      <p>Báo cáo và pipeline mẫu bạn có thể mở thử ngay, cùng các bài toán thật, kể theo cấu trúc Problem → Solution → Result.</p>
+    </div>
+    <div class="proj">
+      <article class="pcard feat">
+        <a class="pshot" href="/reports/sieu-thi-1000/" target="_blank" rel="noopener" aria-label="Mở báo cáo 1.000 siêu thị"><img src="/images/bao-cao-sieu-thi.jpg" alt="Trang tổng quan báo cáo mạng lưới 1.000 siêu thị" onerror="this.remove()"><span class="pbadge">Live demo · dữ liệu mô phỏng</span></a>
+        <div class="pbody">
+          <h3>Store Network Review: 1,000 Supermarkets</h3>
+          <p class="pdesc">Báo cáo điều hành 13 trang cho một chuỗi 1.000 siêu thị giả lập, đi từ lúc tiếp nhận yêu cầu tới đề xuất giữ, cải tạo hay đóng từng cửa hàng. Dựng bằng HTML cùng AI (Claude), chạy ngay trên trình duyệt.</p>
+          <div class="psr">
+            <div><h4>Problem</h4><p>Chuỗi lớn luôn có hàng trăm cửa hàng lãi mỏng hoặc lỗ, nhưng báo cáo thường chỉ dừng ở "doanh thu bao nhiêu" mà không trả lời được "vì sao" và "nên làm gì với từng cửa hàng".</p></div>
+            <div><h4>Solution</h4><p>Chấm điểm ưu tiên yêu cầu, lên khung phân tích bằng CRISP-DM, logic tree và MECE. Phân rã doanh thu = lượt vào × tỷ lệ chuyển đổi × AOV, rồi dùng PVM, Pareto/ABC, k-means, hồi quy yếu tố, DiD cho khuyến mãi, market basket, cohort/RFM và NPV. Mọi chỉ số có công thức và ví dụ tính ngay dưới từng trang; bộ lọc vùng, mô hình, tuổi cửa hàng cập nhật toàn bộ số.</p></div>
+            <div class="res"><h4>Result</h4><p>Trên bộ dữ liệu mô phỏng: chỉ ra khoảng 223 tỷ lợi nhuận/năm có thể lấy lại (+15%), 97 cửa hàng lỗ kèm phương án NPV tốt nhất, và các đòn bẩy cụ thể như hết hàng, ca làm việc, khuyến mãi lỗ.</p></div>
+          </div>
+          <div class="tech-lbl">Technologies Used</div>
+          <div class="chips"><span class="chip">HTML / JavaScript</span><span class="chip">SVG charts</span><span class="chip">AI-assisted (Claude)</span><span class="chip">CRISP-DM</span><span class="chip">Statistics</span></div>
+          <div class="pactions"><a class="btn btn-p" href="/reports/sieu-thi-1000/" target="_blank" rel="noopener">Mở báo cáo ↗</a><a class="btn btn-s" href="/reports/sieu-thi-1000/#pl" target="_blank" rel="noopener">Xem cách tôi lên kế hoạch</a></div>
+        </div>
+      </article>
+      <article class="pcard" id="tiktok-shop">
+        <a class="pshot" href="https://app.powerbi.com/view?r=eyJrIjoiNWZlMzVhZmEtNTA1MS00N2VkLTlmMDQtMDg4OTM1NjAyZmQ0IiwidCI6ImU5MzhiMDc0LWQxNjAtNGVhOC05ODAzLWMwZTI5NjY5ZTM4OCIsImMiOjEwfQ%3D%3D" target="_blank" rel="noopener" aria-label="Mở dashboard TikTok Shop trên Power BI"><img src="/images/tiktok-dashboard.png" alt="Dashboard TikTok Shop trên Power BI" style="object-fit:contain;object-position:center;background:#fff" onerror="this.remove()"><div>TikTok Shop Performance<br><span>Livestream · Video · Affiliate · Ads</span></div><span class="pbadge">Power BI chạy thật · dữ liệu mô phỏng</span></a>
+        <div class="pbody">
+          <h3>TikTok Shop Performance Dashboard</h3>
+          <p class="pdesc">Báo cáo Power BI theo dõi hiệu quả gian hàng TikTok Shop của một thương hiệu mỹ phẩm: doanh thu, nguồn đơn, quảng cáo và KOC so với kế hoạch tháng.</p>
+          <div class="psr">
+            <div><h4>Problem</h4><p>Dữ liệu TikTok Shop nằm rải ở nhiều file xuất tay (đơn hàng, livestream, video, affiliate, ads). Mỗi tháng phải ghép thủ công mới biết doanh thu đến từ đâu và kênh nào đang lỗ.</p></div>
+            <div><h4>Solution</h4><p>Gom các nguồn về một data model; chuẩn hoá GMV, NMV, số đơn, tỷ lệ huỷ, CR, AOV; tách doanh thu theo livestream, video, affiliate/KOC và ads (ROAS); so sánh thực hiện với kế hoạch theo tháng, theo SKU.</p></div>
+            <div class="res"><h4>Result</h4><p>Đội ngũ nhìn một màn hình là biết nguồn đơn nào hiệu quả, SKU nào hụt kế hoạch và khoản chi quảng cáo, KOC nào cần cắt, thay vì chờ tổng hợp cuối tháng.</p></div>
+          </div>
+          <div class="tech-lbl">Technologies Used</div>
+          <div class="chips"><span class="chip">Power BI</span><span class="chip">DAX</span><span class="chip">Power Query</span><span class="chip">E-commerce analytics</span></div>
+          <div class="pactions"><a class="btn btn-p" href="https://app.powerbi.com/view?r=eyJrIjoiNWZlMzVhZmEtNTA1MS00N2VkLTlmMDQtMDg4OTM1NjAyZmQ0IiwidCI6ImU5MzhiMDc0LWQxNjAtNGVhOC05ODAzLWMwZTI5NjY5ZTM4OCIsImMiOjEwfQ%3D%3D" target="_blank" rel="noopener">Mở báo cáo Power BI ↗</a></div>
+        </div>
+      </article>
+      <article class="pcard" id="retail-data-hub">
+        <a class="pshot" href="https://github.com/thanhha02061/Porfolio-Projects/tree/main/0.1.%20%5BPython%5D%20Retail%20Data%20Hub" target="_blank" rel="noopener" aria-label="Mở Retail Data Hub trên GitHub" style="background:#fff"><img src="/images/retail-pipeline.svg" alt="Sơ đồ luồng dữ liệu Retail Data Hub: 5 nguồn, lake, staging SQL, kiểm tra chất lượng, publish" onerror="this.remove()" style="object-fit:contain"><div>Retail Data Hub<br><span>5 nguồn → 1 nguồn duy nhất</span></div><span class="pbadge">Tự chạy mỗi sáng · dữ liệu mô phỏng</span></a>
+        <div class="pbody">
+          <h3>Retail Data Hub: 5 nguồn → 1 nguồn duy nhất</h3>
+          <p class="pdesc">Pipeline gom dữ liệu cửa hàng, Shopee, TikTok Shop, website và tồn kho ERP về một nơi, tự kiểm tra lỗi và tự làm mới lúc 06:00 mỗi sáng bằng GitHub Actions.</p>
+          <div class="psr">
+            <div><h4>Problem</h4><p>Mỗi hệ thống xuất dữ liệu một kiểu: khác định dạng ngày, múi giờ, mã sản phẩm, có dòng trùng. Mỗi phòng tự ghép Excel nên ra nhiều con số "doanh thu" khác nhau, lỗi chỉ lộ ra lúc chốt tháng.</p></div>
+            <div><h4>Solution</h4><p>Nạp tăng dần theo watermark vào lake chia theo ngày; một file SQL duy nhất định nghĩa giờ Việt Nam, master SKU và doanh thu thuần cho mọi kênh; 9 phép kiểm tra chất lượng (độ mới, map mã, đối soát với báo cáo nguồn) chặn dữ liệu lỗi trước khi công bố.</p></div>
+            <div class="res"><h4>Result</h4><p>Không ai phải chạy tay: README tự cập nhật trạng thái mỗi sáng, đối soát lệch 0.000% so với báo cáo nguồn, bắt được dòng trùng Shopee và mã combo livestream chưa có trong master data.</p></div>
+          </div>
+          <div class="tech-lbl">Technologies Used</div>
+          <div class="chips"><span class="chip">Python</span><span class="chip">SQL (DuckDB)</span><span class="chip">GitHub Actions</span><span class="chip">BigQuery design</span><span class="chip">Data quality</span></div>
+          <div class="pactions"><a class="btn btn-p" href="https://github.com/thanhha02061/Porfolio-Projects/tree/main/0.1.%20%5BPython%5D%20Retail%20Data%20Hub" target="_blank" rel="noopener">Xem trên GitHub ↗</a></div>
+        </div>
+      </article>
+      <article class="pcard">
+        <a class="pshot" href="https://app.powerbi.com/view?r=eyJrIjoiNmFjMzEwNjctYWFlOC00ODJjLTgzOWMtNDdhMjc5NmZiYzZjIiwidCI6ImU5MzhiMDc0LWQxNjAtNGVhOC05ODAzLWMwZTI5NjY5ZTM4OCIsImMiOjEwfQ%3D%3D" target="_blank" rel="noopener" aria-label="Mở báo cáo tài chính trên Power BI"><img src="/images/bao-cao-tai-chinh.png" alt="Báo cáo tài chính Power BI" style="object-fit:contain;object-position:center;background:#0E3A57" onerror="this.remove()"><div>Financial Statements<br><span>P&amp;L · Cash Flow · Balance Sheet</span></div><span class="pbadge">Live Power BI</span></a>
+        <div class="pbody">
+          <h3>Financial Reporting Package</h3>
+          <p class="pdesc">Bộ báo cáo tài chính đầy đủ trên Power BI cho một tập đoàn năng lượng hơn 10 công ty con, phục vụ ban lãnh đạo xem kết quả theo năm, quý, tháng.</p>
+          <div class="psr">
+            <div><h4>Problem</h4><p>Báo cáo tài chính làm thủ công trên Excel cho từng công ty con, mất nhiều ngày để tổng hợp và khó xem chi tiết khi ban lãnh đạo hỏi sâu.</p></div>
+            <div><h4>Solution</h4><p>Dựng P&amp;L, Cash Flow và Balance Sheet trên một model Power BI với drill-down năm / quý / tháng, drill-through, bookmark và bộ lọc; viết khoảng 1,000 dòng SQL (window functions, CTEs) để chuẩn bị và tối ưu dữ liệu.</p></div>
+            <div class="res"><h4>Result</h4><p>Ban lãnh đạo tự xem báo cáo tài chính hợp nhất và đi sâu tới từng kỳ, từng công ty con trên một màn hình.</p></div>
+          </div>
+          <div class="tech-lbl">Technologies Used</div>
+          <div class="chips"><span class="chip">Power BI</span><span class="chip">DAX</span><span class="chip">SQL</span><span class="chip">Financial statements</span></div>
+          <div class="pactions"><a class="btn btn-p" href="https://app.powerbi.com/view?r=eyJrIjoiNmFjMzEwNjctYWFlOC00ODJjLTgzOWMtNDdhMjc5NmZiYzZjIiwidCI6ImU5MzhiMDc0LWQxNjAtNGVhOC05ODAzLWMwZTI5NjY5ZTM4OCIsImMiOjEwfQ%3D%3D" target="_blank" rel="noopener">Mở báo cáo Power BI ↗</a></div>
+        </div>
+      </article>
+      <article class="pcard">
+        <div class="pshot"><img src="/images/du-an-1.png" alt="" onerror="this.remove()"><div>Ảnh dự án 1<br><span>images/du-an-1.png</span></div></div>
+        <div class="pbody">
+          <h3>Unified Multi-Channel Revenue Dashboard</h3>
+          <p class="pdesc">Báo cáo doanh thu hợp nhất 5 kênh bán trên một data model duy nhất, phục vụ khối kinh doanh và ban lãnh đạo.</p>
+          <div class="psr">
+            <div><h4>Problem</h4><p>Mỗi kênh bán xuất báo cáo theo cách riêng. Cùng một chỉ số "doanh thu" nhưng ba phòng ban ra ba con số khác nhau, họp kinh doanh mất phần lớn thời gian để tranh luận về số thay vì bàn hành động.</p></div>
+            <div><h4>Solution</h4><p>Chuẩn hoá dữ liệu từ KiotViet, Haravan, Shopee, TikTok Shop và showroom về BigQuery; thống nhất một định nghĩa doanh thu thuần duy nhất với các phòng ban; dựng star schema với dim Date / Channel / Brand / Product dùng chung và bộ measure DAX chuẩn.</p></div>
+            <div class="res"><h4>Result</h4><p>Cắt ~X giờ/tuần công ghép số thủ công; số liệu giữa các phòng ban khớp nhau; họp kinh doanh chuyển hẳn sang bàn giải pháp.</p></div>
+          </div>
+          <div class="tech-lbl">Technologies Used</div>
+          <div class="chips"><span class="chip">Power BI</span><span class="chip">BigQuery</span><span class="chip">SQL</span><span class="chip">DAX</span><span class="chip">Star schema</span></div>
+        </div>
+      </article>
+      <article class="pcard">
+        <div class="pshot"><img src="/images/du-an-2.png" alt="" onerror="this.remove()"><div>Ảnh dự án 2<br><span>images/du-an-2.png</span></div></div>
+        <div class="pbody">
+          <h3>Ratecard Revenue Allocation Pipeline</h3>
+          <p class="pdesc">Tự động hoá phân bổ doanh thu cho thuê kệ trưng bày theo từng mã kệ × tháng.</p>
+          <div class="psr">
+            <div><h4>Problem</h4><p>Dữ liệu ratecard nhập tay trên Google Sheet, phải phân bổ thủ công theo mã kệ và theo tháng. Đối chiếu bằng tay nên dễ sai và không ai truy được số về nguồn.</p></div>
+            <div><h4>Solution</h4><p>Xây pipeline Google Sheet → BigQuery (view tự refresh mỗi sáng) → Power BI; tạo một dim mã kệ trung tâm nối ba bảng nghiệp vụ về cùng một khoá; thiết lập quan hệ many-to-one một chiều để tránh vòng lặp; thêm bước kiểm tra dữ liệu đầu vào để dòng nhập sai không làm hỏng refresh.</p></div>
+            <div class="res"><h4>Result</h4><p>Số phân bổ tự cập nhật hằng ngày, không còn bước copy tay; mọi con số truy được về đúng dòng nguồn; thời gian chốt báo cáo tháng giảm từ … xuống ….</p></div>
+          </div>
+          <div class="tech-lbl">Technologies Used</div>
+          <div class="chips"><span class="chip">BigQuery</span><span class="chip">Google Sheets API</span><span class="chip">Power BI</span><span class="chip">Scheduled refresh</span></div>
+        </div>
+      </article>
+      <article class="pcard">
+        <div class="pshot"><img src="/images/du-an-3.png" alt="" onerror="this.remove()"><div>Ảnh dự án 3<br><span>images/du-an-3.png</span></div></div>
+        <div class="pbody">
+          <h3>Power BI Model Performance Optimization</h3>
+          <p class="pdesc">Rút thời gian tải cho một báo cáo trọng yếu có data model rất nặng.</p>
+          <div class="psr">
+            <div><h4>Problem</h4><p>Model chứa calculated table rất nặng: mỗi lần chỉnh sửa là 30–40 phút chờ tính lại, người dùng cuối phàn nàn báo cáo mở chậm.</p></div>
+            <div><h4>Solution</h4><p>Khoanh vùng nút cổ chai bằng Performance Analyzer; đẩy phần tính toán nặng xuống BigQuery thay vì tính trong Power BI; giảm cardinality các cột khoá; loại bỏ cột không dùng để thu nhỏ model.</p></div>
+            <div class="res"><h4>Result</h4><p>Thời gian tải giảm …%, dung lượng file giảm …%; việc bảo trì model không còn làm gián đoạn người dùng.</p></div>
+          </div>
+          <div class="tech-lbl">Technologies Used</div>
+          <div class="chips"><span class="chip">Power BI</span><span class="chip">DAX Studio</span><span class="chip">Performance Analyzer</span><span class="chip">BigQuery</span></div>
+        </div>
+      </article>
+      <article class="pcard">
+        <div class="pshot"><img src="/images/du-an-4.png" alt="" onerror="this.remove()"><div>Ảnh dự án 4<br><span>images/du-an-4.png</span></div></div>
+        <div class="pbody">
+          <h3>Inventory &amp; COGS Reconciliation Framework</h3>
+          <p class="pdesc">Quy trình đối chiếu tồn kho và giá vốn tự động giữa ERP, kho dữ liệu và báo cáo BI.</p>
+          <div class="psr">
+            <div><h4>Problem</h4><p>Số tồn kho và giá vốn trên ba hệ thống lệch nhau. Không có quy trình kiểm tra nên sai sót chỉ bị phát hiện khi đã lên báo cáo cuối tháng.</p></div>
+            <div><h4>Solution</h4><p>Xác định đúng công thức giá vốn bình quân và giá trị tồn theo từng pháp nhân; dựng bảng đối chiếu tự động theo ngày kèm ngưỡng cảnh báo chênh lệch; ghi lại data dictionary để cả nhóm dùng chung một định nghĩa.</p></div>
+            <div class="res"><h4>Result</h4><p>Chênh lệch được phát hiện trong ngày thay vì cuối tháng; báo cáo tồn kho đủ tin cậy để dùng cho quyết định nhập hàng.</p></div>
+          </div>
+          <div class="tech-lbl">Technologies Used</div>
+          <div class="chips"><span class="chip">SQL</span><span class="chip">BigQuery</span><span class="chip">Odoo / ERP</span><span class="chip">Data quality</span></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LIVE WORK ============ -->
+<section id="work">
+  <div class="wrap">
+    <div class="head mid">
+      <div class="kick">Live links</div>
+      <h2>Dashboard &amp; Code</h2>
+      <p>Dashboard đang chạy thật và code SQL công khai — bấm vào là xem trực tiếp, không cần cài gì.</p>
+    </div>
+    <div class="wgrid"><a class="wcard" href="https://app.powerbi.com/view?r=eyJrIjoiMGRkZjlmNTMtZGNkMS00NWM4LWEzNDEtMDcxZWIxMTViY2VjIiwidCI6IjU0OTkyMmJiLWYwMDctNDA3Mi05ZGI3LTE2OTU2ZDhjODRjNCIsImMiOjEwfQ%3D%3D" target="_blank" rel="noopener"><span class="wtool">Power BI</span><h3>Cash Balance Dashboard</h3><p>Báo cáo số dư tiền 4 trang: tổng quan dòng tiền, trang thông tin và trang nhập liệu. Dựng trên Power BI, publish để xem trực tiếp trên web.</p><span class="wgo">Mở ↗</span></a><a class="wcard" href="https://github.com/thanhha02061/Porfolio-Projects/tree/main/0.2.%20%5BSQL%5D%20Shopee%20Customer%20Behavior%20%26%20RFM" target="_blank" rel="noopener"><span class="wtool">SQL · BigQuery</span><h3>Shopee Customer Behavior &amp; RFM</h3><p>Một câu SQL trên BigQuery biến đơn hàng Shopee nhiều shop thành bảng phân tích khách: doanh thu thuần sau voucher, khách new / active / return, điểm RFM, mua lần đầu hay mua lại, khách một shop hay nhiều shop.</p><span class="wgo">Mở ↗</span></a><a class="wcard" href="https://github.com/thanhha02061/Porfolio-Projects/blob/main/5.%20%5BSQL%5D%20Allocate%20costs%20by%20customer%20and%20product" target="_blank" rel="noopener"><span class="wtool">SQL</span><h3>Phân bổ chi phí theo khách hàng và sản phẩm</h3><p>View SQL phân bổ chi phí từ sổ General Ledger về từng khách hàng và từng sản phẩm — nhiều tầng CTE, loại trừ tài khoản và tách kỳ theo tháng.</p><span class="wgo">Mở ↗</span></a><a class="wcard" href="https://github.com/thanhha02061/Porfolio-Projects/blob/main/6.%20%5BSQL%5D%20Value%20Segmentation%20by%20RFM%20Analysis" target="_blank" rel="noopener"><span class="wtool">SQL</span><h3>Phân khúc khách hàng bằng RFM</h3><p>Tính Recency – Frequency – Monetary từ dữ liệu giao dịch thanh toán, rồi chia khách hàng thành các nhóm giá trị để đội kinh doanh nhắm đúng đối tượng.</p><span class="wgo">Mở ↗</span></a><a class="wcard" href="https://github.com/thanhha02061/Porfolio-Projects/tree/main/0.3.%20%5BPython%5D%20KiotViet%20Auto%20Export%20Bot" target="_blank" rel="noopener"><span class="wtool">Python</span><h3>KiotViet Auto Export Bot</h3><p>Bot Python tự đăng nhập KiotViet mỗi sáng, xuất danh sách vận đơn từ đầu tháng đến hôm qua, gộp thành một file Excel cho Power BI đọc và gửi email báo kết quả — không ai phải chạy tay.</p><span class="wgo">Mở ↗</span></a></div>
+    <div class="blog-cta"><a class="btn btn-s" href="https://github.com/thanhha02061/Porfolio-Projects" target="_blank" rel="noopener">Xem toàn bộ trên GitHub →</a></div>
+  </div>
+</section>
+
+<!-- ============ EXPERIENCE ============ -->
+<section class="section-alt" id="experience">
+  <div class="wrap">
+    <div class="head mid">
+      <div class="kick">Career</div>
+      <h2>My Experience</h2>
+      <p>Hành trình từ nghiệp vụ bán lẻ sang phân tích dữ liệu.</p>
+    </div>
+    <div class="tl">
+      <div class="tli">
+        <div class="tw">2023 — Hiện tại</div>
+        <h3>Business Intelligence / Data Analyst</h3>
+        <div class="torg">Thế Giới Skinfood — Bán lẻ mỹ phẩm</div>
+        <ul><li>Sở hữu toàn bộ hệ thống báo cáo Power BI cho khối kinh doanh và showroom.</li><li>Xây và vận hành pipeline dữ liệu trên BigQuery cho 5 kênh bán.</li><li>Thống nhất định nghĩa chỉ số toàn công ty, tài liệu hoá thành data dictionary.</li><li>Đào tạo người dùng nghiệp vụ tự đọc và tự lọc báo cáo.</li></ul>
+      </div>
+      <div class="tli">
+        <div class="tw">20XX — 2023</div>
+        <h3>Vị trí trước đó</h3>
+        <div class="torg">Tên công ty — Ngành</div>
+        <ul><li>Việc chính bạn phụ trách, viết bằng động từ hành động.</li><li>Một dòng có con số kết quả cụ thể.</li></ul>
+      </div>
+      <div class="tli">
+        <div class="tw">20XX</div>
+        <h3>Học vấn — chuyên ngành</h3>
+        <div class="torg">Tên trường</div>
+        <ul><li>Thành tích hoặc đồ án liên quan đến dữ liệu.</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ACHIEVEMENTS ============ -->
+<section id="achievements">
+  <div class="wrap">
+    <div class="head mid">
+      <div class="kick">Recognition</div>
+      <h2>My Achievements</h2>
+      <p>Chứng chỉ và khoá học tôi đã hoàn thành.</p>
+    </div>
+    <div class="ach"><div class="acard"><div class="medal">🏅</div><h3>Microsoft PL-300</h3><p>Power BI Data Analyst Associate — thiết kế model, DAX, triển khai và bảo mật báo cáo.</p><span class="year">2025</span></div><div class="acard"><div class="medal">🏅</div><h3>Agentic AI in Power BI</h3><p>Ứng dụng AI agent vào quy trình phân tích và tự động hoá báo cáo. The Future Analyst.</p><span class="year">2026</span></div><div class="acard"><div class="medal">🏅</div><h3>Google Cloud — BigQuery</h3><p>Truy vấn phân tích, tối ưu chi phí query và thiết kế kho dữ liệu trên BigQuery.</p><span class="year">2024</span></div></div>
+  </div>
+</section>
+
+<!-- ============ BLOG ============ -->
+<section class="section-alt" id="blog">
+  <div class="wrap">
+    <div class="head mid">
+      <div class="kick">Writing</div>
+      <h2>Ghi chép nghề</h2>
+      <p>Những gì tôi học được khi làm dữ liệu bán lẻ, viết lại cho người đến sau.</p>
+    </div>
+    <div class="posts"><div class="post"><div class="date">12/07/2026</div><h3>Vì sao "doanh thu" của bạn có ba con số khác nhau</h3><p>Ba cách tính doanh thu thường gặp khi hợp nhất dữ liệu sàn TMĐT, và cách chọn một định nghĩa duy nhất cho cả công ty.</p></div><div class="post"><div class="date">28/06/2026</div><h3>Star schema cho người làm báo cáo bán lẻ</h3><p>Cách chia fact và dimension cho dữ liệu đa kênh, và những lỗi quan hệ khiến số liệu bị nhân đôi.</p></div><div class="post"><div class="date">05/06/2026</div><h3>Báo cáo Power BI chậm: 5 chỗ cần kiểm tra trước</h3><p>Checklist tối ưu theo thứ tự ưu tiên, từ cardinality cột khoá đến việc đẩy tính toán xuống warehouse.</p></div></div>
+    
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="head mid">
+      <div class="kick">Get in touch</div>
+      <h2>Contact Me</h2>
+      <p>Bạn có vị trí phù hợp hoặc muốn trao đổi về bài toán dữ liệu? Tôi rất sẵn lòng lắng nghe.</p>
+    </div>
+    <div class="c-grid">
+      <div>
+        <h3>Let's Connect</h3>
+        <p>Tôi luôn quan tâm đến cơ hội mới và các bài toán dữ liệu thú vị. Email là cách nhanh nhất — tôi trả lời trong vòng 24 giờ vào ngày làm việc.</p>
+        <div class="cline"><div class="ci">✉</div><div><small>Email</small><b>email-cua-ban@example.com</b></div></div>
+        <div class="cline"><div class="ci">☎</div><div><small>Phone</small><b>+84 9xx xxx xxx</b></div></div>
+        <div class="cline"><div class="ci">📍</div><div><small>Location</small><b>TP. Hồ Chí Minh, Việt Nam</b></div></div>
+        <div class="follow">Follow me on</div>
+        <div class="socials">
+          
+          <a class="icon-btn" href="https://github.com/thanhha02061/Porfolio-Projects" title="GitHub">Gh</a>
+        </div>
+      </div>
+      <form name="contact" data-to="email-cua-ban@example.com" onsubmit="var f=this,g=function(n){return f.elements[n].value},nl=String.fromCharCode(10);location.href='mailto:'+f.getAttribute('data-to')+'?subject='+encodeURIComponent('Liên hệ từ portfolio — '+g('name'))+'&amp;body='+encodeURIComponent(g('message')+nl+nl+g('name')+(g('company')?' — '+g('company'):'')+nl+g('email'));return false;">
+        <div class="frow">
+          <div class="fg"><label>Họ và tên</label><input type="text" name="name" placeholder="Nguyễn Văn A" required=""></div>
+          <div class="fg"><label>Công ty</label><input type="text" name="company" placeholder="Tên công ty"></div>
+        </div>
+        <div class="fg"><label>Email</label><input type="email" name="email" placeholder="ten@congty.com" required=""></div>
+        <div class="fg"><label>Nội dung</label><textarea name="message" rows="4" placeholder="Vị trí, phạm vi công việc, hoặc câu hỏi của bạn..."></textarea></div>
+        <button class="btn btn-p" type="submit">➤ Gửi lời nhắn</button>
+        <div class="formnote">Bấm gửi sẽ mở ứng dụng email của bạn với nội dung đã điền sẵn.</div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <div>© 2026 Thanh Hà — Business Intelligence Analyst</div>
+    <div>Built with data &amp; care</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var burger=document.querySelector('.burger'), menu=document.querySelector('.menu');
+  burger.addEventListener('click',function(){
+    if(menu.style.display==='flex'){ menu.style.cssText=''; return; }
+    menu.style.cssText='display:flex;position:absolute;top:68px;left:0;right:0;flex-direction:column;'+
+      'align-items:flex-start;gap:0;background:#fff;padding:10px 24px 18px;border-bottom:1px solid #DCE5EE;';
+  });
+  var links=[].slice.call(document.querySelectorAll('.menu a'))
+              .filter(function(a){ return (a.getAttribute('href')||'').charAt(0)==='#'; });
+  function sync(){
+    var y=window.scrollY+120;
+    links.forEach(function(a){
+      var el=document.querySelector(a.getAttribute('href'));
+      if(!el) return;
+      a.classList.toggle('on', el.offsetTop<=y && el.offsetTop+el.offsetHeight>y);
+    });
+  }
+  window.addEventListener('scroll',sync); sync();
+})();
+</script>
+
+
+</body></html>
