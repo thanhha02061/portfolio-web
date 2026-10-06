@@ -537,6 +537,118 @@ body.pres #navBtn{display:none}
 .tm-br{fill:none;stroke:var(--ink-3);stroke-width:1.2}
 
 @media print{body,.cc,.kpi,.card,.tm-card,.nm-t rect,.ph,.top,.bar{-webkit-print-color-adjust:exact;print-color-adjust:exact}.ntools{display:none!important}}
+
+/* ===== v2j ===== */
+.wh-l{font-size:11px;fill:var(--ink-2);font-weight:600}
+.wh-note rect{fill:var(--surface);stroke:var(--good);stroke-width:1.2}.wh-note text{font-size:11.5px;fill:var(--ink)}
+@media (prefers-reduced-motion:no-preference){.wh-line{stroke-dasharray:3000;stroke-dashoffset:3000;animation:tmDraw 1.6s ease-out forwards}.tn-b{transform-box:fill-box;animation:tnG .8s ease-out both}}
+@keyframes tnG{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.tn-b[fill="var(--crit)"]{transform-origin:right}.tn-b[fill="var(--good)"]{transform-origin:left}
+.tn-h{font-size:11px;font-weight:800;letter-spacing:.04em;fill:var(--ink-3)}
+.tn-n{font-size:13px;fill:var(--ink);font-weight:600}.tn-c{font-size:11px;font-weight:800;fill:var(--accent)}
+.tn-v{font-size:11.5px;font-weight:700;fill:var(--ink-2)}.tn-s{font-size:11.5px;fill:var(--ink-3)}.tn-f{font-size:11px;fill:var(--ink-3)}
+.tn-r:hover .tn-n{fill:var(--accent)}
+.ie-q{font-size:10.5px;font-weight:800;letter-spacing:.08em}
+.ie-n{font-size:12.5px;font-weight:700;fill:var(--ink)}.ie-v{font-size:11px;fill:var(--ink-3)}
+.ie-b:hover circle{fill-opacity:.5}
+.ie-t{margin-top:12px}.ie-dots{color:var(--s4);letter-spacing:1px;font-size:11px}.ie-dots i{font-style:normal;color:var(--line-2)}
+.ct-l{font-size:10px;fill:var(--ink-3);font-weight:700}
+.al-sum{display:flex;gap:8px;flex-wrap:wrap;margin:4px 0 10px}.al-sum span{background:color-mix(in srgb,var(--crit) 10%,var(--surface));color:var(--crit);border-radius:999px;padding:2px 10px;font-size:12px}
+.al-c{display:inline-block;background:color-mix(in srgb,var(--crit) 12%,var(--surface));color:var(--crit);font-weight:700;font-size:11.5px;border-radius:6px;padding:1px 7px;margin:1px 0}
+.bt-row{align-items:start;margin-top:6px}.bt-e{font-weight:700;border-radius:6px;padding:1px 7px}.bt-e.g{color:var(--good);background:color-mix(in srgb,var(--good) 12%,var(--surface))}.bt-e.w{color:#9a6a00;background:color-mix(in srgb,var(--warn) 18%,var(--surface))}.bt-e.r{color:var(--crit);background:color-mix(in srgb,var(--crit) 12%,var(--surface))}
+.dm-viz{overflow-x:auto}.dm-viz svg{min-width:900px}
+.dm-h{font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;fill:var(--accent)}
+.dm-e{fill:none;stroke:var(--line-2);stroke-width:1.3;transition:opacity .15s,stroke .15s}
+.dm-n rect:first-child{fill:var(--surface);stroke:var(--line);transition:opacity .15s}.dm-n{cursor:default;outline:none}.dm-n[data-tm]{cursor:pointer}
+.dm-t{font-size:12.5px;font-weight:700;fill:var(--ink)}.dm-t.mono{font-family:ui-monospace,Consolas,monospace;font-size:12px}.dm-s{font-size:10.5px;fill:var(--ink-3)}
+svg.dim .dm-n:not(.hl){opacity:.25}svg.dim .dm-e:not(.hl){opacity:.12}svg.dim .dm-e.hl{stroke:var(--accent);stroke-width:2.2}svg.dim .dm-n.hl rect:first-child{stroke:var(--accent);stroke-width:1.8}
+code{font-family:ui-monospace,Consolas,monospace;font-size:11.5px;background:var(--surface-2);padding:1px 5px;border-radius:4px;color:var(--ink);white-space:normal;word-break:break-word}
+.dm-rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin-top:6px}.dm-rules>div{background:var(--surface-2);border-radius:10px;padding:10px 12px;border-left:3px solid var(--accent)}.dm-rules b{font-size:13px}.dm-rules p{margin:4px 0 0;font-size:12.5px;color:var(--ink-2)}
+.gt-m{font-size:11px;font-weight:700;fill:var(--ink-3)}.gt-n{font-size:12px;fill:var(--ink);font-weight:600}.gt-ok{font-size:11px;font-weight:800;fill:#fff}.gt-ok.w{fill:#fff}
+.ap-s{font:inherit;font-size:12px;border:1px solid var(--line);border-radius:7px;padding:3px 6px;background:var(--surface);color:var(--ink)}
+.ap-t td{vertical-align:top}
+.nt-top .thb{font:inherit;font-size:14px;line-height:1;width:30px;padding:0!important;border-radius:8px!important;border:1px solid var(--line);background:var(--surface-2);color:var(--ink);cursor:pointer;flex:none}
+.thb:hover{border-color:var(--accent)}
+
+.nt-top{display:flex;gap:6px;align-items:stretch}.nt-top .nt-k{flex:1;min-width:0}.nt-top .thb{width:36px;height:auto}
+.ap-t td,.ap-t th{white-space:normal}.ap-t td:first-child{min-width:240px}
+
+.tabs .ntools{grid-template-columns:minmax(0,1fr)}.nt-row{grid-template-columns:1.35fr 1fr .8fr!important}.nt-row button{min-width:0;overflow:hidden;text-overflow:ellipsis}
+
+/* ===== v2k · bảng tháng × vùng ===== */
+.mx-ch{flex-wrap:wrap;justify-content:space-between}
+.mx-ctl{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.mx-m{font:inherit;font-size:13px;font-weight:600;border:1px solid var(--line-2);border-radius:9px;padding:6px 10px;background:var(--surface);color:var(--ink);cursor:pointer}
+.mx-wrap{overflow-x:auto;margin-top:10px}
+table.mx{border-collapse:separate;border-spacing:0;min-width:100%;font-variant-numeric:tabular-nums}
+table.mx th,table.mx td{white-space:nowrap;padding:8px 10px;font-size:12.5px;border-bottom:1px solid var(--line)}
+table.mx thead th{font-size:11.5px;color:var(--ink-3);font-weight:700;background:var(--surface-2);position:sticky;top:0}
+table.mx th[scope=row],table.mx thead th:first-child{position:sticky;left:0;z-index:2;background:var(--surface);text-align:left;font-weight:700;color:var(--ink);min-width:150px;box-shadow:1px 0 0 var(--line)}
+table.mx thead th:first-child{background:var(--surface-2);z-index:3;color:var(--ink-3)}
+table.mx td.mx-t,table.mx th.mx-t{font-weight:800;background:var(--surface-2);border-left:2px solid var(--line-2)}
+table.mx tr.mx-tot td,table.mx tr.mx-tot th{font-weight:800;border-top:2px solid var(--ink-3);background:var(--surface-2)}
+table.mx .mx-sel{box-shadow:inset 2px 0 0 var(--accent),inset -2px 0 0 var(--accent)}
+table.mx tbody tr:hover th,table.mx tbody tr:hover td{outline:1px solid color-mix(in srgb,var(--accent) 30%,transparent);outline-offset:-1px}
+.mx-n{margin-top:8px}
+
+table.mx th[scope=row]{text-transform:none;letter-spacing:0;font-size:13px}
+
+/* ===== v2l · lịch khuyến mãi ===== */
+.pt-viz{overflow-x:auto}.pt-viz svg{min-width:860px}
+.pt-m{font-size:10.5px;font-weight:700;fill:var(--ink-3)}
+.pt-plan{font-size:10.5px;font-weight:800;letter-spacing:.06em;fill:var(--accent)}
+.pt-n{font-size:12px;font-weight:700;fill:var(--ink)}.pt-s{font-size:10.5px;fill:var(--ink-3)}
+.pt-e{font-size:10px;font-weight:700;fill:#9a6a00}
+.pt-r{font-size:11.5px;font-weight:800}
+.pt-stop{font-size:11px;font-weight:700;fill:var(--crit)}
+.pt-lg{margin:4px 0 6px;flex-wrap:wrap}
+.pt-k{display:inline-block;width:18px;height:8px;border-radius:2px;background:var(--ink-3);margin-right:5px;vertical-align:middle}
+.pt-k.on{height:5px;opacity:.5}.pt-k.plan{background:none;border:1.5px dashed var(--ink-3)}.pt-k.ev{width:0;height:12px;border-left:2px dashed var(--s4);background:none;border-radius:0}
+:root[data-theme="dark"] .pt-e{fill:var(--s4)}
+.pt-keep{font-size:11px;font-weight:700;fill:#9a6a00}:root[data-theme="dark"] .pt-keep{fill:var(--s4)}
+.dl-t td{vertical-align:middle}
+.dl-bar{position:relative;min-width:150px;height:22px;background:var(--surface-2);border-radius:6px;overflow:hidden}
+.dl-bar i{position:absolute;inset:0 auto 0 0;background:color-mix(in srgb,var(--s5) 80%,var(--surface));border-radius:6px}
+.dl-bar span{position:absolute;right:8px;top:2px;font-size:11.5px;font-weight:700;color:var(--ink)}
+.dl-roi{display:inline-block;font-size:10.5px;font-weight:800;border-radius:5px;padding:0 5px;margin-left:4px}.dl-roi.g{color:var(--good);background:color-mix(in srgb,var(--good) 12%,var(--surface))}.dl-roi.r{color:var(--crit);background:color-mix(in srgb,var(--crit) 12%,var(--surface))}
+
+/* ===== v2m ===== */
+.hc-b{cursor:pointer;transition:fill-opacity .15s}.hc-b:hover{fill-opacity:.9;stroke-width:2}
+.hc-l{font-size:11px;font-weight:700;fill:var(--ink);paint-order:stroke;stroke:var(--surface);stroke-width:3px;stroke-linejoin:round}
+.hc-tg{margin:2px 0 8px}
+
+/* ===== v2n ===== */
+.gp-p{display:inline-block;min-width:54px;text-align:center;font-weight:700;border-radius:999px;padding:1px 8px;font-size:12px}
+.gp-p.g{color:var(--good);background:color-mix(in srgb,var(--good) 13%,var(--surface))}.gp-p.b{color:var(--s1);background:color-mix(in srgb,var(--s1) 12%,var(--surface))}.gp-p.w{color:#9a6a00;background:color-mix(in srgb,var(--warn) 20%,var(--surface))}
+:root[data-theme="dark"] .gp-p.w{color:var(--s4)}
+.pl-t{display:inline-block;font-size:10.5px;font-weight:800;color:var(--accent);background:var(--accent-2);border-radius:5px;padding:0 6px;margin-left:4px}
+
+/* ===== v2o · Giá & đối thủ ===== */
+.mk-st{display:flex;height:10px;border-radius:5px;overflow:hidden;min-width:120px;background:var(--surface-2)}.mk-st i{display:block;height:100%}.mk-st i.g{background:var(--s3)}.mk-st i.b{background:var(--ink-3);opacity:.5}.mk-st i.r{background:var(--s8)}
+.mk-r{display:inline-block;font-size:11.5px;font-weight:700;border-radius:6px;padding:1px 8px;white-space:nowrap}.mk-r.g{color:var(--good);background:color-mix(in srgb,var(--good) 12%,var(--surface))}.mk-r.b{color:var(--ink-2);background:var(--surface-2)}.mk-r.r{color:var(--crit);background:color-mix(in srgb,var(--crit) 12%,var(--surface))}.mk-r.w{color:#9a6a00;background:color-mix(in srgb,var(--warn) 20%,var(--surface))}
+td.mk-min{font-weight:800;color:var(--accent);background:var(--accent-2)}
+.mk-f{margin:2px 0 10px;flex-wrap:wrap}
+.mk-ev{font:inherit;font-size:12px;font-weight:700;border:1px solid var(--line-2);background:var(--surface);color:var(--ink);border-radius:8px;padding:4px 10px;cursor:pointer;white-space:nowrap}.mk-ev:hover{border-color:var(--accent);color:var(--accent)}
+.mk-disc{margin-top:6px}
+#mkm{position:fixed;inset:0;z-index:115;background:rgba(8,20,16,.45);backdrop-filter:blur(2px);display:none;align-items:center;justify-content:center;padding:16px}#mkm.on{display:flex}
+.mkm-box{width:min(880px,100%);max-height:90vh;overflow:auto;background:var(--surface);color:var(--ink);border-radius:16px;box-shadow:0 30px 80px rgba(0,0,0,.35);padding:20px 24px;animation:psIn .2s ease-out}
+.mkm-h{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}.mkm-h small{font-size:12px;font-weight:700;color:var(--ink-3)}.mkm-h h3{margin:2px 0 10px;font-size:19px;line-height:1.3}
+.mkm-x{font:inherit;font-size:13px;font-weight:700;border:1px solid var(--line-2);background:var(--surface);color:var(--ink);border-radius:9px;padding:6px 12px;cursor:pointer;white-space:nowrap}
+.mkm-t{width:100%;border-collapse:collapse}.mkm-t th{text-align:left;font-weight:500;color:var(--ink-3);width:38%;padding:7px 0;vertical-align:top;font-size:13px}.mkm-t td{padding:7px 0;font-size:13.5px;border-bottom:1px solid var(--line)}.mkm-t tr th{border-bottom:1px solid var(--line)}
+.mkm-s{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin:16px 0 6px}
+.mk-ct{width:100%;border-collapse:collapse;font-size:12.5px}.mk-ct th{font-size:11px;color:var(--ink-3);text-align:left;padding:6px 6px;border-bottom:1px solid var(--line)}.mk-ct td{padding:7px 6px;border-bottom:1px solid var(--line)}.mk-ct th.r,.mk-ct td.r{text-align:right}.mk-ct tr.mk-minrow td{background:var(--accent-2)}
+.cr-wrap{max-height:430px;overflow:auto;border:1px solid var(--line);border-radius:10px;margin-top:8px}
+table.cr{border-collapse:separate;border-spacing:0;font-size:12px;font-variant-numeric:tabular-nums;min-width:1250px;width:100%}
+table.cr th,table.cr td{padding:4px 8px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);white-space:nowrap}
+table.cr thead th{position:sticky;background:var(--surface-2);z-index:2;font-weight:700;color:var(--ink-2)}
+table.cr thead tr.cr-l th{top:0;text-align:center;color:var(--ink-3);font-weight:600}table.cr thead tr:nth-child(2) th{top:23px;text-align:left}
+table.cr tbody th{position:sticky;left:0;background:var(--surface-2);color:var(--ink-3);font-weight:600;text-align:right;z-index:1}
+table.cr tr.cr-row td,table.cr tr.cr-row th{background:color-mix(in srgb,var(--s1) 10%,var(--surface))}
+table.cr td.cr-hit{outline:3px solid var(--crit);outline-offset:-2px;font-weight:800;background:color-mix(in srgb,var(--crit) 8%,var(--surface))!important}
+.cr-a{font-weight:700;color:var(--s1);text-decoration:none;white-space:nowrap}.cr-a:hover{text-decoration:underline}
+.mkm-links{display:flex;gap:16px;flex-wrap:wrap;align-items:center;margin-top:14px;font-size:13px}
+
+.mk-ct td,.mk-ct th{white-space:nowrap}.mkm-box .mk-ct{display:block;overflow-x:auto}
 </style>
 
 <div class="wrap">
@@ -1517,7 +1629,7 @@ function render(){
   A=agg();for(const k in CH)delete CH[k];
   $('#scope').innerHTML='Đang xem <b>'+nf(A.S.length)+'</b> cửa hàng · <b>'+nf(A.openNow)+'</b> đang mở';
   tabsUI();
-  const f={pl:secPlan,op:secOpp,kh:secCust,nt:secNet,ov:secOverview,st:secStores,tr:secTraffic,sp:secProd,nw:secNew,iv:secInv,pm:secPromo,hr:secHR,qa:secQA,ai:secAI,cs:secCS,sc:secSC}[TAB];
+  const f={pl:secPlan,op:secOpp,kh:secCust,nt:secNet,ov:secOverview,st:secStores,tr:secTraffic,sp:secProd,nw:secNew,iv:secInv,pm:secPromo,hr:secHR,qa:secQA,ai:secAI,cs:secCS,sc:secSC,ap:secAP,dm:secDM,mk:secMK}[TAB];
   DEFER.length=0;NC=0;$('#main').innerHTML=A.S.length?f(A)+formulaCard(TAB,A):'<div class="card" style="margin-top:14px">Không có cửa hàng nào khớp bộ lọc. Bấm “Đặt lại”.</div>';
   drawAll($('#main'));
   $('#main').querySelectorAll('tr[data-store]').forEach(r=>r.onclick=()=>openStore(r.dataset.store));
@@ -2310,7 +2422,7 @@ function pageHead(){const T=treeCalc(A),D='Đóng góp vào ΔLN',P='đã xảy 
   nt:{bc:[['D. Chi phí vận hành','D1']],pg:'Mặt bằng & không gian',t:'Thuê mặt bằng',q:'Cửa hàng lỗ nên giữ, cải tạo, chuyển Mini hay đóng? Tiền thuê có hợp lý?',v:T.D1[0],f:'Tiền thuê ÷ DTT · NPV 3 năm'},
   hr:{bc:[['D. Chi phí vận hành','D2']],pg:'Nhân sự & phục vụ',t:'Nhân sự',q:'Năng suất giờ công và xếp ca có khớp với lượt khách không?',v:T.D2[0],f:'Nhân sự ÷ DTT · DT / giờ công'},
   qa:{bc:[['Công cụ']],t:'Hỏi đáp dữ liệu',q:'Đặt câu hỏi bằng lời, báo cáo trả lời bằng số và bảng.'},
-  ai:{bc:[['Công cụ']],t:'Cách làm với AI',q:'Quy trình, phương pháp và cách đối soát khi làm báo cáo này cùng AI.'}}[TAB]||(TAB==='cs'?csHead():TAB==='sc'?scHead():null);
+  ai:{bc:[['Công cụ']],t:'Cách làm với AI',q:'Quy trình, phương pháp và cách đối soát khi làm báo cáo này cùng AI.'}}[TAB]||(TAB==='cs'?csHead():TAB==='sc'?scHead():TAB==='ap'?apHead():TAB==='dm'?dmHead():TAB==='mk'?mkHead():null);
   if(!H)return '';const bc=H.bc.map(g=>esc(g[0])+(g[1]?' <span>›</span> <b>'+esc(g[1])+'</b>':'')).join(' <span>·</span> ')+(H.pg?' <span>·</span> trang '+esc(H.pg):'');
   return '<div class="ph"><div class="ph-l"><div class="ph-bc">'+bc+'</div><h2>'+esc(H.t)+'</h2><p>'+esc(H.q)+'</p></div>'+
    (H.v!=null?'<div class="ph-r"><small>'+esc(H.vl||D)+'</small><b class="'+(H.v>=0?'up':'dn')+'">'+sgn(H.v)+(H.p?'<i>/năm</i>':'')+'</b><span>'+esc(H.p||P)+'</span><em>'+esc(H.f)+'</em></div>':'')+'</div>'}
@@ -2702,6 +2814,489 @@ function postI(root){
   if(LASTANIM!==TAB){LASTANIM=TAB;countUp(root)}reveal(root);
   if(PRES.on){PRES.steps=presSteps();if(PRES.i>=PRES.steps.length)PRES.i=PRES.steps.length-1}}
 function drawAll(root){drawAllD(root);navGroups();navTools();if(root&&root.id==='main'){polishSel(root);polish(root);nextStep(root);postI(root)}}
+
+/* ================= v2j · phân tích sâu ================= */
+const svgOpen=(W,H,lab)=>'<div class="viz"><svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="'+esc(lab)+'">';
+function putCard(html,ref,pos){if(!ref)return null;const t=document.createElement('div');t.innerHTML=html;const el=t.firstElementChild;if(!el)return null;ref.insertAdjacentElement(pos||'afterend',el);drawAll0(el);return el}
+const cardOf=(root,title)=>[...root.querySelectorAll('.card h3')].find(h=>h.textContent.trim().startsWith(title));
+const cnL=(t)=>'<div class="cn"><b class="kno">◎</b><div>'+t+'</div></div>';
+
+/* ---------- 1. Đường cong cá voi lợi nhuận ---------- */
+function whaleData(A){const s=A.full.map(x=>annX(x)).sort((a,b)=>b.profit-a.profit),tot=sum(s.map(x=>x.profit));let acc=0,pk=0,pki=0;
+  const c=s.map((x,i)=>{acc+=x.profit;if(acc>pk){pk=acc;pki=i}return acc});const neg=s.filter(x=>x.profit<0);
+  return {s,c,tot,pk,pki,n:s.length,neg,negSum:sum(neg.map(x=>x.profit)),posN:s.length-neg.length}}
+function whaleW(W,D){const H=330,L=58,R=18,T=18,B=34,n=D.n;if(n<3)return '<p class="note">Chưa đủ cửa hàng.</p>';
+  const ys=D.c.map(v=>v/D.tot*100),mx=Math.max(110,Math.ceil(Math.max(...ys)/20)*20),mn=Math.min(0,Math.floor(Math.min(...ys)/20)*20);
+  const X=i=>L+i/(n-1)*(W-L-R),Y=v=>T+(1-(v-mn)/(mx-mn))*(H-T-B);
+  let g='<g class="grid">';for(let v=mn;v<=mx;v+=20)g+='<line x1="'+L+'" x2="'+(W-R)+'" y1="'+Y(v)+'" y2="'+Y(v)+'"/>';g+='</g><g class="ax">';
+  for(let v=mn;v<=mx;v+=20)g+='<text x="'+(L-8)+'" y="'+(Y(v)+4)+'" text-anchor="end">'+v+'%</text>';
+  [0,20,40,60,80,100].forEach(p=>g+='<text x="'+X((n-1)*p/100)+'" y="'+(H-12)+'" text-anchor="middle">'+p+'%</text>');
+  g+='<text x="'+(W-R)+'" y="'+(H-0)+'" text-anchor="end">% số cửa hàng (xếp từ lãi nhiều nhất → lỗ nhiều nhất) →</text><text x="'+L+'" y="'+(T-5)+'">↑ % lợi nhuận cộng dồn</text></g>';
+  const pts=ys.map((v,i)=>X(i).toFixed(1)+','+Y(v).toFixed(1));
+  g+='<path d="M'+X(0)+','+Y(0)+' L'+pts.join(' L')+' L'+X(n-1)+','+Y(0)+'Z" fill="var(--s1)" fill-opacity=".12"/>';
+  g+='<line x1="'+L+'" x2="'+(W-R)+'" y1="'+Y(100)+'" y2="'+Y(100)+'" stroke="var(--ink-2)" stroke-dasharray="5 4"/><text x="'+(L+8)+'" y="'+(Y(100)-6)+'" class="wh-l">100% = lợi nhuận thực tế '+esc(fBn(D.tot,0))+'</text>';
+  g+='<polyline points="'+pts.join(' ')+'" fill="none" stroke="var(--s1)" stroke-width="2.6" class="wh-line"/>';
+  const px=X(D.pki),py=Y(D.pk/D.tot*100);
+  g+='<line x1="'+px+'" x2="'+px+'" y1="'+py+'" y2="'+Y(mn)+'" stroke="var(--good)" stroke-dasharray="3 3"/><circle cx="'+px+'" cy="'+py+'" r="6" fill="var(--good)" stroke="var(--surface)" stroke-width="2"/>';
+  const lx=Math.min(px+10,W-R-250);
+  g+='<g class="wh-note"><rect x="'+lx+'" y="'+(py-46)+'" width="244" height="38" rx="8"/><text x="'+(lx+10)+'" y="'+(py-30)+'"><tspan font-weight="800">Đỉnh '+nf(D.pk/D.tot*100,0)+'%</tspan> sau '+nf(D.pki+1)+' cửa hàng có lãi</text><text x="'+(lx+10)+'" y="'+(py-15)+'">'+nf(D.neg.length)+' cửa hàng lỗ kéo xuống '+esc(fBn(-D.negSum,0))+'</text></g>';
+  return svgOpen(W,H,'Đường cong cá voi lợi nhuận')+g+'</svg></div>'}
+function whaleCard(A){const D=whaleData(A);if(D.n<3||D.tot<=0)return '';const top20=D.c[Math.max(0,Math.round(D.n*.2)-1)]/D.tot;
+  return card('Đường cong cá voi · ai tạo ra và ai ăn mòn lợi nhuận','Cộng dồn lợi nhuận từ cửa hàng lãi nhiều nhất tới lỗ nhiều nhất · đường vượt 100% rồi đi xuống = phần lợi nhuận bị các cửa hàng lỗ "ăn mòn" · '+nf(D.n)+' cửa hàng '+(LFULL||''),defer(W=>whaleW(W,D)))
+    .replace(/<\/div>\s*$/,cnL('<b>20% cửa hàng đầu tạo '+fP(top20,0)+' lợi nhuận</b>; đỉnh '+fP(D.pk/D.tot,0)+' ở cửa hàng thứ '+nf(D.pki+1)+'. Nếu chỉ cắt lỗ '+nf(D.neg.length)+' cửa hàng lỗ (về hoà vốn), lợi nhuận tăng <b>'+fBn(-D.negSum,0)+'</b> (+'+fP(-D.negSum/D.tot,0)+'). Xem phương án từng cửa hàng ở <span class="go2" data-go="nt">trang Mặt bằng & không gian →</span>')+'</div>')}
+
+/* ---------- 2. Độ nhạy (tornado) ---------- */
+function sensData(A){const t=A.t12,k=ANNF,F=A.full,q=(f)=>{const v=F.map(f).filter(isFinite);return [pct(v,.25),median(v),pct(v,.75)]};
+  const vol=.01*(t.gm-t.shr)*k;
+  const D=[{c:'A2.1',n:'Lượt vào',v:vol,sp:q(x=>x.trf/x.s.area),how:'sản lượng tăng, giá vốn và hao hụt tăng theo'},
+    {c:'A2.2',n:'Tỷ lệ chuyển đổi',v:vol,sp:q(x=>x.cr),how:'như trên'},
+    {c:'A2.3',n:'Số món / hoá đơn',v:vol,sp:q(x=>x.upt),how:'như trên'},
+    {c:'A2.4',n:'Giá bán / món',v:.01*t.rev*k,sp:q(x=>x.aov/x.upt),how:'giữ nguyên lượng bán (chưa tính co giãn giá)'},
+    {c:'B',n:'Giá vốn',v:.01*(t.rev-t.gm)*k,sp:q(x=>1-x.gm/x.rev),how:'giảm 1% giá nhập'},
+    {c:'C',n:'Hao hụt',v:.01*t.shr*k,sp:q(x=>x.shrP),how:'giảm 1% giá trị hao hụt'},
+    {c:'D1',n:'Tiền thuê',v:.01*t.rent*k,sp:q(x=>x.rent/x.rev),how:'giảm 1% tiền thuê'},
+    {c:'D2',n:'Chi phí nhân sự',v:.01*t.staff*k,sp:q(x=>x.staff/x.rev),how:'giảm 1% quỹ lương'},
+    {c:'D3',n:'Điện nước, logistics, khác',v:.01*(t.util+t.logi+t.other)*k,sp:q(x=>(x.util+x.logi+x.other)/x.rev),how:'giảm 1% chi phí'}];
+  D.forEach(d=>{d.gap=d.sp[1]?Math.abs(d.sp[2]-d.sp[0])/Math.abs(d.sp[1]):0});return D.sort((a,b)=>b.v-a.v)}
+function tornadoW(W,D,base){const rh=34,T=30,H=T+D.length*rh+30,L=Math.min(250,W*.32),R=150,cx=L+(W-L-R)/2,half=(W-L-R)/2-64,mx=Math.max(...D.map(d=>d.v)),S=v=>v/mx*half;
+  let g='<text x="'+(cx-8)+'" y="16" text-anchor="end" class="tn-h" fill="var(--crit)">◀ chỉ số xấu đi 1%</text><text x="'+(cx+8)+'" y="16" class="tn-h" fill="var(--good)">chỉ số tốt lên 1% ▶</text><text x="'+(W-4)+'" y="16" text-anchor="end" class="tn-h">Chênh lệch giữa cửa hàng</text>';
+  D.forEach((d,i)=>{const y=T+i*rh,w=S(d.v);
+    g+='<g class="tn-r"><title>'+esc(d.c+' '+d.n+': ±1% → ±'+fBn(d.v,1)+'/năm · '+d.how)+'</title><text x="'+(L-12)+'" y="'+(y+rh/2+4)+'" text-anchor="end" class="tn-n"><tspan class="tn-c">'+d.c+'</tspan> '+esc(d.n)+'</text>'+
+      '<rect x="'+(cx-w)+'" y="'+(y+6)+'" width="'+w.toFixed(1)+'" height="'+(rh-12)+'" rx="3" fill="var(--crit)" fill-opacity=".78" class="tn-b"/><rect x="'+cx+'" y="'+(y+6)+'" width="'+w.toFixed(1)+'" height="'+(rh-12)+'" rx="3" fill="var(--good)" fill-opacity=".85" class="tn-b"/>'+
+      '<text x="'+(cx+w+6)+'" y="'+(y+rh/2+4)+'" class="tn-v">+'+esc(fAmt(d.v))+'</text><text x="'+(cx-w-6)+'" y="'+(y+rh/2+4)+'" text-anchor="end" class="tn-v">−'+esc(fAmt(d.v))+'</text>'+
+      '<text x="'+(W-4)+'" y="'+(y+rh/2+4)+'" text-anchor="end" class="tn-s">'+(d.gap?'±'+nf(d.gap*50,0)+'% quanh trung vị':'—')+'</text></g>'});
+  g+='<line x1="'+cx+'" x2="'+cx+'" y1="'+(T-4)+'" y2="'+(T+D.length*rh)+'" stroke="var(--ink-2)"/>';
+  g+='<text x="'+cx+'" y="'+(H-6)+'" text-anchor="middle" class="tn-f">Lợi nhuận hiện tại '+esc(fBn(base,0))+'/năm · đơn vị: lợi nhuận tăng/giảm mỗi năm</text>';
+  return svgOpen(W,H,'Biểu đồ độ nhạy lợi nhuận')+g+'</svg></div>'}
+function sensCard(A){const D=sensData(A),t=A.t12,base=t.profit*ANNF,top=D[0],vol=D.find(d=>d.c==='A2.1');
+  return card('Độ nhạy · chỉ số nào nhích 1% làm lợi nhuận đổi nhiều nhất','Mỗi chỉ số thay đổi 1%, giữ nguyên các chỉ số khác · tính trên '+nf(A.S.length)+' cửa hàng trong bộ lọc'+(ANNF>1?' · tháng '+MMYY(MSEL)+' quy năm ×12':'')+' · cột phải: các cửa hàng chênh nhau bao xa (nửa khoảng P25–P75 so với trung vị) = dư địa thực tế',defer(W=>tornadoW(W,D,base)))
+   .replace(/<\/div>\s*$/,cnL('<b>'+esc(top.n)+' là đòn bẩy mạnh nhất: 1% = '+fBn(top.v,0)+'/năm</b> ('+fP(top.v/Math.max(1,base),1)+' lợi nhuận). Ba chỉ số sản lượng (lượt vào, CR, số món) cùng tác động '+fBn(vol.v,0)+' mỗi 1% vì cùng đi qua doanh thu × biên đóng góp; chọn cái nào là do dư địa và độ khó. Giá bán mạnh hơn sản lượng vì không kéo theo giá vốn, nhưng cần thử co giãn giá trước khi áp dụng (<span class="go2" data-go="sp">trang Sản phẩm & giá →</span>).')+'</div>')}
+
+/* ---------- 3. Ma trận Tác động × Công sức ---------- */
+const EFF={cr:{e:3.2,t:'3–6 tháng',w:'đào tạo, sắp lại lối đi, cần đo lại CR'},oos:{e:1.8,t:'1–2 tháng',w:'chỉnh mức tồn tối thiểu, đặt hàng theo dự báo'},shr:{e:1.6,t:'1 tháng',w:'quy tắc giảm giá 19h, ít phụ thuộc bên ngoài'},upt:{e:2.2,t:'1–3 tháng',w:'combo, mua kèm tại quầy, cần trade marketing'},rent:{e:3.8,t:'6–12 tháng',w:'đàm phán theo kỳ hợp đồng'},close:{e:4.4,t:'6–12 tháng',w:'quyết định mạng lưới, chi phí đóng/cải tạo'}};
+function ieW(W,O){const H=360,L=64,R=20,T=24,B=44,mxv=Math.max(...O.map(o=>o.v))*1.18,X=e=>L+(e-1)/4*(W-L-R),Y=v=>T+(1-v/mxv)*(H-T-B),mxc=Math.max(...O.map(o=>o.cnt),1);
+  const ym=sum(O.map(o=>o.v))/O.length;let g='';
+  g+='<rect x="'+L+'" y="'+T+'" width="'+(X(3)-L)+'" height="'+(Y(ym)-T)+'" fill="var(--good)" fill-opacity=".07"/><rect x="'+X(3)+'" y="'+T+'" width="'+(W-R-X(3))+'" height="'+(Y(ym)-T)+'" fill="var(--s1)" fill-opacity=".05"/>';
+  g+='<line x1="'+X(3)+'" x2="'+X(3)+'" y1="'+T+'" y2="'+(H-B)+'" stroke="var(--line-2)" stroke-dasharray="4 4"/><line x1="'+L+'" x2="'+(W-R)+'" y1="'+Y(ym)+'" y2="'+Y(ym)+'" stroke="var(--line-2)" stroke-dasharray="4 4"/>';
+  [['LÀM NGAY',L+8,T+16,'start','var(--good)'],['DỰ ÁN LỚN · lên kế hoạch',W-R-8,T+16,'end','var(--s1)'],['VIỆC NHANH · làm kèm',L+8,Y(ym)+16,'start','var(--ink-3)'],['CÂN NHẮC',W-R-8,Y(ym)+16,'end','var(--ink-3)']].forEach(q=>g+='<text x="'+q[1]+'" y="'+q[2]+'" text-anchor="'+q[3]+'" class="ie-q" fill="'+q[4]+'">'+q[0]+'</text>');
+  g+='<g class="ax">'+[1,2,3,4,5].map(e=>'<text x="'+X(e)+'" y="'+(H-B+16)+'" text-anchor="middle">'+['Rất dễ','Dễ','Vừa','Khó','Rất khó'][e-1]+'</text>').join('')+'<text x="'+(W-R)+'" y="'+(H-6)+'" text-anchor="end">Công sức & thời gian triển khai →</text><text x="'+L+'" y="'+(T-8)+'">↑ Tác động (lợi nhuận/năm)</text></g>';
+  O.forEach((o,i)=>{const e=(EFF[o.k]||{e:3}).e,r=10+18*Math.sqrt(o.cnt/mxc),x=X(e),y=Y(o.v),right=x>W*.62;
+    g+='<g class="ie-b" data-go="'+({cr:'tr',oos:'iv',shr:'iv',upt:'pm',rent:'nt',close:'nt'}[o.k]||'op')+'" style="cursor:pointer"><title>'+esc(o.n+': '+fBn(o.v,1)+'/năm · '+o.cnt+' cửa hàng · '+(EFF[o.k]||{}).t)+'</title><circle cx="'+x+'" cy="'+y+'" r="'+r.toFixed(1)+'" fill="var(--s3)" fill-opacity=".28" stroke="var(--s3)" stroke-width="2"/>'+
+      '<text x="'+(right?x-r-6:x+r+6)+'" y="'+(y-2)+'" text-anchor="'+(right?'end':'start')+'" class="ie-n">'+esc(o.n)+'</text><text x="'+(right?x-r-6:x+r+6)+'" y="'+(y+13)+'" text-anchor="'+(right?'end':'start')+'" class="ie-v">+'+esc(fAmt(o.v))+'/năm · '+(EFF[o.k]||{}).t+'</text></g>'});
+  return svgOpen(W,H,'Ma trận tác động và công sức')+g+'</svg></div>'}
+function ieCard(A){const O=opportunities(A).filter(o=>o.v>0);if(O.length<2)return '';const ym=sum(O.map(o=>o.v))/O.length,now=O.filter(o=>(EFF[o.k]||{e:3}).e<3&&o.v>=ym);
+  const tb='<div class="tbl ie-t"><table><thead><tr><th>Đòn bẩy</th><th class="r">Tác động / năm</th><th class="r">Số CH</th><th>Công sức (giả định)</th><th>Thời gian có kết quả</th><th>Vì sao</th></tr></thead><tbody>'+O.map(o=>{const e=EFF[o.k]||{e:3,t:'—',w:''};return '<tr style="cursor:default"><td><b>'+esc(o.n)+'</b> <span class="muted">ô '+o.node+'</span></td><td class="r">'+fBn(o.v,1)+'</td><td class="r">'+nf(o.cnt)+'</td><td><span class="ie-dots">'+'●'.repeat(Math.round(e.e))+'<i>'+'●'.repeat(5-Math.round(e.e))+'</i></span></td><td>'+e.t+'</td><td class="muted">'+esc(e.w)+'</td></tr>'}).join('')+'</tbody></table></div>';
+  return card('Ma trận Tác động × Công sức · chọn việc làm trước','Tác động = cơ hội tính ở trên · công sức là giả định theo kinh nghiệm vận hành bán lẻ (điều chỉnh được) · bong bóng càng to càng nhiều cửa hàng · bấm bong bóng để mở trang',defer(W=>ieW(W,O))+tb)
+   .replace(/<\/div>\s*$/,cnL(now.length?'<b>Làm ngay: '+now.map(o=>esc(o.n.toLowerCase())).join(', ')+'</b>, tác động lớn hơn trung bình mà công sức thấp, có kết quả trong 1–3 tháng ('+fBn(sum(now.map(o=>o.v)),0)+'/năm). Các việc khó hơn (đàm phán thuê, xử lý cửa hàng lỗ) cần lên kế hoạch ngay vì mất 6–12 tháng mới có kết quả. Xem lịch ở <span class="go2" data-go="ap">trang Kế hoạch hành động →</span>':'Không có việc nào vừa dễ vừa lớn hơn trung bình; ưu tiên theo số tiền.')+'</div>')}
+
+/* ---------- 4. Hồ sơ: cầu lợi nhuận tách A thành A2.1–A2.4 + kiểm soát ---------- */
+function csBridge(root){const x=SEL&&STAT.get(SEL);if(!x)return;const s=x.s,h=cardOf(root,'Lợi nhuận cửa hàng thay đổi vì đâu');if(!h)return;const c=h.closest('.card');
+  const ok=i=>!!s.m[i];for(let i=Y0;i<Y0+YL;i++)if(!ok(i)||!ok(i+12))return;
+  const w=lo=>{const o={rev:0,gm:0,shr:0,rent:0,staff:0,oth:0,profit:0,trf:0,bills:0,q:0};for(let i=lo;i<lo+YL;i++){const m=s.m[i];o.rev+=m.rev;o.gm+=m.gm;o.shr+=m.shr;o.rent+=m.rent;o.staff+=m.staff;o.oth+=m.util+m.logi+m.other;o.profit+=m.profit;o.trf+=m.trf;o.bills+=m.bills;o.q+=m.upt*m.bills}return o};
+  const a=w(Y0),b=w(Y0+12),m0=a.gm/a.rev,T0=a.trf,T1=b.trf,C0=a.bills/T0,C1=b.bills/T1,U0=a.q/a.bills,U1=b.q/b.bills,G0=a.rev/a.q,G1=b.rev/b.q;
+  const st=[{n:'LN '+YT0,v:a.profit,total:true},{n:'A2.1 Lượt vào',v:(T1-T0)*C0*U0*G0*m0},{n:'A2.2 CR',v:T1*(C1-C0)*U0*G0*m0},{n:'A2.3 Số món/HĐ',v:T1*C1*(U1-U0)*G0*m0},{n:'A2.4 Giá/món',v:T1*C1*U1*(G1-G0)*m0},
+    {n:'B % lãi gộp',v:b.rev*(b.gm/b.rev-m0)},{n:'C Hao hụt',v:-(b.shr-a.shr)},{n:'D1 Thuê',v:-(b.rent-a.rent)},{n:'D2 Nhân sự',v:-(b.staff-a.staff)},{n:'D3 Khác',v:-(b.oth-a.oth)},{n:'LN '+YT,v:b.profit,total:true}];const chk0=a.profit+sum(st.slice(1,-1).map(z=>z.v))-b.profit;st.forEach(z=>{if(!z.total&&Math.abs(z.v)<5e5)z.v=0});
+  const mid=st.slice(1,-1),chk=chk0,up=mid.filter(z=>z.v>0).sort((p,q)=>q.v-p.v),dn=mid.filter(z=>z.v<0).sort((p,q)=>p.v-q.v);
+  const vz=c.querySelector('.vz');if(!vz)return;const t=document.createElement('div');t.innerHTML=waterfall(st,v=>fMn(v,0));vz.replaceWith(t.firstElementChild);drawAll0(c);
+  const sub=c.querySelector('.sub');if(sub)sub.textContent='Logic tree của riêng cửa hàng, tách doanh thu thành 4 nhân tố · '+YT+' so '+YT0+' · cộng lại đúng bằng mức thay đổi lợi nhuận';
+  const d=b.profit-a.profit;c.insertAdjacentHTML('beforeend',cnL('<b>Lợi nhuận '+(d>=0?'tăng ':'giảm ')+fMn(Math.abs(d),0)+'</b>'+(up.length?'; kéo lên nhiều nhất: <b>'+esc(up[0].n)+'</b> (+'+fMn(up[0].v,0)+')':'')+(dn.length?'; kéo xuống nhiều nhất: <b>'+esc(dn[0].n)+'</b> (−'+fMn(-dn[0].v,0)+')':'')+'. '+(Math.abs(chk)<1e5?'<span class="ok">✓ cộng khớp</span>':'')))}
+function ctrlW(W,o){const H=230,L=58,R=14,T=14,B=28,v=o.vals,n=v.length,lo=o.mu-3.2*o.sd,hi=o.mu+3.2*o.sd,all=v.filter(z=>z!=null),mn=Math.min(lo,...all),mx=Math.max(hi,...all);
+  const X=i=>L+i/(n-1)*(W-L-R),Y=z=>T+(1-(z-mn)/(mx-mn))*(H-T-B);let g='<rect x="'+L+'" y="'+Y(o.mu+2*o.sd)+'" width="'+(W-L-R)+'" height="'+(Y(o.mu-2*o.sd)-Y(o.mu+2*o.sd))+'" fill="var(--accent)" fill-opacity=".08"/>';
+  g+='<line x1="'+L+'" x2="'+(W-R)+'" y1="'+Y(o.mu)+'" y2="'+Y(o.mu)+'" stroke="var(--accent)" stroke-dasharray="4 4"/>';
+  [[o.mu+2*o.sd,'+2σ'],[o.mu-2*o.sd,'−2σ'],[o.mu,'TB']].forEach(q=>g+='<text x="'+(W-R)+'" y="'+(Y(q[0])-3)+'" text-anchor="end" class="ct-l">'+q[1]+'</text>');
+  g+='<g class="ax">'+[mn,(mn+mx)/2,mx].map(t=>'<text x="'+(L-8)+'" y="'+(Y(t)+4)+'" text-anchor="end">'+esc(o.fmt(t))+'</text>').join('')+o.labels.map((l,i)=>{const k=Math.ceil(n/8);return i%k===0||(i===n-1&&(n-1)%k>=k*.6)}).map((ok,i)=>ok?'<text x="'+X(i)+'" y="'+(H-8)+'" text-anchor="middle">'+esc(o.labels[i])+'</text>':'').join('')+'</g>';
+  let p='';v.forEach((z,i)=>{if(z==null)return;p+=(p?' L':'M')+X(i).toFixed(1)+','+Y(z).toFixed(1)});g+='<path d="'+p+'" fill="none" stroke="var(--s1)" stroke-width="2"/>';
+  v.forEach((z,i)=>{if(z==null)return;const out=Math.abs(z-o.mu)>2*o.sd;g+='<circle cx="'+X(i)+'" cy="'+Y(z)+'" r="'+(out?5.5:2.8)+'" fill="'+(out?'var(--crit)':'var(--s1)')+'" stroke="var(--surface)" stroke-width="1.5"><title>'+esc(o.labels[i]+': '+o.fmt(z)+(out?' · ngoài ±2σ':''))+'</title></circle>'});
+  return svgOpen(W,H,o.aria)+g+'</svg></div>'}
+function ctrlSeries(s,f){const st=Math.max(0,s.open-72+3),lab=[],val=[];for(let i=0;i<=EN;i++){lab.push(MONTHS[i].lab);const m=s.m[i];val.push(m&&i>=st?f(m,i):null)}
+  const base=val.filter(z=>z!=null);if(base.length<6)return null;const mu=sum(base)/base.length,sd=Math.sqrt(sum(base.map(z=>(z-mu)**2))/(base.length-1))||1e-9;return {labels:lab,vals:val,mu,sd,out:val.map((z,i)=>z!=null&&Math.abs(z-mu)>2*sd?i:-1).filter(i=>i>=0)}}
+function csControl(root){const x=SEL&&STAT.get(SEL);if(!x)return;const s=x.s;
+  const r=ctrlSeries(s,(m,i)=>m.rev/SEASON[i]),h=ctrlSeries(s,m=>m.shr/m.rev);if(!r||!h)return;
+  const lst=(o,f,lab)=>o.out.length?o.out.map(i=>o.labels[i]+' ('+f(o.vals[i])+')').join(', '):'không có tháng nào';
+  const html='<div class="row c2">'+card('Kiểm soát doanh thu tháng (đã khử mùa vụ)','Dải xanh = trung bình ± 2 độ lệch chuẩn của chính cửa hàng · chấm đỏ = tháng bất thường cần hỏi quản lý cửa hàng',defer(W=>ctrlW(W,Object.assign({fmt:v=>fBn(v,2),aria:'Biểu đồ kiểm soát doanh thu'},r)))+cnL('<b>Tháng bất thường:</b> '+lst(r,v=>fBn(v,2))+'.'))+
+    card('Kiểm soát % hao hụt theo tháng','Cùng cách đọc · hao hụt vượt +2σ thường do nhập dư hàng tươi hoặc thất thoát',defer(W=>ctrlW(W,Object.assign({fmt:v=>fP(v,2),aria:'Biểu đồ kiểm soát hao hụt'},h)))+cnL('<b>Tháng bất thường:</b> '+lst(h,v=>fP(v,2))+'.'))+'</div>';
+  const rows=root.querySelectorAll('.sec:not(.fx) > .row');const ref=rows[rows.length-1];if(!ref)return;putCard(html,ref)}
+
+/* ---------- 5. Sàng lọc: cảnh báo bất thường tháng gần nhất ---------- */
+function alertsData(A){const o=[];const M=[['Doanh thu','rev',(m,i)=>m.rev/SEASON[i],-1,v=>fBn(v,2)],['% hao hụt','shr',m=>m.shr/m.rev,1,v=>fP(v,2)],['% hết hàng','oos',m=>m.oos,1,v=>fP(v,1)],['CR','cr',m=>m.bills/m.trf,-1,v=>fP(v,1)]];
+  A.full.forEach(x=>{const s=x.s,cur=s.m[EN];if(!cur)return;const fl=[];M.forEach(mt=>{const prev=[];for(let i=EN-6;i<EN;i++){const m=s.m[i];if(m)prev.push(mt[2](m,i))}if(prev.length<5)return;
+    const mu=sum(prev)/prev.length,sd=Math.sqrt(sum(prev.map(z=>(z-mu)**2))/(prev.length-1)),v=mt[2](cur,EN),z=(v-mu)/Math.max(sd,Math.abs(mu)*.02);if(z*mt[3]>3)fl.push({n:mt[0],z,v,mu,f:mt[4],bad:mt[3]})});
+    if(fl.length)o.push({x,fl,sc:fl.length*10+Math.max(...fl.map(f=>Math.abs(f.z)))})});return o.sort((a,b)=>b.sc-a.sc)}
+function scAlerts(root,A){const al=alertsData(A);const host=root.querySelector('.sec:not(.fx)');if(!host)return;const cc=host.querySelector('.cc');
+  const cnt={};al.forEach(a=>a.fl.forEach(f=>cnt[f.n]=(cnt[f.n]||0)+1));
+  const body=al.length?'<div class="al-sum">'+Object.entries(cnt).map(e=>'<span><b>'+e[1]+'</b> '+esc(e[0])+(e[0]==='Doanh thu'||e[0]==='CR'?' tụt':' vọt')+'</span>').join('')+'</div><div class="tbl"><table><thead><tr><th>Cửa hàng</th><th>Cảnh báo</th><th>Chi tiết (tháng '+MMYY(EN)+' so với 6 tháng trước)</th><th></th></tr></thead><tbody>'+
+    al.slice(0,10).map(a=>'<tr data-selcs="'+a.x.s.id+'"><td><b>'+a.x.s.id+'</b> <span class="muted">'+esc(a.x.s.loc)+' · '+esc(a.x.s.fmt.n)+'</span></td><td>'+a.fl.map(f=>'<span class="al-c">'+esc(f.n)+(f.bad<0?' ↓':' ↑')+'</span>').join(' ')+'</td><td class="muted">'+a.fl.map(f=>esc(f.n)+' '+f.f(f.v)+' (TB '+f.f(f.mu)+', z '+nf(f.z,1)+')').join(' · ')+'</td><td class="r"><span class="go2">Hồ sơ →</span></td></tr>').join('')+'</tbody></table></div>':'<p class="note">Không có cửa hàng nào lệch quá 3 độ lệch chuẩn trong tháng '+MMYY(EN)+'.</p>';
+  const html=card('Cảnh báo tháng '+MMYY(EN)+' · cửa hàng cần kiểm tra ngay','So mỗi cửa hàng với chính nó 6 tháng trước (doanh thu đã khử mùa vụ) · cảnh báo khi lệch quá 3 độ lệch chuẩn · '+nf(al.length)+' cửa hàng · bấm dòng để mở hồ sơ',body)
+    .replace(/<\/div>\s*$/,(al.length?cnL('<b>'+nf(al.length)+' cửa hàng có chỉ số bất thường</b>, khác với bảng bên dưới (kém hơn nhóm lâu dài): đây là thay đổi đột ngột trong tháng, cần gọi quản lý cửa hàng xác minh trước khi phân tích sâu.'):'')+'</div>');
+  putCard(html,cc||host.firstElementChild,cc?'afterend':'beforebegin')}
+
+/* ---------- 6. Tổng quan: kiểm chứng dự báo (backtest) ---------- */
+function btData(A){const r=A.mon.map(m=>m.rev),o=[];for(let org=15;org<=18;org++){const g=sum(r.slice(org-3,org+1))/sum(r.slice(org-15,org-11));for(let h=1;h<=4;h++){const t=org+h;if(t>19)break;const f=r[t-12]*g,nv=r[t-12];o.push({org,t,h,f,nv,a:r[t],e:Math.abs(f-r[t])/r[t],en:Math.abs(nv-r[t])/r[t]})}}
+  const byH=[1,2,3,4].map(h=>{const z=o.filter(p=>p.h===h);return {h,m:sum(z.map(p=>p.e))/z.length,n:sum(z.map(p=>p.en))/z.length,c:z.length}});return {o,byH,mape:sum(o.map(p=>p.e))/o.length,naive:sum(o.map(p=>p.en))/o.length}}
+function btCard(root,A){const h=cardOf(root,'Dự báo 4 tháng tới');if(!h)return;const row=h.closest('.row')||h.closest('.card');const B=btData(A);if(!B.o.length)return;
+  const grid='<div class="tbl bt-t"><table><thead><tr><th>Dự báo lập vào cuối</th>'+[16,17,18,19].map(t=>'<th class="r">'+MONTHS[t].lab+'</th>').join('')+'</tr></thead><tbody>'+[15,16,17,18].map(org=>'<tr style="cursor:default"><td>'+MONTHS[org].lab+'</td>'+[16,17,18,19].map(t=>{const p=B.o.find(q=>q.org===org&&q.t===t);return '<td class="r">'+(p?'<span class="bt-e '+(p.e<.02?'g':p.e<.04?'w':'r')+'" title="Dự báo '+fBn(p.f,1)+' · thực tế '+fBn(p.a,1)+'">'+fP(p.e,1)+'</span>':'')+'</td>'}).join('')+'</tr>').join('')+'</tbody></table></div>';
+  const html='<div class="card"><div class="ch"><div><h3>Kiểm chứng dự báo · nếu dùng cách này từ trước thì sai bao nhiêu?</h3><div class="sub">Chạy lại đúng phương pháp dự báo ở trên tại 4 mốc quá khứ, so với doanh thu thực tế · sai số % tuyệt đối (APE) · so với cách "ngây thơ" lấy nguyên cùng kỳ năm trước</div></div></div>'+
+    '<div class="row c2 bt-row"><div>'+cols({labels:B.byH.map(z=>'Trước '+z.h+' tháng'),series:[{name:'Phương pháp đang dùng',color:'var(--s1)',vals:B.byH.map(z=>z.m*100)},{name:'Cùng kỳ năm trước',color:'var(--ink-3)',vals:B.byH.map(z=>z.n*100)}],fmt:v=>nf(v,1)+'%',h:220})+'</div><div>'+grid+'</div></div>'+
+    cnL('<b>Sai số trung bình (MAPE) '+fP(B.mape,1)+'</b> so với '+fP(B.naive,1)+' nếu chỉ lấy cùng kỳ năm trước · dải ±4% của dự báo '+(B.o.filter(p=>p.e<=.04).length===B.o.length?'chứa được toàn bộ':'chứa '+B.o.filter(p=>p.e<=.04).length+'/'+B.o.length)+' lần kiểm tra. Mẫu còn nhỏ ('+B.o.length+' điểm) nên cần tiếp tục theo dõi mỗi tháng.')+
+    '<p class="src"><b>Nguồn:</b> dữ liệu mô phỏng · doanh thu tháng của '+nf(A.S.length)+' cửa hàng trong bộ lọc · mốc T4/26–T7/26</p></div>';
+  putCard(html,row)}
+
+/* ---------- 7. Trang Mô hình dữ liệu ---------- */
+const DMN={S:[['s1','POS · hoá đơn bán lẻ','KiotViet, theo dòng hàng'],['s2','Camera đếm lượt vào','theo giờ, theo cửa'],['s3','Kế toán · chi phí','thuê, điện nước, logistics'],['s5','HR · chấm công, lương','giờ công, quỹ lương'],['s4','Kho · nhập xuất, kiểm kê','hao hụt, hết hàng'],['s6','Master cửa hàng','vùng, mô hình, diện tích, ngày mở'],['s7','Kế hoạch & ngân sách','theo tháng']],
+  T:[['fs','fact_sales','cửa hàng × ngày × mã hàng',['s1']],['ft','fact_traffic','cửa hàng × giờ',['s2']],['fo','fact_opex','cửa hàng × tháng × khoản mục',['s3','s5']],['fi','fact_inventory','cửa hàng × ngày × mã hàng',['s4']],['fp','fact_target','cửa hàng × tháng',['s7']],['ds','dim_store','1 dòng / cửa hàng',['s6']],['dd','dim_date','lịch, mùa Tết',[]],['dc','dim_category','ngành hàng, biên chuẩn',['s1']]],
+  M:[['m1','DTT',['fs'],'SUM(fact_sales[net_amount])'],['m2','Số hoá đơn',['fs'],'DISTINCTCOUNT(fact_sales[bill_id])'],['m3','Lượt vào',['ft'],'SUM(fact_traffic[visits])'],['m4','CR',['fs','ft'],'DIVIDE([Số hoá đơn],[Lượt vào])'],['m5','UPT',['fs'],'DIVIDE(SUM(fact_sales[qty]),[Số hoá đơn])'],['m6','Giá / món',['fs'],'DIVIDE([DTT],SUM(fact_sales[qty]))'],['m7','% lãi gộp',['fs','dc'],'DIVIDE([DTT]-[Giá vốn],[DTT])'],['m8','Hao hụt',['fi'],'SUM(fact_inventory[shrink_value])'],['m9','Chi phí vận hành',['fo'],'SUM(fact_opex[amount])'],['m10','Lợi nhuận CH',['fs','fi','fo'],'[Lãi gộp]-[Hao hụt]-[Chi phí vận hành]'],['m11','ΔLN cùng kỳ',['fs','fi','fo','dd'],'[Lợi nhuận CH]-CALCULATE([Lợi nhuận CH],SAMEPERIODLASTYEAR(dim_date[date]))'],['m12','% đạt kế hoạch',['fs','fp'],'DIVIDE([DTT],SUM(fact_target[revenue]))'],['m13','DT / m²',['fs','ds'],'DIVIDE([DTT],SUM(dim_store[area_m2]))/[Số tháng]']],
+  P:[['p1','A1 · Mạng lưới','nw',['m1','m10','m13']],['p2','A2.1 · Lượt vào','kh',['m3']],['p3','A2.2 · CR','tr',['m4']],['p4','A2.3 · Số món','pm',['m5']],['p5','A2.4 · Giá / món','sp',['m6']],['p6','B · % lãi gộp','sp',['m7']],['p7','C · Hao hụt','iv',['m8']],['p8','D · Chi phí','hr',['m9']],['p9','Tổng quan','ov',['m1','m10','m11','m12']],['p10','Sàng lọc cửa hàng','sc',['m4','m5','m7','m8','m9','m13']]]};
+function dmW(W){const cols=[DMN.S,DMN.T,DMN.M,DMN.P],hd=['Nguồn dữ liệu','Bảng (mô hình sao)','Measure','Trang báo cáo'],rh=[54,46,36,40],n=Math.max(...cols.map((c,i)=>c.length*rh[i])),H=n+46,cw=(W-24)/4,nw=Math.min(210,cw-40),pos={};
+  cols.forEach((c,ci)=>{const tot=c.length*rh[ci],y0=36+(n-tot)/2;c.forEach((e,i)=>{pos[e[0]]={x:12+ci*cw,y:y0+i*rh[ci],h:rh[ci]-8,ci}})});
+  const ed=[];DMN.T.forEach(t=>t[3].forEach(s=>ed.push([s,t[0]])));DMN.M.forEach(m=>m[2].forEach(t=>ed.push([t,m[0]])));DMN.P.forEach(p=>p[3].forEach(m=>ed.push([m,p[0]])));
+  let g=hd.map((h,i)=>'<text x="'+(12+i*cw)+'" y="16" class="dm-h">'+(i+1)+' · '+h+'</text>').join('');
+  g+='<g class="dm-es">'+ed.map(e=>{const a=pos[e[0]],b=pos[e[1]];const x1=a.x+nw,y1=a.y+a.h/2,x2=b.x,y2=b.y+b.h/2,mx=(x1+x2)/2;return '<path class="dm-e" data-a="'+e[0]+'" data-b="'+e[1]+'" d="M'+x1+','+y1+' C'+mx+','+y1+' '+mx+','+y2+' '+x2+','+y2+'"/>'}).join('')+'</g>';
+  const cl=['var(--s4)','var(--s1)','var(--s3)','var(--s7)'];
+  cols.forEach((c,ci)=>c.forEach(e=>{const p=pos[e[0]],sub=ci===0?e[2]:ci===1?e[2]:ci===2?'':'';const go=ci===3?' data-tm="'+e[2]+'"':'';
+    g+='<g class="dm-n" data-id="'+e[0]+'"'+go+' tabindex="0"><rect x="'+p.x+'" y="'+p.y+'" width="'+nw+'" height="'+p.h+'" rx="7"/><rect x="'+p.x+'" y="'+p.y+'" width="4" height="'+p.h+'" rx="2" fill="'+cl[ci]+'"/>'+
+      '<text x="'+(p.x+12)+'" y="'+(p.y+(sub?17:p.h/2+4.5))+'" class="dm-t'+(ci===1?' mono':'')+'">'+esc(e[1])+'</text>'+(sub?'<text x="'+(p.x+12)+'" y="'+(p.y+32)+'" class="dm-s">'+esc(sub)+'</text>':'')+(ci===2?'<title>'+esc(e[1]+' = '+e[3])+'</title>':'')+'</g>'}));
+  return '<div class="viz dm-viz"><svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Sơ đồ dòng dữ liệu">'+g+'</svg></div>'}
+function bindDM(root){const svg=root.querySelector('.dm-viz svg');if(!svg)return;const E=[...svg.querySelectorAll('.dm-e')];
+  const walk=(id,dir)=>{const s=new Set([id]),q=[id];while(q.length){const c=q.shift();E.forEach(e=>{const f=dir>0?e.dataset.a:e.dataset.b,t=dir>0?e.dataset.b:e.dataset.a;if(f===c&&!s.has(t)){s.add(t);q.push(t)}})}return s};
+  svg.querySelectorAll('.dm-n').forEach(n=>{const on=()=>{const id=n.dataset.id,s=new Set([...walk(id,1),...walk(id,-1)]);svg.classList.add('dim');svg.querySelectorAll('.dm-n').forEach(z=>z.classList.toggle('hl',s.has(z.dataset.id)));E.forEach(e=>e.classList.toggle('hl',s.has(e.dataset.a)&&s.has(e.dataset.b)))};
+    const off=()=>{svg.classList.remove('dim');svg.querySelectorAll('.hl').forEach(z=>z.classList.remove('hl'))};n.addEventListener('mouseenter',on);n.addEventListener('focus',on);n.addEventListener('mouseleave',off);n.addEventListener('blur',off)});
+  bindTM(svg.parentElement)}
+function dqChecks(){let sm=0,neg=0,cr=0,gap=0,upt=0;STORES.forEach(s=>{let seen=false;s.m.forEach((m,i)=>{if(!m){if(seen)gap++;return}seen=true;sm++;if(m.rev<=0||m.trf<=0)neg++;if(m.bills>m.trf)cr++;if(m.upt<1)upt++})});
+  return [['Số dòng cửa hàng × tháng',nf(sm),true,'20 tháng × cửa hàng đang mở'],['Tháng bị thiếu sau khi cửa hàng đã mở',nf(gap),gap===0,'phải bằng 0'],['Doanh thu hoặc lượt vào ≤ 0',nf(neg),neg===0,'phải bằng 0'],['Số hoá đơn > lượt vào (CR > 100%)',nf(cr),cr===0,'phải bằng 0'],['Số món / hoá đơn < 1',nf(upt),upt===0,'phải bằng 0'],['Mã cửa hàng trùng',nf(STORES.length-new Set(STORES.map(s=>s.id)).size),STORES.length===new Set(STORES.map(s=>s.id)).size,'phải bằng 0']]}
+function secDM(A){const ck=checks(A),dq=dqChecks();
+  const dict='<div class="tbl"><table><thead><tr><th>Measure</th><th>Công thức (DAX)</th><th>Bảng nguồn</th></tr></thead><tbody>'+DMN.M.map(m=>'<tr style="cursor:default"><td><b>'+esc(m[1])+'</b></td><td><code>'+esc(m[3])+'</code></td><td class="muted">'+m[2].map(t=>esc(DMN.T.find(z=>z[0]===t)[1])).join(', ')+'</td></tr>').join('')+'</tbody></table></div>';
+  const q='<div class="tbl"><table><thead><tr><th></th><th>Kiểm tra</th><th class="r">Kết quả</th><th>Chuẩn</th></tr></thead><tbody>'+dq.map(r=>'<tr style="cursor:default"><td>'+(r[2]?'<span class="ok">✓</span>':'<span class="bad">✗</span>')+'</td><td>'+esc(r[0])+'</td><td class="r"><b>'+r[1]+'</b></td><td class="muted">'+esc(r[3])+'</td></tr>').join('')+ck.map(r=>'<tr style="cursor:default"><td>'+(r.ok?'<span class="ok">✓</span>':'<span class="bad">✗</span>')+'</td><td>'+esc(r.n)+'</td><td class="r"><b>'+r.l+'</b></td><td class="muted">bằng '+r.r+'</td></tr>').join('')+'</tbody></table></div>';
+  return '<section class="sec">'+card('Dòng dữ liệu · từ nguồn tới trang báo cáo','Rê chuột (hoặc Tab) vào một ô để thấy nó lấy dữ liệu từ đâu và đi tới trang nào · bấm ô trang để mở · đây là thiết kế khi dựng trên BigQuery + Power BI; trong bản demo, dữ liệu mô phỏng được sinh ngay trong trình duyệt theo đúng cấu trúc này',defer(W=>dmW(Math.max(W,900))))+
+    '<div class="row c2">'+card('Từ điển measure','Mỗi chỉ số trên báo cáo có đúng một định nghĩa · tên bảng/cột theo mô hình sao ở trên',dict)+
+    card('Kiểm tra chất lượng dữ liệu','Chạy lại mỗi lần mở báo cáo · 6 kiểm tra dữ liệu thô + '+ck.length+' kiểm tra cộng khớp theo bộ lọc đang chọn',q)+'</div>'+
+    card('Quy tắc mô hình','Những quyết định thiết kế giúp số liệu nhất quán giữa các trang','<div class="dm-rules">'+[['Một độ chi tiết chung','Mọi fact được gom về cửa hàng × tháng trước khi so sánh, tránh lệch do bảng chi tiết khác nhau.'],['So sánh cùng kỳ công bằng','LFL chỉ tính cửa hàng mở trước 01/01/2024; cửa hàng mới tách riêng vào ô A1.'],['Cộng khớp từ gốc tới lá','ΔLN = A + B + C + D; doanh thu = Lượt vào × CR × UPT × Giá/món, tách theo thứ tự cố định để không còn phần dư.'],['Khử mùa vụ khi phát hiện bất thường','Chia cho chỉ số mùa vụ của tháng trước khi tính độ lệch, để Tết không bị báo là bất thường.'],['Cơ hội tính trên 12 tháng','Khi xem riêng 1 tháng, ô cơ hội vẫn dùng 12 tháng gần nhất để không phóng đại theo mùa.']].map(r=>'<div><b>'+esc(r[0])+'</b><p>'+esc(r[1])+'</p></div>').join('')+'</div>')+'</section>'}
+
+/* ---------- 8. Trang Kế hoạch hành động ---------- */
+const APX={close:['Xử lý cửa hàng lỗ (đóng / chuyển Mini / cải tạo)','Giám đốc phát triển mạng lưới',0,6,'Số cửa hàng lỗ · NPV 3 năm'],upt:['Combo và mua kèm tại quầy','Trade marketing + QL cửa hàng',0,3,'Số món / hoá đơn · % HĐ mua kèm'],shr:['Giảm giá hàng tươi lúc 19h, đặt hàng theo dự báo ngày','Vận hành + Mua hàng tươi',0,2,'% hao hụt hàng tươi'],cr:['Nâng tỷ lệ chuyển đổi: hàng chủ lực, lối đi, đào tạo','Quản lý vùng + Đào tạo',1,4,'CR'],rent:['Đàm phán lại tiền thuê theo kỳ hợp đồng','Phòng mặt bằng',1,6,'Thuê % DTT'],oos:['Mức tồn tối thiểu top 50 mã, đặt hàng theo dự báo','Chuỗi cung ứng',0,2,'% mã hết hàng']};
+const AP0=new Date(2026,9,1),apD=(m,end)=>{const d=new Date(AP0.getFullYear(),AP0.getMonth()+m+(end?1:0),end?0:1);return String(d.getDate()).padStart(2,'0')+'/'+String(d.getMonth()+1).padStart(2,'0')+'/'+d.getFullYear()},apM=m=>{const d=new Date(AP0.getFullYear(),AP0.getMonth()+m,1);return 'T'+(d.getMonth()+1)+'/'+String(d.getFullYear()).slice(2)};
+let APS={};try{APS=JSON.parse(localStorage.getItem('sm1k-ap')||'{}')}catch(e){}
+function apItems(A){const O=opportunities(A),ps=promoStats(A),it=O.filter(o=>o.v>0&&APX[o.k]).map(o=>{const x=APX[o.k];return {id:o.k,t:x[0],own:x[1],s:x[2],d:x[3],kpi:x[4],v:o.v,node:o.node,cnt:o.cnt}});
+  it.push({id:'promo',t:'Cắt '+ps.bad.length+' chương trình khuyến mãi ROI < 1, dồn ngân sách cho CT hiệu quả nhất',own:'Marketing',s:0,d:1,kpi:'ROI khuyến mãi',v:null,node:'B3',cnt:null},{id:'shift',t:'Xếp ca theo giờ cao điểm (17h–20h, CN)',own:'Nhân sự + QL cửa hàng',s:1,d:2,kpi:'DT / giờ công',v:null,node:'D2',cnt:null},{id:'mon',t:'Theo dõi hằng tháng trên báo cáo này, rà cảnh báo bất thường',own:'BI / Phân tích dữ liệu',s:0,d:9,kpi:'MAPE dự báo, số cảnh báo',v:null,node:'—',cnt:null});
+  return it.sort((a,b)=>a.s-b.s||(b.v||0)-(a.v||0))}
+function ganttW(W,it){const NM=9,rh=30,T=26,L=Math.min(300,W*.36),H=T+it.length*rh+8,cw=(W-L-8)/NM;const bc=n=>n[0]==='A'?'var(--s1)':n[0]==='B'?'var(--s3)':n[0]==='C'?'var(--s2)':n[0]==='D'?'var(--s7)':'var(--ink-3)';
+  let g='';for(let m=0;m<NM;m++){g+='<rect x="'+(L+m*cw)+'" y="'+(T-4)+'" width="'+cw+'" height="'+(it.length*rh+4)+'" fill="'+(m%2?'var(--surface-2)':'transparent')+'" opacity=".6"/><text x="'+(L+m*cw+cw/2)+'" y="16" text-anchor="middle" class="gt-m">'+apM(m)+'</text>'}
+  it.forEach((a,i)=>{const y=T+i*rh,st=APS[a.id]||'todo';g+='<text x="'+(L-10)+'" y="'+(y+rh/2+4)+'" text-anchor="end" class="gt-n">'+esc(a.t.length>Math.floor((L-16)/6.9)?a.t.slice(0,Math.floor((L-16)/6.9)-1)+'…':a.t)+'</text>'+
+    '<rect x="'+(L+a.s*cw+2)+'" y="'+(y+6)+'" width="'+(a.d*cw-4)+'" height="'+(rh-12)+'" rx="5" fill="'+bc(a.node)+'" fill-opacity="'+(st==='done'?.35:.85)+'" class="gt-b"><title>'+esc(a.t+' · '+apD(a.s)+' → '+apD(a.s+a.d-1,1)+(a.v?' · +'+fAmt(a.v)+'/năm':''))+'</title></rect>'+
+    (st==='done'?'<text x="'+(L+a.s*cw+10)+'" y="'+(y+rh/2+4)+'" class="gt-ok">✓ xong</text>':st==='doing'?'<text x="'+(L+a.s*cw+10)+'" y="'+(y+rh/2+4)+'" class="gt-ok w">đang làm</text>':'')});
+  return svgOpen(W,H,'Lịch triển khai')+g+'</svg></div>'}
+function apRamp(it){const NM=12,o=[];for(let m=0;m<NM;m++){let v=0;it.forEach(a=>{if(!a.v)return;const k=Math.min(1,Math.max(0,(m-a.s+1)/(a.d)));v+=a.v/12*k});o.push(v)}return o}
+function secAP(A){const it=apItems(A),tot=sum(it.map(a=>a.v||0)),r=apRamp(it),cumY1=sum(r),done=sum(it.filter(a=>APS[a.id]==='done').map(a=>a.v||0));
+  const tb='<div class="tbl ap-t"><table><thead><tr><th>Việc</th><th>Ô</th><th>Phụ trách</th><th>Bắt đầu</th><th>Hạn</th><th class="r">Tác động / năm</th><th>KPI theo dõi</th><th>Trạng thái</th></tr></thead><tbody>'+
+    it.map(a=>'<tr style="cursor:default"><td><b>'+esc(a.t)+'</b>'+(a.cnt?' <span class="muted">· '+nf(a.cnt)+' CH</span>':'')+'</td><td>'+a.node+'</td><td>'+esc(a.own)+'</td><td>'+apD(a.s)+'</td><td>'+apD(a.s+a.d-1,1)+'</td><td class="r">'+(a.v?'+'+fBn(a.v,1):'<span class="muted">chưa định lượng</span>')+'</td><td class="muted">'+esc(a.kpi)+'</td><td><select class="ap-s" data-ap="'+a.id+'" aria-label="Trạng thái">'+[['todo','Chưa bắt đầu'],['doing','Đang làm'],['done','Xong']].map(s=>'<option value="'+s[0]+'"'+((APS[a.id]||'todo')===s[0]?' selected':'')+'>'+s[1]+'</option>').join('')+'</select></td></tr>').join('')+'</tbody></table></div>';
+  return '<section class="sec"><div class="kpis">'+kpi('Tác động khi chạy đủ',nf(tot/1e9,0),'tỷ đ/năm','mức trần, các việc có chồng lấn')+kpi('Thu được trong 12 tháng đầu',nf(cumY1/1e9,0),'tỷ đ',fP(cumY1/Math.max(1,tot),0)+' mức chạy đủ, do triển khai dần')+kpi('Số việc',nf(it.length),'',nf(it.filter(a=>a.s===0).length)+' việc bắt đầu ngay tháng 10')+kpi('Đã hoàn thành',fP(done/Math.max(1,tot),0),'theo giá trị',nf(it.filter(a=>APS[a.id]==='done').length)+'/'+nf(it.length)+' việc · đổi ở cột trạng thái')+'</div>'+
+    card('Lịch triển khai 9 tháng','Bắt đầu 01/10/2026 · màu theo nhánh logic tree (A doanh thu, B lãi gộp, C hao hụt, D chi phí) · việc dễ, kết quả nhanh xếp trước theo ma trận ở trang Cơ hội',defer(W=>ganttW(W,it)))+
+    card('Danh sách việc','Trạng thái lưu trên trình duyệt của bạn (không gửi đi đâu) · tác động lấy từ trang Cơ hội & mô phỏng',tb)+
+    '<div class="row c2">'+card('Lợi nhuận tăng thêm dự kiến theo tháng','Mỗi việc đạt đủ tác động sau khi hết thời gian triển khai, tăng dần đều trước đó',lineChart({labels:Array.from({length:12},(_,m)=>apM(m)),series:[{name:'Lợi nhuận tăng thêm / tháng',color:'var(--s3)',vals:r,area:true}],fmt:v=>fBn(v,1),tick:v=>nf(v/1e9,0),h:240}))+
+    card('Cách theo dõi','Mỗi việc gắn một KPI đã có sẵn trên báo cáo','<div class="dm-rules">'+[['Hằng tuần','Trang Sàng lọc: cảnh báo bất thường tháng gần nhất, cửa hàng kém nhóm.'],['Hằng tháng','Tổng quan: ΔLN và % đạt kế hoạch; so tác động thực tế với cột "Tác động / năm".'],['Hằng quý','Rà lại ma trận Tác động × Công sức; cập nhật giả định công sức nếu thực tế khác.']].map(z=>'<div><b>'+z[0]+'</b><p>'+esc(z[1])+'</p></div>').join('')+'</div>')+'</div></section>'}
+document.addEventListener('change',e=>{const s=e.target.closest&&e.target.closest('.ap-s');if(!s)return;APS[s.dataset.ap]=s.value;try{localStorage.setItem('sm1k-ap',JSON.stringify(APS))}catch(_){}const y=scrollY;render();scrollTo(0,y);toast('Đã cập nhật trạng thái')});
+function dmHead(){return {bc:[['Phụ lục']],t:'Mô hình dữ liệu',q:'Dữ liệu đi từ nguồn nào, qua bảng nào, thành chỉ số nào trên từng trang, và được kiểm tra ra sao.'}}
+function apHead(){const it=apItems(A),tot=sum(it.map(a=>a.v||0));return {bc:[['4 · Làm gì, được bao nhiêu?']],t:'Kế hoạch hành động',q:'Ai làm việc gì, bắt đầu khi nào, kỳ vọng bao nhiêu và theo dõi bằng chỉ số nào.',v:tot,vl:'Tác động khi chạy đủ',p:'mức trần · 9 việc định lượng',f:'Σ cơ hội các việc'}}
+
+/* ---------- đăng ký trang ---------- */
+TABS.push(['ap','Kế hoạch hành động'],['dm','Mô hình dữ liệu']);PH_ON.add('ap');PH_ON.add('dm');
+{const i=NAVT.findIndex(e=>e.k==='op');NAVT.splice(i+1,0,{t:'Kế hoạch hành động',k:'ap',sub:'Ai làm gì, khi nào'});const j=NAVT.findIndex(e=>e.k==='qa');NAVT.splice(j,0,{t:'Mô hình dữ liệu',k:'dm',sub:'Nguồn → bảng → measure'});
+  const o=NAVT.find(e=>e.k==='op');if(o)o.sub='Độ nhạy, ưu tiên, thử kịch bản';const s=NAVT.find(e=>e.k==='st'&&!e.c);if(s)s.sub='Toàn mạng lưới: cá voi, xếp hạng';}
+FLOW.splice(FLOW.indexOf('op')+1,0,'ap');FLOWN.ap='Kế hoạch hành động';FLOWG.ap=4;KALL=null;
+{try{const h=location.hash.slice(1);if(h.includes('=')){const p=Object.fromEntries(h.split('&').map(x=>x.split('=')));if(p.t==='ap'||p.t==='dm')TAB=p.t}}catch(e){}}
+
+/* ---------- 9. Chế độ tối ---------- */
+function setTheme(t){try{if(t)document.documentElement.dataset.theme=t;else delete document.documentElement.dataset.theme;localStorage.setItem('sm1k-theme',t||'')}catch(e){}}
+(function(){try{const t=localStorage.getItem('sm1k-theme');if(t)document.documentElement.dataset.theme=t}catch(e){}})();
+function isDark(){const t=document.documentElement.dataset.theme;return t?t==='dark':!!(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)}
+function themeBtn(){const nt=document.querySelector('#tabs .ntools');if(!nt||nt.querySelector('.thb'))return;const k=nt.querySelector('.nt-k');if(!k)return;const pr=nt.querySelector('[data-act="pr"]');if(pr)pr.textContent='⎙ In';const w=document.createElement('div');w.className='nt-top';k.replaceWith(w);w.appendChild(k);
+  w.insertAdjacentHTML('beforeend','<button type="button" class="thb" aria-label="Đổi giao diện sáng / tối" title="Đổi giao diện sáng / tối">'+(isDark()?'☀':'☾')+'</button>');
+  w.querySelector('.thb').onclick=()=>{setTheme(isDark()?'light':'dark');const y=scrollY;render();scrollTo(0,y);toast(isDark()?'Giao diện tối':'Giao diện sáng')}}
+
+/* ---------- gắn vào vòng render ---------- */
+function postJ(root){
+  if(TAB==='st'&&A.full.length>2){const h=root.querySelector('.sec:not(.fx) > .row, .sec:not(.fx) > .card');const kp=root.querySelector('.sec:not(.fx) > .kpis');putCard(whaleCard(A),kp||h,kp?'afterend':'beforebegin')}
+  if(TAB==='op'&&A.full.length){const h=cardOf(root,'Mô phỏng what-if');const ref=h?h.closest('.card'):null;if(ref){putCard(sensCard(A),ref,'beforebegin');putCard(ieCard(A),ref,'beforebegin')}}
+  if(TAB==='cs'){csBridge(root);csControl(root)}
+  if(TAB==='sc'&&A.full.length)scAlerts(root,A);
+  if(TAB==='ov'&&A.S.length)btCard(root,A);
+  if(TAB==='dm')bindDM(root);
+  themeBtn();
+  if(PRES.on){PRES.steps=presSteps()}}
+function drawAll(root){drawAllD(root);navGroups();navTools();themeBtn();if(root&&root.id==='main'){polishSel(root);polish(root);nextStep(root);postI(root);postJ(root);if(PRES.on)PRES.steps=presSteps()}}
+
+/* ================= v2k · Bảng chỉ số theo tháng × vùng (Tổng quan) ================= */
+let MXM='rev',MXG='reg';
+const MXD={rev:{n:'Doanh thu thuần (tỷ đ)',sum:1,f:o=>o.rev,fmt:v=>nf(v/1e9,1)},
+  profit:{n:'Lợi nhuận cửa hàng (tỷ đ)',sum:1,f:o=>o.profit,fmt:v=>nf(v/1e9,1)},
+  mg:{n:'% lợi nhuận',f:o=>o.rev?o.profit/o.rev:null,fmt:v=>fP(v,1)},
+  trf:{n:'Lượt vào (nghìn lượt)',sum:1,f:o=>o.trf,fmt:v=>nf(v/1e3,0)},
+  bills:{n:'Số hoá đơn (nghìn đơn)',sum:1,f:o=>o.bills,fmt:v=>nf(v/1e3,0)},
+  cr:{n:'Tỷ lệ chuyển đổi %',f:o=>o.trf?o.bills/o.trf:null,fmt:v=>fP(v,1)},
+  upt:{n:'Số món / hoá đơn',f:o=>o.bills?o.q/o.bills:null,fmt:v=>nf(v,2)},
+  atv:{n:'Giá trị hoá đơn (nghìn đ/đơn)',f:o=>o.bills?o.rev/o.bills:null,fmt:v=>nf(v/1e3,0)},
+  shr:{n:'% hao hụt',f:o=>o.rev?o.shr/o.rev:null,fmt:v=>fP(v,2),bad:1}};
+function mxRows(A){const S=A.S;let key,lab,grp;
+  if(MXG==='fmt'){grp=FORMATS.map(f=>({k:f.k,n:f.n}));key=s=>s.fmt.k}
+  else if(F.reg!=='ALL'){const r=REGIONS.find(z=>z.k===F.reg);grp=r.prov.map(p=>({k:p,n:p}));key=s=>s.loc}
+  else{grp=REGIONS.map(r=>({k:r.k,n:r.n}));key=s=>s.reg.k}
+  const z=()=>MONTHS.map(()=>({rev:0,profit:0,trf:0,bills:0,q:0,shr:0,n:0})),add=(acc,s)=>s.m.forEach((m,i)=>{if(!m)return;const o=acc[i];o.rev+=m.rev;o.profit+=m.profit;o.trf+=m.trf;o.bills+=m.bills;o.q+=m.upt*m.bills;o.shr+=m.shr;o.n++});
+  const rows=grp.map(g=>({g,m:z()})),tot={m:z()},idx=new Map(rows.map(r=>[r.g.k,r]));
+  S.forEach(s=>{const r=idx.get(key(s));if(r)add(r.m,s);add(tot.m,s)});
+  return {rows:rows.filter(r=>r.m.some(o=>o.n)),tot}}
+function mxAgg(arr,a,b){const o={rev:0,profit:0,trf:0,bills:0,q:0,shr:0,n:0};for(let i=a;i<=b;i++)for(const k in o)o[k]+=arr[i][k];return o}
+function mxCard(A){const D=MXD[MXM],R=mxRows(A);if(!R.rows.length)return '';const n=MONTHS.length,W=[8,19];
+  const val=(o)=>o.n?D.f(o):null,cell=(v,lo,hi,i)=>{if(v==null)return '<td class="r mx-na'+(i===MSEL?' mx-sel':'')+'"></td>';const a=hi>lo?(v-lo)/(hi-lo):0,c=D.bad?'var(--crit)':'var(--s1)';
+    return '<td class="r'+(i===MSEL?' mx-sel':'')+'" style="background:color-mix(in srgb,'+c+' '+Math.round(4+a*42)+'%,transparent)'+(a>.8?';font-weight:700':'')+'">'+esc(D.fmt(v))+'</td>'};
+  const row=(r,cls,name)=>{const vs=r.m.map(val),ok=vs.filter(v=>v!=null),lo=Math.min(...ok),hi=Math.max(...ok),t=val(mxAgg(r.m,W[0],W[1]));
+    return '<tr class="'+cls+'" style="cursor:default"><th scope="row">'+esc(name)+'</th>'+vs.map((v,i)=>cls==='mx-tot'?'<td class="r'+(i===MSEL?' mx-sel':'')+'">'+(v==null?'':esc(D.fmt(v)))+'</td>':cell(v,lo,hi,i)).join('')+'<td class="r mx-t">'+(t==null?'—':esc(D.fmt(t)))+'</td></tr>'};
+  const by=MXG==='fmt'?'mô hình':F.reg!=='ALL'?'tỉnh / quận ('+REGIONS.find(z=>z.k===F.reg).n+')':'vùng';
+  /* nhận định: tháng cao/thấp nhất của toàn chuỗi trong 12 tháng gần nhất + nhóm tăng/giảm mạnh nhất cùng kỳ */
+  const tv=R.tot.m.map(val),w=[];for(let i=W[0];i<=W[1];i++)if(tv[i]!=null)w.push(i);const mxI=w.reduce((a,i)=>tv[i]>tv[a]?i:a,w[0]),mnI=w.reduce((a,i)=>tv[i]<tv[a]?i:a,w[0]);
+  const yoy=R.rows.map(r=>{const a=val(mxAgg(r.m,Y0,Y0+YL-1)),b=val(mxAgg(r.m,Y0+12,Y0+11+YL));return {r,d:a&&b!=null?(D.sum?b/a-1:b-a):null}}).filter(x=>x.d!=null).sort((p,q)=>q.d-p.d);
+  const fd=d0=>{const d=Math.abs(d0)<5e-4&&!D.sum&&MXM!=='atv'&&MXM!=='upt'?0:d0;return fdx(d)},fdx=d=>D.sum?fPt(d):(MXM==='upt'?(d>=0?'+':'−')+nf(Math.abs(d),2):MXM==='atv'?(d>=0?'+':'−')+nf(Math.abs(d)/1e3,1)+'k đ':(d>=0?'+':'−')+nf(Math.abs(d)*100,1)+' điểm');
+  const note=w.length?'<b>'+(F.reg!=='ALL'?'Toàn vùng':'Toàn chuỗi')+' cao nhất '+MONTHS[mxI].lab+' ('+D.fmt(tv[mxI])+'), thấp nhất '+MONTHS[mnI].lab+' ('+D.fmt(tv[mnI])+')</b> trong 12 tháng gần nhất.'+(yoy.length>1?' So cùng kỳ ('+YT+'): '+esc(yoy[0].r.g.n)+' tốt nhất ('+fd(yoy[0].d)+'), '+esc(yoy[yoy.length-1].r.g.n)+' kém nhất ('+fd(yoy[yoy.length-1].d)+').':''):'';
+  const sel='<select class="mx-m" aria-label="Chọn chỉ số">'+Object.entries(MXD).map(e=>'<option value="'+e[0]+'"'+(e[0]===MXM?' selected':'')+'>'+esc(e[1].n)+'</option>').join('')+'</select>';
+  const grp='<div class="nm-tools mx-g" role="group" aria-label="Xem theo">'+[['reg',F.reg!=='ALL'?'Tỉnh / quận':'Vùng'],['fmt','Mô hình']].map(g=>'<button type="button" data-mxg="'+g[0]+'" aria-pressed="'+(MXG===g[0])+'">'+g[1]+'</button>').join('')+'</div>';
+  return '<div class="card mx-card"><div class="ch mx-ch"><div><h3>Bảng chỉ số theo tháng × '+esc(by)+'</h3><div class="sub">Màu đậm = tháng cao nhất của từng dòng (so trong chính dòng đó)'+(D.bad?', với hao hụt: đậm = tệ':'')+' · cột cuối: 12 tháng gần nhất (T9/25–T8/26)'+(D.sum?' (cộng)':' (bình quân có trọng số)')+(MSEL!=null?' · cột viền: tháng đang xem':'')+'</div></div><div class="mx-ctl">'+sel+grp+'</div></div>'+
+    '<div class="tbl mx-wrap"><table class="mx"><thead><tr><th scope="col">'+esc(by.charAt(0).toUpperCase()+by.slice(1).split(' (')[0])+'</th>'+MONTHS.map((m,i)=>'<th class="r'+(i===MSEL?' mx-sel':'')+'" scope="col">'+m.lab+'</th>').join('')+'<th class="r mx-t" scope="col">12T gần nhất</th></tr></thead><tbody>'+
+    R.rows.map(r=>row(r,'',r.g.n)).join('')+row(R.tot,'mx-tot',F.reg!=='ALL'?'Toàn vùng':'Toàn chuỗi')+'</tbody></table></div>'+
+    '<p class="note mx-n">CR = hoá đơn ÷ lượt vào · số món và giá trị hoá đơn là bình quân có trọng số theo số hoá đơn · cửa hàng mới chỉ có số từ tháng mở cửa · ô trống = chưa có cửa hàng hoạt động</p>'+
+    (note?cnL(note):'')+'<p class="src"><b>Nguồn:</b> dữ liệu mô phỏng · '+nf(A.S.length)+' cửa hàng trong bộ lọc · T1/2025–T8/2026</p></div>'}
+function postK(root){if(TAB!=='ov'||!A.S.length)return;const h=cardOf(root,'Doanh thu thuần theo tháng');if(!h)return;const ref=h.closest('.card');const el=putCard(mxCard(A),ref);if(!el)return;
+  el.querySelector('.mx-m').onchange=e=>{MXM=e.target.value;const y=scrollY;render();scrollTo(0,y)};
+  el.querySelectorAll('[data-mxg]').forEach(b=>b.onclick=()=>{MXG=b.dataset.mxg;const y=scrollY;render();scrollTo(0,y)});
+  csvButtons(el);const w=el.querySelector('.mx-wrap');if(w&&MSEL!=null){const c=w.querySelector('th.mx-sel');if(c)w.scrollLeft=c.offsetLeft-200}else if(w)w.scrollLeft=w.scrollWidth}
+function drawAll(root){drawAllD(root);navGroups();navTools();themeBtn();if(root&&root.id==='main'){polishSel(root);polish(root);nextStep(root);postI(root);postJ(root);postK(root);if(PRES.on)PRES.steps=presSteps()}}
+
+/* ================= v2l · Lịch khuyến mãi theo thời gian (trang Giỏ hàng & khuyến mãi) ================= */
+const PD0=Date.UTC(2025,0,1),pd=(y,m,d)=>Math.round((Date.UTC(y,m-1,d)-PD0)/864e5),pdS=i=>{const t=new Date(PD0+i*864e5);return String(t.getUTCDate()).padStart(2,'0')+'/'+String(t.getUTCMonth()+1).padStart(2,'0')+'/'+t.getUTCFullYear()};
+const PEND=pd(2026,8,31),PPLAN=pd(2026,12,31);
+function monthWin(fn,y0,m0,y1,m1){const o=[];let y=y0,m=m0;while(y<y1||(y===y1&&m<=m1)){const w=fn(y,m);if(w)o.push(w);m++;if(m>12){m=1;y++}}return o}
+const lastD=(y,m)=>new Date(Date.UTC(y,m,0)).getUTCDate();
+const PCAL={
+ 'Giảm 30% rau củ sau 19h':{k:'on',lab:'hằng ngày',w:[[pd(2025,3,1),PEND]]},
+ 'Thứ 4 thành viên x2 điểm':{k:'on',lab:'thứ 4 hằng tuần',w:[[0,PEND]]},
+ 'Combo bữa sáng 39.000 đ':{k:'on',lab:'hằng ngày',w:[[pd(2025,6,1),PEND]]},
+ 'Mua 2 tặng 1 đồ khô':{k:'camp',lab:'2 tuần / quý',w:[[2025,3,10],[2025,6,9],[2025,9,8],[2025,12,8],[2026,3,9],[2026,6,8]].map(a=>[pd(...a),pd(...a)+13])},
+ 'Voucher 30.000 đ cho đơn 300.000 đ':{k:'camp',lab:'Tết + ngày đôi',w:[[pd(2025,1,15),pd(2025,1,28)],[pd(2026,2,3),pd(2026,2,16)]].concat([[2025,9],[2025,10],[2025,11],[2025,12],[2026,3],[2026,4],[2026,5],[2026,6],[2026,7],[2026,8]].map(a=>[pd(a[0],a[1],a[1])-1,pd(a[0],a[1],a[1])+1]))},
+ 'Đồng giá 9.000 đ bánh kẹo':{k:'camp',lab:'7 ngày đầu tháng',w:monthWin((y,m)=>[pd(y,m,1),pd(y,m,7)],2025,4,2026,8)},
+ 'Tuần lễ trái cây nhập khẩu':{k:'camp',lab:'1 tuần / 2 tháng',w:[[2025,5,12],[2025,7,14],[2025,9,15],[2025,11,10],[2026,1,12],[2026,4,13],[2026,7,13]].map(a=>[pd(...a),pd(...a)+6])},
+ 'Giảm 20% hàng cận date':{k:'camp',lab:'3 ngày cuối tháng',w:monthWin((y,m)=>[pd(y,m,lastD(y,m)-2),pd(y,m,lastD(y,m))],2025,1,2026,8)}};
+const PEV=[[2025,1,29,'Tết'],[2025,3,8,'8/3'],[2025,4,30,'30/4'],[2025,9,2,'2/9'],[2025,10,6,'Trung thu'],[2025,10,20,'20/10'],[2025,11,28,'Black Friday'],[2026,2,17,'Tết'],[2026,3,8,'8/3'],[2026,4,30,'30/4']];
+const XA=r=>/^Xả/.test(r.p.t||'');
+function promoTL(A){const ps=promoStats(A),P=ps.P,byN=new Map(P.map(p=>[p.n,p]));
+  const rows=PROMOS.map(p=>({p:byN.get(p.n)||p,c:PCAL[p.n]})).filter(r=>r.c).sort((a,b)=>(a.c.k===b.c.k?0:a.c.k==='on'?-1:1)||(b.p.roi||0)-(a.p.roi||0));
+  /* chồng lấn theo tuần: chỉ đếm chiến dịch có thời hạn */
+  const wk=[];for(let s=0;s<=PEND;s+=7){let n=0;const nm=[];rows.forEach(r=>{if(r.c.k!=='camp')return;if(r.c.w.some(w=>w[0]<=s+6&&w[1]>=s)){n++;nm.push(r.p.n)}});wk.push({s,n,nm})}
+  const peak=Math.max(...wk.map(w=>w.n)),pk=wk.filter(w=>w.n===peak);
+  let cov=0;for(let d=0;d<=PEND;d++)if(rows.some(r=>r.c.k==='camp'&&r.c.w.some(w=>w[0]<=d&&w[1]>=d)))cov++;
+  return {rows,wk,peak,pk,cov:cov/(PEND+1),ps}}
+function promoTLW(W,D,mon){const L=Math.min(250,W*.27),R=78,T=58,rh=30,BH=78,H=T+D.rows.length*rh+BH+40,X=d=>L+d/PPLAN*(W-L-R);
+  let g='';
+  /* nền tháng + vùng kế hoạch */
+  for(let i=0;i<24;i++){const y=2025+Math.floor(i/12),m=i%12+1,a=pd(y,m,1),b=pd(y,m,lastD(y,m))+1;g+='<rect x="'+X(a)+'" y="'+(T-8)+'" width="'+(X(b)-X(a))+'" height="'+(D.rows.length*rh+BH+16)+'" fill="'+(i%2?'var(--surface-2)':'transparent')+'" opacity=".55"/>'+(i===MSEL?'<rect x="'+X(a)+'" y="'+(T-8)+'" width="'+(X(b)-X(a))+'" height="'+(D.rows.length*rh+BH+16)+'" fill="none" stroke="var(--accent)" stroke-width="2"/>':'')+
+    '<text x="'+((X(a)+X(b))/2)+'" y="'+(T-14)+'" text-anchor="middle" class="pt-m">'+(m===1?'T1/'+String(y).slice(2):'T'+m)+'</text>'}
+  g+='<rect x="'+X(PEND+1)+'" y="'+(T-8)+'" width="'+(X(PPLAN)-X(PEND+1))+'" height="'+(D.rows.length*rh+BH+16)+'" fill="var(--accent)" fill-opacity=".07"/><text x="'+((X(PEND+1)+X(PPLAN))/2)+'" y="'+(T-30)+'" text-anchor="middle" class="pt-plan">ĐỀ XUẤT T9–T12/26</text>';
+  /* doanh thu tháng (chỉ để đối chiếu thời điểm) */
+  const rv=mon.slice(0,20).map(m=>m.rev),mx=Math.max(...rv),mn=Math.min(...rv)*.97;let p='';rv.forEach((v,i)=>{const y=2025+Math.floor(i/12),m=i%12+1,c=(X(pd(y,m,1))+X(pd(y,m,lastD(y,m))+1))/2;p+=(p?' L':'M')+c.toFixed(1)+','+(T-34+22*(1-(v-mn)/(mx-mn||1))).toFixed(1)});
+  g+='<text x="'+(L-10)+'" y="'+(T-24)+'" text-anchor="end" class="pt-s">Doanh thu tháng</text><path d="'+p+'" fill="none" stroke="var(--s1)" stroke-width="1.8" opacity=".8"/>';
+  /* sự kiện */
+  PEV.forEach((e,ei)=>{const x=X(pd(e[0],e[1],e[2]));g+='<line x1="'+x+'" x2="'+x+'" y1="'+(T-6)+'" y2="'+(T+D.rows.length*rh+BH+6)+'" stroke="var(--s4)" stroke-dasharray="2 3" opacity=".9"/><text x="'+(x+3)+'" y="'+(T+D.rows.length*rh+BH+18+(ei%2)*12)+'" class="pt-e">'+esc(e[3])+'</text>'});
+  /* từng chương trình */
+  D.rows.forEach((r,i)=>{const y=T+i*rh,xa=XA(r),ok=(r.p.roi||0)>=1||xa,c=(r.p.roi||0)>=1?'var(--s3)':xa?'var(--s4)':'var(--s8)',on=r.c.k==='on';
+    g+='<text x="'+(L-10)+'" y="'+(y+rh/2)+'" text-anchor="end" class="pt-n">'+esc(r.p.n.length>32?r.p.n.slice(0,31)+'…':r.p.n)+'</text><text x="'+(L-10)+'" y="'+(y+rh/2+12)+'" text-anchor="end" class="pt-s">'+esc(r.c.lab)+'</text>';
+    r.c.w.forEach(w=>{const x=X(w[0]),ww=Math.max(2.5,X(w[1]+1)-X(w[0]));g+='<rect x="'+x.toFixed(1)+'" y="'+(y+(on?11:7))+'" width="'+ww.toFixed(1)+'" height="'+(on?rh-22:rh-14)+'" rx="2" fill="'+c+'" fill-opacity="'+(on?.45:.85)+'"><title>'+esc(r.p.n+' · '+pdS(w[0])+' → '+pdS(w[1])+' · ROI '+nf(r.p.roi||0,2))+'</title></rect>'});
+    /* kế hoạch: giữ nếu ROI ≥ 1 */
+    if(ok){if(on)g+='<rect x="'+X(PEND+1)+'" y="'+(y+11)+'" width="'+(X(PPLAN)-X(PEND+1))+'" height="'+(rh-22)+'" rx="2" fill="none" stroke="'+c+'" stroke-dasharray="4 3"/>';
+      else{const per=r.c.w.filter(w=>w[0]>=pd(2025,9,1)&&w[0]<=pd(2025,12,31));per.forEach(w=>{const s=w[0]+365,e=w[1]+365;g+='<rect x="'+X(s)+'" y="'+(y+7)+'" width="'+Math.max(2.5,X(e+1)-X(s))+'" height="'+(rh-14)+'" rx="2" fill="none" stroke="'+c+'" stroke-width="1.5" stroke-dasharray="3 2"><title>'+esc('Đề xuất lặp lại '+pdS(s)+' → '+pdS(e))+'</title></rect>'})}}
+    else g+='<text x="'+((X(PEND+1)+X(PPLAN))/2)+'" y="'+(y+rh/2+4)+'" text-anchor="middle" class="pt-stop">✕ dừng / thu hẹp</text>';
+    if(xa)g+='<text x="'+((X(PEND+1)+X(PPLAN))/2)+'" y="'+(y+rh/2+4)+'" text-anchor="middle" class="pt-keep">giữ · đo theo ô C</text>';
+    g+='<text x="'+(W-6)+'" y="'+(y+rh/2+4)+'" text-anchor="end" class="pt-r" fill="'+c+'">ROI '+nf(r.p.roi||0,2)+(xa?'*':'')+'</text>'});
+  /* chồng lấn theo tuần */
+  const by=T+D.rows.length*rh+12,bh=BH-26;g+='<text x="'+(L-10)+'" y="'+(by+bh/2)+'" text-anchor="end" class="pt-n">Số chiến dịch</text><text x="'+(L-10)+'" y="'+(by+bh/2+12)+'" text-anchor="end" class="pt-s">chạy cùng tuần</text>';
+  D.wk.forEach(w=>{if(!w.n)return;const h=bh*w.n/Math.max(1,D.peak);g+='<rect x="'+X(w.s)+'" y="'+(by+bh-h)+'" width="'+Math.max(1.5,X(w.s+7)-X(w.s)-1)+'" height="'+h+'" fill="'+(w.n===D.peak?'var(--crit)':'var(--ink-3)')+'" fill-opacity="'+(w.n===D.peak?.85:.45)+'"><title>'+esc('Tuần '+pdS(w.s)+': '+w.n+' chiến dịch · '+w.nm.join(', '))+'</title></rect>'});
+  g+='<text x="'+(W-6)+'" y="'+(by+12)+'" text-anchor="end" class="pt-r" fill="var(--crit)">tối đa '+D.peak+'</text>';
+  return '<div class="viz pt-viz"><svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Lịch khuyến mãi theo thời gian">'+g+'</svg></div>'}
+function promoTLCard(A){const D=promoTL(A);if(!D.rows.length)return '';const bad=D.rows.filter(r=>(r.p.roi||0)<1&&!XA(r)),xa=D.rows.filter(r=>(r.p.roi||0)<1&&XA(r)),pk=D.pk[0];
+  const lg='<div class="lgd pt-lg"><span><i class="dot" style="--c:var(--s3)"></i>ROI ≥ 1</span><span><i class="dot" style="--c:var(--s8)"></i>ROI &lt; 1</span><span><i class="dot" style="--c:var(--s4)"></i>xả hàng: ROI chưa tính phần hao hụt tránh được (*)</span><span><b class="pt-k on"></b>chạy thường xuyên</span><span><b class="pt-k"></b>chiến dịch có thời hạn</span><span><b class="pt-k plan"></b>đề xuất lặp lại</span><span><b class="pt-k ev"></b>ngày lễ, mùa mua sắm</span></div>';
+  return card('Lịch khuyến mãi theo thời gian · chạy khi nào, chồng lấn ra sao','8 chương trình từ T1/2025 · rê chuột vào thanh để xem ngày bắt đầu/kết thúc · màu theo ROI 12 tháng · đường xanh trên cùng là doanh thu tháng, chỉ để đối chiếu thời điểm (không phải hiệu quả của khuyến mãi) · lịch là dữ liệu mô phỏng',lg+defer(W=>promoTLW(Math.max(W,860),D,A.mon)))
+   .replace(/<\/div>\s*$/,cnL('<b>'+fP(D.cov,0)+' số ngày có ít nhất 1 chiến dịch có thời hạn</b>, gần như tháng nào cũng có ưu đãi: rủi ro khách quen chỉ mua khi có khuyến mãi. Tuần '+pdS(pk.s)+' chồng <b>'+D.peak+' chiến dịch</b> ('+esc(pk.nm.join(', '))+'), chi phí cộng dồn mà khó tách chương trình nào hiệu quả. '+
+     (bad.length?'Đề xuất T9–T12/26: lặp lại lịch của các chương trình ROI ≥ 1 cùng kỳ năm trước, <b>dừng hoặc thu hẹp '+bad.map(r=>esc(r.p.n)).join(', ')+'</b>, và giãn các chiến dịch để mỗi tuần không quá 2 chương trình.'+(xa.length?' Riêng '+xa.map(r=>esc(r.p.n.toLowerCase())).join(', ')+' vẫn giữ: mục tiêu là giảm hao hụt (ô C), ROI ở đây chưa tính phần hàng không phải huỷ.':''):'Các chương trình đều có ROI ≥ 1; đề xuất giãn lịch để mỗi tuần không quá 2 chương trình.'))+'</div>')}
+function postL(root){if(TAB!=='pm'||!A.S.length)return;const h=cardOf(root,'Lãi gộp tăng thêm trên mỗi đồng chi phí');const ref=h?(h.closest('.row')||h.closest('.card')):null;if(ref)putCard(promoTLCard(A),ref,'beforebegin')}
+function drawAll(root){drawAllD(root);navGroups();navTools();themeBtn();if(root&&root.id==='main'){polishSel(root);polish(root);nextStep(root);postI(root);postJ(root);postK(root);postL(root);if(PRES.on)PRES.steps=presSteps()}}
+
+/* ---------- Món bán chạy nhất trong deal ---------- */
+const DEALS=[['Combo bánh mì + sữa tươi 180ml','Combo bữa sáng 39.000 đ',39e3,95],['Snack khoai tây 52g','Đồng giá 9.000 đ bánh kẹo',9e3,310],['Bánh quy bơ 90g','Đồng giá 9.000 đ bánh kẹo',9e3,240],['Kẹo dẻo trái cây 70g','Đồng giá 9.000 đ bánh kẹo',9e3,180],
+ ['Mì gói lốc 3 (mua 2 tặng 1)','Mua 2 tặng 1 đồ khô',21e3,260],['Nước mắm 500ml (mua 2 tặng 1)','Mua 2 tặng 1 đồ khô',68e3,70],['Táo Envy New Zealand 1kg','Tuần lễ trái cây nhập khẩu',129e3,120],['Nho xanh Úc 500g','Tuần lễ trái cây nhập khẩu',99e3,130],
+ ['Rau cải ngọt 500g (−30% sau 19h)','Giảm 30% rau củ sau 19h',11e3,150],['Cà chua 1kg (−30% sau 19h)','Giảm 30% rau củ sau 19h',17e3,90],['Sữa chua uống lốc 4 (−20% cận date)','Giảm 20% hàng cận date',22e3,160],['Bánh mì sandwich (−20% cận date)','Giảm 20% hàng cận date',15e3,140]];
+function dealRows(A){const a=pd(MONTHS[W12[0]].y,MONTHS[W12[0]].mo,1),b=pd(MONTHS[W12[1]].y,MONTHS[W12[1]].mo,lastD(MONTHS[W12[1]].y,MONTHS[W12[1]].mo)),nd=b-a+1,ns=A.S.filter(s=>s.open-72<=W12[1]).length,rr=rng(808);
+  const act=n=>{const c=PCAL[n];if(!c)return 0;let k=0;for(let d=a;d<=b;d++)if(c.w.some(w=>w[0]<=d&&w[1]>=d))k++;return k};
+  const ps=promoStats(A),roi=new Map(ps.P.map(p=>[p.n,p.roi]));
+  const o=DEALS.map(d=>{const days=act(d[1]),q=Math.round(d[3]*ns*days/30*(.85+.3*rr()));return {n:d[0],p:d[1],pr:d[2],q,rev:q*d[2],roi:roi.get(d[1]),days}}).filter(x=>x.q>0).sort((x,y)=>y.rev-x.rev);
+  return {o,nd,ns,tot:sum(o.map(x=>x.rev))}}
+function dealCard(A){const D=dealRows(A);if(!D.o.length)return '';const mx=D.o[0].rev,t3=sum(D.o.slice(0,3).map(x=>x.rev))/D.tot,byP={};D.o.forEach(x=>byP[x.p]=(byP[x.p]||0)+x.rev);const tp=Object.entries(byP).sort((a,b)=>b[1]-a[1])[0];
+  const tb='<div class="tbl dl-t"><table><thead><tr><th class="r">#</th><th>Món</th><th>Chương trình</th><th class="r">Giá deal</th><th class="r">Đã bán</th><th>Doanh thu</th><th class="r">% DT deal</th></tr></thead><tbody>'+
+    D.o.map((x,i)=>'<tr style="cursor:default"><td class="r muted">'+(i+1)+'</td><td><b>'+esc(x.n)+'</b></td><td class="muted">'+esc(x.p)+(x.roi!=null?' <span class="dl-roi '+(x.roi>=1?'g':'r')+'">ROI '+nf(x.roi,2)+'</span>':'')+'</td><td class="r">'+nf(x.pr/1e3,0)+'k</td><td class="r">'+nf(x.q)+'</td><td><div class="dl-bar"><i style="width:'+(x.rev/mx*100).toFixed(1)+'%"></i><span>'+esc(fAmt(x.rev))+'</span></div></td><td class="r">'+fP(x.rev/D.tot,1)+'</td></tr>').join('')+'</tbody></table></div>';
+  return card('Món bán chạy nhất trong deal · xếp theo doanh thu','Chỉ tính lượt mua đúng giá deal (qua mã deal), không gồm mua giá thường trên kệ · '+esc(L12||'12 tháng gần nhất')+' · '+nf(D.ns)+' cửa hàng trong bộ lọc · số lượng tỷ lệ với số ngày chương trình chạy theo lịch ở trên · dữ liệu mô phỏng',tb)
+   .replace(/<\/div>\s*$/,cnL('<b>3 món đầu chiếm '+fP(t3,0)+' doanh thu deal</b>; dẫn đầu là '+esc(D.o[0].n)+' ('+esc(fAmt(D.o[0].rev))+'). Chương trình mang nhiều doanh thu deal nhất: '+esc(tp[0])+' ('+fP(tp[1]/D.tot,0)+'). Doanh thu deal cao chưa chắc có lãi: đối chiếu cột ROI, món thuộc chương trình ROI &lt; 1 nên đổi sang món biên cao hơn hoặc giảm mức giảm giá.')+'</div>')}
+function postL2(root){if(TAB!=='pm'||!A.S.length)return;const h=cardOf(root,'Lịch khuyến mãi theo thời gian');if(h)putCard(dealCard(A),h.closest('.card'))}
+function drawAll(root){drawAllD(root);navGroups();navTools();themeBtn();if(root&&root.id==='main'){polishSel(root);polish(root);nextStep(root);postI(root);postJ(root);postK(root);postL(root);postL2(root);if(PRES.on)PRES.steps=presSteps()}}
+
+/* ================= v2m · Nhân sự: doanh thu × giờ công × số nhân sự ================= */
+let HCG='loc';
+function hrCorr(A){const F=A.full.filter(x=>x.hours>0);if(F.length<8)return null;let P;
+  if(HCG==='loc'){const g=new Map();F.forEach(x=>{const k=x.s.reg.k+'|'+x.s.loc;const o=g.get(k)||{loc:x.s.loc,reg:x.s.reg.n,c:0,h:0,r:0,n:0};o.c++;o.h+=x.hours;o.r+=x.rev;o.n+=x.s.staffN;g.set(k,o)});
+    P=[...g.values()].map(o=>({id:'',name:o.loc,sub:o.reg+' · '+o.c+' cửa hàng',h:o.h/o.c/1e3,r:o.r/o.c/1e9,n:o.n,c:o.c}))}
+  else P=F.map(x=>({x,id:x.s.id,name:x.s.id+' '+x.s.loc,sub:x.s.fmt.n,h:x.hours/1e3,r:x.rev/1e9,n:x.s.staffN}));
+  if(P.length<4)return null;
+  const n=P.length,mx=sum(P.map(p=>p.h))/n,my=sum(P.map(p=>p.r))/n,sxy=sum(P.map(p=>(p.h-mx)*(p.r-my))),sxx=sum(P.map(p=>(p.h-mx)**2)),b=sxy/sxx,a=my-b*mx;
+  const ssr=sum(P.map(p=>(p.r-(a+b*p.h))**2)),sst=sum(P.map(p=>(p.r-my)**2)),r2=1-ssr/sst;P.forEach(p=>{p.pred=a+b*p.h;p.res=p.r/p.pred-1});
+  const s=P.slice().sort((u,v)=>v.res-u.res),k=HCG==='loc'?5:4;return {P,a,b,r2,top:s.slice(0,k),bot:s.slice(-k).reverse(),up:P.filter(p=>p.res>0).length,rph:sum(F.map(x=>x.rev))/sum(F.map(x=>x.hours))}}
+function hrCorrW(W,D){const H=420,L=62,R=24,T=18,B=44,hs=D.P.map(p=>p.h),rs=D.P.map(p=>p.r),xt=niceTicks(Math.min(...hs)*.95,Math.max(...hs)*1.03,6),yt=niceTicks(0,Math.max(...rs)*1.05,6);
+  const X=v=>L+(v-xt[0])/(xt[xt.length-1]-xt[0])*(W-L-R),Y=v=>T+(1-(v-yt[0])/(yt[yt.length-1]-yt[0]))*(H-T-B),nMin=Math.min(...D.P.map(p=>p.n)),nMax=Math.max(...D.P.map(p=>p.n)),rad=n=>3+9*Math.sqrt((n-nMin)/Math.max(1,nMax-nMin));
+  let g='<g class="grid">'+yt.map(t=>'<line x1="'+L+'" x2="'+(W-R)+'" y1="'+Y(t)+'" y2="'+Y(t)+'"/>').join('')+xt.map(t=>'<line y1="'+T+'" y2="'+(H-B)+'" x1="'+X(t)+'" x2="'+X(t)+'"/>').join('')+'</g>';
+  g+='<g class="ax">'+yt.map(t=>'<text x="'+(L-8)+'" y="'+(Y(t)+4)+'" text-anchor="end">'+nf(t,t<10&&yt[1]-yt[0]<1?1:0)+' tỷ</text>').join('')+xt.map(t=>'<text x="'+X(t)+'" y="'+(H-24)+'" text-anchor="middle">'+nf(t,0)+'</text>').join('')+'<text x="'+((L+W-R)/2)+'" y="'+(H-4)+'" text-anchor="middle">Giờ công (nghìn giờ)</text><text x="'+L+'" y="'+(T-4)+'">↑ Doanh thu (tỷ đ)</text></g>';
+  const x0=xt[0],x1=xt[xt.length-1];g+='<line x1="'+X(x0)+'" y1="'+Y(D.a+D.b*x0)+'" x2="'+X(x1)+'" y2="'+Y(D.a+D.b*x1)+'" stroke="var(--ink-2)" stroke-width="1.6" stroke-dasharray="6 5"/>';
+  const lab=new Set(D.top.concat(D.bot));
+  D.P.slice().sort((u,v)=>v.n-u.n).forEach(p=>{const up=p.res>=0,c=up?'var(--s1)':'var(--s8)',sel=SEL&&p.id===SEL;g+='<circle class="hc-b"'+(p.id?' data-selcs="'+p.id+'"':'')+' cx="'+X(p.h).toFixed(1)+'" cy="'+Y(p.r).toFixed(1)+'" r="'+(sel?rad(p.n)+3:rad(p.n)).toFixed(1)+'" fill="'+c+'" fill-opacity="'+(lab.has(p)||sel?.75:.28)+'" stroke="'+(sel?'var(--ink)':c)+'" stroke-width="'+(sel?2.5:1)+'"><title>'+esc(p.name+' · '+p.sub+'\nDoanh thu '+(p.c?'BQ/cửa hàng ':'')+nf(p.r,2)+' tỷ · giờ công '+(p.c?'BQ ':'')+nf(p.h,1)+' nghìn · '+p.n+' nhân sự\nNăng suất '+(p.res>=0?'cao hơn':'thấp hơn')+' đường xu hướng '+fP(Math.abs(p.res),0)+(p.id?' · bấm để mở hồ sơ':''))+'</title></circle>'});
+  [...lab].forEach((p,li)=>{const x=X(p.h),y=Y(p.r),right=x>W-170;g+='<text x="'+(right?x-rad(p.n)-5:x+rad(p.n)+5)+'" y="'+(y+4+(li%2?9:-3))+'" text-anchor="'+(right?'end':'start')+'" class="hc-l">'+esc(p.name)+' <tspan fill="'+(p.res>=0?'var(--s1)':'var(--crit)')+'">'+(p.res>=0?'+':'−')+fP(Math.abs(p.res),0)+'</tspan></text>'});
+  return '<div class="viz"><svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Tương quan doanh thu, giờ công và số nhân sự">'+g+'</svg></div>'}
+function hrCorrCard(A){const D=hrCorr(A);if(!D)return '';const lg='<div class="lgd"><span><i class="dot" style="--c:var(--s1)"></i>trên đường xu hướng: năng suất / giờ cao hơn mặt bằng</span><span><i class="dot" style="--c:var(--s8)"></i>dưới đường: thấp hơn</span><span><i class="dot" style="--c:var(--ink-3);width:14px;height:14px"></i>bong bóng to = nhiều nhân sự</span></div>';
+  const tg='<div class="nm-tools hc-tg" role="group" aria-label="Mức xem">'+[['loc','Theo tỉnh / quận'],['store','Theo cửa hàng']].map(t=>'<button type="button" data-hcg="'+t[0]+'" aria-pressed="'+(HCG===t[0])+'">'+t[1]+'</button>').join('')+'</div>';
+  return card('Tương quan: doanh thu × giờ công × nhân sự',(HCG==='loc'?'Mỗi bong bóng là 1 tỉnh/quận · trục ngang: giờ công bình quân / cửa hàng · trục dọc: doanh thu bình quân / cửa hàng · cỡ bong bóng: tổng số nhân sự':'Mỗi bong bóng là 1 cửa hàng đủ kỳ · trục ngang: giờ công · trục dọc: doanh thu · cỡ bong bóng: số nhân sự · bấm bong bóng để mở hồ sơ')+' · nét đứt: xu hướng (hồi quy tuyến tính) · '+esc(L12||'12 tháng')+' · ghi tên các điểm lệch nhiều nhất',tg+lg+defer(W=>hrCorrW(W,D)))
+   .replace(/<\/div>\s*$/,cnL('<b>Giờ công giải thích '+fP(D.r2,0)+' mức chênh doanh thu giữa các '+(HCG==='loc'?'tỉnh/quận':'cửa hàng')+'</b> (R²); mỗi nghìn giờ công thêm đi kèm ~'+nf(D.b,2)+' tỷ doanh thu, bình quân '+nf(D.rph/1e3,0)+' nghìn đ/giờ công. '+nf(D.up)+'/'+nf(D.P.length)+(HCG==='loc'?' tỉnh/quận':' cửa hàng')+' nằm trên đường. Thấp nhất so với đường: '+D.bot.slice(0,3).map(p=>esc(p.name)+' ('+'−'+fP(Math.abs(p.res),0)+')').join(', ')+': kiểm tra xếp ca so với giờ cao điểm trước khi cắt giờ công (<span class="go2" data-go="hr">heatmap thiếu/thừa người ở dưới</span>).')+'</div>')}
+function postM(root){if(TAB!=='hr'||!A.full.length)return;const host=root.querySelector('.sec:not(.fx)');if(!host)return;const kp=host.querySelector(':scope > .kpis'),ref=kp||host.querySelector(':scope > .cc');if(!ref)return;const el=putCard(hrCorrCard(A),ref);if(el)el.querySelectorAll('[data-hcg]').forEach(b=>b.onclick=()=>{HCG=b.dataset.hcg;const y=scrollY;render();scrollTo(0,y)})}
+function drawAll(root){drawAllD(root);navGroups();navTools();themeBtn();if(root&&root.id==='main'){polishSel(root);polish(root);nextStep(root);postI(root);postJ(root);postK(root);postL(root);postL2(root);postM(root);if(PRES.on)PRES.steps=presSteps()}}
+
+/* ================= v2n · Brand & danh mục (trang Sản phẩm & giá) ================= */
+/* Tên brand là tên hư cấu cho dữ liệu mô phỏng; "1K Fresh", "1K Home" là nhãn riêng của chuỗi */
+const BRL=[['1K Fresh',1,[[0,.35],[1,.20]]],['Nông Trại Xanh',0,[[0,.25]]],['Vườn Đà Lạt',0,[[0,.18]]],['Biển Việt',0,[[1,.22]]],['Trang Trại Hồng',0,[[1,.26]]],
+ ['Sữa Mây Trắng',0,[[2,.34]]],['Trứng Nắng',0,[[2,.20]]],['Bò Sữa Cao Nguyên',0,[[2,.22],[5,.04]]],['Bếp Việt',0,[[3,.22]]],['Hạt Ngọc',0,[[3,.18]]],['1K Home',1,[[3,.12],[7,.10]]],['Vị Quê',0,[[3,.15]]],
+ ['Suối Ngàn',0,[[4,.24]]],['Trà Sen Việt',0,[[4,.18]]],['Cola Phương Nam',0,[[4,.20]]],['Bánh Mây',0,[[5,.28]]],['Kẹo Hoa',0,[[5,.20]]],['Snack Mặt Trời',0,[[5,.22]]],
+ ['Bắc Cực',0,[[6,.30]]],['Há Cảo Sài Gòn',0,[[6,.22]]],['Sạch Thơm',0,[[7,.22]]],['Gia Đình Xanh',0,[[7,.18]]],['Da Mềm',0,[[7,.16]]]];
+const BRX=(()=>{const r=rng(4242);return BRL.map(b=>({n:b[0],pl:!!b[1],cats:b[2],gd:b[1]?.085+.02*r():-.04+.08*r(),pf:b[1]?.85:.7+.7*r(),gf:b[1]?.10+.06*r():-.12+.27*r()}))})();
+function bcData(A){const cs=catSplit(A.mon.map(m=>m.rev),A.mon.map(m=>m.uptW)),k=catWin(cs,W12[0],W12[1]),k0=catWin(cs,Y0,Y0+YL-1),k1=catWin(cs,Y0+12,Y0+11+YL),tot=sum(k.map(x=>x.r));
+  const cat=k.map((x,i)=>({c:x.c,i,r:x.r,q:x.q,p:x.p,gm:x.c.gm,gp:x.r*x.c.gm,g:k0[i].r?k1[i].r/k0[i].r-1:null,lead:null}));
+  const br=BRX.map(b=>{let r=0,q=0,gp=0,main=null,mr=0,g=0;b.cats.forEach(([ci,sh])=>{const c=cat[ci],rr=c.r*sh*(1+b.gf*0),qq=rr/(c.p*b.pf);r+=rr;q+=qq;gp+=rr*(c.gm+b.gd);if(rr>mr){mr=rr;main=c}g+=rr*((c.g||0)+b.gf)});
+    return {n:b.n,pl:b.pl,r,q,gm:r?gp/r:0,gp,main,mainPct:r?mr/r:0,g:r?g/r:null}}).sort((a,b)=>b.r-a.r);
+  cat.forEach(c=>{let best=null,bv=0;BRX.forEach((b,bi)=>b.cats.forEach(([ci,sh])=>{if(ci===c.i&&sh>bv){bv=sh;best=b.n}}));c.lead=best;c.leadPct=bv});
+  const gpT=sum(cat.map(c=>c.gp)),pl=br.filter(b=>b.pl);return {cat:cat.sort((a,b)=>b.r-a.r),br,tot,gpT,plR:sum(pl.map(b=>b.r)),plGP:sum(pl.map(b=>b.gp))}}
+const gpPill=v=>'<span class="gp-p '+(v>=.24?'g':v>=.18?'b':'w')+'">'+fP(v,1)+'</span>';
+function catBubbleW(W,D){const H=300,L=56,R=20,T=18,B=40,xs=D.cat.map(c=>c.r/D.tot),ys=D.cat.map(c=>c.gm),xt=niceTicks(0,Math.max(...xs)*1.15,5),yt=niceTicks(Math.min(...ys)*.85,Math.max(...ys)*1.08,5);
+  const X=v=>L+(v-xt[0])/(xt[xt.length-1]-xt[0])*(W-L-R),Y=v=>T+(1-(v-yt[0])/(yt[yt.length-1]-yt[0]))*(H-T-B),mg=Math.max(...D.cat.map(c=>c.gp)),mx=1/D.cat.length,my=D.gpT/D.tot;
+  let g='<g class="grid">'+yt.map(t=>'<line x1="'+L+'" x2="'+(W-R)+'" y1="'+Y(t)+'" y2="'+Y(t)+'"/>').join('')+'</g><g class="ax">'+yt.map(t=>'<text x="'+(L-8)+'" y="'+(Y(t)+4)+'" text-anchor="end">'+fP(t,0)+'</text>').join('')+xt.map(t=>'<text x="'+X(t)+'" y="'+(H-22)+'" text-anchor="middle">'+fP(t,0)+'</text>').join('')+'<text x="'+(W-R)+'" y="'+(H-4)+'" text-anchor="end">Tỷ trọng doanh thu →</text><text x="'+L+'" y="'+(T-5)+'">↑ % lãi gộp</text></g>';
+  g+='<line x1="'+X(mx)+'" x2="'+X(mx)+'" y1="'+T+'" y2="'+(H-B)+'" stroke="var(--line-2)" stroke-dasharray="4 4"/><line x1="'+L+'" x2="'+(W-R)+'" y1="'+Y(my)+'" y2="'+Y(my)+'" stroke="var(--line-2)" stroke-dasharray="4 4"/>';
+  [['TẠO LÃI',W-R-6,T+12,'end'],['NGÁCH LÃI CAO',L+6,T+12,'start'],['KÉO KHÁCH',W-R-6,H-B-6,'end'],['CẦN XEM LẠI',L+6,H-B-6,'start']].forEach(q=>g+='<text x="'+q[1]+'" y="'+q[2]+'" text-anchor="'+q[3]+'" class="ie-q" fill="var(--ink-3)">'+q[0]+'</text>');
+  D.cat.forEach((c,i)=>{const x=X(c.r/D.tot),y=Y(c.gm),r=8+16*Math.sqrt(c.gp/mg);g+='<g><title>'+esc(c.c.n+': '+fP(c.r/D.tot,1)+' DT · lãi gộp '+fP(c.gm,1)+' · '+fAmt(c.gp))+'</title><circle cx="'+x+'" cy="'+y+'" r="'+r+'" fill="'+SER[i%SER.length]+'" fill-opacity=".35" stroke="'+SER[i%SER.length]+'" stroke-width="1.5"/><text x="'+x+'" y="'+(y-r-4)+'" text-anchor="middle" class="ie-n">'+esc(c.c.n)+'</text></g>'});
+  return '<div class="viz"><svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Ma trận danh mục">'+g+'</svg></div>'}
+function bcCards(A){const D=bcData(A);if(!D.tot)return '';const top=D.br.slice(0,20),gpRank=D.cat.slice().sort((a,b)=>b.gm-a.gm);
+  const ct='<div class="tbl"><table><thead><tr><th class="r">#</th><th>Danh mục</th><th class="r">DT (tỷ)</th><th class="r">%</th><th class="r">SL (triệu)</th><th class="r">Giá TB (k)</th><th class="r">GP%</th><th class="r">Lãi gộp (tỷ)</th><th class="r">Tăng cùng kỳ*</th><th>Brand dẫn đầu</th></tr></thead><tbody>'+
+    D.cat.map((c,i)=>'<tr style="cursor:default"><td class="r muted">'+(i+1)+'</td><td><b>'+esc(c.c.n)+'</b></td><td class="r">'+nf(c.r/1e9,1)+'</td><td class="r">'+fP(c.r/D.tot,1)+'</td><td class="r">'+nf(c.q/1e6,1)+'</td><td class="r">'+nf(c.p/1e3,1)+'</td><td class="r">'+gpPill(c.gm)+'</td><td class="r">'+nf(c.gp/1e9,1)+'</td><td class="r '+(c.g>=0?'up':'dn')+'">'+(c.g==null?'—':fPt(c.g))+'</td><td>'+esc(c.lead||'—')+' <span class="muted">'+fP(c.leadPct,0)+'</span></td></tr>').join('')+'</tbody></table></div>';
+  const bt='<div class="tbl"><table><thead><tr><th class="r">#</th><th>Brand</th><th class="r">DT (tỷ)</th><th class="r">%</th><th class="r">SL (triệu)</th><th class="r">GP%</th><th class="r">Tăng cùng kỳ</th><th>Danh mục chủ lực</th><th class="r">% DT brand</th></tr></thead><tbody>'+
+    top.map((b,i)=>'<tr style="cursor:default"><td class="r muted">'+(i+1)+'</td><td><b>'+esc(b.n)+'</b>'+(b.pl?' <span class="pl-t">nhãn riêng</span>':'')+'</td><td class="r">'+nf(b.r/1e9,1)+'</td><td class="r">'+fP(b.r/D.tot,1)+'</td><td class="r">'+nf(b.q/1e6,1)+'</td><td class="r">'+gpPill(b.gm)+'</td><td class="r '+(b.g>=0?'up':'dn')+'">'+(b.g==null?'—':fPt(b.g))+'</td><td>'+esc(b.main?b.main.c.n:'—')+'</td><td class="r">'+fP(b.mainPct,0)+'</td></tr>').join('')+'</tbody></table></div>';
+  const c1=card('Danh mục · ai kéo khách, ai tạo lãi','Tỷ trọng doanh thu × % lãi gộp · bong bóng to = lãi gộp lớn · đường đứt: mức trung bình · *tăng cùng kỳ tính cả cửa hàng mới mở · '+esc(L12||'12 tháng gần nhất')+' · '+nf(A.S.length)+' cửa hàng trong bộ lọc',defer(W=>catBubbleW(W,D))+ct)
+    .replace(/<\/div>\s*$/,cnL('<b>'+esc(D.cat[0].c.n)+' lớn nhất ('+fP(D.cat[0].r/D.tot,0)+' DT)</b>; lãi gộp cao nhất là '+esc(gpRank[0].c.n)+' ('+fP(gpRank[0].gm,0)+'), thấp nhất '+esc(gpRank[gpRank.length-1].c.n)+' ('+fP(gpRank[gpRank.length-1].gm,0)+'). Danh mục "kéo khách" (tỷ trọng cao, lãi thấp) giữ giá cạnh tranh; danh mục "tạo lãi" ưu tiên vị trí trưng bày đẹp (ô B1).')+'</div>');
+  const c2=card('Top 20 brand','Doanh thu, số lượng, % lãi gộp, danh mục chủ lực · tên brand là tên hư cấu cho dữ liệu mô phỏng · "1K Fresh", "1K Home" là nhãn riêng của chuỗi',bt)
+    .replace(/<\/div>\s*$/,cnL('<b>Nhãn riêng chiếm '+fP(D.plR/D.tot,1)+' doanh thu nhưng '+fP(D.plGP/D.gpT,1)+' lãi gộp</b>, biên cao hơn brand thường khoảng '+nf(((D.plGP/D.plR)-(D.gpT-D.plGP)/(D.tot-D.plR))*100,1)+' điểm. Mỗi 1 điểm % doanh thu chuyển sang nhãn riêng ước thêm '+fBn(D.tot*.01*((D.plGP/D.plR)-(D.gpT-D.plGP)/(D.tot-D.plR))*ANNF,1)+' lãi gộp/năm (ô B1). Brand top 5 chiếm '+fP(sum(D.br.slice(0,5).map(b=>b.r))/D.tot,0)+' doanh thu: dùng để đàm phán chiết khấu, hỗ trợ trưng bày.')+'</div>');
+  return c1+c2}
+function postN(root){if(TAB!=='sp'||!A.S.length)return;const host=root.querySelector('.sec:not(.fx)');if(!host)return;const kp=host.querySelector(':scope > .kpis')||host.querySelector(':scope > .cc');if(!kp)return;const t=document.createElement('div');t.innerHTML=bcCards(A);[...t.children].reverse().forEach(el=>{kp.insertAdjacentElement('afterend',el);drawAll0(el)})}
+function drawAll(root){drawAllD(root);navGroups();navTools();themeBtn();if(root&&root.id==='main'){polishSel(root);polish(root);nextStep(root);postI(root);postJ(root);postK(root);postL(root);postL2(root);postM(root);postN(root);if(PRES.on)PRES.steps=presSteps()}}
+
+/* ================= v2o · Tab "Giá & đối thủ" (phân tích thị trường) ================= */
+/* Đối thủ là tên chung (hư cấu), giá đối thủ là dữ liệu mô phỏng theo kiểu crawl giá định kỳ */
+const MK_COMP=[{k:'A',n:'Đại siêu thị A',s:'ĐST A',d:'đại siêu thị',cov:.86,b:.008},{k:'B',n:'Chuỗi tiện lợi B',s:'Tiện lợi B',d:'cửa hàng tiện lợi',cov:.72,b:-.05},{k:'C',n:'Chợ truyền thống',s:'Chợ',d:'chợ, khảo sát tay',cov:.55,b:.022},{k:'D',n:'Sàn TMĐT D',s:'TMĐT D',d:'giao hàng nhanh',cov:.64,b:.012}];
+const MK_CATBIAS=[.012,.006,-.01,-.004,-.002,.004,.016,.01];/* mình đắt hơn thị trường bao nhiêu theo ngành */
+const MK_SKUN=[['Rau cải ngọt 500g','Cà chua 1kg','Khoai tây 1kg','Hành lá 100g','Bắp cải 1kg','Cà rốt 1kg','Chuối già 1kg','Cam sành 1kg','Táo nhập khẩu 1kg','Dưa hấu 1kg','Xà lách 300g','Ớt chuông 500g'],
+ ['Thịt ba chỉ 500g','Thịt nạc vai 500g','Sườn non 500g','Ức gà 500g','Đùi gà 1kg','Cá basa phi lê 500g','Tôm thẻ 500g','Bò xay 300g','Cá hồi phi lê 300g','Mực ống 500g'],
+ ['Sữa tươi 1L','Sữa tươi lốc 4×180ml','Sữa chua lốc 4','Trứng gà hộp 10','Trứng vịt hộp 10','Sữa đặc 380g','Phô mai lát 200g','Sữa hạt 1L','Bơ lạt 200g'],
+ ['Gạo thơm 5kg','Gạo tẻ 5kg','Dầu ăn 1L','Nước mắm 500ml','Nước tương 500ml','Đường trắng 1kg','Muối i-ốt 500g','Mì gói thùng 30','Hạt nêm 400g','Bột ngọt 400g','Tương ớt 500g','Bún khô 500g'],
+ ['Nước suối 500ml','Nước suối thùng 24','Nước ngọt lon 330ml','Nước ngọt thùng 24','Trà xanh chai 455ml','Cà phê hoà tan hộp 20','Bia lon 330ml','Bia thùng 24','Nước tăng lực lon','Nước ép 1L'],
+ ['Snack khoai tây 52g','Bánh quy bơ 90g','Kẹo dẻo 70g','Bánh xốp 150g','Socola thanh 40g','Bánh gạo 150g','Hạt điều 200g','Bánh bông lan hộp'],
+ ['Há cảo 500g','Chả giò 500g','Xúc xích 500g','Kem hộp 450ml','Cá viên 500g','Bánh bao hộp 6'],
+ ['Nước giặt 3.6kg','Nước xả 1.6L','Nước rửa chén 750g','Kem đánh răng 180g','Dầu gội 650ml','Sữa tắm 800ml','Giấy vệ sinh lốc 10','Khăn giấy hộp','Băng vệ sinh gói','Tã dán gói L']];
+const MK_SKUS=(()=>{const r=rng(9090),o=[];let id=0;MK_SKUN.forEach((L,ci)=>L.forEach((n,j)=>{id++;const base=CATRAW?null:null;const kvi=j<Math.ceil(L.length*.35);
+  const cats=CATS[ci],PR=[[8e3,60e3],[40e3,180e3],[15e3,90e3],[10e3,200e3],[6e3,300e3],[8e3,80e3],[30e3,120e3],[20e3,250e3]][ci];const pr=Math.round(PR[0]*Math.pow(PR[1]/PR[0],r())/500)*500;
+  const comp={};MK_COMP.forEach(c=>{if(r()<c.cov*(kvi?1.1:.9)){const gap=MK_CATBIAS[ci]+c.b+(kvi?-.012:.004)+.045*(r()+r()+r()-1.5);comp[c.k]=Math.round(pr/(1+gap)/100)*100}});
+  const w=(kvi?3.2:1)*(.4+r()),day=20+Math.floor(r()*12);o.push({id:'SKU'+String(id).padStart(3,'0'),n,ci,cat:cats.n,kvi,pr,comp,w,crawl:Math.min(31,day)})}));return o})();
+function mkData(A){const cs=catSplit(A.mon.map(m=>m.rev),A.mon.map(m=>m.uptW)),k=catWin(cs,W12[0],W12[1]);
+  const wsum=CATS.map((_,ci)=>sum(MK_SKUS.filter(s=>s.ci===ci).map(s=>s.w)));
+  const S=MK_SKUS.map(s=>{const cv=Object.entries(s.comp),mn=cv.length?Math.min(...cv.map(e=>e[1])):null,who=cv.length?cv.find(e=>e[1]===mn)[0]:null,gap=mn?s.pr/mn-1:null;
+    const qty=Math.round(k[s.ci].r*.15*s.w/wsum[s.ci]*ANNF/s.pr);/* SKU mô phỏng đại diện ~15% doanh thu ngành */
+    const res=mn==null?'na':cv.length<2?'thin':gap>.02?'hi':gap<-.02?'lo':'eq';return Object.assign({},s,{mn,who,gap,qty,res,ncomp:cv.length,cost:gap>0?(s.pr-mn)*qty:0})});
+  const ok=S.filter(s=>s.res!=='na'&&s.res!=='thin');const idx=(arr,f)=>{const w=sum(arr.map(s=>s.pr*s.qty));return w?sum(arr.map(s=>f(s)*s.pr*s.qty))/w:null};
+  const pi=idx(ok,s=>s.pr/s.mn)*100;/* chỉ số giá so với giá min thị trường, có trọng số doanh thu */
+  const byC=MK_COMP.map(c=>{const z=S.filter(s=>s.comp[c.k]);return {c,n:z.length,idx:idx(z,s=>s.pr/s.comp[c.k])*100,hi:z.filter(s=>s.pr/s.comp[c.k]-1>.02).length}});
+  const byCat=CATS.map((c,ci)=>{const z=S.filter(s=>s.ci===ci),zo=z.filter(s=>s.res!=='na'&&s.res!=='thin');return {c,ci,n:z.length,cmp:zo.length,lo:zo.filter(s=>s.res==='lo').length,eq:zo.filter(s=>s.res==='eq').length,hi:zo.filter(s=>s.res==='hi').length,chk:z.length-zo.length,gap:zo.length?idx(zo,s=>s.gap):null,kviHi:zo.filter(s=>s.kvi&&s.res==='hi').length,
+    vs:MK_COMP.map(cp=>{const y=z.filter(s=>s.comp[cp.k]);return y.length?(idx(y,s=>s.pr/s.comp[cp.k])-1)*100:null})}});
+  return {S,ok,pi,byC,byCat,cov:ok.length/S.length,kviHi:ok.filter(s=>s.kvi&&s.res==='hi'),hiN:ok.filter(s=>s.res==='hi').length}}
+function mkTrend(D){const r=rng(3131);return MK_COMP.map((c,ci)=>MONTHS.map((m,i)=>{const bc=D.byC[ci].idx;return bc+(19-i)*.08*(ci%2?1:-1)+(i===1||i===13?-1.6:0)+.5*(r()+r()-1)}))}
+let MKF='hi';
+const MKR={lo:['Rẻ hơn','g'],eq:['Ngang ±2%','b'],hi:['Đắt hơn','r'],thin:['Chỉ 1 nguồn','w'],na:['Thiếu dữ liệu','w']};
+function secMK(A){const D=mkData(A),T=mkTrend(D),kh=D.kviHi,costK=sum(kh.map(s=>s.cost)),costAll=sum(D.ok.filter(s=>s.res==='hi').map(s=>s.cost));
+  const worst=D.byCat.filter(c=>c.gap!=null).sort((a,b)=>b.gap-a.gap)[0],cheap=D.byC.slice().sort((a,b)=>b.idx-a.idx)[0];
+  const K=[{t:'<b>Đưa '+nf(kh.length)+' SKU KVI đang đắt hơn đối thủ rẻ nhất &gt; 2% về ngang giá</b>: đây là mặt hàng khách nhớ giá (gạo, sữa, trứng, dầu ăn…), quyết định cảm nhận "rẻ hay đắt" của cả cửa hàng; chi phí lãi gộp ước '+fBn(costK,1)+'/năm <span class="go2" data-go="tr">ảnh hưởng tới CR →</span>'},
+    {t:'<b>Giữ giá ở '+nf(D.hiN-kh.length)+' SKU không phải KVI dù đắt hơn</b>: khách ít so giá, hạ hết sẽ mất '+fBn(costAll-costK,1)+' lãi gộp/năm mà khó kéo thêm khách'},
+    {t:'<b>Ngành cần rà trước: '+esc(worst.c.n)+'</b> (đắt hơn thị trường bình quân '+fPt(worst.gap)+', '+nf(worst.kviHi)+' KVI đắt hơn); mình đắt hơn nhiều nhất so với '+esc(cheap.c.n)+' (chỉ số '+nf(cheap.idx,1)+', 100 = ngang giá)'}];
+  const kpis='<div class="kpis">'+kpi('Chỉ số giá so với thị trường',nf(D.pi,1),'','100 = bằng giá min đối thủ · có trọng số DT')+kpi('SKU đắt hơn > 2%',fP(D.hiN/D.ok.length,0),'',nf(D.hiN)+'/'+nf(D.ok.length)+' SKU so sánh được')+kpi('KVI đắt hơn',nf(kh.length),'SKU','trên '+nf(D.S.filter(s=>s.kvi).length)+' SKU KVI')+kpi('Độ phủ dữ liệu',fP(D.cov,0),'','có ≥ 2 nguồn giá · '+nf(D.S.length-D.ok.length)+' SKU cần kiểm tra')+'</div>';
+  const hm=heatmap(D.byCat.map(c=>c.vs.map(v=>v==null?null:-v)),D.byCat.map(c=>c.c.n),MK_COMP.map(c=>c.s),v=>'Mình '+(v<=0?'đắt hơn ':'rẻ hơn ')+nf(Math.abs(v),1)+'%',{div:true,neg:'Mình đắt hơn',pos:'Mình rẻ hơn',txt:v=>(v<=0?'+':'−')+nf(Math.abs(v),1)+'%',L:120,sfx:'',aria:'Chênh giá theo ngành và đối thủ'});
+  const bins=[-.1,-.06,-.04,-.02,.02,.04,.06,.1],lab=['< −10%','−10…−6%','−6…−4%','−4…−2%','±2%','+2…4%','+4…6%','+6…10%','> +10%'],cnt=lab.map(()=>0);D.ok.forEach(s=>{let b=bins.findIndex(x=>s.gap<x);if(b<0)b=bins.length;cnt[b]++});
+  const hist=cols({labels:lab,stacked:true,series:[{name:'Rẻ hơn',color:'var(--s3)',vals:cnt.map((v,i)=>i<4?v:0)},{name:'Ngang ±2%',color:'var(--ink-3)',vals:cnt.map((v,i)=>i===4?v:0)},{name:'Đắt hơn',color:'var(--s8)',vals:cnt.map((v,i)=>i>4?v:0)}],fmt:v=>nf(v,0),h:230,maxX:9});
+  const trend=lineChart({labels:MONTHS.map(m=>m.lab),series:MK_COMP.map((c,i)=>({name:'so với '+c.n,color:SER[i],vals:T[i]})),fmt:v=>nf(v,1),min0:false,h:250});
+  const tbC='<div class="tbl"><table><thead><tr><th>Ngành</th><th class="r">SKU</th><th class="r">So sánh được</th><th class="r">Rẻ hơn</th><th class="r">Ngang</th><th class="r">Đắt hơn</th><th class="r">KVI đắt hơn</th><th class="r">Cần kiểm tra</th><th class="r">Chênh TB</th><th>Tỷ lệ đắt hơn</th></tr></thead><tbody>'+
+    D.byCat.map(c=>'<tr style="cursor:default"><td><b>'+esc(c.c.n)+'</b></td><td class="r">'+c.n+'</td><td class="r">'+c.cmp+'</td><td class="r up">'+c.lo+'</td><td class="r">'+c.eq+'</td><td class="r dn">'+c.hi+'</td><td class="r'+(c.kviHi?' dn':'')+'"><b>'+c.kviHi+'</b></td><td class="r muted">'+c.chk+'</td><td class="r '+(c.gap>0.02?'dn':c.gap<-.02?'up':'')+'">'+(c.gap==null?'—':fPt(c.gap))+'</td><td><div class="mk-st"><i class="g" style="width:'+(c.cmp?c.lo/c.cmp*100:0)+'%"></i><i class="b" style="width:'+(c.cmp?c.eq/c.cmp*100:0)+'%"></i><i class="r" style="width:'+(c.cmp?c.hi/c.cmp*100:0)+'%"></i></div></td></tr>').join('')+'</tbody></table></div>';
+  const list=D.S.filter(s=>MKF==='all'||s.res===MKF||(MKF==='kvi'&&s.kvi&&s.res==='hi')).sort((a,b)=>(b.gap||-9)-(a.gap||-9));
+  const chips='<div class="nm-tools mk-f" role="group" aria-label="Lọc kết quả">'+[['hi','Đắt hơn'],['kvi','KVI đắt hơn'],['lo','Rẻ hơn'],['eq','Ngang'],['na','Thiếu / 1 nguồn'],['all','Tất cả']].map(f=>'<button type="button" data-mkf="'+f[0]+'" aria-pressed="'+(MKF===f[0])+'">'+f[1]+'</button>').join('')+'</div>';
+  const tbS=chips+'<div class="tbl"><table><thead><tr><th>SKU</th><th>Ngành</th><th class="r">Giá mình</th>'+MK_COMP.map(c=>'<th class="r">'+esc(c.n.split(' ').slice(-1)[0]==='truyền'?'Chợ':c.n.replace('Đại siêu thị','ĐST').replace('Chuỗi tiện lợi','CTL').replace('Sàn TMĐT','TMĐT'))+'</th>').join('')+'<th class="r">Giá min</th><th class="r">Chênh</th><th>Kết quả</th><th>Ngày crawl</th><th></th></tr></thead><tbody>'+
+    list.slice(0,30).map(s=>'<tr style="cursor:default"><td><b>'+esc(s.n)+'</b>'+(s.kvi?' <span class="pl-t">KVI</span>':'')+' <span class="muted">'+s.id+'</span></td><td class="muted">'+esc(s.cat)+'</td><td class="r"><b>'+nf(s.pr/1e3,1)+'k</b></td>'+MK_COMP.map(c=>'<td class="r'+(s.who===c.k?' mk-min':'')+'">'+(s.comp[c.k]?nf(s.comp[c.k]/1e3,1)+'k':'<span class="muted">—</span>')+'</td>').join('')+'<td class="r">'+(s.mn?nf(s.mn/1e3,1)+'k':'—')+'</td><td class="r '+(s.gap>.02?'dn':s.gap<-.02?'up':'')+'">'+(s.gap==null?'—':fPt(s.gap))+'</td><td><span class="mk-r '+MKR[s.res][1]+'">'+MKR[s.res][0]+'</span></td><td class="muted">'+String(s.crawl).padStart(2,'0')+'/08/2026</td><td><button type="button" class="mk-ev" data-mksku="'+s.id+'">Xem căn cứ</button></td></tr>').join('')+'</tbody></table></div><p class="note">Hiện '+Math.min(30,list.length)+'/'+list.length+' SKU, xếp theo chênh lệch giảm dần · ô xanh đậm: đối thủ rẻ nhất</p>';
+  return '<section class="sec">'+concl('Kết luận · giá của mình so với thị trường',K,'Giá min = giá thấp nhất trong các nguồn thu được của cùng SKU · "ngang" = trong ±2% · chi phí = (giá mình − giá min) × sản lượng 12 tháng · ảnh chụp dữ liệu crawl tháng 08/2026, chưa kiểm chứng khuyến mãi tạm thời của đối thủ')+kpis+
+    '<div class="row c2">'+card('Chênh giá theo ngành × đối thủ','Chỉ số giá có trọng số doanh thu · đỏ: mình đắt hơn · xanh: mình rẻ hơn',hm)+card('Phân bố chênh lệch giá từng SKU','So với giá min của đối thủ · xanh: rẻ hơn · xám: ngang ±2% · đỏ: đắt hơn',hist)+'</div>'+
+    card('Chỉ số giá theo tháng','100 = bằng giá đối thủ · trên 100 là mình đắt hơn · T2/25 và T2/26: đối thủ khuyến mãi Tết mạnh hơn',trend)+
+    card('Tổng hợp theo ngành','Số SKU theo kết quả so giá · "cần kiểm tra" = thiếu dữ liệu hoặc chỉ có 1 nguồn giá',tbC)+
+    card('Chi tiết SKU và bằng chứng giá','Giá mình, giá từng đối thủ, giá min và ngày thu thập · lọc theo kết quả ở dưới',tbS)+
+    crawlCard()+
+    '<p class="note mk-disc">Đối thủ là tên chung, giá là dữ liệu mô phỏng theo cách crawl giá định kỳ. Đây là ảnh chụp tại thời điểm đối chiếu, chưa phản ánh chương trình khuyến mãi tạm thời, khác biệt quy cách đóng gói hay doanh số thật của đối thủ.</p></section>'}
+function mkHead(){const D=mkData(A);return {bc:[['5 · So với thị trường?']],t:'Giá & đối thủ',q:'Giá của mình đang rẻ hay đắt so với đối thủ, ở ngành nào, mặt hàng nào cần chỉnh trước.',v:null}}
+document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('[data-mkf]');if(!b)return;MKF=b.dataset.mkf;const y=scrollY;render();scrollTo(0,y)});
+/* đăng ký trang */
+TABS.push(['mk','Giá & đối thủ']);PH_ON.add('mk');
+{const j=NAVT.findIndex(e=>e.g!=null&&e.h==='Phụ lục');NAVT.splice(j,0,{g:'5',h:'So với thị trường?'},{t:'Giá & đối thủ',k:'mk',sub:'Giá min so với đối thủ'});}
+FLOW.splice(FLOW.indexOf('ap')+1,0,'mk');FLOWN.mk='Giá & đối thủ';FLOWG.mk=5;FLOWQ[5]='So với thị trường?';KALL=null;
+{try{const h=location.hash.slice(1);if(h.includes('=')){const p=Object.fromEntries(h.split('&').map(x=>x.split('=')));if(p.t==='mk')TAB='mk'}}catch(e){}}
+
+/* ---------- Nhật ký crawl (dữ liệu thô) · mỗi giá đối thủ có đúng 1 ô nguồn ---------- */
+const MK_DEVS=['Redmi','A07','A51'];
+const MK_CRAWL=(()=>{const r=rng(5151),o=[];MK_SKUS.forEach(s=>MK_COMP.forEach((c,ci)=>{const v=s.comp[c.k];if(!v)return;const orig=Math.round(v*(1.05+.25*r())/1000)*1000,pv=c.k==='D'?-Math.round(orig*.04*r()/100)*100:0,disc=v-orig-pv;
+  const day=Math.max(1,s.crawl-ci),hh=String(8+((s.crawl*7+ci)%14)).padStart(2,'0')+':'+String((s.crawl*13+ci*7)%60).padStart(2,'0');
+  o.push({sku:s.id,n:s.n,cat:s.cat,c:c.n,ck:c.k,v,orig,disc,pv,stock:r()<.93?'InStock':'OutStock',dev:c.k==='C'?'khảo sát tay':MK_DEVS[Math.floor(r()*3)],dt:String(day).padStart(2,'0')+'/08/2026 '+hh,note:c.k==='C'?'giá chợ, cân ký':c.k==='D'?'đã trừ voucher sàn':''})}));o.forEach((x,i)=>x.row=i+2);return o})();
+const crawlRow=(sku,ck)=>MK_CRAWL.find(x=>x.sku===sku&&x.ck===ck);
+function crawlCard(){const H=['A','B','C','D','E','F','G','H','I','J','K','L'];
+  return card('Nhật ký crawl giá · dữ liệu thô','Mỗi dòng là 1 lần thu thập giá của 1 SKU ở 1 nguồn · cột G "Giá chuẩn" là giá dùng để so sánh · từ hồ sơ SKU bấm "Mở ô nguồn crawl" để nhảy tới đúng ô · '+nf(MK_CRAWL.length)+' dòng · dữ liệu mô phỏng',
+   '<div class="cr-wrap" id="crawlLog"><table class="cr"><thead><tr class="cr-l"><th></th>'+H.map(h=>'<th>'+h+'</th>').join('')+'</tr><tr><th>1</th><th>SKU</th><th>Sản phẩm</th><th>Ngành</th><th>Nguồn</th><th>Giá gốc</th><th>Giảm giá SP</th><th>Giá chuẩn</th><th>Voucher sàn</th><th>Tồn kho</th><th>Thiết bị</th><th>Ngày crawl</th><th>Ghi chú</th></tr></thead><tbody>'+
+   MK_CRAWL.map(x=>'<tr id="cr-'+x.row+'"><th>'+x.row+'</th><td>'+x.sku+'</td><td>'+esc(x.n)+'</td><td>'+esc(x.cat)+'</td><td>'+esc(x.c)+'</td><td class="r">'+nf(x.orig)+'</td><td class="r">'+nf(x.disc)+'</td><td class="r cr-g">'+nf(x.v)+'</td><td class="r">'+(x.pv?nf(x.pv):'')+'</td><td>'+x.stock+'</td><td>'+esc(x.dev)+'</td><td>'+x.dt+'</td><td class="muted">'+esc(x.note)+'</td></tr>').join('')+'</tbody></table></div>')}
+function jumpCrawl(row){const m=document.getElementById('mkm');if(m)m.classList.remove('on');const w=document.getElementById('crawlLog'),tr=document.getElementById('cr-'+row);if(!w||!tr)return;
+  document.querySelectorAll('.cr .cr-hit,.cr .cr-row').forEach(e=>e.classList.remove('cr-hit','cr-row'));tr.classList.add('cr-row');const cell=tr.querySelector('.cr-g');cell.classList.add('cr-hit');
+  w.closest('.card').scrollIntoView({behavior:RM?'auto':'smooth',block:'start'});setTimeout(()=>{w.scrollTop=tr.offsetTop-w.clientHeight/2;w.scrollLeft=Math.max(0,cell.offsetLeft-260)},RM?0:350);toast('Ô G'+row+' · Giá chuẩn '+cell.textContent+' đ')}
+document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('[data-crow]');if(b){e.preventDefault();jumpCrawl(+b.dataset.crow)}});
+
+/* ---------- Hồ sơ SKU (popup căn cứ) ---------- */
+function mkModal(id){const D=mkData(A),s=D.S.find(z=>z.id===id);if(!s)return;
+  const sug=s.res==='hi'&&s.kvi?s.mn:null,row=(k,v)=>'<tr><th>'+esc(k)+'</th><td>'+v+'</td></tr>';
+  const comp='<table class="mk-ct"><thead><tr><th>Nguồn</th><th>Loại</th><th class="r">Giá</th><th class="r">Mình chênh</th><th>Thời điểm crawl</th><th>Ô nguồn</th></tr></thead><tbody>'+MK_COMP.map(c=>{const x=crawlRow(s.id,c.k);return '<tr'+(s.who===c.k?' class="mk-minrow"':'')+'><td><b>'+esc(c.n)+'</b>'+(s.who===c.k?' <span class="mk-r g">rẻ nhất</span>':'')+'</td><td class="muted">'+esc(c.d)+'</td><td class="r">'+(x?nf(x.v)+' đ':'<span class="muted">không có dữ liệu</span>')+'</td><td class="r">'+(x?fPt(s.pr/x.v-1):'—')+'</td><td class="muted">'+(x?x.dt:'—')+'</td><td>'+(x?'<a href="#" class="cr-a" data-crow="'+x.row+'">Ô G'+x.row+' ↗</a>':'')+'</td></tr>'}).join('')+'</tbody></table>';
+  const chk=[s.ncomp<2?'Chỉ có '+s.ncomp+' nguồn giá, cần khảo sát thêm':'',s.who==='C'?'Giá chợ là khảo sát tay, quy cách có thể khác (cân ký, không bao bì)':'',s.who==='D'?'Giá sàn TMĐT có thể đang có mã giảm giá tạm thời':'',s.res==='hi'&&!s.kvi?'Không phải KVI: khách ít so giá, cân nhắc giữ giá':''].filter(Boolean);
+  let el=document.getElementById('mkm');if(!el){el=document.createElement('div');el.id='mkm';el.onclick=e=>{if(e.target===el||e.target.closest('.mkm-x'))el.classList.remove('on')};document.body.appendChild(el)}
+  const mn=s.who?crawlRow(s.id,s.who):null;
+  el.innerHTML='<div class="mkm-box" role="dialog" aria-modal="true" aria-label="Hồ sơ SKU"><div class="mkm-h"><div><small>Hồ sơ SKU</small><h3>'+esc(s.n)+'</h3></div><button type="button" class="mkm-x" aria-label="Đóng">Đóng ✕</button></div>'+
+    '<table class="mkm-t">'+row('Mã SKU',s.id)+row('Ngành',esc(s.cat)+(s.kvi?' · <span class="pl-t">KVI</span> mặt hàng khách nhớ giá':''))+row('Kết quả','<span class="mk-r '+MKR[s.res][1]+'">'+MKR[s.res][0]+'</span>'+(s.gap!=null?' · chênh '+fPt(s.gap)+' so với giá min':''))+
+      row('Giá bán của mình','<b>'+nf(s.pr)+' đ</b>')+row('Giá min thị trường',mn?nf(mn.v)+' đ · '+esc(mn.c)+' · crawl '+mn.dt:'—')+
+      row('Sản lượng '+(L12||'12 tháng'),nf(s.qty)+' · doanh thu '+fAmt(s.qty*s.pr))+
+      row('Giá đề xuất xem xét',sug?'<b>'+nf(sug)+' đ</b> (về ngang giá min) · chi phí lãi gộp ~'+fAmt(s.cost)+'/năm':s.res==='hi'?'Giữ giá (không phải KVI) · nếu khớp giá sẽ mất ~'+fAmt(s.cost)+'/năm':'Giữ giá hiện tại')+
+      row('Điểm cần kiểm tra',chk.length?chk.map(esc).join('<br>'):'Không có')+'</table>'+
+    '<div class="mkm-s">Giá từng nguồn</div>'+comp+
+    (mn?'<div class="mkm-links"><a href="#" class="cr-a" data-crow="'+mn.row+'">Mở ô nguồn crawl của giá min (G'+mn.row+') ↗</a><span class="muted">Link sản phẩm đối thủ: không có trong bản mô phỏng</span></div>':'')+
+    '<p class="note">Giá đề xuất chỉ để xem xét, chưa tính phản ứng của đối thủ và co giãn giá; dữ liệu mô phỏng.</p></div>';
+  el.classList.add('on');setTimeout(()=>{const x=el.querySelector('.mkm-x');if(x)x.focus()},20)}
+document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('[data-mksku]');if(b)mkModal(b.dataset.mksku)});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){const m=document.getElementById('mkm');if(m)m.classList.remove('on')}});
 
 render();
 </script>
